@@ -1,0 +1,9 @@
+{
+    "name": "oyvinmar.com",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "2.5.6",
+        "hbs": "1.0.1",
+        "less": "1.2.0"
+    }
+}
