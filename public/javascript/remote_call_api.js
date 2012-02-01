@@ -2,20 +2,46 @@ var RemoteCallApi = (function() {
   var instantiated;
 
   function init() {
+    var replace_url = function(url) {
+
+    };
+
     var handleTwitterResponse = function(data) {
       var len = data.length
       for (var i = 0; i < len; i++) {
         var date = new Date(data[i].created_at);
-        window.app.add(data[i].text, "https://twitter.com/#!/oyvinmar/status/" + data[i].id, "Twitter", "http://twitter.com", date);
+        var text = data[i].text;
+        _.each(data[i].entities.urls, function (url) {
+            text = text.replace(url.url, '<a href="' + url.url + '">' + url.url + '</a>');
+          });
+        window.app.add(text, "https://twitter.com/#!/oyvinmar/status/" + data[i].id, "Twitter", "http://twitter.com", date);
       }
-    }
+    };
+
+    var handlePinboardRespons = function(json) {
+      _.each(json, function (bookmark) {
+        window.app.add(bookmark.d, bookmark.u, "Pinboard.in", "http://pinboard.in/", new Date(bookmark.dt));
+      });
+    };
 
     return {
       fetch_twitter_timeline: function() {
         jQuery.ajax({
-          url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=oyvinmar",
+          url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=oyvinmar&include_entities=1",
           dataType: "jsonp",
           success: handleTwitterResponse
+        });
+      },
+
+      fetch_pinboard_feed: function (){
+        jQuery.ajax({
+          url: "/pinboard/feed/",
+          dataType: "json",
+          crossDomain: true,
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+          },
+          success: handlePinboardRespons
         });
       },
 

@@ -17,7 +17,13 @@ var EntryView = Backbone.View.extend({
   },
 
   render: function() {
-    var template = Handlebars.compile('<article class="entry">{{ content }}</article>');
+    var template = Handlebars.compile(
+                              '<article class="entry">'
+                            + '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>'
+                            + '<p>{{{ content }}}</p>'
+                            + '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>'
+                            + '<footer></footer>'
+                            + '</article>');
     var context = _.extend(this.model.toJSON());
     //$(this.el).html(template(context));
     $('#stream').append(template(context));
@@ -60,7 +66,8 @@ var AppController = Backbone.Router.extend({
     this.view = new AppView({model: this.model});
     params.append_at.append(this.view.render().el);
     RemoteCallApi.getInstance().fetch_twitter_timeline();
-  },
+    RemoteCallApi.getInstance().fetch_pinboard_feed();
+},
 
   add: function(content, url, service_name, service_url, timestamp) {
     this.model.entries.add(

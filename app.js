@@ -1,5 +1,6 @@
 var PORT = 8080;
 var express = require('express'), app = express.createServer();
+var http = require('http');
 var stylesheets = __dirname + '/public/stylesheets';
 var images = __dirname + '/public/images';
 var javascript = __dirname + '/public/javascript';
@@ -44,6 +45,26 @@ app.configure('production', function() {
 
 app.get('/', function(req, res) {
   res.render('index.html', {layout:true});
+});
+
+app.get('/pinboard/feed/', function(req, res){
+  var options = {
+    host: 'feeds.pinboard.in',
+    port: 80,
+    path: '/json/v1/u:oyvinmar/',
+  };
+  http.get(options, function(response) {
+    console.log("Got response: " + response.statusCode);
+    res.writeHead(response.statusCode, response.headers);
+    response.on('data', function (chunk) {
+      res.write(chunk, 'binary');
+    });
+    response.on('end', function () {
+     res.end();
+    });
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+  });
 });
 
 app.listen(process.env.PORT || PORT);
