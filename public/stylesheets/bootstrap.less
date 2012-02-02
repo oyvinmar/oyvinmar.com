@@ -1,12 +1,11 @@
 /*!
- * Bootstrap @VERSION
+ * Bootstrap v2.0.0
  *
- * Copyright 2011 Twitter, Inc
+ * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
- * Date: @DATE
  */
 
 // CSS Reset
@@ -18,9 +17,49 @@
 
 // Grid system and page structure
 @import "/public/stylesheets/scaffolding.less";
+@import "/public/stylesheets/grid.less";
+@import "/public/stylesheets/layouts.less";
 
-// Styled patterns and elements
+// Base CSS
 @import "/public/stylesheets/type.less";
+@import "/public/stylesheets/code.less";
 @import "/public/stylesheets/forms.less";
 @import "/public/stylesheets/tables.less";
-@import "/public/stylesheets/patterns.less";
+
+// Components: common
+@import "/public/stylesheets/sprites.less";
+@import "/public/stylesheets/dropdowns.less";
+@import "/public/stylesheets/wells.less";
+@import "/public/stylesheets/component-animations.less";
+@import "/public/stylesheets/close.less";
+
+// Components: Buttons & Alerts
+@import "/public/stylesheets/buttons.less";
+@import "/public/stylesheets/button-groups.less";
+@import "/public/stylesheets/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "/public/stylesheets/navs.less";
+@import "/public/stylesheets/navbar.less";
+@import "/public/stylesheets/breadcrumbs.less";
+@import "/public/stylesheets/pagination.less";
+@import "/public/stylesheets/pager.less";
+
+// Components: Popovers
+@import "/public/stylesheets/modals.less";
+@import "/public/stylesheets/tooltip.less";
+@import "/public/stylesheets/popovers.less";
+
+// Components: Misc
+@import "/public/stylesheets/thumbnails.less";
+@import "/public/stylesheets/labels.less";
+@import "/public/stylesheets/progress-bars.less";
+@import "/public/stylesheets/accordion.less";
+@import "/public/stylesheets/carousel.less";
+@import "/public/stylesheets/hero-unit.less";
+
+// Utility classes
+@import "/public/stylesheets/utilities.less"; // Has to be last to override when necessary
+
+// Responsive media queries
+@import "/public/stylesheets/responsive.less";
