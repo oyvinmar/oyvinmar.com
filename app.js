@@ -53,6 +53,19 @@ app.get('/pinboard/feed/', function(req, res){
     port: 80,
     path: '/json/v1/u:oyvinmar/',
   };
+  proxy_responder(res, options);
+});
+
+app.get('/twitter/feed/', function(req, res){
+  var options = {
+    host: 'api.twitter.com',
+    port: 80,
+    path: '/1/statuses/user_timeline.json?screen_name=oyvinmar&include_entities=1',
+  };
+  proxy_responder(res, options);
+});
+
+var proxy_responder = function(res, options) {
   http.get(options, function(response) {
     console.log("Got response: " + response.statusCode);
     res.writeHead(response.statusCode, response.headers);
@@ -60,11 +73,11 @@ app.get('/pinboard/feed/', function(req, res){
       res.write(chunk, 'binary');
     });
     response.on('end', function () {
-     res.end();
+      res.end();
     });
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
-});
+};
 
 app.listen(process.env.PORT || PORT);

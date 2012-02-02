@@ -27,8 +27,8 @@ var RemoteCallApi = (function() {
     return {
       fetch_twitter_timeline: function() {
         jQuery.ajax({
-          url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=oyvinmar&include_entities=1",
-          dataType: "jsonp",
+          url: "/twitter/feed/",
+          dataType: "json",
           success: handleTwitterResponse
         });
       },
