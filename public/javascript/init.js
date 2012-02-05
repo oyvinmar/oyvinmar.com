@@ -7,26 +7,31 @@ var Entry = Backbone.Model.extend({
 });
 
 var EntryCollection = Backbone.Collection.extend({
-  model: Entry
+  model: Entry,
+
+  comparator: function(entry) {
+    return entry.get('timestamp').getTime();
+  }
 });
 
 var EntryView = Backbone.View.extend({
+  tagName: 'article',
+  className: 'entry',
   initialize: function(args) {
     _.bindAll(this, 'changeContent');
     this.model.bind('change:content', this.changeContent);
+    this.el.id = this.model.get('timestamp').getTime() + '';
   },
 
+  template: Handlebars.compile(
+    '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>'
+    + '<p>{{{ content }}}</p>'
+    + '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>'
+  + '<footer></footer>'),
+
   render: function() {
-    var template = Handlebars.compile(
-                              '<article class="entry">'
-                            + '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>'
-                            + '<p>{{{ content }}}</p>'
-                            + '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>'
-                            + '<footer></footer>'
-                            + '</article>');
     var context = _.extend(this.model.toJSON());
-    //$(this.el).html(template(context));
-    $('#stream').append(template(context));
+    $(this.el).html(this.template(context));
     return this;
   },
 
@@ -42,6 +47,8 @@ var AppModel = Backbone.Model.extend({
 });
 
 var AppView = Backbone.View.extend({
+  el: $('#stream'),
+
   initialize: function() {
     _.bindAll(this, "addEntry");
     this.model.entries.bind('add', this.addEntry);
@@ -55,7 +62,17 @@ var AppView = Backbone.View.extend({
 
   addEntry: function(entry) {
     var view = new EntryView({model: entry});
-    this.entries.append(view.render().el);
+    var children = $('#stream').children();
+
+    var found = _.find(children, function(item) {
+      return (entry.get('timestamp').getTime() >= parseInt(item.id));
+    })
+    if(found){
+      $(view.render().el).insertBefore(found);
+    } else {
+      $('#stream').append(view.render().el);
+    }
+    //    this.entries.append(view.render().el);
   }
 });
 
@@ -64,10 +81,9 @@ var AppController = Backbone.Router.extend({
   initialize: function(params) {
     this.model = new AppModel();
     this.view = new AppView({model: this.model});
-    params.append_at.append(this.view.render().el);
     RemoteCallApi.getInstance().fetch_twitter_timeline();
     RemoteCallApi.getInstance().fetch_pinboard_feed();
-},
+  },
 
   add: function(content, url, service_name, service_url, timestamp) {
     this.model.entries.add(
@@ -83,6 +99,6 @@ var AppController = Backbone.Router.extend({
 });
 
 $(function() {
-  var apt = new AppController({append_at: $('#stream')});
+  var apt = new AppController();
   window.app = apt;
 });

@@ -12,15 +12,15 @@ var RemoteCallApi = (function() {
         var date = new Date(data[i].created_at);
         var text = data[i].text;
         _.each(data[i].entities.urls, function (url) {
-            text = text.replace(url.url, '<a href="' + url.url + '">' + url.url + '</a>');
-          });
+          text = text.replace(url.url, '<a href="' + url.url + '">' + url.url + '</a>');
+        });
         window.app.add(text, "https://twitter.com/#!/oyvinmar/status/" + data[i].id, "Twitter", "http://twitter.com", date);
       }
     };
 
     var handlePinboardRespons = function(json) {
       _.each(json, function (bookmark) {
-        window.app.add(bookmark.d, bookmark.u, "Pinboard.in", "http://pinboard.in/", new Date(bookmark.dt));
+          window.app.add(bookmark.d, bookmark.u, "Pinboard.in", "http://pinboard.in/", new Date(bookmark.dt));
       });
     };
 
