@@ -16,12 +16,14 @@ var RemoteCallApi = (function() {
         });
         window.app.add(text, "https://twitter.com/#!/oyvinmar/status/" + data[i].id, "Twitter", "http://twitter.com", date);
       }
+      window.app.view.render();
     };
 
     var handlePinboardRespons = function(json) {
       _.each(json, function (bookmark) {
           window.app.add(bookmark.d, bookmark.u, "Pinboard.in", "http://pinboard.in/", new Date(bookmark.dt));
       });
+      window.app.view.render();
     };
 
     return {

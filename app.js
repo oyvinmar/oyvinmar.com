@@ -67,7 +67,7 @@ app.get('/twitter/feed/', function(req, res){
 
 var proxy_responder = function(res, options) {
   http.get(options, function(response) {
-    console.log("Got response: " + response.statusCode);
+    //console.log("Got response: " + response.statusCode);
     res.writeHead(response.statusCode, response.headers);
     response.on('data', function (chunk) {
       res.write(chunk, 'binary');
