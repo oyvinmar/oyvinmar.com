@@ -47,18 +47,37 @@ var AppView = Backbone.View.extend({
   el: $('#stream'),
 
   initialize: function() {
+    this.number_of_entries = 10;
+  },
 
+  template: Handlebars.compile('<button class="btn btn-primary show-more" href="#">Show more</button>'),
+
+  events: {
+    'click .show-more' : 'showMore',
   },
 
   render: function() {
     $('#stream').html("");
+    var i = 0;
+    var self = this;
     this.model.entries.each(function(entry) {
-      var view = new EntryView({model: entry});
-      $('#stream').append(view.render().el);
+      if (i < self.number_of_entries) {
+        var view = new EntryView({model: entry});
+        $('#stream').append(view.render().el);
+      }
+      i++;
     });
+
+    if (this.model.entries.length > this.number_of_entries) {
+      $('#stream').append(this.template);
+    }
     return this;
   },
 
+  showMore: function() {
+    this.number_of_entries += 10
+    this.render();
+  }
 });
 
 
