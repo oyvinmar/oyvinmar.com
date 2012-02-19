@@ -16,15 +16,18 @@ var EntryCollection = Backbone.Collection.extend({
 
 var EntryView = Backbone.View.extend({
   tagName: 'article',
-  className: 'entry',
+  className: 'entry row-fluid',
   initialize: function(args) {
     this.el.id = this.model.get('timestamp').getTime() + '';
   },
 
   template: Handlebars.compile(
-    '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>'
+    '<div class="span1"><img src="/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>'
+    + '<div class="span11">'
+    + '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>'
     + '<p>{{{ content }}}</p>'
     + '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>'
+    + '</div>'
   + '<footer></footer><br/>'),
 
   render: function() {
@@ -50,7 +53,7 @@ var AppView = Backbone.View.extend({
     this.number_of_entries = 10;
   },
 
-  template: Handlebars.compile('<button class="btn btn-primary show-more" href="#">Show more</button>'),
+  template: Handlebars.compile('<button class="btn btn-primary show-more" href="#"><i class="icon-plus icon-white"></i> Show more</button>'),
 
   events: {
     'click .show-more' : 'showMore',
