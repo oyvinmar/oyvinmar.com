@@ -26,6 +26,17 @@ var RemoteCallApi = (function() {
       window.app.view.render();
     };
 
+    var handleFoursquareRespons = function(json) {
+     _.each(json.response.checkins.items, function(checkin) {
+        var description = "Checked in at " + checkin.venue.name;
+        if (checkin.venue.hereNow) {
+          description += " with " + checkin.venue.hereNow + " others";
+        }
+        description += ".";
+        window.app.add(description, "https://foursquare.com/v/" + checkin.venue.id, "Foursquare", "http://foursquare.com", new Date(checkin.createdAt * 1000));
+     });
+    };
+
     return {
       fetch_twitter_timeline: function() {
         jQuery.ajax({
@@ -40,22 +51,15 @@ var RemoteCallApi = (function() {
           url: "/pinboard/feed/",
           dataType: "json",
           crossDomain: true,
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-          },
           success: handlePinboardRespons
         });
       },
 
-      foursquare_timeline: function (){
+      fetch_foursquare_timeline: function (){
         jQuery.ajax({
-          url: "https://feeds.foursquare.com/history/PSZFPVP4IYXROETWCD5DPPKPLO3GU3IE.rss",
-          dataType: "xml",
-          success: function( data ) {
-            if (console && console.log){
-              console.log( 'Sample of data:', data.slice(0,100) );
-            }
-          }
+          url: "/foursquare/feed/",
+          dataType: "json",
+          success: handleFoursquareRespons
         });
       }
     }

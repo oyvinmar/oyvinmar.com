@@ -1,6 +1,7 @@
 var PORT = 8080;
 var express = require('express'), app = express.createServer();
 var http = require('http');
+var https = require('https');
 var stylesheets = __dirname + '/public/stylesheets';
 var images = __dirname + '/public/images';
 var javascript = __dirname + '/public/javascript';
@@ -65,9 +66,34 @@ app.get('/twitter/feed/', function(req, res){
   proxy_responder(res, options);
 });
 
+app.get('/foursquare/feed/', function(req, res){
+  var options = {
+    host: 'api.foursquare.com',
+    port: 443,
+    path: '/v2/users/self/checkins?oauth_token=PYCAAB4LYGSIYSUGXJY2POVILXCVKNXCWQR5YC2FJIUBNSC4&v=20120219',
+  };
+  https_proxy_responder(res, options);
+});
+
 var proxy_responder = function(res, options) {
   http.get(options, function(response) {
     //console.log("Got response: " + response.statusCode);
+    handle_response(response, res);
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+  });
+};
+
+var https_proxy_responder = function(res, options) {
+  https.get(options, function(response) {
+    //console.log("Got response: " + response.statusCode);
+    handle_response(response, res);
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+  });
+};
+
+var handle_response = function(response, res){
     res.writeHead(response.statusCode, response.headers);
     response.on('data', function (chunk) {
       res.write(chunk, 'binary');
@@ -75,9 +101,5 @@ var proxy_responder = function(res, options) {
     response.on('end', function () {
       res.end();
     });
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
-  });
 };
-
 app.listen(process.env.PORT || PORT);
