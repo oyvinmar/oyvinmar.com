@@ -10,99 +10,109 @@
       section {
         padding-top: 40px;
       }
+      .subnav-fixed {
+        position:fixed;
+        top: 0;
+        z-index: 1020;
+      }
     </style>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
         <div class="container">
-          <a href="#" class="brand">oyvinmar.com</a>
-          <div class="nav-collapse pull-left">
+          <div class="nav-collapse pull-right">
             <ul class="nav">
               <li><a href="#about">About me</a></li>
               <li><a href="#lifestream">Lifestream</a></li>
               <li><a href="#elsewhere">Elsewhere</a></li>
+            </ul>
           </div>
-        </div>
       </div>
     </div>
-    <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
       </div>
 
+      <div class="navbar subnav">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="#" class="brand">oyvinmar.com</a>
+          </div>
+        </div>
+      </div>
+    <div class="container">
       <section id="about" class="row">
-          <h2>About me</h2>
-          <div class="span8">
-          <p>Hey, I'm Øyvind Marthinsen. I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a consultant at <a rel="external" href="http://knowit.no">Know IT Objectnet</a>, where I'm able to work on cool things.</p>
-          <p>I enjoy watching football (the British kind), and love going skiing in the winter. I think listening to word is the only way to start a productive work day and I can full heartedly recommend xx</p>
-        </div>
-        <div class="span4">
-          <figure>
-          <img src="/linkedin_200.jpg" alt="Øyvind Marthinsen"/>
-          </figure>
-        </div>
+      <h2>About me</h2>
+      <div class="span8">
+        <p>Hey, I'm Øyvind Marthinsen. I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a consultant at <a rel="external" href="http://knowit.no">Know IT Objectnet</a>, where I'm able to work on cool things.</p>
+        <p>I enjoy watching football (the British kind), and love going skiing in the winter. I think listening to word is the only way to start a productive work day and I can full heartedly recommend xx</p>
+      </div>
+      <div class="span4">
+        <figure>
+        <img src="/linkedin_200.jpg" alt="Øyvind Marthinsen"/>
+        </figure>
+      </div>
       </section>
 
       <section id="lifestream" class="row">
-        <h2>Lifestream</h2>
-        <div id="stream" class="span12">
-          <img id="loader" src="/loader.gif" alt="Loading"/>
-          {{{body}}}
-          <!--article class="entry row-fluid" id="1329218586000">
-          <div class="span1"><img src="/Pinboard.in64.png" alt="Twitter logo"/></div>
-          <div class="span11">
-            <header><a href="http://pinboard.in/">Pinboard.in</a></header>
-            <p>ClojureDocs - Community-Powered Clojure Documentation and Examples</p>
-            <a href="http://clojuredocs.org/"><time class="published" title="">Tue Feb 14 2012 12:23:06 GMT+0100 (CET)</time></a>
-          </div>
-          </article-->
+      <h2>Lifestream</h2>
+      <div id="stream" class="span12">
+        <img id="loader" src="/loader.gif" alt="Loading"/>
+        {{{body}}}
+        <!--article class="entry row-fluid" id="1329218586000">
+        <div class="span1"><img src="/Pinboard.in64.png" alt="Twitter logo"/></div>
+        <div class="span11">
+          <header><a href="http://pinboard.in/">Pinboard.in</a></header>
+          <p>ClojureDocs - Community-Powered Clojure Documentation and Examples</p>
+          <a href="http://clojuredocs.org/"><time class="published" title="">Tue Feb 14 2012 12:23:06 GMT+0100 (CET)</time></a>
         </div>
+        </article-->
+      </div>
       </section>
       <section id="elsewhere" class="row">
-        <h2>Elsewhere online</h2>
-        <div class="span4">
-          <ul>
-            <li>
-            <a href="http://facebook.com/oyvind.marthinsen">Facebook</a>
-            </li>
-            <li>
-            <a href="http://twitter.com/oyvinmar">Twitter</a>
-            </li>
-            <li>
-            <a href="http://foursquare.com/oyvinmar">Foursquare</a>
-            </li>
-          </ul>
-        </div>
-        <div class="span4">
-          <ul>
-            <li>
-            <a href="http://linkedin.com/in/oyvinmar">Linkedin</a>
-            </li>
-            <li>
-            <a href="http://last.fm/user/oyvinmar">Last.fm</a>
-            </li>
-            <li>
-            <a href="http://news.combinator/">Hacker News</a>
-            </li>
-          </ul>
-        </div>
-        <div class="span4">
-          <ul>
-            <li>
-            <a href="#">Kontrib.it</a>
-            </li>
-            <li>
-            <a href="#">Flickr</a>
-            </li>
-            <li>
-            <a href="#">Google +</a>
-            </li>
-          </ul>
-        </div>
+      <h2>Elsewhere online</h2>
+      <div class="span4">
+        <ul>
+          <li>
+          <a href="http://facebook.com/oyvind.marthinsen">Facebook</a>
+          </li>
+          <li>
+          <a href="http://twitter.com/oyvinmar">Twitter</a>
+          </li>
+          <li>
+          <a href="http://foursquare.com/oyvinmar">Foursquare</a>
+          </li>
+        </ul>
+      </div>
+      <div class="span4">
+        <ul>
+          <li>
+          <a href="http://linkedin.com/in/oyvinmar">Linkedin</a>
+          </li>
+          <li>
+          <a href="http://last.fm/user/oyvinmar">Last.fm</a>
+          </li>
+          <li>
+          <a href="http://news.combinator/">Hacker News</a>
+          </li>
+        </ul>
+      </div>
+      <div class="span4">
+        <ul>
+          <li>
+          <a href="#">Kontrib.it</a>
+          </li>
+          <li>
+          <a href="#">Flickr</a>
+          </li>
+          <li>
+          <a href="#">Google +</a>
+          </li>
+        </ul>
+      </div>
       </section>
       <footer>
       <p>&copy; Company 2011</p>
@@ -116,10 +126,7 @@
     <script type="text/javascript" src="remote_call_api.js"></script>
     <script type="text/javascript" src="init.js"></script>
     <script type="text/javascript">
-      $(function (){
-        var $spy = $('body');
-        $spy.scrollspy($spy.data());
-      });
+
     </script>
   </body>
 </html>
