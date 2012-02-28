@@ -80,6 +80,8 @@ var AppView = Backbone.View.extend({
   showMore: function() {
     this.number_of_entries += 10
     this.render();
+    $('body').scrollspy('refresh');
+
   }
 });
 
