@@ -76,30 +76,68 @@ app.get('/foursquare/feed/', function(req, res){
 });
 
 var proxy_responder = function(res, options) {
+  //Check cache
+  if (handleCachedResponse(options.host, res)) {
+    return;
+  }
   http.get(options, function(response) {
     //console.log("Got response: " + response.statusCode);
-    handle_response(response, res);
+    handle_response(response, res, options.host);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
 };
 
 var https_proxy_responder = function(res, options) {
+  //Check cache
+  if (handleCachedResponse(options.host, res)) {
+    return;
+  }
   https.get(options, function(response) {
     //console.log("Got response: " + response.statusCode);
-    handle_response(response, res);
+    handle_response(response, res, options.host);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
 };
 
-var handle_response = function(response, res){
-    res.writeHead(response.statusCode, response.headers);
-    response.on('data', function (chunk) {
-      res.write(chunk, 'binary');
-    });
-    response.on('end', function () {
-      res.end();
-    });
+var handle_response = function(response, res, key){
+  res.writeHead(response.statusCode, response.headers);
+  var data = "";
+  response.on('data', function (chunk) {
+    data += chunk;
+    res.write(chunk, 'binary');
+  });
+  response.on('end', function () {
+    cacheUpdate(key, Date.now(), data);
+    res.end();
+  });
 };
+
+var cache = {};
+
+var CacheObject = function(timestamp, data) {
+  this.timestamp = timestamp;
+  this.data = data;
+  return this;
+};
+
+var cacheUpdate = function(key, timestamp, data) {
+  cache[key] = new CacheObject(timestamp, data);
+};
+
+var cacheLookup = function(key) {
+  return cache[key];
+};
+
+var handleCachedResponse = function(key, res) {
+  var co = cacheLookup(key);
+  if (co && (Date.now() - co.timestamp) < 1000 * 60 * 15) {
+    res.write(co.data, 'binary');
+    res.end();
+    return true;
+  }
+  return false;
+};
+
 app.listen(process.env.PORT || PORT);
