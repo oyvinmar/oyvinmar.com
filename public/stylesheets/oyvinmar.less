@@ -1,0 +1,69 @@
+/* Override */
+.navbar-fixed-top {
+    top: 40px;
+}
+
+.navbar-inner {
+    background-image: url("../../darkdenim3.png");
+    border-radius: 0;
+}
+
+// Links
+.navbar .nav > li > a {
+  font-size: @baseFontSize + 1;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+// Hover
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: @navbarLinkColorHover;
+  text-decoration: none;
+}
+
+// Active nav items
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  background-color: transparent
+}
+
+/* Override  end */
+
+// subnav
+.subnav {
+  position: absolute;
+  width: 100%;
+  z-index: 1031;
+  // Links
+  .nav > li > a {
+    color: @subnavbarLinkColor;
+    background-color: transparent;
+  }
+  .nav > li > a:hover {
+    background-color: transparent;
+    color: @subnavbarLinkColorHover;
+    text-decoration: none;
+  }
+  .nav .active > a,
+  .nav .active > a:hover {
+    color: @white;
+    text-decoration: none;
+    background-color: @navbarBackground;
+    background-color: rgba(0,0,0,.3);
+  }
+}
+
+
+.subnav-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.subnav-space {
+    height: 50px;
+    margin-bottom: 18px;
+    width: 100%;
+}

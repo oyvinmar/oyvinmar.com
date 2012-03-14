@@ -10,39 +10,42 @@
       section {
         padding-top: 40px;
       }
-      .subnav-fixed {
-        position:fixed;
-        top: 0;
-        z-index: 1020;
-      }
     </style>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
+    <div id="topnav" class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="nav-collapse pull-right">
+          <ul class="nav">
+            <li><a href="#about">About me</a></li>
+            <li><a href="#lifestream">Lifestream</a></li>
+            <li><a href="#elsewhere">Elsewhere</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      <h1>Hello, world!</h1>
+      <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    </div>
+
+    <div class="navbar subnav">
+      <div class="navbar-inner">
         <div class="container">
-          <div class="nav-collapse pull-right">
+          <a href="#" class="brand">oyvinmar.com</a>
+          <div id="links" style="display:none" class="nav-collapse pull-right">
             <ul class="nav">
               <li><a href="#about">About me</a></li>
               <li><a href="#lifestream">Lifestream</a></li>
               <li><a href="#elsewhere">Elsewhere</a></li>
             </ul>
           </div>
-      </div>
-    </div>
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      </div>
-
-      <div class="navbar subnav">
-        <div class="navbar-inner">
-          <div class="container">
-            <a href="#" class="brand">oyvinmar.com</a>
-          </div>
         </div>
       </div>
+    </div>
+    <div class="subnav-space"></div>
     <div class="container">
       <section id="about" class="row">
       <h2>About me</h2>
