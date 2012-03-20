@@ -2,9 +2,9 @@ var PORT = 8080;
 var express = require('express'), app = express.createServer();
 var http = require('http');
 var https = require('https');
-var stylesheets = __dirname + '/public/stylesheets';
-var images = __dirname + '/public/images';
-var javascript = __dirname + '/public/javascript';
+var stylesheets = __dirname + '/public/less';
+var images = __dirname + '/public/img';
+var javascript = __dirname + '/public/js';
 app.register('.html', require('hbs'));
 
 /*var less;
