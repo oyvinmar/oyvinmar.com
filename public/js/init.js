@@ -5,7 +5,13 @@ $(function() {
   var $spy = $('body');
   $spy.scrollspy($spy.data());
 
-// fix sub nav on scroll
+
+  $('.nav a').click(function(event){
+    event.preventDefault();
+    var idStr = $(this).attr('href');
+    $('html,body').animate({scrollTop: $(idStr).offset().top},500);
+  });
+  // fix sub nav on scroll
   var $win = $(window), $nav = $('.subnav'),
   barTop = $('.subnav').length && $('.subnav').offset().top,
   navOffsetTop = $('#topnav').length && document.getElementById("topnav").offsetTop,
