@@ -2,35 +2,31 @@
 <html lang=en>
   <head>
     <title>oyvinmar.com</title>
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 60px;
-      }
-      section {
-        padding-top: 40px;
-      }
-    </style>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
-    <div id="topnav" class="navbar navbar-fixed-top">
-      <div class="container">
-        <div class="nav-collapse pull-right">
-          <ul class="nav">
-            <li><a href="#about">About me</a></li>
-            <li><a href="#lifestream">Lifestream</a></li>
-            <li><a href="#elsewhere">Elsewhere</a></li>
-          </ul>
+    <div id="top">
+      <div id="topnav" class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="nav-collapse pull-right">
+            <ul class="nav">
+              <li><a href="#about">About me</a></li>
+              <li><a href="#lifestream">Lifestream</a></li>
+              <li><a href="#elsewhere">Elsewhere</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <section class="row">
+      <div class="hero-unit span8">
+        <h1>Øyvind Marthinsen</h1>
+        <h2>Developer, skier, web enthusiast and more..</h2>
+      </div>
+      <div class="span4">
+      </div>
+      </section>
     </div>
-    <!-- Main hero unit for a primary marketing message or call to action -->
-    <div class="hero-unit">
-      <h1>Hello, world!</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    </div>
-
     <div class="navbar subnav">
       <div class="navbar-inner">
         <div class="container">
@@ -47,6 +43,12 @@
     </div>
     <div class="subnav-space"></div>
     <div class="container">
+      <!--section id="welcome" class="row">
+      <h2>Welcome</h2>
+      <div class="span8">
+        <p>Hello, and welcome to my good "old" fashioned homepage. I'm a Norwegian developer and web enthusiast. Follow this <a href="#about">link</a> for more boring details.</p>
+      </div>
+      </section-->
       <section id="about" class="row">
       <h2>About me</h2>
       <div class="span8">
@@ -59,9 +61,9 @@
         </figure>
       </div>
       </section>
-
       <section id="lifestream" class="row">
       <h2>Lifestream</h2>
+      <p>If this content is up-to-date, I'm probably still alive. If not then lets hope it is a software bug</p>
       <div id="stream" class="span12">
         <img id="loader" src="/loader.gif" alt="Loading"/>
         {{{body}}}
@@ -79,46 +81,28 @@
       <h2>Elsewhere online</h2>
       <div class="span4">
         <ul>
-          <li>
-          <a href="http://facebook.com/oyvind.marthinsen">Facebook</a>
-          </li>
-          <li>
-          <a href="http://twitter.com/oyvinmar">Twitter</a>
-          </li>
-          <li>
-          <a href="http://foursquare.com/oyvinmar">Foursquare</a>
-          </li>
+          <li><a href="http://facebook.com/oyvind.marthinsen">Facebook</a></li>
+          <li><a href="http://twitter.com/oyvinmar">Twitter</a></li>
+          <li><a href="http://foursquare.com/oyvinmar">Foursquare</a></li>
         </ul>
       </div>
       <div class="span4">
         <ul>
-          <li>
-          <a href="http://linkedin.com/in/oyvinmar">Linkedin</a>
-          </li>
-          <li>
-          <a href="http://last.fm/user/oyvinmar">Last.fm</a>
-          </li>
-          <li>
-          <a href="http://news.combinator/">Hacker News</a>
-          </li>
+          <li><a href="http://linkedin.com/in/oyvinmar">Linkedin</a></li>
+          <li><a href="http://last.fm/user/oyvinmar">Last.fm</a></li>
+          <li><a href="http://news.combinator/">Hacker News</a></li>
         </ul>
       </div>
       <div class="span4">
         <ul>
-          <li>
-          <a href="#">Kontrib.it</a>
-          </li>
-          <li>
-          <a href="#">Flickr</a>
-          </li>
-          <li>
-          <a href="#">Google +</a>
-          </li>
+          <li><a href="#">Kontrib.it</a></li>
+          <li><a href="#">Flickr</a></li>
+          <li><a href="#">Google +</a></li>
         </ul>
       </div>
       </section>
       <footer>
-      <p>&copy; Company 2011</p>
+      <p>&copy; Øyvind Marthinsen</p>
       </footer>
     </div> <!-- /container -->
     <script type="text/javascript" src="jquery.min.js"></script>

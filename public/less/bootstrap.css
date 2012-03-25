@@ -97,10 +97,11 @@ textarea {
   overflow: auto;
   vertical-align: top;
 }
+/*'Gentium Book Basic'*/
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
   color: #333333;
   background-color: #ffffff;
@@ -562,11 +563,11 @@ a:hover {
 p {
   margin: 0 0 9px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
 }
 p small {
-  font-size: 11px;
+  font-size: 12px;
   color: #999999;
 }
 .lead {
@@ -751,7 +752,7 @@ code, pre {
   padding: 0 3px 2px;
   font-family: Menlo, Monaco, "Courier New", monospace;
   font-family: Menlo, Monaco, "Courier New", monospace;
-  font-size: 12px;
+  font-size: 13px;
   color: #333333;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -805,7 +806,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 27px;
-  font-size: 19.5px;
+  font-size: 21px;
   line-height: 36px;
   color: #333333;
   border: 0;
@@ -818,18 +819,18 @@ select,
 textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 18px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 18px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 18px;
 }
@@ -847,7 +848,7 @@ select,
   height: 18px;
   padding: 4px;
   margin-bottom: 9px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
   color: #555555;
   border: 1px solid #ccc;
@@ -2161,7 +2162,7 @@ table .span12 {
 .btn {
   display: inline-block;
   padding: 4px 10px 4px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 18px;
   color: #333333;
   text-align: center;
@@ -2262,7 +2263,7 @@ table .span12 {
 }
 .btn-large {
   padding: 9px 14px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: normal;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -2276,7 +2277,7 @@ table .span12 {
 }
 .btn-small {
   padding: 5px 9px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 16px;
 }
 .btn-small .icon {
@@ -4390,7 +4391,7 @@ a.thumbnail:hover {
 }
 .label {
   padding: 1px 3px 2px;
-  font-size: 9.75px;
+  font-size: 10.5px;
   font-weight: bold;
   color: #ffffff;
   text-transform: uppercase;
@@ -4831,6 +4832,7 @@ a.thumbnail:hover {
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+/*'Gentium Book Basic'*/
 .hidden {
   display: none;
   visibility: hidden;
@@ -6017,7 +6019,43 @@ a.thumbnail:hover {
     margin-left: 30px;
   }
 }
+@font-face {
+  font-family: Vollkorn;
+  font-weight: bold;
+  src: url('Vollkorn-Bold.ttf');
+}
+@font-face {
+  font-family: Vollkorn;
+  font-weight: normal;
+  font-style: italic;
+  src: url('Vollkorn-Italic.ttf');
+}
+body {
+  /*padding-top: 60px;*/
+
+  padding-bottom: 60px;
+}
+section {
+  padding-top: 40px;
+}
+h1 {
+  font-family: Vollkorn, GearedSlab;
+  font-weight: bold;
+}
+#top {
+  padding-top: 60px;
+  background-color: #FF867D;
+  background: url('45degreee_fabric.png') #ffffff repeat;
+}
 /* Override */
+.hero-unit {
+  background: transparent;
+}
+.hero-unit h2 {
+  font-family: Vollkorn;
+  font-weight: normal;
+  font-style: italic;
+}
 .navbar-fixed-top {
   top: 40px;
 }
@@ -6026,7 +6064,7 @@ a.thumbnail:hover {
   border-radius: 0;
 }
 .navbar .nav > li > a {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   text-shadow: none;
 }

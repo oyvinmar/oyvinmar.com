@@ -5,6 +5,7 @@ var https = require('https');
 var stylesheets = __dirname + '/public/less';
 var images = __dirname + '/public/img';
 var javascript = __dirname + '/public/js';
+var fonts = __dirname + '/public/fonts';
 app.register('.html', require('hbs'));
 
 /*var less;
@@ -33,6 +34,7 @@ app.configure('development',function() {
   app.use(express.static(stylesheets));
   app.use(express.static(images));
   app.use(express.static(javascript));
+  app.use(express.static(fonts));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
 });
 
@@ -41,6 +43,7 @@ app.configure('production', function() {
   app.use(express.static(stylesheets, {maxAge: oneYear}));
   app.use(express.static(images, {maxAge: oneYear}));
   app.use(express.static(javascript, {maxAge: oneYear}));
+  app.use(express.static(fonts, {maxAge: oneYear}));
   app.use(express.errorHandler());
 });
 
@@ -104,9 +107,10 @@ var https_proxy_responder = function(res, options) {
 var handle_response = function(response, res, key){
   res.writeHead(response.statusCode, response.headers);
   var data = "";
+  response.setEncoding('utf8')
   response.on('data', function (chunk) {
     data += chunk;
-    res.write(chunk, 'binary');
+    res.write(chunk, 'utf8');
   });
   response.on('end', function () {
     cacheUpdate(key, Date.now(), data);
@@ -133,7 +137,7 @@ var cacheLookup = function(key) {
 var handleCachedResponse = function(key, res) {
   var co = cacheLookup(key);
   if (co && (Date.now() - co.timestamp) < 1000 * 60 * 15) {
-    res.write(co.data, 'binary');
+    res.write(co.data);
     res.end();
     return true;
   }
