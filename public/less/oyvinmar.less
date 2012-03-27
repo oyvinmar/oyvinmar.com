@@ -13,7 +13,6 @@
 }
 
 body {
-  /*padding-top: 60px;*/
   padding-bottom: 60px;
 }
 
@@ -87,19 +86,19 @@ h1 {
   .nav > li > a {
     color: @subnavbarLinkColor;
     background-color: transparent;
-}
-.nav > li > a:hover {
-  background-color: transparent;
-  color: @subnavbarLinkColorHover;
-  text-decoration: none;
-}
-.nav .active > a,
-.nav .active > a:hover {
-  color: @white;
-  text-decoration: none;
-  background-color: @navbarBackground;
-  background-color: rgba(0,0,0,.3);
-}
+  }
+  .nav > li > a:hover {
+    background-color: transparent;
+    color: @subnavbarLinkColorHover;
+    text-decoration: none;
+  }
+  .nav .active > a,
+  .nav .active > a:hover {
+    color: @white;
+    text-decoration: none;
+    background-color: @navbarBackground;
+    background-color: rgba(0,0,0,.3);
+  }
 }
 
 
@@ -114,4 +113,70 @@ h1 {
   height: 50px;
   margin-bottom: 18px;
   width: 100%;
+}
+
+#elsewhere {
+
+ul li {
+  list-style: none;
+  display: inline;
+}
+
+a {
+  text-indent: -4000px;
+  display: block;
+  height:64px;
+  width:64px;
+  .transition(background .5s ease-in);
+}
+
+a[href*="facebook.com"] {
+  background: url("facebook_dark.png") no-repeat;
+  &:hover {
+    background: url("facebook_active.png") no-repeat;
+  }
+}
+
+a[href*="twitter.com"] {
+  background: url("twitter02_dark.png") no-repeat;
+  &:hover {
+    background: url("twitter02_active.png") no-repeat;
+  }
+}
+
+a[href*="foursquare.com"] {
+  background: url("facebook_dark.png") no-repeat;
+}
+
+a[href*="linkedin.com"] {
+  background: url("in_dark.png") no-repeat;
+  &:hover {
+    background: url("in_active.png") no-repeat;
+  }
+}
+
+a[href*="flickr.com"] {
+  background: url("flickr_dark.png") no-repeat;
+  &:hover {
+    background: url("flickr_active.png") no-repeat;
+  }
+}
+
+a[href*="last.fm"] {
+  background: url("lastfm_dark.png") no-repeat;
+  &:hover {
+    background: url("lastfm_active.png") no-repeat;
+  }
+}
+
+  a[href*="google.com"] {
+  background: url("google_dark.png") no-repeat;
+  &:hover {
+    background: url("google_active.png") no-repeat;
+  }
+}
+}
+
+footer {
+  text-align: center;
 }
