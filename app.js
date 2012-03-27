@@ -2,29 +2,19 @@ var PORT = 8080;
 var express = require('express'), app = express.createServer();
 var http = require('http');
 var https = require('https');
+var lessMiddleware = require('less-middleware');
 var stylesheets = __dirname + '/public/less';
 var images = __dirname + '/public/img';
 var javascript = __dirname + '/public/js';
 var fonts = __dirname + '/public/fonts';
 app.register('.html', require('hbs'));
 
-/*var less;
-express.compiler.compilers.less.compile = function (str, fn) {
-  if (!less) {
-    less = require("less"); }
-
-  console.log("Test");
-  try {
-    less.render(str, { compress : true }, fn);
-    console.log("Test");
-  }
-  catch (err) {
-    fn(err); }
-};*/
 
 app.configure(function() {
   console.log("Configure defult settings.");
-  app.use(express.compiler({ src:stylesheets, enable: ['less'] }));
+  app.use(lessMiddleware({
+    src: stylesheets
+  }));
   app.use(express.bodyParser());
   app.use(app.router);
 });
