@@ -12,10 +12,6 @@
   src: url('Vollkorn-Italic.ttf');
 }
 
-body {
-  padding-bottom: 60px;
-}
-
 section {
   padding-top: 40px;
 }
@@ -41,10 +37,12 @@ h1 {
 }
 .navbar-fixed-top {
   top: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .navbar-inner {
-  background-image: url("../../darkdenim3.png");
+  background-image: url("darkdenim3.png");
   border-radius: 0;
 }
 
@@ -115,66 +113,79 @@ h1 {
   width: 100%;
 }
 
+#page-bottom {
+  background: #666;
+  background-image: url("darkdenim3.png");
+  margin-top: 40px;
+}
+
 #elsewhere {
+  padding-top: 10px;
 
-ul li {
-  list-style: none;
-  display: inline;
-}
-
-a {
-  text-indent: -4000px;
-  display: block;
-  height:64px;
-  width:64px;
-  .transition(background .5s ease-in);
-}
-
-a[href*="facebook.com"] {
-  background: url("facebook_dark.png") no-repeat;
-  &:hover {
-    background: url("facebook_active.png") no-repeat;
+  h2 {
+    color: #C1C1C1;
   }
-}
 
-a[href*="twitter.com"] {
-  background: url("twitter02_dark.png") no-repeat;
-  &:hover {
-    background: url("twitter02_active.png") no-repeat;
+  ul li {
+    list-style: none;
+    display: inline;
+    margin-top: 20px;
   }
-}
 
-a[href*="foursquare.com"] {
-  background: url("facebook_dark.png") no-repeat;
-}
-
-a[href*="linkedin.com"] {
-  background: url("in_dark.png") no-repeat;
-  &:hover {
-    background: url("in_active.png") no-repeat;
+  a {
+    text-indent: -4000px;
+    margin-top: 20px;
+    display: block;
+    height:64px;
+    width:64px;
+    .transition(background .5s ease-in);
   }
-}
 
-a[href*="flickr.com"] {
-  background: url("flickr_dark.png") no-repeat;
-  &:hover {
-    background: url("flickr_active.png") no-repeat;
+  a[href*="facebook.com"] {
+    background: url("facebook_dark.png") no-repeat;
+    &:hover {
+      background: url("facebook_active.png") no-repeat;
+    }
   }
-}
 
-a[href*="last.fm"] {
-  background: url("lastfm_dark.png") no-repeat;
-  &:hover {
-    background: url("lastfm_active.png") no-repeat;
+  a[href*="twitter.com"] {
+    background: url("twitter02_dark.png") no-repeat;
+    &:hover {
+      background: url("twitter02_active.png") no-repeat;
+    }
   }
-}
+
+  a[href*="foursquare.com"] {
+    background: url("facebook_dark.png") no-repeat;
+  }
+
+  a[href*="linkedin.com"] {
+    background: url("in_dark.png") no-repeat;
+    &:hover {
+      background: url("in_active.png") no-repeat;
+    }
+  }
+
+  a[href*="flickr.com"] {
+    background: url("flickr_dark.png") no-repeat;
+    &:hover {
+      background: url("flickr_active.png") no-repeat;
+    }
+  }
+
+  a[href*="last.fm"] {
+    background: url("lastfm_dark.png") no-repeat;
+    &:hover {
+      background: url("lastfm_active.png") no-repeat;
+    }
+  }
 
   a[href*="google.com"] {
-  background: url("google_dark.png") no-repeat;
-  &:hover {
-    background: url("google_active.png") no-repeat;
+    background: url("google_dark.png") no-repeat;
+    &:hover {
+      background: url("google_active.png") no-repeat;
+    }
   }
-}
 }
 
 footer {

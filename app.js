@@ -13,7 +13,8 @@ app.register('.html', require('hbs'));
 app.configure(function() {
   console.log("Configure defult settings.");
   app.use(lessMiddleware({
-    src: stylesheets
+    src: stylesheets,
+    force: true
   }));
   app.use(express.bodyParser());
   app.use(app.router);

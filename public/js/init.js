@@ -32,6 +32,7 @@ $(function() {
       $nav.addClass('subnav-fixed');
     } else if (scrollTop >= barTop - navOffsetTop && !isHidden) {
       $('#topnav').hide();
+      //$('#links').fadeIn(700, 'easeInCubic');
       $('#links').fadeIn(700);
       isHidden = 1;
     } else if (scrollTop <= barTop && isFixed) {
