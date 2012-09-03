@@ -1,3 +1,7 @@
+//Variables
+@subNavbarLinkColor: #CCCCCC;
+@subNavbarLinkColorHover: darken(@subNavbarLinkColor, 15%);
+
 //fonts
 @font-face {
   font-family: Vollkorn;
@@ -26,6 +30,7 @@ h1 {
   background-color: #FF867D;
   background: url('45degreee_fabric.png') #FFF repeat;
 }
+
 /* Override */
 .hero-unit {
   background: transparent;
@@ -35,15 +40,21 @@ h1 {
     font-style: italic;
   }
 }
+
 .navbar-fixed-top {
   top: 40px;
   padding-right: 20px;
   padding-left: 20px;
+  .navbar-inner {
+    min-height: 0;
+  }
 }
 
-.navbar-inner {
-  background-image: url("darkdenim3.png");
-  border-radius: 0;
+.navbar-inverse {
+    .navbar-inner {
+        background-image: url("darkdenim3.png");
+        border-radius: 0;
+    }
 }
 
 // Links
@@ -79,15 +90,15 @@ h1 {
 .subnav {
   position: absolute;
   width: 100%;
-  z-index: 1031;
+  z-index: @zindexFixedNavbar + 1;
   // Links
   .nav > li > a {
-    color: @subnavbarLinkColor;
+    color: @subNavbarLinkColor;
     background-color: transparent;
   }
   .nav > li > a:hover {
     background-color: transparent;
-    color: @subnavbarLinkColorHover;
+    color: @subNavbarLinkColorHover;
     text-decoration: none;
   }
   .nav .active > a,

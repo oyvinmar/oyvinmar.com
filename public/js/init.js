@@ -15,6 +15,7 @@ $(function() {
     event.preventDefault();
     $('html,body').animate({scrollTop: 0},500);
   });
+
   // fix sub nav on scroll
   var $win = $(window), $nav = $('.subnav'),
   barTop = $('.subnav').length && $('.subnav').offset().top,
