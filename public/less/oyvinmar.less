@@ -38,6 +38,7 @@ h1 {
     font-family: Vollkorn;
     font-weight: normal;
     font-style: italic;
+    height: 40px;
   }
 }
 
@@ -72,17 +73,16 @@ h1 {
 }
 
 // Active nav items
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover {
-  background-color: transparent
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
 
-[class^="icon-"] {
-  background-image: url(../../glyphicons-halflings.png);
-}
-.icon-white {
-  background-image: url(../../glyphicons-halflings-white.png);
-}
 /* Override  end */
 
 

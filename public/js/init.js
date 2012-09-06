@@ -24,10 +24,10 @@ $(function() {
 
   processScroll();
 
-  $win.on('scroll', processScroll)
+  $win.on('scroll', processScroll);
 
   function processScroll() {
-    var i, scrollTop = $win.scrollTop()
+    var i, scrollTop = $win.scrollTop();
     if (scrollTop >= barTop && !isFixed) {
       isFixed = 1;
       $nav.addClass('subnav-fixed');

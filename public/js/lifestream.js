@@ -53,7 +53,7 @@ var AppView = Backbone.View.extend({
     this.number_of_entries = 10;
   },
 
-  template: Handlebars.compile('<button class="btn btn-primary show-more" href="#"><i class="icon-plus icon-white"></i> Show more</button>'),
+  template: Handlebars.compile('<button class="btn btn-primary show-more" href="#"><i class="icon-plus"></i> Show more</button>'),
 
   events: {
     'click .show-more' : 'showMore',
