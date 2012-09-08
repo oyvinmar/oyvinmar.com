@@ -140,68 +140,57 @@ h1 {
   ul li {
     list-style: none;
     display: inline;
-    margin-top: 20px;
+    margin: 20px 10px 0 0;
   }
 
   a {
-    text-indent: -4000px;
-    margin-top: 20px;
-    display: block;
-    height:64px;
-    width:64px;
-    .transition(background .5s ease-in);
+    color: white;
+    font-size: 24px;
+    padding: 2px;
+    .transition(background .7s ease-in);
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 
   a[href*="facebook.com"] {
-    background: url("facebook_dark.png") no-repeat;
+    border:3px solid #3b5998;
+    .border-radius(50%);
     &:hover {
-      background: url("facebook_active.png") no-repeat;
+        background: #3b5998;
     }
   }
 
   a[href*="twitter.com"] {
-    background: url("twitter02_dark.png") no-repeat;
+    border:3px solid #33ccff;
+    .border-radius(50%);
     &:hover {
-      background: url("twitter02_active.png") no-repeat;
-    }
-  }
-
-  a[href*="foursquare.com"] {
-    background: url("facebook_dark.png") no-repeat;
-  }
-
-  a[href*="linkedin.com"] {
-    background: url("in_dark.png") no-repeat;
-    &:hover {
-      background: url("in_active.png") no-repeat;
-    }
-  }
-
-  a[href*="flickr.com"] {
-    background: url("flickr_dark.png") no-repeat;
-    &:hover {
-      background: url("flickr_active.png") no-repeat;
-    }
-  }
-
-  a[href*="last.fm"] {
-    background: url("lastfm_dark.png") no-repeat;
-    &:hover {
-      background: url("lastfm_active.png") no-repeat;
+        background: #33ccff;
     }
   }
 
   a[href*="google.com"] {
-    background: url("google_dark.png") no-repeat;
+    border:3px solid #DD4B39;
+    .border-radius(50%);
     &:hover {
-      background: url("google_active.png") no-repeat;
+        background: #DD4B39;
     }
   }
 
-  a[href*="foursquare.com"] {
-    background: url("foursquare_dark.png") no-repeat;
+  a[href*="linkedin.com"] {
+    border:3px solid #0085B2;
+    .border-radius(50%);
     &:hover {
-      background: url("foursquare_active.png") no-repeat;
+        background: #0085B2;
+    }
+  }
+
+  a[href*="github.com"] {
+    border:3px solid #FF4D92;
+    .border-radius(50%);
+    &:hover {
+        background: #FF4D92;
     }
   }
 }
