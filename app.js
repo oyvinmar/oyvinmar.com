@@ -98,7 +98,7 @@ var https_proxy_responder = function(res, options) {
 var handle_response = function(response, res, key){
   res.writeHead(response.statusCode, response.headers);
   var data = "";
-  response.setEncoding('utf8')
+  response.setEncoding('utf8');
   response.on('data', function (chunk) {
     data += chunk;
     res.write(chunk, 'utf8');

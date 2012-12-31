@@ -50,7 +50,7 @@ var AppView = Backbone.View.extend({
   el: $('#stream'),
 
   initialize: function() {
-    this.number_of_entries = 10;
+    this.number_of_entries = 5;
   },
 
   template: Handlebars.compile('<button class="btn btn-primary show-more" href="#"><i class="icon-plus"></i> Show more</button>'),
@@ -78,7 +78,7 @@ var AppView = Backbone.View.extend({
   },
 
   showMore: function() {
-    this.number_of_entries += 10
+    this.number_of_entries += 10;
     this.render();
     $('body').scrollspy('refresh');
   }

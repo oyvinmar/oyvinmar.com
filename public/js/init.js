@@ -6,6 +6,8 @@ $(function() {
   $spy.scrollspy($spy.data());
 
 
+  mail2("oyvinmar" , "gmail.com");
+
   $('.nav a').click(function(event){
     event.preventDefault();
     var idStr = $(this).attr('href');
@@ -44,6 +46,11 @@ $(function() {
       $('#links').hide();
       isHidden = 0;
     }
+  }
+
+  function mail2(name, domain) {
+    var addr = name + '@' + domain;
+    $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
   }
 });
 

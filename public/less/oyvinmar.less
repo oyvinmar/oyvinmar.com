@@ -85,18 +85,6 @@ h1 {
 
 /* Override  end */
 
-#headshot {
-  height: 200px;
-  margin: -20px -25px 15px;
-  .box-shadow(0 4px 7px rgba(0,0,0,.35));
-  /*.rotate(-2deg);*/
-  .transition(.15s linear);
-}
-
-.frame:hover {
-  .rotate(0);
-
-}
 
 // subnav
 .subnav {
@@ -136,17 +124,50 @@ h1 {
   width: 100%;
 }
 
+#headshot {
+  height: 200px;
+  margin: -20px -25px 15px;
+  .box-shadow(0 4px 7px rgba(0,0,0,.35));
+}
+
+.entry {
+  padding: 1em 0 1em 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.pretext {
+  font-style: italic;
+  margin-left: 0.5em;
+}
+
+.show-more {
+  margin-top: 2em;
+}
+
+
 #page-bottom {
   background: #666;
   background-image: url("darkdenim3.png");
-  margin-top: 40px;
+  margin-top: 4em;
+
+  color: darken(#FFFFFF, 15%);
+  h3 {
+    margin-top: 0;
+    color: darken(#FFFFFF, 0%);
+  }
+
+  footer {
+    font-size: 12px;
+    color: darken(#FFFFFF, 20%);
+    margin: 1.5em 0 7em 0;
+    text-align: center;
+  }
 }
 
-#elsewhere {
-  padding-top: 10px;
+.elsewhere {
 
-  h2 {
-    color: #C1C1C1;
+  ul {
+    margin: 1.5em 0 0 0em;
   }
 
   ul li {
@@ -170,7 +191,7 @@ h1 {
     border:3px solid #3b5998;
     .border-radius(50%);
     &:hover {
-        background: #3b5998;
+      background: #3b5998;
     }
   }
 
@@ -178,7 +199,7 @@ h1 {
     border:3px solid #33ccff;
     .border-radius(50%);
     &:hover {
-        background: #33ccff;
+      background: #33ccff;
     }
   }
 
@@ -186,7 +207,7 @@ h1 {
     border:3px solid #DD4B39;
     .border-radius(50%);
     &:hover {
-        background: #DD4B39;
+      background: #DD4B39;
     }
   }
 
@@ -194,7 +215,7 @@ h1 {
     border:3px solid #0085B2;
     .border-radius(50%);
     &:hover {
-        background: #0085B2;
+      background: #0085B2;
     }
   }
 
@@ -202,11 +223,8 @@ h1 {
     border:3px solid #FF4D92;
     .border-radius(50%);
     &:hover {
-        background: #FF4D92;
+      background: #FF4D92;
     }
   }
 }
 
-footer {
-  text-align: center;
-}
