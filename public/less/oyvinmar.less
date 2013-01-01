@@ -2,28 +2,14 @@
 @subNavbarLinkColor: #CCCCCC;
 @subNavbarLinkColorHover: darken(@subNavbarLinkColor, 15%);
 
-//fonts
-@font-face {
-  font-family: Vollkorn;
-  font-weight: bold;
-  src: url('Vollkorn-Bold.ttf');
-}
-
-@font-face {
-  font-family: Vollkorn;
-  font-weight: normal;
-  font-style: italic;
-  src: url('Vollkorn-Italic.ttf');
-}
+/*body {*/
+  /*font-weight: 300;*/
+/*}*/
 
 section {
   padding-top: 40px;
 }
 
-h1 {
-  font-family: Vollkorn, GearedSlab;
-  font-weight: bold;
-}
 
 #top {
   padding-top: 60px;
@@ -34,8 +20,15 @@ h1 {
 /* Override */
 .hero-unit {
   background: transparent;
+
+  h1 {
+    font-family: "minion-pro", Georgia, sans-serif;
+    font-weight: 800;
+    letter-spacing: normal;
+  }
+
   h2 {
-    font-family: Vollkorn;
+    font-family: "minion-pro-condensed-subhead", Georgia, sans-serif;
     font-weight: normal;
     font-style: italic;
     height: 40px;
@@ -60,7 +53,7 @@ h1 {
 
 // Links
 .navbar .nav > li > a {
-  font-size: @baseFontSize + 1;
+  font-size: @baseFontSize;
   font-weight: bold;
   text-shadow: none;
 }
@@ -151,7 +144,7 @@ h1 {
   margin-top: 4em;
 
   color: darken(#FFFFFF, 15%);
-  h3 {
+  h2 {
     margin-top: 0;
     color: darken(#FFFFFF, 0%);
   }
