@@ -24,7 +24,9 @@ $(function() {
   navOffsetTop = $('#topnav').length && document.getElementById("topnav").offsetTop,
   isFixed = 0, isHidden = 0;
 
-  processScroll();
+  $win.on("load", function() { //processScroll if page is reloaded!
+    window.setTimeout(processScroll, 10);
+  });
 
   $win.on('scroll', processScroll);
 
