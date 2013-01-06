@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  grunt.loadNpmTasks('grunt-hashres');
+
   // Project configuration.
   grunt.initConfig({
     lint: {
@@ -6,7 +8,19 @@ module.exports = function(grunt) {
     },
 
     min: {
-      all: ['public/js/*.js']
+      dist: {
+        src: ['public/js/*.js'],
+        dest: 'public/js/oyvinmar.min.js'
+      }
+    },
+
+    hashres: {
+      prod: {
+        files: ['public/js/oyvinmar.min.js'],
+        out: 'views/layout.html',
+        fileNameFormat: '${hash}.${name}.cache.${ext}',
+        renameFiles: true
+      }
     }
   });
 };
