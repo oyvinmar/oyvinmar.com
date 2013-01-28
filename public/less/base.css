@@ -6426,7 +6426,7 @@ section {
   background-image: url("darkdenim3.png");
   border-radius: 0;
 }
-.navbar .nav > li > a {
+.navbar .nav li > a {
   font-size: 18px;
   font-weight: bold;
   text-shadow: none;
@@ -6445,7 +6445,80 @@ section {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.navbar .btn-navbar {
+  background: transparent;
+  background-image: none;
+  cursor: pointer;
+  color: #777777;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: none;
+}
+.navbar .btn-navbar:hover,
+.navbar .btn-navbar:active {
+  background-color: transparent;
+  color: #333333;
+  text-decoration: none;
+}
+@media (max-width: 767px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .container-fluid,
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  [class*="span"] {
+    padding-top: 20px;
+  }
+}
 /* Override  end */
+@media (max-width: 767px) {
+  .hero-unit h1 {
+    font-size: 40px;
+  }
+  .hero-unit h2 {
+    font-size: 27px;
+  }
+}
+@media (min-width: 768px) and (max-width: 960px) {
+  .hero-unit h1 {
+    font-weight: 600;
+    font-size: 50px;
+  }
+  .hero-unit h2 {
+    font-size: 31.5px;
+  }
+}
+@media (max-width: 979px) {
+  .nav-collapse,
+  .nav-collapse.collapse {
+    /*overflow: hidden;*/
+  
+    /*height: 0;*/
+  
+    /*float: left;*/
+  
+    /*background: white;*/
+  
+    /*width: 100%;*/
+  
+  }
+  #top {
+    padding-top: 0;
+  }
+  #top .row {
+    padding-top: 0;
+  }
+  .navbar-fixed-top {
+    margin-bottom: 0;
+  }
+  .hero-unit {
+    padding: 0 0 0 20px;
+  }
+}
 .subnav {
   position: absolute;
   width: 100%;

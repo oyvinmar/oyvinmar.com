@@ -14,6 +14,7 @@ app.configure(function() {
   console.log("Configure defult settings.");
   app.use(lessMiddleware({
     src: stylesheets,
+    debug: true,
     force: true
   }));
   app.use(express.bodyParser());
