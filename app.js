@@ -1,5 +1,5 @@
-var PORT = 8080;
-var express = require('express'), app = express.createServer();
+var PORT = 3000;
+var express = require('express'), app = express();
 var http = require('http');
 var https = require('https');
 var lessMiddleware = require('less-middleware');
@@ -7,21 +7,25 @@ var stylesheets = __dirname + '/public/less';
 var images = __dirname + '/public/img';
 var javascript = __dirname + '/public/js';
 var fonts = __dirname + '/public/fonts';
-app.register('.html', require('hbs'));
+app.engine('html', require('hbs').__express);
 
 
 app.configure(function() {
   console.log("Configure defult settings.");
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'hbs');
   app.use(lessMiddleware({
     src: stylesheets,
     force: true
   }));
   app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(app.router);
 });
 
 app.configure('development',function() {
   console.log("Configure settings for development.");
+  app.use(express.logger('dev'));
   app.use(express.static(stylesheets));
   app.use(express.static(images));
   app.use(express.static(javascript));
@@ -39,7 +43,7 @@ app.configure('production', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index.html', {layout:true});
+  res.render('index.html', {layout: 'layout'});
 });
 
 app.get('/pinboard/feed/', function(req, res){
