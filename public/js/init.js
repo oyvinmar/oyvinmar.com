@@ -5,7 +5,6 @@ $(function() {
   var $spy = $('body');
   $spy.scrollspy($spy.data());
 
-
   mail2("oyvinmar" , "gmail.com");
 
   $('.nav a').click(function(event){

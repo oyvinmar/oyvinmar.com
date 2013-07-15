@@ -16,6 +16,7 @@ app.configure(function() {
   app.set('view engine', 'hbs');
   app.use(lessMiddleware({
     src: stylesheets,
+    debug: true,
     force: true
   }));
   app.use(express.bodyParser());

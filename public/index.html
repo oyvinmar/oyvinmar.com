@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="//use.typekit.net/kdv7jtg.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <link rel="stylesheet" type="text/css" href="base.min.css">
+    <link rel="stylesheet" type="text/css" href="base.css">
   </head>
   <body>
     <div id="top">
       <div id="topnav" class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-          <div class="nav-collapse pull-right">
-            <ul class="nav">
-              <li><a href="#about">About me</a></li>
-              <li><a href="#lifestream">Lifestream</a></li>
-              <li><a href="#page-bottom">Elsewhere</a></li>
-            </ul>
-          </div>
+            <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">Meny</a>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav">
+                    <li><a href="#about">About me</a></li>
+                    <li><a href="#lifestream">Lifestream</a></li>
+                    <li><a href="#page-bottom">Elsewhere</a></li>
+                </ul>
+            </div>
         </div>
       </div>
+
       <!-- Main hero unit for a primary marketing message or call to action -->
       <section class="row">
-      <div class="hero-unit offset1 span8">
+      <div class="span1 hidden-phone hidden-tablet"></div>
+      <div class="hero-unit span8">
         <h1>Hi, I'm Øyvind</h1>
         <h2>Welcome to my "old-fashioned" homepage.</h2>
       </div>
@@ -105,7 +108,10 @@
 
     <!-- build:js ../public/js/app.js -->
     <script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-transition.js"></script>
     <script type="text/javascript" src="lib/bootstrap-scrollspy.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-collapse.js"></script>
+    <!--<script type="text/javascript" src="lib/bootstrap.min.js"></script>-->
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/backbone-min.js"></script>
     <script type="text/javascript" src="lib/handlebars.js"></script>

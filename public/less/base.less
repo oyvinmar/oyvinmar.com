@@ -64,18 +64,27 @@ section {
     }
 }
 
-// Links
-.navbar .nav > li > a {
+//Common navbar link styles
+.navbarlinks(){
   font-size: @baseFontSize;
   font-weight: bold;
   text-shadow: none;
 }
 
-// Hover
-.navbar .nav > li > a:hover {
+.navbarlinkshover(){
   background-color: transparent;
   color: @navbarLinkColorHover;
   text-decoration: none;
+}
+
+// Links
+.navbar .nav  li > a {
+  .navbarlinks();
+}
+
+// Hover
+.navbar .nav > li > a:hover {
+  .navbarlinkshover();
 }
 
 // Active nav items
@@ -89,9 +98,19 @@ section {
           box-shadow: none;
 }
 
-@media (max-width: 767px) {
+.navbar .btn-navbar {
+    background: transparent;
+    background-image: none;
+    cursor: pointer;
+    color: @navbarLinkColor;
+    .navbarlinks();
+    &:hover, &:active {
+        .navbarlinkshover();
+    }
+}
 
-  //Fix some stupid padding defaults 
+@media (max-width: 767px) {
+  //Fix some stupid padding defaults
   body {
     padding-left: 0px;
     padding-right: 0px;
@@ -108,6 +127,55 @@ section {
 }
 /* Override  end */
 
+// Responsive stuff
+@media (max-width: 767px) {
+.hero-unit {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: @baseFontSize * 1.50;
+  }
+}
+}
+
+@media (min-width: 768px) and (max-width: 960px) {
+.hero-unit {
+  h1 {
+    font-weight: 600;
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: @baseFontSize * 1.75;
+  }
+}
+}
+@media (max-width: 979px) {
+    .nav-collapse, .nav-collapse.collapse {
+        /*overflow: hidden;*/
+        /*height: 0;*/
+        /*float: left;*/
+        /*background: white;*/
+        /*width: 100%;*/
+    }
+
+    #top {
+        padding-top: 0;
+        .row {
+            padding-top: 0;
+        }
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+
+    .hero-unit {
+        padding: 0 0 0 20px;
+    }
+}
 
 // subnav
 .subnav {
