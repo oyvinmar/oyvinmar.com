@@ -12,7 +12,7 @@ app.engine('html', require('hbs').__express);
 
 app.configure(function() {
   console.log("Configure defult settings.");
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/public');
   app.set('view engine', 'hbs');
   app.use(lessMiddleware({
     src: stylesheets,
@@ -43,7 +43,7 @@ app.configure('production', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index.html', {layout: 'layout'});
+  res.render('index.html');
 });
 
 app.get('/pinboard/feed/', function(req, res){
