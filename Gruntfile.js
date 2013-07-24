@@ -10,12 +10,12 @@ module.exports = function(grunt) {
       },
       dev: {
         options: {
-          script: 'app.js'
+          script: 'server.js'
         }
       },
       prod: {
         options: {
-          script: 'app.js'
+          script: 'server.js'
         }
       }
     },
@@ -39,22 +39,22 @@ module.exports = function(grunt) {
     },
     all: [
     'Gruntfile.js',
-    'public/js/*.js',
-    'app.js',
+    'app/js/*.js',
+    'server.js',
     ]
   },
 
   useminPrepare: {
-    html: 'public/layout.html'
+    html: 'app/layout.html'
   },
 
   usemin: {
-    html: 'public/layout.html'
+    html: 'app/layout.html'
   },
 
   hashres: {
     prod: {
-      files: ['public/js/oyvinmar.min.js'],
+      files: ['app/js/oyvinmar.min.js'],
       out: 'views/layout.html',
       fileNameFormat: '${hash}.${name}.cache.${ext}',
       renameFiles: true

@@ -3,16 +3,16 @@ var express = require('express'), app = express();
 var http = require('http');
 var https = require('https');
 var lessMiddleware = require('less-middleware');
-var stylesheets = __dirname + '/public/less';
-var images = __dirname + '/public/img';
-var javascript = __dirname + '/public/js';
-var fonts = __dirname + '/public/fonts';
+var stylesheets = __dirname + '/app/less';
+var images = __dirname + '/app/img';
+var javascript = __dirname + '/app/js';
+var fonts = __dirname + '/app/fonts';
 app.engine('html', require('hbs').__express);
 
 
 app.configure(function() {
   console.log("Configure defult settings.");
-  app.set('views', __dirname + '/public');
+  app.set('views', __dirname + '/app');
   app.set('view engine', 'hbs');
   app.use(lessMiddleware({
     src: stylesheets,
