@@ -1,12 +1,21 @@
+var LIVERELOAD_PORT = 35729;
+
 module.exports = function(grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  var appconfig = {
+    dir: 'app',
+    dist: 'dist'
+  };
+
   // Project configuration.
   grunt.initConfig({
+    appconfig: appconfig,
     express: {
       options: {
-        port: process.env.PORT || 3000
+        port: process.env.PORT || 3000,
+        output: 'Express server listening'
       },
       dev: {
         options: {
@@ -20,12 +29,16 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      options: {
+        nospawn: true, 
+        livereload: LIVERELOAD_PORT,
+        debounceDelay:  2000
+      },
       express: {
-        files:  [ '*.js' ],
-        tasks:  [ 'express:dev' ],
-        options: {
-          nospawn: true //Without this option specified express won't be reloaded
-        }
+        files:  [ 'server.js',
+        '<%= appconfig.dir %>/*.html',
+      '<%= appconfig.dir %>/js/{,*/}*.js' ],
+      tasks:  [ 'express:dev' ]
     }
   },
   open: {

@@ -11,7 +11,8 @@ app.engine('html', require('hbs').__express);
 
 
 app.configure(function() {
-  console.log("Configure defult settings.");
+  console.log("Configure default settings.");
+  app.set('port', process.env.PORT || PORT)
   app.set('views', __dirname + '/app');
   app.set('view engine', 'hbs');
   app.use(lessMiddleware({
@@ -24,8 +25,9 @@ app.configure(function() {
   app.use(app.router);
 });
 
-app.configure('development',function() {
+app.configure('development', function() {
   console.log("Configure settings for development.");
+
   app.use(express.logger('dev'));
   app.use(express.static(stylesheets));
   app.use(express.static(images));
@@ -44,7 +46,7 @@ app.configure('production', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index.html');
+  res.render('index.html', {DEV_ENV: process.env.NODE_ENV === 'development' });
 });
 
 app.get('/pinboard/feed/', function(req, res){
@@ -140,4 +142,6 @@ var handleCachedResponse = function(key, res) {
   return false;
 };
 
-app.listen(process.env.PORT || PORT);
+app.listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
