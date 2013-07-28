@@ -10,9 +10,9 @@
   <body>
     <div id="top">
       <div id="topnav" class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
+        <div class="navbar-inner hidden-tablet hidden-phone">
             <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">Meny</a>
-            <div class="nav-collapse collapse pull-right">
+            <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li><a href="#about">About me</a></li>
                     <li><a href="#lifestream">Lifestream</a></li>
@@ -37,7 +37,12 @@
       <div class="navbar-inner">
         <div class="container">
           <a href="#" class="brand">oyvinmar.com</a>
-          <div id="links" style="display:none" class="nav-collapse pull-right">
+          <button type="button" id="toggle-menu" class="btn btn-navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div id="links" style="display:none">
             <ul class="nav">
               <li><a href="#about">About me</a></li>
               <li><a href="#lifestream">Lifestream</a></li>

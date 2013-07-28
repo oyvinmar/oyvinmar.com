@@ -61,6 +61,7 @@ section {
     .navbar-inner {
         background-image: url("darkdenim3.png");
         border-radius: 0;
+        border: none;
     }
 }
 
@@ -78,10 +79,12 @@ section {
 }
 
 // Links
-.navbar .nav  li > a {
-  .navbarlinks();
+.navbar .nav {
+  float: right;
+  & li > a {
+    .navbarlinks();
+  }
 }
-
 // Hover
 .navbar .nav > li > a:hover {
   .navbarlinkshover();
@@ -129,52 +132,71 @@ section {
 
 // Responsive stuff
 @media (max-width: 767px) {
-.hero-unit {
-  h1 {
-    font-size: 40px;
-  }
+  .hero-unit {
+    h1 {
+      font-size: 40px;
+    }
 
-  h2 {
-    font-size: @baseFontSize * 1.50;
+    h2 {
+      font-size: @baseFontSize * 1.50;
+    }
   }
-}
 }
 
 @media (min-width: 768px) and (max-width: 960px) {
-.hero-unit {
-  h1 {
-    font-weight: 600;
-    font-size: 50px;
-  }
+  .hero-unit {
+    h1 {
+      font-weight: 600;
+      font-size: 50px;
+    }
 
-  h2 {
-    font-size: @baseFontSize * 1.75;
+    h2 {
+      font-size: @baseFontSize * 1.75;
+    }
   }
-}
 }
 @media (max-width: 979px) {
-    .nav-collapse, .nav-collapse.collapse {
-        /*overflow: hidden;*/
-        /*height: 0;*/
-        /*float: left;*/
-        /*background: white;*/
-        /*width: 100%;*/
-    }
+  .nav-collapse, .nav-collapse.collapse {
+    /*overflow: hidden;*/
+    /*height: 0;*/
+    /*float: left;*/
+    /*background: white;*/
+    /*width: 100%;*/
+  }
 
-    #top {
-        padding-top: 0;
-        .row {
-            padding-top: 0;
-        }
+  #top {
+    padding-top: 0;
+    .row {
+      padding-top: 0;
     }
+  }
 
-    .navbar-fixed-top {
-        margin-bottom: 0;
-    }
+  .navbar-fixed-top {
+    margin-bottom: 0;
+  }
 
-    .hero-unit {
-        padding: 0 0 0 20px;
+  .hero-unit {
+    padding: 0 0 0 20px;
+  }
+
+  .subnav {
+    .navbar-inner {
+      padding: 0;  
     }
+    .nav {
+      margin: 40px 0 0 0;
+      float: none;
+      background: #474747;
+      box-shadow: 0 1px 10px rgba(36, 36, 36, 0.4);
+      li {
+        float: none;
+        border-bottom: 1px solid #676767
+      }
+      li:last-child {
+        border: none;
+      }
+    } 
+  }
 }
 
 // subnav

@@ -3915,6 +3915,10 @@ section {
 .navbar-inverse .navbar-inner {
   background-image: url("darkdenim3.png");
   border-radius: 0;
+  border: none;
+}
+.navbar .nav {
+  float: right;
 }
 .navbar .nav li > a {
   font-size: 18px;
@@ -4007,6 +4011,22 @@ section {
   }
   .hero-unit {
     padding: 0 0 0 20px;
+  }
+  .subnav .navbar-inner {
+    padding: 0;
+  }
+  .subnav .nav {
+    margin: 40px 0 0 0;
+    float: none;
+    background: #474747;
+    box-shadow: 0 1px 10px rgba(36, 36, 36, 0.4);
+  }
+  .subnav .nav li {
+    float: none;
+    border-bottom: 1px solid #676767;
+  }
+  .subnav .nav li:last-child {
+    border: none;
   }
 }
 .subnav {

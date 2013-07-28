@@ -37,7 +37,8 @@ module.exports = function(grunt) {
       express: {
         files:  [ 'server.js',
         '<%= appconfig.dir %>/*.html',
-      '<%= appconfig.dir %>/js/{,*/}*.js' ],
+        '<%= appconfig.dir %>/less/{,*/}*.less',
+      '<%= appconfig.dir %>/js/{,*/}*.js'  ],
       tasks:  [ 'express:dev' ]
     }
   },
