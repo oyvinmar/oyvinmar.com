@@ -5,7 +5,7 @@ var https = require('https');
 var lessMiddleware = require('less-middleware');
 var stylesheets = __dirname + '/app/less';
 var images = __dirname + '/app/img';
-var javascript = __dirname + '/app/js';
+var root = __dirname + '/app';
 var fonts = __dirname + '/app/fonts';
 app.engine('html', require('hbs').__express);
 
@@ -29,9 +29,9 @@ app.configure('development', function() {
   console.log("Configure settings for development.");
 
   app.use(express.logger('dev'));
+  app.use(express.static(root));
   app.use(express.static(stylesheets));
   app.use(express.static(images));
-  app.use(express.static(javascript));
   app.use(express.static(fonts));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
 });

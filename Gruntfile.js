@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   var appconfig = {
-    dir: 'app',
+    app: 'app',
     dist: 'dist'
   };
 
@@ -36,17 +36,31 @@ module.exports = function(grunt) {
       },
       express: {
         files:  [ 'server.js',
-        '<%= appconfig.dir %>/*.html',
-        '<%= appconfig.dir %>/less/{,*/}*.less',
-      '<%= appconfig.dir %>/js/{,*/}*.js'  ],
+        '<%= appconfig.app %>/*.html',
+        '<%= appconfig.app %>/less/{,*/}*.less',
+        '<%= appconfig.app %>/js/{,*/}*.js'  ],
       tasks:  [ 'express:dev' ]
     }
   },
+  
   open: {
     server: {
       path: 'http://localhost:<%= express.options.port %>'
     }
   },
+
+  clean: {
+    dist: {
+      files: [{
+        dot: true,
+        src: [
+        '<%= appconfig.dist %>/*',
+        '!<%= appconfig.dist %>/.git*'
+        ]
+      }]
+    }
+  },
+
   jshint: {
     options: {
       jshintrc: '.jshintrc'
@@ -58,20 +72,81 @@ module.exports = function(grunt) {
     ]
   },
 
+  rev: {
+    dist: {
+      files: {
+        src: [
+            '<%= appconfig.dist %>/scripts/{,*/}*.js',
+            '<%= appconfig.dist %>/styles/{,*/}*.css',
+            '<%= appconfig.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+            '<%= appconfig.dist %>/styles/fonts/*'
+        ]
+      }
+    }
+  },
+
   useminPrepare: {
-    html: 'app/layout.html'
+    options: {
+      dirs: ['<%= appconfig.dist %>']
+    },
+    html: 'app/index.html'
+  },
+
+  imagemin: {
+    dist: {
+      files: [{
+        expand: true,
+        cwd: '<%= appconfig.app %>/img',
+        src: '{,*/}*.{png,jpg,jpeg}',
+        dest: '<%= appconfig.dist %>/app/img'
+      }]
+    }
+  },
+
+  less: {
+    dist: {
+      options: {
+        yuicompress: true
+      },
+      files: {
+        '<%= appconfig.dist %>/app/less/base.css': '<%= appconfig.app %>/less/base.less'
+      }
+    }
   },
 
   usemin: {
-    html: 'app/layout.html'
+    options: {
+      dirs: ['<%= appconfig.dist %>']
+    },
+    html: ['<%= appconfig.dist %>/{,*/}*.html'],
   },
 
-  hashres: {
-    prod: {
-      files: ['app/js/oyvinmar.min.js'],
-      out: 'views/layout.html',
-      fileNameFormat: '${hash}.${name}.cache.${ext}',
-      renameFiles: true
+  htmlmin: {
+    dist: {
+      files: [{
+        expand: true,
+        cwd: '<%= appconfig.app %>',
+        src: '*.html',
+        dest: '<%= appconfig.dist %>/app'
+      }]
+    }
+  },
+
+  copy: {
+    dist: {
+      files: [
+      {
+        expand: true,
+        cwd: '<%= appconfig.app %>',
+        dest: '<%= appconfig.dist %>/app',
+        src: ['js/app.js', 'fonts/*', 'img/{,*/}*.{webp,gif}']
+      },
+      {
+        expand: true,
+        dest: '<%= appconfig.dist %>',
+        src: ['server.js']
+      },
+      ]
     }
   }
 });
@@ -92,7 +167,15 @@ grunt.registerTask('test', [
   ]);
 
 grunt.registerTask('build', [
+  'clean:dist',
   'useminPrepare',
+  'less:dist',
+  'imagemin',
+  'htmlmin',
+  'concat',
+  'uglify',
+  'copy',
+  'rev',
   'usemin',
   ]);
 
