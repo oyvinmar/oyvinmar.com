@@ -22,7 +22,7 @@ var EntryView = Backbone.View.extend({
   },
 
   template: Handlebars.compile(
-    '<div class="span1"><img src="/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
+    '<div class="span1"><img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
     '<div class="span11">' +
     '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>' +
     '<p>{{{ content }}}</p>' +

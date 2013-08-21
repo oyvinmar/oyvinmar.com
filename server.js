@@ -3,10 +3,7 @@ var express = require('express'), app = express();
 var http = require('http');
 var https = require('https');
 var lessMiddleware = require('less-middleware');
-var stylesheets = __dirname + '/app/less';
-var images = __dirname + '/app/img';
 var root = __dirname + '/app';
-var fonts = __dirname + '/app/fonts';
 app.engine('html', require('hbs').__express);
 
 
@@ -16,10 +13,11 @@ app.configure(function() {
   app.set('views', __dirname + '/app');
   app.set('view engine', 'hbs');
   app.use(lessMiddleware({
-    src: stylesheets,
+    src: root,
     debug: true,
     force: true
   }));
+  app.use(express.compress());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -30,18 +28,12 @@ app.configure('development', function() {
 
   app.use(express.logger('dev'));
   app.use(express.static(root));
-  app.use(express.static(stylesheets));
-  app.use(express.static(images));
-  app.use(express.static(fonts));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
 });
 
 app.configure('production', function() {
   var oneYear = 31557600000;
-  app.use(express.static(stylesheets, {maxAge: oneYear}));
-  app.use(express.static(images, {maxAge: oneYear}));
-  app.use(express.static(javascript, {maxAge: oneYear}));
-  app.use(express.static(fonts, {maxAge: oneYear}));
+  app.use(express.static(root, {maxAge: oneYear}));
   app.use(express.errorHandler());
 });
 
