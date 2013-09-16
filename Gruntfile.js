@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+
   var appconfig = {
     app: 'app',
     dist: 'dist'
@@ -144,7 +145,7 @@ module.exports = function(grunt) {
       {
         expand: true,
         dest: '<%= appconfig.dist %>',
-        src: ['server.js', 'Procfile', 'package.json']
+        src: ['server.js', 'Procfile', 'package.json', 'oauth_tokens.json']
       },
       ]
     }
