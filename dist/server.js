@@ -4,6 +4,7 @@ var http = require('http');
 var https = require('https');
 var lessMiddleware = require('less-middleware');
 var root = __dirname + '/app';
+var oauth_tokens = require('./oauth_tokens');
 app.engine('html', require('hbs').__express);
 
 
@@ -63,7 +64,7 @@ app.get('/foursquare/feed/', function(req, res){
   var options = {
     host: 'api.foursquare.com',
     port: 443,
-    path: '/v2/users/self/checkins?oauth_token=PYCAAB4LYGSIYSUGXJY2POVILXCVKNXCWQR5YC2FJIUBNSC4&v=20120219',
+    path: '/v2/users/self/checkins?oauth_token=' + oauth_tokens.foursquare + '&v=20120219',
   };
   https_proxy_responder(res, options);
 });
