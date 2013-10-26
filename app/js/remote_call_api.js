@@ -43,7 +43,7 @@ var RemoteCallApi = (function() {
     }
 
     var plural = function(string, count) {
-      if (size > 1) {
+      if (count > 1) {
         return string + 's';
       } else {
         return string;
