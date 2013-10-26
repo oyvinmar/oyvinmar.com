@@ -68,6 +68,15 @@ app.get('/foursquare/feed/', function(req, res){
   https_proxy_responder(res, options);
 });
 
+app.get('/github/feed/', function(req, res){
+  var options = {
+    host: 'api.github.com',
+    port: 443,
+    path: '/users/oyvinmar/events??oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
+  };
+  https_proxy_responder(res, options);
+});
+
 var proxy_responder = function(res, options) {
   //Check cache
   if (handleCachedResponse(options.host, res)) {

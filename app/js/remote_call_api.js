@@ -2,9 +2,6 @@ var RemoteCallApi = (function() {
   var instantiated;
 
   function init() {
-    var replace_url = function(url) {
-
-    };
 
     var handleTwitterResponse = function(data) {
       var len = data.length, i = 0;
@@ -35,7 +32,42 @@ var RemoteCallApi = (function() {
           description += " with " + checkin.venue.hereNow + " others";
         }
         description += ".";
-        window.app.add(description, "https://foursquare.com/v/" + checkin.venue.id, "Foursquare", "http://foursquare.com", new Date(checkin.createdAt * 1000));
+        window.app.add(description, "https://foursquare.com/v/" + checkin.venue.id, "Foursquare", 
+                        "http://foursquare.com", new Date(checkin.createdAt * 1000));
+      });
+      window.app.view.render();
+    };
+
+    var createGithubLink = function(path) {
+      return "<a href=\"https://github.com/" + path + "\">" + path + "</a>"
+    }
+
+    var plural = function(string, count) {
+      if (size > 1) {
+        return string + 's';
+      } else {
+        return string;
+      }
+    }
+
+    var handleGithubRespons = function(events) {
+      _.each(events, function(github_event) {
+        var description;
+        if(github_event.type === "WatchEvent"){
+          description = "Starred " + createGithubLink(github_event.repo.name);
+        } else if (github_event.type === "PushEvent"){
+          var commit_text = plural(" commit", github_event.payload.distinct_size); 
+          description = "Pushed " + commit_text + " to " + createGithubLink(github_event.repo.name);
+        } else if (github_event.type === "PullRequestEvent" && github_event.payload.action === "closed") {
+          var pull_request = github_event.payload.pull_request;
+          description = "Closed pull request <a href=\"" + pull_request.html_url + "\">" + 
+                          github_event.repo.name + "#" + pull_request.number + "</a> from " + createGithubLink(pull_request.user.login);
+        }
+
+        if (description) {
+          window.app.add(description, "https://github.com/" + github_event.repo.name, "Github",
+                          "https://github.com", new Date(github_event.created_at))
+        }
       });
       window.app.view.render();
     };
@@ -64,9 +96,18 @@ var RemoteCallApi = (function() {
           dataType: "json",
           success: handleFoursquareRespons
         });
+      },
+
+      fetch_github_events: function (){
+        jQuery.ajax({
+          url: "/github/feed/",
+          dataType: "json",
+          success: handleGithubRespons
+        });
       }
     };
   }
+
   return {
     getInstance: function() {
       if (!instantiated) {
@@ -75,5 +116,6 @@ var RemoteCallApi = (function() {
       return instantiated;
     }
   };
+
 }());
 
