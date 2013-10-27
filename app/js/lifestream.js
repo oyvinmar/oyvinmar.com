@@ -89,7 +89,7 @@ var AppController = Backbone.Router.extend({
   initialize: function(params) {
     this.model = new AppModel();
     this.view = new AppView({model: this.model});
-    RemoteCallApi.getInstance().fetch_twitter_timeline();
+    // RemoteCallApi.getInstance().fetch_twitter_timeline();
     RemoteCallApi.getInstance().fetch_pinboard_feed();
     RemoteCallApi.getInstance().fetch_foursquare_timeline();
     RemoteCallApi.getInstance().fetch_github_events();
