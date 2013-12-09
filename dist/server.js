@@ -2,7 +2,7 @@ var PORT = 3000;
 var express = require('express'), app = express();
 var http = require('http');
 var https = require('https');
-var OAuth = require('OAuth');
+var OAuth = require('oauth');
 var lessMiddleware = require('less-middleware');
 var root = __dirname + '/app';
 app.engine('html', require('hbs').__express);
