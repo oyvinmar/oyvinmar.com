@@ -2,10 +2,10 @@ var PORT = 3000;
 var express = require('express'), app = express();
 var http = require('http');
 var https = require('https');
+var OAuth = require('OAuth');
 var lessMiddleware = require('less-middleware');
 var root = __dirname + '/app';
 app.engine('html', require('hbs').__express);
-
 
 app.configure(function() {
   console.log("Configure default settings.");
@@ -20,7 +20,7 @@ app.configure(function() {
   app.use(express.compress());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
+  app.use(app.router) ;
 });
 
 app.configure('development', function() {
@@ -51,12 +51,23 @@ app.get('/pinboard/feed/', function(req, res){
 });
 
 app.get('/twitter/feed/', function(req, res){
+  var oauth = new OAuth.OAuth(
+    'https://api.twitter.com/oauth/request_token',
+    'https://api.twitter.com/oauth/access_token',
+    process.env['TWITTER_CONSUMER_KEY'],
+    process.env['TWITTER_CONSUMER_SECRET'],
+    '1.0A',
+    null,
+    'HMAC-SHA1'
+  );
+
   var options = {
-    host: 'api.twitter.com',
-    port: 80,
-    path: '/1/statuses/user_timeline.json?screen_name=oyvinmar&include_entities=1',
+    host: 'https://api.twitter.com',
+    path: '/1.1/statuses/user_timeline.json',
+    access_token: process.env['TWITTER_ACCESS_TOKEN'],
+    access_token_secret: process.env['TWITTER_ACCESS_TOKEN_SECRET']
   };
-  proxy_responder(res, options);
+  oauth_proxy_responder(oauth, res, options);
 });
 
 app.get('/foursquare/feed/', function(req, res){
@@ -73,9 +84,30 @@ app.get('/github/feed/', function(req, res){
     host: 'api.github.com',
     port: 443,
     path: '/users/oyvinmar/events??oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
+    headers: {'User-Agent': 'oyvinmar'},
   };
   https_proxy_responder(res, options);
 });
+
+var oauth_proxy_responder = function(oauth, res, options) {
+  //Check cache
+  if (handleCachedResponse(options.host, res)) {
+    return;
+  }
+
+  oauth.get(
+    options.host + options.path,
+    options.access_token,
+    options.access_token_secret,
+    function (e, data, response){
+      if (e) console.error(e); 
+      res.writeHead(response.statusCode, response.headers);
+      res.write(data, 'utf8');
+      cacheUpdate(options.host, Date.now(), data);
+      res.end();
+    }
+  );    
+};
 
 var proxy_responder = function(res, options) {
   //Check cache
@@ -103,14 +135,16 @@ var https_proxy_responder = function(res, options) {
   });
 };
 
-var handle_response = function(response, res, key){
+var handle_response = function(response, res, key) {
   res.writeHead(response.statusCode, response.headers);
-  var data = "";
-  response.setEncoding('utf8');
+
+  data = ""
   response.on('data', function (chunk) {
     data += chunk;
     res.write(chunk, 'utf8');
   });
+
+  response.setEncoding('utf8');
   response.on('end', function () {
     cacheUpdate(key, Date.now(), data);
     res.end();
