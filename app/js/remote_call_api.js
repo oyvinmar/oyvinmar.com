@@ -18,14 +18,14 @@ var RemoteCallApi = (function() {
       window.app.view.render();
     };
 
-    var handlePinboardRespons = function(json) {
+    var handlePinboardResponse = function(json) {
       _.each(json, function (bookmark) {
         window.app.add(bookmark.d, bookmark.u, "Pinboard.in", "http://pinboard.in/", new Date(bookmark.dt));
       });
       window.app.view.render();
     };
 
-    var handleFoursquareRespons = function(json) {
+    var handleFoursquareResponse = function(json) {
       _.each(json.response.checkins.items, function(checkin) {
         var description = "Checked in at " + checkin.venue.name;
         if (checkin.venue.hereNow) {
@@ -50,7 +50,7 @@ var RemoteCallApi = (function() {
       }
     }
 
-    var handleGithubRespons = function(events) {
+    var handleGithubResponse = function(events) {
       _.each(events, function(github_event) {
         var description;
         if(github_event.type === "WatchEvent"){
@@ -86,7 +86,7 @@ var RemoteCallApi = (function() {
           url: "/pinboard/feed/",
           dataType: "json",
           crossDomain: true,
-          success: handlePinboardRespons
+          success: handlePinboardResponse
         });
       },
 
@@ -94,7 +94,7 @@ var RemoteCallApi = (function() {
         jQuery.ajax({
           url: "/foursquare/feed/",
           dataType: "json",
-          success: handleFoursquareRespons
+          success: handleFoursquareResponse
         });
       },
 
@@ -102,7 +102,7 @@ var RemoteCallApi = (function() {
         jQuery.ajax({
           url: "/github/feed/",
           dataType: "json",
-          success: handleGithubRespons
+          success: handleGithubResponse
         });
       }
     };
