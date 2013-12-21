@@ -101,10 +101,9 @@ var oauth_proxy_responder = function(oauth, res, options) {
     options.access_token_secret,
     function (e, data, response){
       if (e) console.error(e); 
-      res.writeHead(response.statusCode, response.headers);
-      res.write(data, 'utf8');
       cacheUpdate(options.host, Date.now(), data);
-      res.end();
+      res.set(response.headers);
+      res.send(response.statusCode, data);
     }
   );    
 };
@@ -115,7 +114,7 @@ var proxy_responder = function(res, options) {
     return;
   }
   http.get(options, function(response) {
-    //console.log("Got response: " + response.statusCode);
+    // console.log("Got response: " + response.statusCode);
     handle_response(response, res, options.host);
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
@@ -136,18 +135,17 @@ var https_proxy_responder = function(res, options) {
 };
 
 var handle_response = function(response, res, key) {
-  res.writeHead(response.statusCode, response.headers);
 
-  data = ""
+  var data = ""
   response.on('data', function (chunk) {
     data += chunk;
-    res.write(chunk, 'utf8');
   });
 
   response.setEncoding('utf8');
   response.on('end', function () {
     cacheUpdate(key, Date.now(), data);
-    res.end();
+    res.set(response.headers);
+    res.send(response.statusCode, data);
   });
 };
 
@@ -170,8 +168,7 @@ var cacheLookup = function(key) {
 var handleCachedResponse = function(key, res) {
   var co = cacheLookup(key);
   if (co && (Date.now() - co.timestamp) < 1000 * 60 * 15) {
-    res.write(co.data);
-    res.end();
+    res.send(co.data);
     return true;
   }
   return false;
