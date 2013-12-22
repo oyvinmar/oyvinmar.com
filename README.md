@@ -2,6 +2,10 @@
 
 1. `node install`
 2. `export FOURSQUARE_TOKEN=XXX`
+3. `export TWITTER_CONSUMER_KEY=XXX`
+3. `export TWITTER_CONSUMER_SECRET=XXX`
+3. `export TWITTER_ACCESS_TOKEN=XXX`
+3. `export TWITTER_ACCESS_TOKEN_SECTRET=XXX`
 3. `grunt server`
 
 #Deploy
