@@ -44,7 +44,7 @@ app.get('/', function(req, res) {
 app.get('/pinboard/feed/', function(req, res){
   var options = {
     host: 'feeds.pinboard.in',
-    port: 80,
+    port: 443,
     path: '/json/v1/u:oyvinmar/',
   };
   proxy_responder(res, options);
@@ -76,7 +76,7 @@ app.get('/foursquare/feed/', function(req, res){
     port: 443,
     path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
   };
-  https_proxy_responder(res, options);
+  proxy_responder(res, options);
 });
 
 app.get('/github/feed/', function(req, res){
@@ -86,7 +86,7 @@ app.get('/github/feed/', function(req, res){
     path: '/users/oyvinmar/events??oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
     headers: {'User-Agent': 'oyvinmar'},
   };
-  https_proxy_responder(res, options);
+  proxy_responder(res, options);
 });
 
 var oauth_proxy_responder = function(oauth, res, options) {
@@ -109,19 +109,6 @@ var oauth_proxy_responder = function(oauth, res, options) {
 };
 
 var proxy_responder = function(res, options) {
-  //Check cache
-  if (handleCachedResponse(options.host, res)) {
-    return;
-  }
-  http.get(options, function(response) {
-    // console.log("Got response: " + response.statusCode);
-    handle_response(response, res, options.host);
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
-  });
-};
-
-var https_proxy_responder = function(res, options) {
   //Check cache
   if (handleCachedResponse(options.host, res)) {
     return;
