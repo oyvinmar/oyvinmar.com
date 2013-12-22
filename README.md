@@ -1,12 +1,15 @@
-#Installation
+# oyvinmar.com
+Source code of my personal homepage
 
-1. `node install`
+#Run local server
+
+1. `npm install`
 2. `export FOURSQUARE_TOKEN=XXX`
 3. `export TWITTER_CONSUMER_KEY=XXX`
-3. `export TWITTER_CONSUMER_SECRET=XXX`
-3. `export TWITTER_ACCESS_TOKEN=XXX`
-3. `export TWITTER_ACCESS_TOKEN_SECTRET=XXX`
-3. `grunt server`
+4. `export TWITTER_CONSUMER_SECRET=XXX`
+5. `export TWITTER_ACCESS_TOKEN=XXX`
+6. `export TWITTER_ACCESS_TOKEN_SECTRET=XXX`
+7. `grunt server`
 
 #Deploy
 
