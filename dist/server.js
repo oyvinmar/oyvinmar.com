@@ -74,7 +74,7 @@ app.get('/foursquare/feed/', function(req, res){
   var options = {
     host: 'api.foursquare.com',
     port: 443,
-    path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
+    path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20140304',
   };
   proxy_responder(res, options);
 });
@@ -83,7 +83,7 @@ app.get('/github/feed/', function(req, res){
   var options = {
     host: 'api.github.com',
     port: 443,
-    path: '/users/oyvinmar/events??oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20120219',
+    path: '/users/oyvinmar/events?access_token=' + process.env['GITHUB_TOKEN'],
     headers: {'User-Agent': 'oyvinmar'},
   };
   proxy_responder(res, options);
