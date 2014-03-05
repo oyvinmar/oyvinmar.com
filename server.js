@@ -83,8 +83,8 @@ app.get('/github/feed/', function(req, res){
   var options = {
     host: 'api.github.com',
     port: 443,
-    path: '/users/oyvinmar/events',
-    headers: {'User-Agent': 'oyvinmar'}
+    path: '/users/oyvinmar/events?access_token=' + process.env['GITHUB_TOKEN'],
+    headers: {'User-Agent': 'oyvinmar'},
   };
   proxy_responder(res, options);
 });
