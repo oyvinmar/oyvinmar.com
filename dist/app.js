@@ -5,7 +5,6 @@ var http = require('http');
 var https = require('https');
 var path = require('path');
 var OAuth = require('oauth');
-var lessMiddleware = require('less-middleware');
 var root = __dirname + '/app';
 app.engine('html', require('hbs').__express);
 
@@ -15,11 +14,6 @@ app.configure(function() {
   app.set('port', process.env.PORT || PORT)
   app.set('views', __dirname + '/app');
   app.set('view engine', 'hbs');
-  app.use(lessMiddleware({
-    src: root,
-    debug: true,
-    force: true
-  }));
   app.use(express.compress());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -41,7 +35,11 @@ app.configure('production', function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index.html', {DEV_ENV: process.env.NODE_ENV === 'development' });
+  res.render('index.html');
+});
+
+app.get('/debug/', function(req, res) {
+  res.render('index-debug.html');
 });
 
 app.get('/pinboard/feed/', function(req, res){

@@ -12,18 +12,24 @@ var concat = require("gulp-concat");
 var rev = require("gulp-rev");
 var changed = require('gulp-changed');
 var rimraf = require('rimraf');
+var lr = require('tiny-lr');
+var refresh = require('gulp-livereload');
 var files = require('./build.config.js').files;
 
+var lrserver = lr();
+var livereloadport = 35729;
 
 gulp.task('styles', function () {
   return gulp.src(files.scss)
     .pipe(less())
     .pipe(gulp.dest('dist/app/styles'))
+    .pipe(refresh(lrserver));
 });
 
 gulp.task('images', function () {
   return gulp.src(files.images)
-    .pipe(gulp.dest('dist/app/img'));
+    .pipe(gulp.dest('dist/app/img'))
+    .pipe(refresh(lrserver));
 });
 
 gulp.task('scripts', function () {
@@ -31,13 +37,14 @@ gulp.task('scripts', function () {
 //    .pipe(jshint('.jshintrc'))
 //    .pipe(jshint.reporter('default'))
     .pipe(gulp.dest('dist/app'))
+    .pipe(refresh(lrserver));
 });
 
 gulp.task('vendor', ['vendor:bower', 'vendor:fonts']);
 
 gulp.task('vendor:bower', function () {
   return gulp.src(files.js.bowerAll)
-    .pipe(gulp.dest('dist/bower_components'))
+    .pipe(gulp.dest('dist/app/bower_components'))
 });
 
 gulp.task('vendor:fonts', function () {
@@ -47,15 +54,7 @@ gulp.task('vendor:fonts', function () {
 
 gulp.task('html', ['html:index-debug', 'html:index']);
 
-var vendorStream = gulp.src(files.js.bower)
-  .pipe(concat('vendor.js'))
-  .pipe(uglify(), {
-    outSourceMap: true
-  })
-  .pipe(rev())
-  .pipe(gulp.dest('dist/app/js'));
-
-var appStream = gulp.src(files.js.app)
+var appStream = gulp.src(files.js.bower.concat(files.js.app))
   .pipe(concat('app.js'))
   .pipe(uglify(), {
     outSourceMap: true
@@ -66,16 +65,12 @@ var appStream = gulp.src(files.js.app)
 // Use mustache template for scalatra
 gulp.task('html:index', function () {
   return gulp.src(files.htmlIndex)
-    .pipe(inject(vendorStream, {
-      ignorePath: 'dist/app',
-      addRootSlash: false,
-      starttag: '<!-- inject:vendor:{{ext}} -->'
-    }))
     .pipe(inject(appStream, {
       ignorePath: 'dist/app',
       addRootSlash: false
     }))
-    .pipe(gulp.dest('dist/app/'));
+    .pipe(gulp.dest('dist/app/'))
+    .pipe(refresh(lrserver));
 });
 
 // Create index.html from mustache template
@@ -87,7 +82,8 @@ gulp.task('html:index-debug', function () {
       addRootSlash: true
     }))
     .pipe(embedlr())
-    .pipe(gulp.dest('dist/app/'));
+    .pipe(gulp.dest('dist/app/'))
+    .pipe(refresh(lrserver));
 });
 
 
@@ -99,24 +95,24 @@ gulp.task('serve', ['server:copy', 'server:run']);
 gulp.task('server:copy', function () {
   return gulp.src(files.server)
     .pipe(gulp.dest('dist/'));
-  });
+});
 
 gulp.task('server:run', function () {
   var app = require('./dist/app');
-  app.listen(app.get('port'), function() {
+  app.listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
   });
 
   //Set up your livereload server
-//  lrserver.listen(livereloadport);
+  lrserver.listen(livereloadport);
 });
 
 gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run watch after scripts, vendor, etc.. is finished
   gulp.watch(files.js.app, ['scripts']);
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scss, ['styles']);
-//  gulp.watch(files.html, ['html:views']);
+  gulp.watch(files.htmlIndex, ['html:index-debug']);
 });
 
 gulp.task('default', ['images', 'scripts', 'vendor', 'styles', 'html', 'serve', 'watch']);
-gulp.task('build', ['images','scripts', 'vendor', 'styles', 'html', 'server:copy']);
+gulp.task('build', ['images', 'scripts', 'vendor', 'styles', 'html', 'server:copy']);
