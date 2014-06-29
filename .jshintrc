@@ -1,7 +1,6 @@
 {
   "node": true,
   "browser": true,
-  "es5": true,
   "esnext": true,
   "bitwise": true,
   "camelcase": false,
@@ -18,5 +17,18 @@
   "unused": true,
   "strict": false,
   "trailing": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "Backbone": false,
+    "jQuery": false,
+    "Handlebars": false,
+    "RemoteCallApi": false,
+    "AppController": false,
+    "$": false,
+    "_": false
+  },
+  "exported": {
+    "RemoteCallApi": false,
+    "AppController": false
+  }
 }

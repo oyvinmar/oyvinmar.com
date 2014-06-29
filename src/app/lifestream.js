@@ -1,7 +1,9 @@
+'use strict';
+
 var Entry = Backbone.Model.extend({
   initialize: function (spec) {
     if(!spec.timestamp instanceof Date) {
-      throw "Timestamp has to be an date object";
+      throw 'Timestamp has to be an date object';
     }
   }
 });
@@ -17,7 +19,7 @@ var EntryCollection = Backbone.Collection.extend({
 var EntryView = Backbone.View.extend({
   tagName: 'article',
   className: 'entry row-fluid',
-  initialize: function(args) {
+  initialize: function() {
     this.el.id = this.model.get('timestamp').getTime();
   },
 
@@ -34,9 +36,6 @@ var EntryView = Backbone.View.extend({
     var context = _.extend(this.model.toJSON());
     $(this.el).html(this.template(context));
     return this;
-  },
-
-  changeContent: function() {
   }
 });
 
@@ -60,7 +59,7 @@ var AppView = Backbone.View.extend({
   },
 
   render: function() {
-    $('#stream').html("");
+    $('#stream').html('');
     var i = 0;
     var self = this;
     this.model.entries.each(function(entry) {
@@ -84,11 +83,12 @@ var AppView = Backbone.View.extend({
   }
 });
 
-
-var AppController = Backbone.Router.extend({
-  initialize: function(params) {
+//noinspection JSUndefinedVariable
+window.AppController = Backbone.Router.extend({
+  initialize: function() {
     this.model = new AppModel();
     this.view = new AppView({model: this.model});
+    var RemoteCallApi = window.RemoteCallApi;
     RemoteCallApi.getInstance().fetch_twitter_timeline();
     RemoteCallApi.getInstance().fetch_pinboard_feed();
     RemoteCallApi.getInstance().fetch_foursquare_timeline();

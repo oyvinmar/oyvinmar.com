@@ -34,8 +34,8 @@ gulp.task('images', function () {
 
 gulp.task('scripts', function () {
   return gulp.src(files.js.app)
-//    .pipe(jshint('.jshintrc'))
-//    .pipe(jshint.reporter('default'))
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'))
     .pipe(gulp.dest('dist/app'))
     .pipe(refresh(lrserver));
 });
@@ -114,5 +114,5 @@ gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run
   gulp.watch(files.htmlIndex, ['html:index-debug']);
 });
 
-gulp.task('default', ['images', 'scripts', 'vendor', 'styles', 'html', 'serve', 'watch']);
-gulp.task('build', ['images', 'scripts', 'vendor', 'styles', 'html', 'server:copy']);
+gulp.task('default', ['images', 'scripts', 'vendor', 'styles', 'html:index-debug', 'serve', 'watch']);
+gulp.task('build', ['images', 'scripts', 'vendor', 'styles', 'html:index', 'server:copy']);

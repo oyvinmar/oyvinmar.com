@@ -1,26 +1,7 @@
+'use strict';
+
 $(function() {
-  var apt = new AppController();
-  window.app = apt;
-
-  initScrollSpy();
-
-  // Add mailto
-  mail2("oyvinmar" , "gmail.com");
-
-  addClickListeners();
-
-  // fix sub nav on scroll
-  var $win = $(window), $nav = $('.subnav'),
-      barTop = $('.subnav').length && $('.subnav').offset().top,
-      navOffsetTop = $('#topnav').length && document.getElementById("topnav").offsetTop;
-
-  respondToWidth();
-
-  $win.on("load", function() { //processScroll if page is reloaded!
-    window.setTimeout(processScroll, 10);
-  });
-
-  $win.on('resize', respondToWidth);
+  window.app = new window.AppController();
 
 
   function addClickListeners() {
@@ -36,7 +17,7 @@ $(function() {
       $('html,body').animate({scrollTop: 0},500);
     });
 
-    $('#toggle-menu').click(function(event){
+    $('#toggle-menu').click(function(){
       $('#links').toggle();
     });
   }
@@ -59,12 +40,12 @@ $(function() {
   }
 
   function refreshScrollVariables() {
-    barTop = $('.subnav').length && $('.subnav').offset().top,
-    navOffsetTop = $('#topnav').length && document.getElementById("topnav").offsetTop;
+    barTop = $nav.length && $nav.offset().top;
+    navOffsetTop = $('#topnav').length && document.getElementById('topnav').offsetTop;
   }
 
   function processScroll() {
-    var i, scrollTop = $win.scrollTop();
+    var scrollTop = $win.scrollTop();
     if (scrollTop >= barTop && !isFixed()) {
       $nav.addClass('subnav-fixed');
     } else if (scrollTop >= barTop - navOffsetTop && !isHidden()) {
@@ -81,13 +62,35 @@ $(function() {
   function isHidden() {
     return !$('#topnav').is(':visible');
   }
+
   function isFixed() {
     return $nav.hasClass('subnav-fixed');
-  };
+  }
 
   function mail2(name, domain) {
     var addr = name + '@' + domain;
     $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
   }
+
+  initScrollSpy();
+
+  // Add mailto
+  mail2('oyvinmar' , 'gmail.com');
+
+  addClickListeners();
+
+  // fix sub nav on scroll
+  var $win = $(window), $nav = $('.subnav'),
+    barTop = $nav.length && $nav.offset().top,
+    navOffsetTop = $('#topnav').length && document.getElementById('topnav').offsetTop;
+
+  respondToWidth();
+
+  $win.on('load', function() { //processScroll if page is reloaded!
+    window.setTimeout(processScroll, 10);
+  });
+
+  $win.on('resize', respondToWidth);
+
 });
 
