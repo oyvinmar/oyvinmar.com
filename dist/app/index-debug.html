@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <title>oyvinmar.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="//use.typekit.net/kdv7jtg.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link rel="stylesheet" type="text/css" href="/styles/base.css">
+</head>
+<body>
+  <div id="top">
+    <div id="topnav" class="navbar navbar-fixed-top">
+      <div class="navbar-inner hidden-tablet hidden-phone">
+        <a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">Meny</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#about">About me</a></li>
+            <li><a href="#lifestream">Lifestream</a></li>
+            <li><a href="#page-bottom">Elsewhere</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <section class="row">
+      <div class="span1 hidden-phone hidden-tablet"></div>
+      <div class="hero-unit span8">
+        <h1>Hi, I'm Øyvind</h1>
+        <h2>Welcome to my "old-fashioned" homepage.</h2>
+      </div>
+      <div class="span3">
+      </div>
+    </section>
+  </div>
+  <div class="navbar navbar-inverse subnav">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="#" class="brand">oyvinmar.com</a>
+        <button type="button" id="toggle-menu" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div id="links" style="display:none">
+          <ul class="nav">
+            <li><a href="#about">About me</a></li>
+            <li><a href="#lifestream">Lifestream</a></li>
+            <li><a href="#page-bottom">Elsewhere</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subnav-space"></div>
+  <div class="container">
+    <section id="about" class="row">
+      <h2>About me</h2>
+      <div class="span8">
+        <p>I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a consultant at <a rel="external" href="http://knowit.no">Knowit</a>, where I'm able to work on cool things. In my spear time I enjoy watching football (the British kind), and love going skiing in the winter.</p>
+      </div>
+      <div class="span4">
+        <figure>
+          <div class="frame">
+            <img id="headshot" src="/img/headshot_400.jpg" alt="Øyvind Marthinsen"/>
+          </div>
+        </figure>
+      </div>
+    </section>
+    <section id="lifestream" class="row">
+      <h2>Lifestream</h2>
+      <p class="pretext">If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...</p>
+      <div id="stream" class="span8">
+        <img id="loader" src="/img/loader.gif" alt="Loading"/>
+      </div>
+    </section>
+  </div>
+  <div id="page-bottom" class="container-fluid">
+    <div class="container">
+      <section class="row-fluid">
+        <div class="span4">
+          <h2>Contact</h2>
+          <p>You can reach me on all the social networks listed to the right. Or if you prefer old school email: <div id="email"><i class="icon-envelope"></i></div> </p>
+        </div>
+        <div class="span4 elsewhere">
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href="http://facebook.com/oyvind.marthinsen"><i class="icon-facebook"></i></a></li>
+            <li><a href="http://twitter.com/oyvinmar"><i class="icon-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/112314193090100501199/posts"><i class="icon-google-plus"></i></a></li>
+            <li><a href="http://linkedin.com/in/oyvinmar"><i class="icon-linkedin"></i></a></li>
+            <li><a href="http://github.com/oyvinmar"><i class="icon-github"></i></a></li>
+          </ul>
+        </div>
+        <div class="span4">
+          <h2>Technology</h2>
+          <p>This page is powered by some of my favorite technologies at the moment: <a href="http://nodejs.org">Node.js</a>, <a href="http://backbonejs.org">Backbone.js</a> and <a href="http://twitter.github.com/bootstrap/">Twitter bootstrap</a>.
+          </div>
+        </section>
+        <footer class="row-fluid">
+          <p>&copy; 2012 Øyvind Marthinsen</p>
+        </footer>
+      </div> <!-- /container -->
+    </div> <!-- /container -->
+
+  <!-- inject:vendor:js -->
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="/bower_components/backbone/backbone.js"></script>
+  <script src="/bower_components/handlebars.js/dist/handlebars.js"></script>
+  <script src="/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+  <script src="/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+  <script src="/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+  <script src="/remote_call_api.js"></script>
+  <script src="/lifestream.js"></script>
+  <script src="/init.js"></script>
+  <!-- endinject -->
+  
+<script type="text/javascript">document.write('<script src="' + (location.protocol || 'http:') + '//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')</script>
+</body>
+  </html>

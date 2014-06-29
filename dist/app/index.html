@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
   <title>oyvinmar.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="//use.typekit.net/kdv7jtg.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-  <link rel="stylesheet" type="text/css" href="less/base.css">
+  <link rel="stylesheet" type="text/css" href="/styles/base.css">
 </head>
 <body>
   <div id="top">
@@ -61,7 +61,7 @@
       <div class="span4">
         <figure>
           <div class="frame">
-            <img id="headshot" src="/img/headshot_400.jpg" alt="Øyvind Marthinsen">
+            <img id="headshot" src="/img/headshot_400.jpg" alt="Øyvind Marthinsen"/>
           </div>
         </figure>
       </div>
@@ -70,7 +70,7 @@
       <h2>Lifestream</h2>
       <p class="pretext">If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...</p>
       <div id="stream" class="span8">
-        <img id="loader" src="/img/loader.gif" alt="Loading">
+        <img id="loader" src="/img/loader.gif" alt="Loading"/>
       </div>
     </section>
   </div>
@@ -94,7 +94,7 @@
         <div class="span4">
           <h2>Technology</h2>
           <p>This page is powered by some of my favorite technologies at the moment: <a href="http://nodejs.org">Node.js</a>, <a href="http://backbonejs.org">Backbone.js</a> and <a href="http://twitter.github.com/bootstrap/">Twitter bootstrap</a>.
-          </p></div>
+          </div>
         </section>
         <footer class="row-fluid">
           <p>&copy; 2012 Øyvind Marthinsen</p>
@@ -102,9 +102,12 @@
       </div> <!-- /container -->
     </div> <!-- /container -->
 
-    <script src="js/app.js"></script>
-    {{#if DEV_ENV}}
-    <script src="http://localhost:35729/livereload.js"></script>
-    {{/if}}
+  <!-- inject:vendor:js -->
+  <script src="js/vendor-d2d05da0.js"></script>
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <script src="js/app-5ec646e6.js"></script>
+  <!-- endinject -->
   </body>
   </html>
