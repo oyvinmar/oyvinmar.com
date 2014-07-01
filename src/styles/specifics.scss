@@ -1,21 +1,3 @@
-@import 'bootstrap';
-@import 'responsive';
-
-//Variables
-@linkColor:             #477B96;
-@baseFontSize:          18px;
-@baseLineHeight:        22px;
-@sansFontFamily:        "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       "kepler-std", Georgia, "Times New Roman", Times, serif;
-@headingsFontFamily:    @serifFontFamily;
-@subNavbarLinkColor: #CCCCCC;
-@subNavbarLinkColorHover: darken(@subNavbarLinkColor, 15%);
-@fontAwesomePath: '/fonts/';
-
-/*body {*/
-  /*font-weight: 300;*/
-/*}*/
-
 section {
   padding-top: 40px;
 }
@@ -53,29 +35,29 @@ section {
     min-height: 0;
     background-image: none;
     border: none;
-    .box-shadow(none);
+    @include box-shadow(none);
     background-color: transparent;
   }
 }
 
 .navbar-inverse {
-    .navbar-inner {
-        background-image: url("../img/darkdenim3.png");
-        border-radius: 0;
-        border: none;
-    }
+  .navbar-inner {
+    background-image: url("../img/darkdenim3.png");
+    border-radius: 0;
+    border: none;
+  }
 }
 
 //Common navbar link styles
-.navbarlinks(){
-  font-size: @baseFontSize;
+@mixin navbarlinks(){
+  font-size: $baseFontSize;
   font-weight: bold;
   text-shadow: none;
 }
 
-.navbarlinkshover(){
+@mixin navbarlinkshover(){
   background-color: transparent;
-  color: @navbarLinkColorHover;
+  color: $navbar-default-link-hover-color;
   text-decoration: none;
 }
 
@@ -83,12 +65,12 @@ section {
 .navbar .nav {
   float: right;
   & li > a {
-    .navbarlinks();
+    @include navbarlinks();
   }
 }
 // Hover
 .navbar .nav > li > a:hover {
-  .navbarlinkshover();
+  @include navbarlinkshover();
 }
 
 // Active nav items
@@ -98,19 +80,19 @@ section {
   text-decoration: none;
   background-color: transparent;
   -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .navbar .btn-navbar {
-    background: transparent;
-    background-image: none;
-    cursor: pointer;
-    color: @navbarLinkColor;
-    .navbarlinks();
-    &:hover, &:active {
-        .navbarlinkshover();
-    }
+  background: transparent;
+  background-image: none;
+  cursor: pointer;
+  color: $navbar-default-link-color;
+  @include navbarlinks();
+  &:hover, &:active {
+    @include navbarlinkshover();
+  }
 }
 
 @media (max-width: 767px) {
@@ -139,7 +121,7 @@ section {
     }
 
     h2 {
-      font-size: @baseFontSize * 1.50;
+      font-size: $font-size-base * 1.50;
     }
   }
 }
@@ -152,7 +134,7 @@ section {
     }
 
     h2 {
-      font-size: @baseFontSize * 1.75;
+      font-size: $font-size-base * 1.75;
     }
   }
 }
@@ -182,7 +164,7 @@ section {
 
   .subnav {
     .navbar-inner {
-      padding: 0;  
+      padding: 0;
     }
     .nav {
       margin: 40px 0 0 0;
@@ -196,7 +178,7 @@ section {
       li:last-child {
         border: none;
       }
-    } 
+    }
   }
 }
 
@@ -204,22 +186,22 @@ section {
 .subnav {
   position: absolute;
   width: 100%;
-  z-index: @zindexFixedNavbar + 1;
+  z-index: $zindex-navbar-fixed + 1;
   // Links
   .nav > li > a {
-    color: @subNavbarLinkColor;
+    color: $subNavbarLinkColor;
     background-color: transparent;
   }
   .nav > li > a:hover {
     background-color: transparent;
-    color: @subNavbarLinkColorHover;
+    color: $subNavbarLinkColorHover;
     text-decoration: none;
   }
   .nav .active > a,
   .nav .active > a:hover {
-    color: @white;
+    color: #fff;
     text-decoration: none;
-    background-color: @navbarBackground;
+    background-color: $navbar-default-bg;
     background-color: rgba(0,0,0,.3);
   }
 }
@@ -241,7 +223,7 @@ section {
 #headshot {
   height: 200px;
   margin: -20px -25px 15px;
-  .box-shadow(0 4px 7px rgba(0,0,0,.35));
+  @include box-shadow(0 4px 7px rgba(0,0,0,.35));
 }
 
 .entry {
@@ -294,7 +276,7 @@ section {
     color: white;
     font-size: 24px;
     padding: 2px;
-    .transition(background .7s ease-in);
+    @include transition(background .7s ease-in);
   }
 
   a:hover {
@@ -303,7 +285,7 @@ section {
 
   a[href*="facebook.com"] {
     border:3px solid #3b5998;
-    .border-radius(50%);
+    @include border-radius(50%);
     &:hover {
       background: #3b5998;
     }
@@ -311,7 +293,7 @@ section {
 
   a[href*="twitter.com"] {
     border:3px solid #33ccff;
-    .border-radius(50%);
+    @include border-radius(50%);
     &:hover {
       background: #33ccff;
     }
@@ -319,7 +301,7 @@ section {
 
   a[href*="google.com"] {
     border:3px solid #DD4B39;
-    .border-radius(50%);
+    @include border-radius(50%);
     &:hover {
       background: #DD4B39;
     }
@@ -327,7 +309,7 @@ section {
 
   a[href*="linkedin.com"] {
     border:3px solid #0085B2;
-    .border-radius(50%);
+    @include border-radius(50%);
     &:hover {
       background: #0085B2;
     }
@@ -335,10 +317,9 @@ section {
 
   a[href*="github.com"] {
     border:3px solid #FF4D92;
-    .border-radius(50%);
+    @include border-radius(50%);
     &:hover {
       background: #FF4D92;
     }
   }
 }
-

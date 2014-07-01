@@ -2,7 +2,6 @@ var https = require('http');
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
-var less = require('gulp-less');
 var embedlr = require('gulp-embedlr');
 var rename = require('gulp-rename');
 var debug = require('gulp-debug');
@@ -21,7 +20,7 @@ var livereloadport = 35729;
 
 gulp.task('styles', function () {
   return gulp.src(files.scss)
-    .pipe(less())
+    .pipe(sass({errLogToConsole: true}))
     .pipe(gulp.dest('dist/app/styles'))
     .pipe(refresh(lrserver));
 });

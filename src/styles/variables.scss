@@ -1,0 +1,14 @@
+//Variables
+$baseFontSize: 18px;
+$baseLineHeight: 22px;
+$sansFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily: "kepler-std", Georgia, "Times New Roman", Times, serif;
+$headingsFontFamily: $serifFontFamily;
+$subNavbarLinkColor: #CCCCCC;
+$subNavbarLinkColorHover: darken($subNavbarLinkColor, 15%);
+$fontAwesomePath: '/fonts/';
+
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
