@@ -1,15 +1,14 @@
-var https = require('http');
+//var https = require('http');
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var embedlr = require('gulp-embedlr');
 var rename = require('gulp-rename');
-var debug = require('gulp-debug');
-var inject = require("gulp-inject");
-var uglify = require("gulp-uglify");
-var concat = require("gulp-concat");
-var rev = require("gulp-rev");
-var changed = require('gulp-changed');
+//var debug = require('gulp-debug');
+var inject = require('gulp-inject');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var rev = require('gulp-rev');
 var rimraf = require('rimraf');
 var lr = require('tiny-lr');
 var refresh = require('gulp-livereload');
@@ -43,12 +42,12 @@ gulp.task('vendor', ['vendor:bower', 'vendor:fonts']);
 
 gulp.task('vendor:bower', function () {
   return gulp.src(files.js.bowerAll)
-    .pipe(gulp.dest('dist/app/bower_components'))
+    .pipe(gulp.dest('dist/app/bower_components'));
 });
 
 gulp.task('vendor:fonts', function () {
   return gulp.src(files.fonts)
-    .pipe(gulp.dest('dist/app/fonts'))
+    .pipe(gulp.dest('dist/app/fonts'));
 });
 
 gulp.task('html', ['html:index-debug', 'html:index']);
@@ -99,7 +98,7 @@ gulp.task('server:copy', function () {
 gulp.task('server:run', function () {
   var app = require('./dist/app');
   app.listen(app.get('port'), function () {
-    console.log("Express server listening on port " + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
   });
 
   //Set up your livereload server
@@ -109,7 +108,7 @@ gulp.task('server:run', function () {
 gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run watch after scripts, vendor, etc.. is finished
   gulp.watch(files.js.app, ['scripts']);
   gulp.watch(files.images, ['images']);
-  gulp.watch(files.scss, ['styles']);
+  gulp.watch(files.scssAll, ['styles']);
   gulp.watch(files.htmlIndex, ['html:index-debug']);
 });
 

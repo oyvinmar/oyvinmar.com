@@ -2,60 +2,37 @@ section {
   padding-top: 40px;
 }
 
-
-#top {
-  padding-top: 60px;
-  background-color: #FF867D;
-  background: url('../img/45degreee_fabric.png') #FFF repeat;
-}
-
-/* Override */
-.hero-unit {
-  background: transparent;
+.welcome {
+  background-color: #2F3238;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  padding-top: 90px;
 
   h1 {
     font-family: "minion-pro", Georgia, sans-serif;
     font-weight: 800;
+    font-size: 60px;
     letter-spacing: normal;
   }
 
   h2 {
     font-family: "minion-pro-condensed-subhead", Georgia, sans-serif;
-    font-weight: normal;
-    font-style: italic;
+    font-weight: lighter;
+    font-size:30px;
     height: 40px;
   }
 }
 
-.navbar-fixed-top {
-  top: 40px;
-  padding-right: 20px;
-  padding-left: 20px;
-  .navbar-inner {
-    min-height: 0;
-    background-image: none;
-    border: none;
-    @include box-shadow(none);
-    background-color: transparent;
-  }
-}
-
-.navbar-inverse {
-  .navbar-inner {
-    background-image: url("../img/darkdenim3.png");
-    border-radius: 0;
-    border: none;
-  }
-}
-
 //Common navbar link styles
-@mixin navbarlinks(){
-  font-size: $baseFontSize;
+@mixin navbarlinks() {
+  font-size: $font-size-base;
   font-weight: bold;
   text-shadow: none;
 }
 
-@mixin navbarlinkshover(){
+@mixin navbarlinkshover() {
   background-color: transparent;
   color: $navbar-default-link-hover-color;
   text-decoration: none;
@@ -68,6 +45,7 @@ section {
     @include navbarlinks();
   }
 }
+
 // Hover
 .navbar .nav > li > a:hover {
   @include navbarlinkshover();
@@ -102,7 +80,7 @@ section {
     padding-right: 0px;
   }
 
-  .container-fluid, .container{
+  .container-fluid, .container {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -111,6 +89,7 @@ section {
     padding-top: 20px;
   }
 }
+
 /* Override  end */
 
 // Responsive stuff
@@ -138,15 +117,8 @@ section {
     }
   }
 }
-@media (max-width: 979px) {
-  .nav-collapse, .nav-collapse.collapse {
-    /*overflow: hidden;*/
-    /*height: 0;*/
-    /*float: left;*/
-    /*background: white;*/
-    /*width: 100%;*/
-  }
 
+@media (max-width: 979px) {
   #top {
     padding-top: 0;
     .row {
@@ -202,10 +174,9 @@ section {
     color: #fff;
     text-decoration: none;
     background-color: $navbar-default-bg;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0, 0, 0, .3);
   }
 }
-
 
 .subnav-fixed {
   position: fixed;
@@ -223,7 +194,7 @@ section {
 #headshot {
   height: 200px;
   margin: -20px -25px 15px;
-  @include box-shadow(0 4px 7px rgba(0,0,0,.35));
+  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
 .entry {
@@ -240,10 +211,8 @@ section {
   margin-top: 2em;
 }
 
-
 #page-bottom {
-  background: #666;
-  background-image: url("/img/darkdenim3.png");
+  background-color: #2F3238;
   margin-top: 4em;
 
   color: darken(#FFFFFF, 15%);
@@ -263,7 +232,7 @@ section {
 .elsewhere {
 
   ul {
-    margin: 1.5em 0 0 0em;
+    padding: 5px 0 0 0em;
   }
 
   ul li {
@@ -284,7 +253,7 @@ section {
   }
 
   a[href*="facebook.com"] {
-    border:3px solid #3b5998;
+    border: 3px solid #3b5998;
     @include border-radius(50%);
     &:hover {
       background: #3b5998;
@@ -292,7 +261,7 @@ section {
   }
 
   a[href*="twitter.com"] {
-    border:3px solid #33ccff;
+    border: 3px solid #33ccff;
     @include border-radius(50%);
     &:hover {
       background: #33ccff;
@@ -300,7 +269,7 @@ section {
   }
 
   a[href*="google.com"] {
-    border:3px solid #DD4B39;
+    border: 3px solid #DD4B39;
     @include border-radius(50%);
     &:hover {
       background: #DD4B39;
@@ -308,7 +277,7 @@ section {
   }
 
   a[href*="linkedin.com"] {
-    border:3px solid #0085B2;
+    border: 3px solid #0085B2;
     @include border-radius(50%);
     &:hover {
       background: #0085B2;
@@ -316,7 +285,7 @@ section {
   }
 
   a[href*="github.com"] {
-    border:3px solid #FF4D92;
+    border: 3px solid #FF4D92;
     @include border-radius(50%);
     &:hover {
       background: #FF4D92;

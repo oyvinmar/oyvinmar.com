@@ -18,14 +18,14 @@ var EntryCollection = Backbone.Collection.extend({
 
 var EntryView = Backbone.View.extend({
   tagName: 'article',
-  className: 'entry row-fluid',
+  className: 'entry row',
   initialize: function() {
     this.el.id = this.model.get('timestamp').getTime();
   },
 
   template: Handlebars.compile(
-    '<div class="span1"><img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
-    '<div class="span11">' +
+    '<div class="col-md-1"><img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
+    '<div class="col-md-11">' +
     '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>' +
     '<p>{{{ content }}}</p>' +
     '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>' +

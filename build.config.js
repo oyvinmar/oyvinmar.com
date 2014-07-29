@@ -28,6 +28,7 @@ module.exports = {
 
     images: 'src/img/**',
     scss: 'src/styles/base.scss',
+    scssAll: 'src/styles/*.scss',
 
     server: ['app.js', 'server.js', 'Procfile', 'package.json'],
 
