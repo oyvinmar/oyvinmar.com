@@ -3838,38 +3838,6 @@ section {
     font-size: 30px;
     height: 40px; }
 
-.navbar .nav {
-  float: right; }
-  .navbar .nav li > a {
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: none; }
-
-.navbar .nav > li > a:hover {
-  background-color: transparent;
-  color: #333;
-  text-decoration: none; }
-
-.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none; }
-
-.navbar .btn-navbar {
-  background: transparent;
-  background-image: none;
-  cursor: pointer;
-  color: #777;
-  font-size: 18px;
-  font-weight: bold;
-  text-shadow: none; }
-  .navbar .btn-navbar:hover, .navbar .btn-navbar:active {
-    background-color: transparent;
-    color: #333;
-    text-decoration: none; }
-
 @media (max-width: 767px) {
   body {
     padding-left: 0px;
@@ -3899,8 +3867,6 @@ section {
     padding-top: 0; }
     #top .row {
       padding-top: 0; }
-  .navbar-fixed-top {
-    margin-bottom: 0; }
   .hero-unit {
     padding: 0 0 0 20px; }
   .subnav .navbar-inner {

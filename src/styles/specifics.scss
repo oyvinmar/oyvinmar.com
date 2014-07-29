@@ -38,40 +38,40 @@ section {
   text-decoration: none;
 }
 
-// Links
-.navbar .nav {
-  float: right;
-  & li > a {
-    @include navbarlinks();
-  }
-}
-
-// Hover
-.navbar .nav > li > a:hover {
-  @include navbarlinkshover();
-}
-
-// Active nav items
-.navbar .nav > .active > a,
-.navbar .nav > .active > a:hover,
-.navbar .nav > .active > a:focus {
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
-.navbar .btn-navbar {
-  background: transparent;
-  background-image: none;
-  cursor: pointer;
-  color: $navbar-default-link-color;
-  @include navbarlinks();
-  &:hover, &:active {
-    @include navbarlinkshover();
-  }
-}
+//// Links
+//.navbar .nav {
+//  float: right;
+//  & li > a {
+//    @include navbarlinks();
+//  }
+//}
+//
+//// Hover
+//.navbar .nav > li > a:hover {
+//  @include navbarlinkshover();
+//}
+//
+//// Active nav items
+//.navbar .nav > .active > a,
+//.navbar .nav > .active > a:hover,
+//.navbar .nav > .active > a:focus {
+//  text-decoration: none;
+//  background-color: transparent;
+//  -webkit-box-shadow: none;
+//  -moz-box-shadow: none;
+//  box-shadow: none;
+//}
+//
+//.navbar .btn-navbar {
+//  background: transparent;
+//  background-image: none;
+//  cursor: pointer;
+//  color: $navbar-default-link-color;
+//  @include navbarlinks();
+//  &:hover, &:active {
+//    @include navbarlinkshover();
+//  }
+//}
 
 @media (max-width: 767px) {
   //Fix some stupid padding defaults
@@ -126,9 +126,9 @@ section {
     }
   }
 
-  .navbar-fixed-top {
-    margin-bottom: 0;
-  }
+//  .navbar-fixed-top {
+//    margin-bottom: 0;
+//  }
 
   .hero-unit {
     padding: 0 0 0 20px;
