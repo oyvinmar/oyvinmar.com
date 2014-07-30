@@ -27,6 +27,14 @@ $(function() {
     $spy.scrollspy($spy.data());
   }
 
+//  $('.navbar').waypoint(function(direction) {
+//    if (direction === 'up'){
+//      $('.navbar').removeClass('navbar-fixed-top');
+//    } else {
+//      $('.navbar').addClass('navbar-fixed-top');
+//    }
+//  }, { offset: -50 });
+
   $('.navbar').waypoint('sticky', {
     stuckClass: 'navbar-fixed-top',
     wrapper: '<div class="sticky-wrapper" />'
