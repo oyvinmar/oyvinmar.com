@@ -1,28 +1,28 @@
 'use strict';
 
-$(function() {
+$(function () {
   window.app = new window.AppController();
 
 
   function addClickListeners() {
 
-    $('.nav a').click(function(event){
+    $('.nav a').click(function (event) {
       event.preventDefault();
       var idStr = $(this).attr('href');
-      $('html,body').animate({scrollTop: $(idStr).offset().top},500);
+      $('html,body').animate({scrollTop: $(idStr).offset().top}, 500);
     });
 
-    $('.brand').click(function(event){
+    $('.brand').click(function (event) {
       event.preventDefault();
-      $('html,body').animate({scrollTop: 0},500);
+      $('html,body').animate({scrollTop: 0}, 500);
     });
 
-    $('#toggle-menu').click(function(){
+    $('#toggle-menu').click(function () {
       $('#links').toggle();
     });
   }
 
-  function initScrollSpy(){
+  function initScrollSpy() {
     var $spy = $('body');
     $spy.scrollspy($spy.data());
   }
@@ -37,10 +37,28 @@ $(function() {
     $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
   }
 
+
+  function fullscreenImage() {
+    $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
+  }
+
+  fullscreenImage();
+
+  $(window).on('resize', function () {
+    if ($('.welcome').length) {
+      fullscreenImage();
+    }
+  });
+
+  $(window).stellar({
+    horizontalScrolling: false,
+    responsive: true
+  });
+
   initScrollSpy();
 
   // Add mailto
-  mail2('oyvinmar' , 'gmail.com');
+  mail2('oyvinmar', 'gmail.com');
 
   addClickListeners();
 

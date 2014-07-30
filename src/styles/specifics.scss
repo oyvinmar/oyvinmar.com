@@ -1,14 +1,28 @@
-section {
+.row {
   padding-top: 40px;
 }
 
 .welcome {
   background-color: #2F3238;
+  background-image: url('/img/IMG_1013.jpg');
   color: white;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
-  padding-top: 90px;
+  height: 100%;
+  width: 100%;
+
+  .container-fluid {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: table;
+    header {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      margin: auto;
+    }
+  }
 
   h1 {
     font-family: "minion-pro", Georgia, sans-serif;
@@ -20,7 +34,7 @@ section {
   h2 {
     font-family: "minion-pro-condensed-subhead", Georgia, sans-serif;
     font-weight: lighter;
-    font-size:30px;
+    font-size: 30px;
     height: 40px;
   }
 }
@@ -126,9 +140,9 @@ section {
     }
   }
 
-//  .navbar-fixed-top {
-//    margin-bottom: 0;
-//  }
+  //  .navbar-fixed-top {
+  //    margin-bottom: 0;
+  //  }
 
   .hero-unit {
     padding: 0 0 0 20px;

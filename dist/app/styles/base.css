@@ -3817,16 +3817,27 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-section {
+.row {
   padding-top: 40px; }
 
 .welcome {
   background-color: #2F3238;
+  background-image: url('/img/IMG_1013.jpg');
   color: white;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
-  padding-top: 90px; }
+  height: 100%;
+  width: 100%; }
+  .welcome .container-fluid {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: table; }
+    .welcome .container-fluid header {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      margin: auto; }
   .welcome h1 {
     font-family: "minion-pro", Georgia, sans-serif;
     font-weight: 800;
