@@ -9,7 +9,7 @@ $(function () {
     $('.nav a').click(function (event) {
       event.preventDefault();
       var idStr = $(this).attr('href');
-      $('html,body').animate({scrollTop: $(idStr).offset().top}, 500);
+      $('html,body').animate({scrollTop: ($(idStr).offset().top - 30)}, 500);
     });
 
     $('.brand').click(function (event) {
@@ -26,11 +26,6 @@ $(function () {
     var $spy = $('body');
     $spy.scrollspy($spy.data());
   }
-
-  $('.navbar').waypoint('sticky', {
-    stuckClass: 'navbar-fixed-top',
-    wrapper: '<div class="sticky-wrapper" />'
-  });
 
   function mail2(name, domain) {
     var addr = name + '@' + domain;
@@ -53,6 +48,12 @@ $(function () {
   $(window).stellar({
     horizontalScrolling: false,
     responsive: true
+  });
+
+
+  $('.navbar').waypoint('sticky', {
+    stuckClass: 'navbar-fixed-top',
+    wrapper: '<div class="sticky-wrapper" />'
   });
 
   initScrollSpy();
