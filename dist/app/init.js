@@ -1,8 +1,15 @@
 'use strict';
 
+function fullscreenImage() {
+  $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
+}
+fullscreenImage();
+
 $(function () {
   window.app = new window.AppController();
 
+  $('#content').fadeIn(1000);
+  $('.splash').fadeOut(300);
 
   function addClickListeners() {
 
@@ -32,12 +39,6 @@ $(function () {
     $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
   }
 
-
-  function fullscreenImage() {
-    $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
-  }
-
-  fullscreenImage();
 
   $(window).on('resize', function () {
     if ($('.welcome').length) {

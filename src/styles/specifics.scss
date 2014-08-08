@@ -1,3 +1,26 @@
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3000;
+  background: #fff;
+  color: #2F3238;
+  text-align: center;
+  i {
+    font-size: 120px;
+  }
+  .loading-container {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -140px;
+    text-transform: uppercase;
+  }
+}
+
 .row {
   padding-top: 40px;
 }
