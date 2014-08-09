@@ -1,6 +1,6 @@
 'use strict';
 
-window.RemoteCallApi = (function () {
+window.app.RemoteCallApi = (function () {
   var instantiated;
 
   function init() {
@@ -13,17 +13,17 @@ window.RemoteCallApi = (function () {
         _.each(item.entities.urls, function (url) {
           text = text.replace(url.url, '<a href="' + url.url + '">' + url.url + '</a>');
         });
-        window.app.add(text, 'https://twitter.com/#!/oyvinmar/status/' + item.id, 'Twitter', 'http://twitter.com', date);
+        window.app.lifestream.add(text, 'https://twitter.com/#!/oyvinmar/status/' + item.id, 'Twitter', 'http://twitter.com', date);
       });
 
-      window.app.view.render();
+      window.app.lifestream.view.render();
     };
 
     var handlePinboardResponse = function (json) {
       _.each(json, function (bookmark) {
-        window.app.add(bookmark.d, bookmark.u, 'Pinboard.in', 'http://pinboard.in/', new Date(bookmark.dt));
+        window.app.lifestream.add(bookmark.d, bookmark.u, 'Pinboard.in', 'http://pinboard.in/', new Date(bookmark.dt));
       });
-      window.app.view.render();
+      window.app.lifestream.view.render();
     };
 
     var handleFoursquareResponse = function (json) {
@@ -33,10 +33,10 @@ window.RemoteCallApi = (function () {
           description += ' with ' + checkin.venue.hereNow + ' others';
         }
         description += '.';
-        window.app.add(description, 'https://foursquare.com/v/' + checkin.venue.id, 'Foursquare',
+        window.app.lifestream.add(description, 'https://foursquare.com/v/' + checkin.venue.id, 'Foursquare',
           'http://foursquare.com', new Date(checkin.createdAt * 1000));
       });
-      window.app.view.render();
+      window.app.lifestream.view.render();
     };
 
     var createGithubLink = function (path) {
@@ -66,11 +66,11 @@ window.RemoteCallApi = (function () {
         }
 
         if (description) {
-          window.app.add(description, 'https://github.com/' + github_event.repo.name, 'Github',
+          window.app.lifestream.add(description, 'https://github.com/' + github_event.repo.name, 'Github',
             'https://github.com', new Date(github_event.created_at));
         }
       });
-      window.app.view.render();
+      window.app.lifestream.view.render();
     };
 
     return {

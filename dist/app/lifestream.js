@@ -39,13 +39,13 @@ var EntryView = Backbone.View.extend({
   }
 });
 
-var AppModel = Backbone.Model.extend({
+var LifestreamModel = Backbone.Model.extend({
   initialize: function() {
     this.entries = new EntryCollection();
   }
 });
 
-var AppView = Backbone.View.extend({
+var LifestreamView = Backbone.View.extend({
   el: $('#stream'),
 
   initialize: function() {
@@ -84,11 +84,11 @@ var AppView = Backbone.View.extend({
 });
 
 //noinspection JSUndefinedVariable
-window.AppController = Backbone.Router.extend({
+window.app.LifestreamController = Backbone.Router.extend({
   initialize: function() {
-    this.model = new AppModel();
-    this.view = new AppView({model: this.model});
-    var RemoteCallApi = window.RemoteCallApi;
+    this.model = new LifestreamModel();
+    this.view = new LifestreamView({model: this.model});
+    var RemoteCallApi = window.app.RemoteCallApi;
     RemoteCallApi.getInstance().fetch_twitter_timeline();
     RemoteCallApi.getInstance().fetch_pinboard_feed();
     RemoteCallApi.getInstance().fetch_foursquare_timeline();

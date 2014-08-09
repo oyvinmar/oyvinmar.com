@@ -1,18 +1,56 @@
 'use strict';
 
-function fullscreenImage() {
-  $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
-}
-fullscreenImage();
+(function () {
+  var FancyShmancy = function FancyShmancy() {
+    this.init();
+  };
 
-$(function () {
-  window.app = new window.AppController();
+  FancyShmancy.prototype.init = function () {
+    this.fullscreenImage();
+    this.initOnResize();
+  };
 
-  $('#content').fadeIn(1000);
-  $('.splash').fadeOut(300);
+  FancyShmancy.prototype.onLoad = function () {
 
-  function addClickListeners() {
+    $('.splash').fadeOut(300);
+    $('#content').fadeIn(1000);
 
+    this.fullscreenImage();
+    this.addClickListeners();
+    this.initStellar();
+    this.initWaypoints();
+    this.initScrollSpy();
+    this.mail2('oyvinmar', 'gmail.com');
+  };
+
+  FancyShmancy.prototype.initWaypoints = function () {
+    $('.navbar').waypoint('sticky', {
+      stuckClass: 'navbar-fixed-top',
+      wrapper: '<div class="sticky-wrapper" />'
+    });
+  };
+
+  FancyShmancy.prototype.initStellar = function () {
+    $(window).stellar({
+      horizontalScrolling: false,
+      responsive: true
+    });
+  };
+
+  FancyShmancy.prototype.fullscreenImage = function () {
+    $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
+  };
+
+  FancyShmancy.prototype.initOnResize = function () {
+    var self = this;
+    $(window).on('resize', function () {
+      if ($('.welcome').length) {
+        self.fullscreenImage();
+      }
+    });
+  };
+
+  FancyShmancy.prototype.addClickListeners = function () {
     $('.nav a').click(function (event) {
       event.preventDefault();
       var idStr = $(this).attr('href');
@@ -27,42 +65,25 @@ $(function () {
     $('#toggle-menu').click(function () {
       $('#links').toggle();
     });
-  }
+  };
 
-  function initScrollSpy() {
+  FancyShmancy.prototype.initScrollSpy = function () {
     var $spy = $('body');
     $spy.scrollspy($spy.data());
-  }
+  };
 
-  function mail2(name, domain) {
+  FancyShmancy.prototype.mail2 = function (name, domain) {
     var addr = name + '@' + domain;
     $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
-  }
+  };
 
+  window.app.FancyShmancy = FancyShmancy;
+})();
 
-  $(window).on('resize', function () {
-    if ($('.welcome').length) {
-      fullscreenImage();
-    }
-  });
+window.app.fancyShmancy = new window.app.FancyShmancy();
 
-  $(window).stellar({
-    horizontalScrolling: false,
-    responsive: true
-  });
-
-
-  $('.navbar').waypoint('sticky', {
-    stuckClass: 'navbar-fixed-top',
-    wrapper: '<div class="sticky-wrapper" />'
-  });
-
-  initScrollSpy();
-
-  // Add mailto
-  mail2('oyvinmar', 'gmail.com');
-
-  addClickListeners();
-
+$(function () {
+  window.app.lifestream = new window.app.LifestreamController();
+  window.app.fancyShmancy.onLoad();
 });
 
