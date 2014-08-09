@@ -1,3 +1,12 @@
+body {
+  background-color: #2F3238;
+  color: #777;
+}
+
+.section {
+  padding: 70px 0;
+}
+
 .splash {
   position: fixed;
   top: 0;
@@ -5,8 +14,7 @@
   right: 0;
   bottom: 0;
   z-index: 3000;
-  background: #fff;
-  color: #2F3238;
+  background: #f5f5f5;
   text-align: center;
   i {
     font-size: 120px;
@@ -34,6 +42,7 @@
   filter: alpha(opacity=70);
   z-index: 0;
 }
+
 .welcome {
   background-color: #2F3238;
   background-image: url('/img/IMG_1013.jpg');
@@ -71,53 +80,6 @@
   }
 }
 
-//Common navbar link styles
-@mixin navbarlinks() {
-  font-size: $font-size-base;
-  font-weight: bold;
-  text-shadow: none;
-}
-
-@mixin navbarlinkshover() {
-  background-color: transparent;
-  color: $navbar-default-link-hover-color;
-  text-decoration: none;
-}
-
-//// Links
-//.navbar .nav {
-//  float: right;
-//  & li > a {
-//    @include navbarlinks();
-//  }
-//}
-//
-//// Hover
-//.navbar .nav > li > a:hover {
-//  @include navbarlinkshover();
-//}
-//
-//// Active nav items
-//.navbar .nav > .active > a,
-//.navbar .nav > .active > a:hover,
-//.navbar .nav > .active > a:focus {
-//  text-decoration: none;
-//  background-color: transparent;
-//  -webkit-box-shadow: none;
-//  -moz-box-shadow: none;
-//  box-shadow: none;
-//}
-//
-//.navbar .btn-navbar {
-//  background: transparent;
-//  background-image: none;
-//  cursor: pointer;
-//  color: $navbar-default-link-color;
-//  @include navbarlinks();
-//  &:hover, &:active {
-//    @include navbarlinkshover();
-//  }
-//}
 
 @media (max-width: 767px) {
   //Fix some stupid padding defaults
@@ -181,7 +143,7 @@
       padding: 0;
     }
     .nav {
-      margin: 40px 0 0 0;
+//      margin: 40px 0 0 0;
       float: none;
       background: #474747;
       box-shadow: 0 1px 10px rgba(36, 36, 36, 0.4);
@@ -194,43 +156,6 @@
       }
     }
   }
-}
-
-// subnav
-.subnav {
-  position: absolute;
-  width: 100%;
-  z-index: $zindex-navbar-fixed + 1;
-  // Links
-  .nav > li > a {
-    color: $subNavbarLinkColor;
-    background-color: transparent;
-  }
-  .nav > li > a:hover {
-    background-color: transparent;
-    color: $subNavbarLinkColorHover;
-    text-decoration: none;
-  }
-  .nav .active > a,
-  .nav .active > a:hover {
-    color: #fff;
-    text-decoration: none;
-    background-color: $navbar-default-bg;
-    background-color: rgba(0, 0, 0, .3);
-  }
-}
-
-.subnav-fixed {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-}
-
-.subnav-space {
-  height: 50px;
-  margin-bottom: 18px;
-  width: 100%;
 }
 
 #headshot {
@@ -255,7 +180,7 @@
 
 #page-bottom {
   background-color: #2F3238;
-  margin-top: 4em;
+//  margin-top: 4em;
 
   color: darken(#FFFFFF, 15%);
   h2 {
@@ -271,7 +196,30 @@
   }
 }
 
+.lifestream {
+  background-color: #f5f5f5;
+}
+
+.contact {
+  background-color: #f5f5f5;
+}
+
+.about {
+//  background-color: #2F3238;
+  header {
+//    text-align: center;
+  }
+}
+
 .elsewhere {
+  text-align: center;
+  color: darken(#FFFFFF, 15%);
+
+  h2 {
+    margin-top: 0;
+    color: darken(#FFFFFF, 0%);
+  }
+//  background-color: #2F3238;
 
   ul {
     padding: 5px 0 0 0em;
