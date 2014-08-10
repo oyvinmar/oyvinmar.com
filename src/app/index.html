@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/base.css">
 </head>
 <body>
-<div id="content" style="display: none;">
+<div id="content">
 
     <section id="home" class="welcome" data-stellar-background-ratio="0.5">
         <div class="overlay">
@@ -49,40 +49,34 @@
     </nav>
 
 
-    <div class="section about" id="about">
+    <div class="section" id="about">
         <section class="container">
-
-            <header>
+            <header class="row section-header">
                 <h2>About me</h2>
+                <hr/>
             </header>
             <section class="row">
-
                 <div class="col-md-8">
-
                     <p>I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a
-                        consultant at
-                        <a
-                                rel="external" href="http://knowit.no">Knowit</a>, where I'm able to work on cool
-                        things. In
-                        my
-                        spear time I enjoy watching football (the British kind), and love going skiing in the winter.
+                        consultant at <a rel="external" href="http://knowit.no">Knowit</a>, where I'm able to work on
+                        cool things. In my spear time I enjoy watching football (the British kind), and love going
+                        skiing in the winter.
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <figure>
-                        <div class="frame">
-                            <img id="headshot" src="/img/headshot_400.jpg" alt="Øyvind Marthinsen"/>
-                        </div>
-                    </figure>
+                    <img id="headshot" src="/img/headshot_400.jpg" alt="Øyvind Marthinsen"/>
                 </div>
             </section>
         </section>
     </div>
-    <div class="section lifestream" id="lifestream">
+    <div class="section" id="lifestream">
         <div class="container">
+            <header class="row section-header">
+                <h2>Lifestream</h2>
+                <hr/>
+            </header>
             <section class="row">
                 <div class="col-md-12">
-                    <h2>Lifestream</h2>
 
                     <p class="pretext">If this content is up-to-date, I'm probably still alive. If not, lets hope it is
                         a
@@ -97,28 +91,36 @@
             </section>
         </div>
     </div>
-    <section class="section elsewhere" id="elsewhere">
+    <section class="section" id="elsewhere">
         <div class="container">
-            <header><h2>Find me elsewhere on the web</h2></header>
-            <ul>
-                <li><a href="http://facebook.com/oyvind.marthinsen"><i class="fa fa-facebook fa-fw"></i></a></li>
-                <li><a href="http://twitter.com/oyvinmar"><i class="fa fa-twitter fa-fw"></i></a></li>
-                <li><a href="https://plus.google.com/u/0/112314193090100501199/posts"><i
-                        class="fa fa-google-plus fa-fw"></i></a></li>
-                <li><a href="http://linkedin.com/in/oyvinmar"><i class="fa fa-linkedin fa-fw"></i></a></li>
-                <li><a href="http://github.com/oyvinmar"><i class="fa fa-github fa-fw"></i></a></li>
-            </ul>
+            <header class="row section-header">
+                <h2>Find me elsewhere on the web</h2>
+                <hr/>
+            </header>
+            <div class="row">
+                <ul>
+                    <li><a href="http://facebook.com/oyvind.marthinsen"><i class="fa fa-facebook fa-fw"></i></a></li>
+                    <li><a href="http://twitter.com/oyvinmar"><i class="fa fa-twitter fa-fw"></i></a></li>
+                    <li><a href="https://plus.google.com/u/0/112314193090100501199/posts"><i
+                            class="fa fa-google-plus fa-fw"></i></a></li>
+                    <li><a href="http://linkedin.com/in/oyvinmar"><i class="fa fa-linkedin fa-fw"></i></a></li>
+                    <li><a href="http://github.com/oyvinmar"><i class="fa fa-github fa-fw"></i></a></li>
+                </ul>
+            </div>
         </div>
     </section>
-    <section class="section contact" id="contact">
+    <section class="section" id="contact">
         <div class="container">
-            <div class="row">
+            <header class="row section-header">
                 <h2>Contact</h2>
-
-                <p>You can reach me on all the social networks listed above. Or if you prefer old school email:
-
-                    <span id="email"><i class="icon-envelope"></i></span>
-                </p>
+                <hr/>
+            </header>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>You can reach me on all the social networks listed above. Or if you prefer old school email:
+                        <span id="email"><i class="icon-envelope"></i></span>
+                    </p>
+                </div>
             </div>
             <footer class="row">
                 <p>&copy; 2014 Øyvind Marthinsen</p>

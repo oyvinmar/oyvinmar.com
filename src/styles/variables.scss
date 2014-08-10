@@ -1,6 +1,7 @@
 //Variables
-$font-size-base: 18px;
+$font-size-base: 20px;
 $line-height-base: 1.428571429;
+
 // 20/14
 $font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
@@ -14,6 +15,8 @@ $navbar-default-link-hover-color: #ff7857;
 $navbar-default-link-active-color: #ff7857;
 $navbar-default-link-active-bg: transparent;
 $navbar-default-color: #FFF;
+
+$base-color: #777 !default;
 
 @mixin border-radius($radius) {
   border-radius: $radius;

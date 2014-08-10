@@ -1,11 +1,30 @@
+
 body {
   background-color: #2F3238;
-  color: #777;
+  color: $base-color;
 }
 
 .section {
   padding: 50px 0;
+
+  .section-header {
+    text-align: center;
+    h2 {
+      font-size: 50px;
+      margin-bottom: 0;
+    }
+
+    hr {
+      display: inline-block;
+      vertical-align: middle;
+      padding-bottom: 20px;
+      zoom: 1;
+      width: 100px;
+      border-top: 1px solid $base-color;
+    }
+  }
 }
+
 
 .splash {
   position: fixed;
@@ -27,10 +46,6 @@ body {
     margin-top: -140px;
     text-transform: uppercase;
   }
-}
-
-.row {
-  padding-top: 40px;
 }
 
 .overlay {
@@ -82,85 +97,34 @@ body {
 
 
 @media (max-width: 767px) {
-  //Fix some stupid padding defaults
-  body {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .container-fluid, .container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  [class*="span"] {
-    padding-top: 20px;
-  }
+//  //Fix some stupid padding defaults
+//  body {
+//    padding-left: 0px;
+//    padding-right: 0px;
+//  }
+//
+//  .container-fluid, .container {
+//    padding-left: 20px;
+//    padding-right: 20px;
+//  }
+//
+//  [class*="span"] {
+//    padding-top: 20px;
+//  }
 }
-
-/* Override  end */
 
 // Responsive stuff
 @media (max-width: 767px) {
-  .hero-unit {
-    h1 {
-      font-size: 40px;
-    }
-
-    h2 {
-      font-size: $font-size-base * 1.50;
-    }
-  }
 }
 
 @media (min-width: 768px) and (max-width: 960px) {
-  .hero-unit {
-    h1 {
-      font-weight: 600;
-      font-size: 50px;
-    }
-
-    h2 {
-      font-size: $font-size-base * 1.75;
-    }
-  }
 }
 
 @media (max-width: 979px) {
-  #top {
-    padding-top: 0;
-    .row {
-      padding-top: 0;
-    }
-  }
-
-  .hero-unit {
-    padding: 0 0 0 20px;
-  }
-
-  .subnav {
-    .navbar-inner {
-      padding: 0;
-    }
-    .nav {
-//      margin: 40px 0 0 0;
-      float: none;
-      background: #474747;
-      box-shadow: 0 1px 10px rgba(36, 36, 36, 0.4);
-      li {
-        float: none;
-        border-bottom: 1px solid #676767
-      }
-      li:last-child {
-        border: none;
-      }
-    }
-  }
 }
 
 #headshot {
-  height: 200px;
-  margin: -20px -25px 15px;
+  height: 180px;
   @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
@@ -178,46 +142,28 @@ body {
   margin-top: 2em;
 }
 
-#page-bottom {
-  background-color: #2F3238;
-//  margin-top: 4em;
-
-  color: darken(#FFFFFF, 15%);
-  h2 {
-    margin-top: 0;
-    color: darken(#FFFFFF, 0%);
-  }
-
-  footer {
-    font-size: 12px;
-    color: darken(#FFFFFF, 20%);
-    margin: 1.5em 0 7em 0;
-    text-align: center;
-  }
-}
-
-.lifestream {
-  background-color: #f5f5f5;
-}
-
-.contact {
-  background-color: #f5f5f5;
-}
-
-.about {
+#about {
   h2 {
     color: darken(#FFFFFF, 0%);
   }
+  hr {
+    border-top: 1px solid #FFFFFF;
+  }
 }
 
-.elsewhere {
+#lifestream {
+  background-color: #f5f5f5;
+}
+
+#elsewhere {
   text-align: center;
-  color: darken(#FFFFFF, 15%);
+  padding: 150px;
 
   h2 {
-    margin-top: 0;
     color: darken(#FFFFFF, 0%);
-    padding-bottom: 20px;
+  }
+  hr {
+    border-top: 1px solid #FFFFFF;
   }
 
   ul {
@@ -279,5 +225,13 @@ body {
     &:hover {
       background: #FF4D92;
     }
+  }
+}
+
+#contact {
+  background-color: #f5f5f5;
+  footer {
+    text-align: center;
+    padding-top: 150px;
   }
 }
