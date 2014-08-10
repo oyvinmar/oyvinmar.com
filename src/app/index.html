@@ -13,7 +13,7 @@
 <body>
 <div id="content" style="display: none;">
 
-    <section class="welcome" data-stellar-background-ratio="0.5">
+    <section id="home" class="welcome" data-stellar-background-ratio="0.5">
         <div class="overlay">
         </div>
         <div class="container-fluid text-center">
@@ -38,23 +38,24 @@
             <div class="collapse navbar-collapse omw-navbar-collapse">
                 <ul class="nav navbar-nav">
 
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about">About me</a></li>
                     <li><a href="#lifestream">Lifestream</a></li>
-                    <li><a href="#page-bottom">Elsewhere</a></li>
-
+                    <li><a href="#elsewhere">Elsewhere</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
 
-    <div class="section about">
+    <div class="section about" id="about">
         <section class="container">
 
             <header>
                 <h2>About me</h2>
             </header>
-            <section id="about" class="row">
+            <section class="row">
 
                 <div class="col-md-8">
 
@@ -77,9 +78,9 @@
             </section>
         </section>
     </div>
-    <div class="section lifestream">
+    <div class="section lifestream" id="lifestream">
         <div class="container">
-            <section id="lifestream" class="row">
+            <section class="row">
                 <div class="col-md-12">
                     <h2>Lifestream</h2>
 
@@ -96,7 +97,7 @@
             </section>
         </div>
     </div>
-    <section class="section elsewhere">
+    <section class="section elsewhere" id="elsewhere">
         <div class="container">
             <header><h2>Find me elsewhere on the web</h2></header>
             <ul>
@@ -109,15 +110,17 @@
             </ul>
         </div>
     </section>
-    <section class="section contact">
+    <section class="section contact" id="contact">
         <div class="container">
-            <h2>Contact</h2>
+            <div class="row">
+                <h2>Contact</h2>
 
-            <p>You can reach me on all the social networks listed to the right. Or if you prefer old school email:
+                <p>You can reach me on all the social networks listed above. Or if you prefer old school email:
 
-                <span id="email"><i class="icon-envelope"></i></span>
-            </p>
-            <footer class="row-fluid">
+                    <span id="email"><i class="icon-envelope"></i></span>
+                </p>
+            </div>
+            <footer class="row">
                 <p>&copy; 2014 Øyvind Marthinsen</p>
             </footer>
         </div>

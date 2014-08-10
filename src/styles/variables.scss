@@ -1,6 +1,7 @@
 //Variables
 $font-size-base: 18px;
-$line-height-base: 1.428571429; // 20/14
+$line-height-base: 1.428571429;
+// 20/14
 $font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
 $headingsFontFamily: $font-family-serif;
@@ -8,7 +9,11 @@ $subNavbarLinkColor: #CCCCCC;
 $subNavbarLinkColorHover: darken($subNavbarLinkColor, 15%);
 $fontAwesomePath: '/fonts/';
 $navbar-default-bg: #26292E;
-
+$navbar-default-link-color: #CCC;
+$navbar-default-link-hover-color: #ff7857;
+$navbar-default-link-active-color: #ff7857;
+$navbar-default-link-active-bg: transparent;
+$navbar-default-color: #FFF;
 
 @mixin border-radius($radius) {
   border-radius: $radius;

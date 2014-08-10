@@ -4,7 +4,7 @@ body {
 }
 
 .section {
-  padding: 70px 0;
+  padding: 50px 0;
 }
 
 .splash {
@@ -205,9 +205,8 @@ body {
 }
 
 .about {
-//  background-color: #2F3238;
-  header {
-//    text-align: center;
+  h2 {
+    color: darken(#FFFFFF, 0%);
   }
 }
 
@@ -218,8 +217,8 @@ body {
   h2 {
     margin-top: 0;
     color: darken(#FFFFFF, 0%);
+    padding-bottom: 20px;
   }
-//  background-color: #2F3238;
 
   ul {
     padding: 5px 0 0 0em;
@@ -233,8 +232,8 @@ body {
 
   a {
     color: white;
-    font-size: 24px;
-    padding: 2px;
+    font-size: 30px;
+    padding: 9px;
     @include transition(background .7s ease-in);
   }
 
