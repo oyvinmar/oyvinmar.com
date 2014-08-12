@@ -89,13 +89,13 @@ gulp.task('clean', function (cb) {
   rimraf('dist', cb);
 });
 
-gulp.task('serve', ['server:copy', 'server:run']);
+gulp.task('serve', ['server:run']);
 gulp.task('server:copy', function () {
   return gulp.src(files.server)
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('server:run', function () {
+gulp.task('server:run', ['server:copy'], function () {
   var app = require('./dist/app');
   app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
