@@ -10,6 +10,8 @@ body {
   .section-header {
     text-align: center;
     h2 {
+//      font-family: "acta-display", Georgia, sans-serif;
+//      font-weight: 300;
       font-size: 50px;
       margin-bottom: 0;
     }
@@ -80,15 +82,15 @@ body {
   }
 
   h1 {
-    font-family: "minion-pro", Georgia, sans-serif;
-    font-weight: 800;
-    font-size: 60px;
+    font-family: "acta-display", Georgia, sans-serif;
+    font-weight: 400;
+    font-size: 70px;
     letter-spacing: normal;
   }
 
   h2 {
-    font-family: "minion-pro-condensed-subhead", Georgia, sans-serif;
-    font-weight: lighter;
+    font-family: "acta-display", Georgia, sans-serif;
+    font-weight: 200;
     font-size: 30px;
     height: 40px;
   }
