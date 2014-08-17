@@ -38,6 +38,7 @@ module.exports = {
 
     html: ['src/app/**/*.html'],
     htmlIndex: 'src/app/index.html',
+    htmlCv: 'src/app/cv.html',
 
     test: {
       unit: ['test/**/*.js']

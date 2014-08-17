@@ -50,7 +50,7 @@ gulp.task('vendor:fonts', function () {
     .pipe(gulp.dest('dist/app/fonts'));
 });
 
-gulp.task('html', ['html:index-debug', 'html:index']);
+gulp.task('html', ['html:index-debug', 'html:index', 'html:cv']);
 
 var appStream = gulp.src(files.js.bower.concat(files.js.app))
   .pipe(concat('app.js'))
@@ -60,7 +60,6 @@ var appStream = gulp.src(files.js.bower.concat(files.js.app))
   .pipe(rev())
   .pipe(gulp.dest('dist/app/js'));
 
-// Use mustache template for scalatra
 gulp.task('html:index', function () {
   return gulp.src(files.htmlIndex)
     .pipe(inject(appStream, {
@@ -84,6 +83,12 @@ gulp.task('html:index-debug', function () {
     .pipe(refresh(lrserver));
 });
 
+gulp.task('html:cv', function() {
+  return gulp.src(files.htmlCv)
+    .pipe(embedlr())
+    .pipe(gulp.dest('dist/app/'))
+    .pipe(refresh(lrserver));
+});
 
 gulp.task('clean', function (cb) {
   rimraf('dist', cb);
@@ -110,6 +115,7 @@ gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scssAll, ['styles']);
   gulp.watch(files.htmlIndex, ['html:index-debug']);
+  gulp.watch(files.htmlCv, ['html:cv']);
 });
 
 gulp.task('default', ['images', 'scripts', 'vendor', 'styles', 'html:index-debug', 'serve', 'watch']);
