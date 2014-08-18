@@ -228,11 +228,22 @@ body {
       }
     }
   }
+
+  .welcome {
+     h1 {
+       font-size: 50px;
+     }
+
+    h2 {
+      font-size: 23px;
+    }
+  }
+
   #elsewhere {
     padding: 10px 0;
     a {
-//      font-size: 30px;
-      padding: 5px;
+      font-size: 20px;
+      padding: 3px;
     }
   }
 
