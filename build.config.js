@@ -31,7 +31,7 @@ module.exports = {
     fonts: 'bower_components/fontawesome/fonts/*',
 
     images: 'src/img/**',
-    scss: 'src/styles/base.scss',
+    scss: ['src/styles/base.scss','src/styles/cv.scss'],
     scssAll: 'src/styles/*.scss',
 
     server: ['app.js', 'server.js', 'Procfile', 'package.json'],

@@ -1,0 +1,52 @@
+//Variables
+$font-size-base: 18px;
+$line-height-base: 1.428571429;
+
+// 20/14
+$font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
+$fontAwesomePath: '/fonts/';
+$component-offset-horizontal: 260px !default;
+//$grid-float-breakpoint: 1024px !default;
+
+// Core variables and mixins
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/variables";
+
+$grid-float-breakpoint: $screen-md-min;
+
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/mixins";
+
+// Reset
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/normalize";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/print";
+
+// Core CSS
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/scaffolding";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/type";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/code";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/grid";
+@import "../../bower_components/fontawesome/scss/font-awesome";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/utilities";
+@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/responsive-utilities";
+
+//@media (min-width: 1000px) {
+  .dl-horizontal {
+    dt {
+      text-align: left;
+//      width: 260px;
+    }
+//    dd {
+//      margin-left: 330px;
+//    }
+  }
+//}
+//
+//@media (min-width: 768px) {
+//  .dl-horizontal {
+//    dt {
+//      text-align: left;
+//    }
+//    dd {
+//    }
+//  }
+//}
