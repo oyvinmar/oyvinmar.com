@@ -33,7 +33,7 @@ window.app.RemoteCallApi = (function () {
           description += ' with ' + checkin.venue.hereNow + ' others';
         }
         description += '.';
-        window.app.lifestream.add(description, 'https://foursquare.com/v/' + checkin.venue.id, 'Foursquare',
+        window.app.lifestream.add(description, 'https://foursquare.com/v/' + checkin.venue.id, 'Swarm',
           'http://foursquare.com', new Date(checkin.createdAt * 1000));
       });
       window.app.lifestream.view.render();

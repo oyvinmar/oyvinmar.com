@@ -79,7 +79,7 @@ app.get('/foursquare/feed/', function(req, res){
   var options = {
     host: 'api.foursquare.com',
     port: 443,
-    path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&v=20140304'
+    path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&m=swarm&v=20141808'
   };
   proxy_responder(res, options);
 });
@@ -128,7 +128,7 @@ var proxy_responder = function(res, options) {
 
 var handle_response = function(response, res, key) {
 
-  var data = ""
+  var data = "";
   response.on('data', function (chunk) {
     data += chunk;
   });

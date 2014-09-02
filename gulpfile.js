@@ -94,7 +94,6 @@ gulp.task('clean', function (cb) {
   rimraf('dist', cb);
 });
 
-//gulp.task('serve', ['server:copy', 'server:run']);
 gulp.task('server:copy', function () {
   return gulp.src(files.server)
     .pipe(gulp.dest('dist/'));

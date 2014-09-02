@@ -61,8 +61,8 @@ body {
 }
 
 .welcome {
-  background-color: #2F3238;
-  background-image: url('/img/IMG_1013.jpg');
+  background: #2F3238 url('/img/IMG_1013.jpg') no-repeat;
+  background-size: cover;
   color: white;
   position: relative;
   overflow: hidden;
@@ -98,40 +98,13 @@ body {
 }
 
 
-@media (max-width: 767px) {
-//  //Fix some stupid padding defaults
-//  body {
-//    padding-left: 0px;
-//    padding-right: 0px;
-//  }
-//
-//  .container-fluid, .container {
-//    padding-left: 20px;
-//    padding-right: 20px;
-//  }
-//
-//  [class*="span"] {
-//    padding-top: 20px;
-//  }
-}
-
-// Responsive stuff
-@media (max-width: 767px) {
-}
-
-@media (min-width: 768px) and (max-width: 960px) {
-}
-
-@media (max-width: 979px) {
-}
-
 #headshot {
   height: 180px;
   @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
 .entry {
-  padding: 1em 0 1em 0;
+  padding: 10px 0 10px 0;
   border-bottom: 1px solid #ddd;
 }
 
@@ -159,7 +132,7 @@ body {
 
 #elsewhere {
   text-align: center;
-  padding: 150px;
+  padding: 150px 0;
 
   h2 {
     color: darken(#FFFFFF, 0%);
@@ -237,3 +210,57 @@ body {
     padding-top: 150px;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .section {
+    padding: 20px 0;
+
+    .section-header {
+      h2 {
+        font-size: 30px;
+        line-height: 0.8;
+      }
+
+      hr {
+        padding-bottom: 10px;
+        width: 70px;
+      }
+    }
+  }
+
+  .welcome {
+     h1 {
+       font-size: 50px;
+     }
+
+    h2 {
+      font-size: 23px;
+    }
+  }
+
+  #elsewhere {
+    padding: 10px 0;
+    a {
+      font-size: 20px;
+      padding: 3px;
+    }
+  }
+
+  #contact {
+    footer {
+      padding-top: 30px;
+    }
+  }
+
+  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: transparent;
+  }
+
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+}
+
