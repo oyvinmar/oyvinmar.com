@@ -104,7 +104,7 @@ body {
   width: 150px;
   height: 150px;
   display: block;
-  margin: 30px auto;
+  margin: 0px auto 30px auto;
 //  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
@@ -128,6 +128,9 @@ body {
   }
   hr {
     border-top: 1px solid #FFFFFF;
+  }
+  p {
+    font-style: italic;
   }
 }
 
