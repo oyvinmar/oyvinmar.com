@@ -27,7 +27,6 @@ body {
   }
 }
 
-
 .splash {
   position: fixed;
   top: 0;
@@ -97,10 +96,18 @@ body {
   }
 }
 
+.image {
+}
 
 #headshot {
-  height: 180px;
-  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0px auto 30px auto;
+//  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
 .entry {
@@ -123,6 +130,9 @@ body {
   }
   hr {
     border-top: 1px solid #FFFFFF;
+  }
+  p {
+    font-style: italic;
   }
 }
 
@@ -232,9 +242,9 @@ body {
   }
 
   .welcome {
-     h1 {
-       font-size: 50px;
-     }
+    h1 {
+      font-size: 50px;
+    }
 
     h2 {
       font-size: 23px;
