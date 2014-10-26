@@ -1,4 +1,13 @@
 'use strict';
+var $ = require('jq');
+//var Backbone = require('backbone');
+//Backbone.$ = $;
+//var _ = require('underscore');
+require('jquery-stellar');
+require('jquery-waypoints-sticky');
+require('collapse');
+require('scrollspy');
+
 
 (function () {
   var FancyShmancy = function FancyShmancy() {
@@ -103,7 +112,9 @@
 window.app.fancyShmancy = new window.app.FancyShmancy();
 
 $(function () {
-  window.app.lifestream = new window.app.LifestreamController();
+  var Lifestream = require('./lifestream');
+
+  window.app.lifestream = new Lifestream();
   window.app.fancyShmancy.onLoad();
 });
 

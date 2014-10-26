@@ -4,11 +4,48 @@
   "dependencies": {
     "express": "3.x",
     "hbs": "2.x",
-    "oauth": "0.9.x"
+    "oauth": "0.9.x",
+    "jquery": "~2.1.1",
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.1",
+    "handlebars": "~2.0.0"
   },
   "engines": {
     "node": "0.8.14",
     "npm": "1.1.65"
+  },
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browser": {
+    "jq": "./bower_components/jquery/dist/jquery.js",
+    "jquery-stellar": "./bower_components/jquery.stellar/jquery.stellar.js",
+    "jquery-waypoints": "./bower_components/jquery-waypoints/waypoints.js",
+    "jquery-waypoints-sticky": "./bower_components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js",
+    "transition": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js",
+    "collapse": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js",
+    "scrollspy": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"
+  },
+  "browserify-shim": {
+    "jq": "$",
+    "jquery-steller": {
+      "depends": [ "jq" ]
+    },
+    "jquery-waypoints": {
+      "depends": [ "jq" ]
+    },
+    "jquery-waypoints-sticky": {
+      "depends": [ "jq", "jquery-waypoints" ]
+    },
+    "transition": {
+      "depends": [ "jq" ]
+    },
+    "collapse": {
+      "depends": [ "jq", "transition" ]
+    },
+    "scrollspy": {
+      "depends": [ "jq", "transition"]
+    }
   },
   "devDependencies": {
     "gulp": "~3.6.2",
@@ -27,6 +64,9 @@
     "tiny-lr": "0.0.7",
     "gulp-rename": "~1.2.0",
     "rimraf": "~2.2.8",
-    "gulp-livereload": "~2.1.0"
+    "gulp-livereload": "~2.1.0",
+    "browserify": "~6.2.0",
+    "gulp-browserify": "~0.5.0",
+    "browserify-shim": "~3.8.0"
   }
 }

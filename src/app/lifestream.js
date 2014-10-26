@@ -1,8 +1,15 @@
 'use strict';
 
+var $ = require('jq');
+var Backbone = require('backbone');
+Backbone.$ = $;
+var _ = require('underscore');
+var Handlebars = require('handlebars');
+var RemoteCallApi = require('./remote_call_api');
+
 var Entry = Backbone.Model.extend({
   initialize: function (spec) {
-    if(!spec.timestamp instanceof Date) {
+    if (!spec.timestamp instanceof Date) {
       throw 'Timestamp has to be an date object';
     }
   }
@@ -11,7 +18,7 @@ var Entry = Backbone.Model.extend({
 var EntryCollection = Backbone.Collection.extend({
   model: Entry,
 
-  comparator: function(entry) {
+  comparator: function (entry) {
     return -entry.get('timestamp').getTime();
   }
 });
@@ -19,20 +26,20 @@ var EntryCollection = Backbone.Collection.extend({
 var EntryView = Backbone.View.extend({
   tagName: 'article',
   className: 'entry row',
-  initialize: function() {
+  initialize: function () {
     this.el.id = this.model.get('timestamp').getTime();
   },
 
   template: Handlebars.compile(
-    '<div class="col-xs-3 col-sm-1"><img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
-    '<div class="col-xs-9 col-sm-11">' +
-    '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>' +
-    '<p>{{{ content }}}</p>' +
-    '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>' +
-    '</div>' +
-    '<footer></footer><br/>'),
+      '<div class="col-xs-3 col-sm-1"><img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/></div>' +
+      '<div class="col-xs-9 col-sm-11">' +
+      '<header><a href="{{{ service_url }}}">{{{ service_name }}}</a></header>' +
+      '<p>{{{ content }}}</p>' +
+      '<a href="{{{ url }}}"><time title class="published">{{{ timestamp }}}</time></a>' +
+      '</div>' +
+      '<footer></footer><br/>'),
 
-  render: function() {
+  render: function () {
     var context = _.extend(this.model.toJSON());
     $(this.el).html(this.template(context));
     return this;
@@ -40,29 +47,29 @@ var EntryView = Backbone.View.extend({
 });
 
 var LifestreamModel = Backbone.Model.extend({
-  initialize: function() {
+  initialize: function () {
     this.entries = new EntryCollection();
   }
 });
 
 var LifestreamView = Backbone.View.extend({
-  el: $('#stream'),
+  el: '#stream',
 
-  initialize: function() {
+  initialize: function () {
     this.number_of_entries = 5;
   },
 
   template: Handlebars.compile('<button class="btn btn-primary show-more" href="#"><i class="icon-plus"></i> Show more</button>'),
 
   events: {
-    'click .show-more' : 'showMore'
+    'click .show-more': 'showMore'
   },
 
-  render: function() {
+  render: function () {
     $('#stream').html('');
     var i = 0;
     var self = this;
-    this.model.entries.each(function(entry) {
+    this.model.entries.each(function (entry) {
       if (i < self.number_of_entries) {
         var view = new EntryView({model: entry});
         $('#stream').append(view.render().el);
@@ -76,7 +83,7 @@ var LifestreamView = Backbone.View.extend({
     return this;
   },
 
-  showMore: function() {
+  showMore: function () {
     this.number_of_entries += 10;
     this.render();
     $('body').scrollspy('refresh');
@@ -84,18 +91,17 @@ var LifestreamView = Backbone.View.extend({
 });
 
 //noinspection JSUndefinedVariable
-window.app.LifestreamController = Backbone.Router.extend({
-  initialize: function() {
+module.exports = Backbone.Router.extend({
+  initialize: function () {
     this.model = new LifestreamModel();
     this.view = new LifestreamView({model: this.model});
-    var RemoteCallApi = window.app.RemoteCallApi;
     RemoteCallApi.getInstance().fetch_twitter_timeline();
     RemoteCallApi.getInstance().fetch_pinboard_feed();
     RemoteCallApi.getInstance().fetch_foursquare_timeline();
     RemoteCallApi.getInstance().fetch_github_events();
   },
 
-  add: function(content, url, service_name, service_url, timestamp) {
+  add: function (content, url, service_name, service_url, timestamp) {
     this.model.entries.add(
       new Entry({
         content: content,

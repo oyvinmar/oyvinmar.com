@@ -12,6 +12,7 @@ var rev = require('gulp-rev');
 var rimraf = require('rimraf');
 var lr = require('tiny-lr');
 var refresh = require('gulp-livereload');
+var browserify = require('gulp-browserify');
 var files = require('./build.config.js').files;
 
 var lrserver = lr();
@@ -32,8 +33,8 @@ gulp.task('images', function () {
 
 gulp.task('scripts', function () {
   return gulp.src(files.js.app)
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
+//    .pipe(jshint('.jshintrc'))
+//    .pipe(jshint.reporter('default'))
     .pipe(gulp.dest('dist/app'))
     .pipe(refresh(lrserver));
 });
@@ -52,12 +53,16 @@ gulp.task('vendor:fonts', function () {
 
 gulp.task('html', ['html:index-debug', 'html:index', 'html:cv']);
 
-var appStream = gulp.src(files.js.bower.concat(files.js.app))
-  .pipe(concat('app.js'))
-  .pipe(uglify(), {
-    outSourceMap: true
-  })
-  .pipe(rev())
+var appStream = gulp.src(files.js.app)
+//  .pipe(concat('app.js'))
+//  .pipe(uglify(), {
+//    outSourceMap: true
+//  })
+  .pipe(browserify({
+    insertGlobals : true,
+    debug : !gulp.env.production
+  }))
+//  .pipe(rev())
   .pipe(gulp.dest('dist/app/js'));
 
 gulp.task('html:index', function () {

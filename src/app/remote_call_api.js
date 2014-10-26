@@ -1,6 +1,8 @@
 'use strict';
+var jQuery = require('jquery');
+var _ = require('underscore');
 
-window.app.RemoteCallApi = (function () {
+module.exports = (function () {
   var instantiated;
 
   function init() {
