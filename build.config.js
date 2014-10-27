@@ -16,14 +16,10 @@ module.exports = {
 
       bowerAll: [
         'bower_components/**/*.js'
-//        'vendor/**/*.js'
       ],
 
       scripts: ['src/app/**/*.js', 'test/**/*.js'],
       app: [
-//        'src/app/remote_call_api.js',
-//        'src/app/lifestream.js',
-//        'src/app/jpreloader.js',
         'src/app/init.js'
       ]
     },

@@ -15,7 +15,9 @@
     "npm": "1.1.65"
   },
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browser": {
     "jq": "./bower_components/jquery/dist/jquery.js",
@@ -29,22 +31,37 @@
   "browserify-shim": {
     "jq": "$",
     "jquery-steller": {
-      "depends": [ "jq" ]
+      "depends": [
+        "jq"
+      ]
     },
     "jquery-waypoints": {
-      "depends": [ "jq" ]
+      "depends": [
+        "jq"
+      ]
     },
     "jquery-waypoints-sticky": {
-      "depends": [ "jq", "jquery-waypoints" ]
+      "depends": [
+        "jq",
+        "jquery-waypoints"
+      ]
     },
     "transition": {
-      "depends": [ "jq" ]
+      "depends": [
+        "jq"
+      ]
     },
     "collapse": {
-      "depends": [ "jq", "transition" ]
+      "depends": [
+        "jq",
+        "transition"
+      ]
     },
     "scrollspy": {
-      "depends": [ "jq", "transition"]
+      "depends": [
+        "jq",
+        "transition"
+      ]
     }
   },
   "devDependencies": {

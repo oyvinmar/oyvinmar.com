@@ -1,13 +1,10 @@
-//var https = require('http');
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var embedlr = require('gulp-embedlr');
 var rename = require('gulp-rename');
-//var debug = require('gulp-debug');
 var inject = require('gulp-inject');
 var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
 var rev = require('gulp-rev');
 var rimraf = require('rimraf');
 var lr = require('tiny-lr');
@@ -32,11 +29,9 @@ gulp.task('images', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src(files.js.app)
-//    .pipe(jshint('.jshintrc'))
-//    .pipe(jshint.reporter('default'))
-    .pipe(gulp.dest('dist/app'))
-    .pipe(refresh(lrserver));
+  return gulp.src(files.js.scripts)
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('vendor', ['vendor:bower', 'vendor:fonts']);
@@ -54,15 +49,14 @@ gulp.task('vendor:fonts', function () {
 gulp.task('html', ['html:index-debug', 'html:index', 'html:cv']);
 
 var appStream = gulp.src(files.js.app)
-//  .pipe(concat('app.js'))
-//  .pipe(uglify(), {
-//    outSourceMap: true
-//  })
   .pipe(browserify({
     insertGlobals : true,
-    debug : !gulp.env.production
+    debug : true
   }))
-//  .pipe(rev())
+  .pipe(rename('app.js'))
+  .pipe(gulp.dest('dist/app/js'))
+  .pipe(uglify())
+  .pipe(rev())
   .pipe(gulp.dest('dist/app/js'));
 
 gulp.task('html:index', function () {
@@ -75,12 +69,11 @@ gulp.task('html:index', function () {
     .pipe(refresh(lrserver));
 });
 
-// Create index.html from mustache template
 gulp.task('html:index-debug', function () {
   return gulp.src(files.htmlIndex)
     .pipe(rename('index-debug.html'))
-    .pipe(inject(gulp.src(files.js.bower.concat(files.js.app), {read: false}), {
-      ignorePath: 'src/app',
+    .pipe(inject(gulp.src('dist/app/js/app.js', {read: false}), {
+      ignorePath: 'dist/app',
       addRootSlash: true
     }))
     .pipe(embedlr())
@@ -119,6 +112,7 @@ gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scssAll, ['styles']);
   gulp.watch(files.htmlIndex, ['html:index-debug']);
+//  gulp.watch(files.js.scripts[0], ['html']);
   gulp.watch(files.htmlCv, ['html:cv']);
 });
 

@@ -1,8 +1,5 @@
 'use strict';
 var $ = require('jq');
-//var Backbone = require('backbone');
-//Backbone.$ = $;
-//var _ = require('underscore');
 require('jquery-stellar');
 require('jquery-waypoints-sticky');
 require('collapse');
