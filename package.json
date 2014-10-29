@@ -8,7 +8,9 @@
     "jquery": "~2.1.1",
     "backbone": "~1.0.0",
     "underscore": "~1.5.1",
-    "handlebars": "~2.0.0"
+    "handlebars": "~2.0.0",
+    "method-override": "~2.3.0",
+    "body-parser": "~1.9.2"
   },
   "engines": {
     "node": "0.8.14",
