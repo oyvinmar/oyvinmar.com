@@ -19,13 +19,6 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "Backbone": false,
-    "jQuery": false,
-    "Handlebars": false,
-    "RemoteCallApi": false,
-    "AppController": false,
-    "$": false,
-    "_": false
   },
   "exported": {
     "RemoteCallApi": false,

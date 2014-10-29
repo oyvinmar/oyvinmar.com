@@ -9,11 +9,13 @@ var rev = require('gulp-rev');
 var rimraf = require('rimraf');
 var lr = require('tiny-lr');
 var refresh = require('gulp-livereload');
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
+var gulpify = require('gulp-browserify');
 var files = require('./build.config.js').files;
+//var watchify = require('watchify');
+var source = require('vinyl-source-stream');
 
 var lrserver = lr();
-var livereloadport = 35729;
 
 gulp.task('styles', function () {
   return gulp.src(files.scss)
@@ -28,18 +30,13 @@ gulp.task('images', function () {
     .pipe(refresh(lrserver));
 });
 
-gulp.task('scripts', function () {
+gulp.task('lint', function () {
   return gulp.src(files.js.scripts)
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('vendor', ['vendor:bower', 'vendor:fonts']);
-
-gulp.task('vendor:bower', function () {
-  return gulp.src(files.js.bowerAll)
-    .pipe(gulp.dest('dist/app/bower_components'));
-});
+gulp.task('vendor', ['vendor:fonts']);
 
 gulp.task('vendor:fonts', function () {
   return gulp.src(files.fonts)
@@ -49,9 +46,9 @@ gulp.task('vendor:fonts', function () {
 gulp.task('html', ['html:index-debug', 'html:index', 'html:cv']);
 
 var appStream = gulp.src(files.js.app)
-  .pipe(browserify({
-    insertGlobals : true,
-    debug : true
+  .pipe(gulpify({
+    insertGlobals: true,
+    debug: true
   }))
   .pipe(rename('app.js'))
   .pipe(gulp.dest('dist/app/js'))
@@ -81,7 +78,7 @@ gulp.task('html:index-debug', function () {
     .pipe(refresh(lrserver));
 });
 
-gulp.task('html:cv', function() {
+gulp.task('html:cv', function () {
   return gulp.src(files.htmlCv)
     .pipe(embedlr())
     .pipe(gulp.dest('dist/app/'))
@@ -102,19 +99,27 @@ gulp.task('serve', ['server:copy'], function () {
   app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
   });
-
-  //Set up your livereload server
-  lrserver.listen(livereloadport);
 });
 
-gulp.task('watch', ['scripts', 'vendor', 'styles', 'html'], function () { // Run watch after scripts, vendor, etc.. is finished
-  gulp.watch(files.js.app, ['scripts']);
+gulp.task('browserify', function () {
+  var bundler = browserify(files.js.app, {
+    insertGlobals: true,
+    debug: true
+  });
+
+  return bundler.bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('dist/app/js'))
+    .pipe(refresh(lrserver));
+});
+
+gulp.task('watch', ['lint', 'vendor', 'styles', 'browserify', 'html:index-debug'], function () { // Run watch after scripts, vendor, etc.. is finished
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scssAll, ['styles']);
   gulp.watch(files.htmlIndex, ['html:index-debug']);
-//  gulp.watch(files.js.scripts[0], ['html']);
+  gulp.watch(files.js.scripts, ['lint', 'browserify']);
   gulp.watch(files.htmlCv, ['html:cv']);
 });
 
-gulp.task('default', ['images', 'scripts', 'vendor', 'styles', 'html:index-debug', 'serve', 'watch']);
-gulp.task('build', ['images', 'scripts', 'vendor', 'styles', 'html:index', 'server:copy']);
+gulp.task('default', ['images', 'lint', 'vendor', 'styles', 'browserify', 'html:index-debug', 'serve', 'watch']);
+gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html:index', 'server:copy']);

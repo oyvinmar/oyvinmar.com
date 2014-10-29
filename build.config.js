@@ -1,26 +1,9 @@
 module.exports = {
   files: {
     js: {
-      bower: [
-        'bower_components/jquery/dist/jquery.js',
-        'bower_components/lodash/dist/lodash.compat.js',
-        'bower_components/backbone/backbone.js',
-        'bower_components/handlebars.js/dist/handlebars.js',
-        'bower_components/jquery-waypoints/waypoints.js',
-        'bower_components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js',
-        'bower_components/jquery.stellar/jquery.stellar.js',
-        'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js',
-        'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js',
-        'bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js'
-      ],
-
-      bowerAll: [
-        'bower_components/**/*.js'
-      ],
-
       scripts: ['src/app/**/*.js', 'test/**/*.js'],
       app: [
-        'src/app/init.js'
+        './src/app/init.js'
       ]
     },
 
