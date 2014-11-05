@@ -1,7 +1,7 @@
 module.exports = {
   files: {
     js: {
-      scripts: ['src/app/**/*.js', 'test/**/*.js'],
+      scripts: ['src/app/**/*.js'],
       app: [
         './src/app/init.js'
       ]
@@ -18,9 +18,5 @@ module.exports = {
     html: ['src/app/**/*.html'],
     htmlIndex: 'src/app/index.html',
     htmlCv: 'src/app/cv.html',
-
-    test: {
-      unit: ['test/**/*.js']
-    }
   }
 };

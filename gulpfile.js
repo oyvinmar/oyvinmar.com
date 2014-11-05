@@ -9,13 +9,17 @@ var rev = require('gulp-rev');
 var rimraf = require('rimraf');
 var lr = require('tiny-lr');
 var refresh = require('gulp-livereload');
+var _if = require('gulp-if');
 var browserify = require('browserify');
 var gulpify = require('gulp-browserify');
 var files = require('./build.config.js').files;
 //var watchify = require('watchify');
 var source = require('vinyl-source-stream');
+var argv = require('minimist')(process.argv.slice(2));
 
 var lrserver = lr();
+
+var RELEASE = !!argv.release;
 
 gulp.task('styles', function () {
   return gulp.src(files.scss)
@@ -43,7 +47,7 @@ gulp.task('vendor:fonts', function () {
     .pipe(gulp.dest('dist/app/fonts'));
 });
 
-gulp.task('html', ['html:index-debug', 'html:index', 'html:cv']);
+gulp.task('html', ['html:index', 'html:cv']);
 
 var appStream = gulp.src(files.js.app)
   .pipe(gulpify({
@@ -58,29 +62,22 @@ var appStream = gulp.src(files.js.app)
 
 gulp.task('html:index', function () {
   return gulp.src(files.htmlIndex)
-    .pipe(inject(appStream, {
+    .pipe(_if(RELEASE, inject(appStream, {
       ignorePath: 'dist/app',
       addRootSlash: false
-    }))
-    .pipe(gulp.dest('dist/app/'))
-    .pipe(refresh(lrserver));
-});
-
-gulp.task('html:index-debug', function () {
-  return gulp.src(files.htmlIndex)
-    .pipe(rename('index-debug.html'))
-    .pipe(inject(gulp.src('dist/app/js/app.js', {read: false}), {
+    })))
+    .pipe(_if(!RELEASE, inject(gulp.src('dist/app/js/app.js', {read: false}), {
       ignorePath: 'dist/app',
       addRootSlash: true
-    }))
-    .pipe(embedlr())
+    })))
+    .pipe(_if(!RELEASE, embedlr()))
     .pipe(gulp.dest('dist/app/'))
     .pipe(refresh(lrserver));
 });
 
 gulp.task('html:cv', function () {
-  return gulp.src(files.htmlCv)
-    .pipe(embedlr())
+  return gulp.src([files.htmlCv])
+    .pipe(_if(!RELEASE, embedlr()))
     .pipe(gulp.dest('dist/app/'))
     .pipe(refresh(lrserver));
 });
@@ -113,13 +110,12 @@ gulp.task('browserify', function () {
     .pipe(refresh(lrserver));
 });
 
-gulp.task('watch', ['lint', 'vendor', 'styles', 'browserify', 'html:index-debug'], function () { // Run watch after scripts, vendor, etc.. is finished
+gulp.task('watch', ['lint', 'vendor', 'styles', 'browserify', 'html'], function () { // Run watch after scripts, vendor, etc.. is finished
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scssAll, ['styles']);
-  gulp.watch(files.htmlIndex, ['html:index-debug']);
+  gulp.watch(files.html, ['html']);
   gulp.watch(files.js.scripts, ['lint', 'browserify']);
-  gulp.watch(files.htmlCv, ['html:cv']);
 });
 
-gulp.task('default', ['images', 'lint', 'vendor', 'styles', 'browserify', 'html:index-debug', 'serve', 'watch']);
-gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html:index', 'server:copy']);
+gulp.task('default', ['images', 'lint', 'vendor', 'styles', 'browserify', 'html', 'serve', 'watch']);
+gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html', 'server:copy']);

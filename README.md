@@ -13,6 +13,6 @@ Source code of my personal homepage
 
 #Deploy
 
-1. `gulp build`
+1. `gulp build --release`
 2. Commit changes
 3. git push heroku `git subtree split --prefix dist master`:master --force

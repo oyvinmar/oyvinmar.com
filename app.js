@@ -39,12 +39,8 @@ app.get('/', function (req, res) {
   res.render('index.html');
 });
 
-app.get('/cv/', function (req, res) {
+app.get('/cv/?', function (req, res) {
   res.render('cv.html');
-});
-
-app.get('/debug/', function (req, res) {
-  res.render('index-debug.html');
 });
 
 app.get('/pinboard/feed/', function (req, res) {
