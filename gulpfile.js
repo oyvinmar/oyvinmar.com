@@ -11,9 +11,9 @@ var lr = require('tiny-lr');
 var refresh = require('gulp-livereload');
 var _if = require('gulp-if');
 var browserify = require('browserify');
+var render = require('gulp-render');
 var gulpify = require('gulp-browserify');
 var files = require('./build.config.js').files;
-//var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -51,6 +51,7 @@ gulp.task('html', ['html:index', 'html:cv']);
 
 var appStream = gulp.src(files.js.app)
   .pipe(gulpify({
+    transform: ['reactify'],
     insertGlobals: true,
     debug: true
   }))
@@ -61,7 +62,15 @@ var appStream = gulp.src(files.js.app)
   .pipe(gulp.dest('dist/app/js'));
 
 gulp.task('html:index', function () {
-  return gulp.src(files.htmlIndex)
+  var pages = 'src/app/**/*.jsx';
+  var r = render({template: './src/app/_template.html'})
+    .on('error', function (err) {
+      console.log(err);
+      r.end();
+    });
+  return gulp.src(pages)
+    .pipe(changed('dist/app/', {extension: '.html'}))
+    .pipe(r)
     .pipe(_if(RELEASE, inject(appStream, {
       ignorePath: 'dist/app',
       addRootSlash: false
@@ -100,6 +109,7 @@ gulp.task('serve', ['server:copy'], function () {
 
 gulp.task('browserify', function () {
   var bundler = browserify(files.js.app, {
+    transform: ['reactify'],
     insertGlobals: true,
     debug: true
   });
@@ -114,8 +124,9 @@ gulp.task('watch', ['lint', 'vendor', 'styles', 'browserify', 'html'], function 
   gulp.watch(files.images, ['images']);
   gulp.watch(files.scssAll, ['styles']);
   gulp.watch(files.html, ['html']);
+  gulp.watch('src/app/**/*.jsx', ['browserify']);
   gulp.watch(files.js.scripts, ['lint', 'browserify']);
 });
 
 gulp.task('default', ['images', 'lint', 'vendor', 'styles', 'browserify', 'html', 'serve', 'watch']);
-gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html', 'server:copy']);
+gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html', 'pages', 'server:copy']);

@@ -1,5 +1,7 @@
 'use strict';
+
 var $ = require('jq');
+var React = require('react');
 require('jquery-stellar');
 require('jquery-waypoints-sticky');
 require('collapse');
@@ -111,9 +113,12 @@ require('scrollspy');
 
 window.app.fancyShmancy = new window.app.FancyShmancy();
 
+
 $(function () {
   var Lifestream = require('./lifestream');
-
+  var page = require('./Index.jsx');
+  var el = React.createElement(page, null, null);
+  React.render(el, document.getElementById('react')).setState({msg: 'Hello from react'});
   window.app.lifestream = new Lifestream();
   window.app.fancyShmancy.onLoad();
 });

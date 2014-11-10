@@ -10,7 +10,9 @@
     "underscore": "~1.5.1",
     "handlebars": "~2.0.0",
     "method-override": "~2.3.0",
-    "body-parser": "~1.9.2"
+    "body-parser": "~1.9.2",
+    "react": "~0.12.0",
+    "reactify": "~0.15.2"
   },
   "engines": {
     "node": "0.8.14",
@@ -79,7 +81,7 @@
     "gulp-uglify": "~0.3.0",
     "gulp-concat": "~2.2.0",
     "gulp-rev": "~0.4.1",
-    "gulp-changed": "~0.4.0",
+    "gulp-changed": "~1.0.0",
     "tiny-lr": "0.0.7",
     "gulp-rename": "~1.2.0",
     "rimraf": "~2.2.8",
@@ -89,6 +91,7 @@
     "browserify-shim": "~3.8.0",
     "watchify": "~2.1.0",
     "gulp-if": "~1.2.5",
-    "minimist": "~1.1.0"
+    "minimist": "~1.1.0",
+    "gulp-render": "~0.1.1"
   }
 }
