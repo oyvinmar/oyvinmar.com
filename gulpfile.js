@@ -69,7 +69,7 @@ gulp.task('html:index', function () {
       r.end();
     });
   return gulp.src(pages)
-    .pipe(changed('dist/app/', {extension: '.html'}))
+    //.pipe(changed('dist/app/', {extension: '.html'}))
     .pipe(r)
     .pipe(_if(RELEASE, inject(appStream, {
       ignorePath: 'dist/app',

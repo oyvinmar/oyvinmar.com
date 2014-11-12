@@ -92,6 +92,7 @@
     "watchify": "~2.1.0",
     "gulp-if": "~1.2.5",
     "minimist": "~1.1.0",
-    "gulp-render": "~0.1.1"
+    "gulp-render": "~0.1.1",
+    "vinyl-source-stream": "~1.0.0"
   }
 }
