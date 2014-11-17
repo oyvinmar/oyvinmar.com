@@ -14,7 +14,9 @@
     "react": "~0.12.0",
     "reactify": "~0.15.2",
     "flux": "~2.0.1",
-    "keymirror": "~0.1.0"
+    "keymirror": "~0.1.0",
+    "object-assign": "~1.0.0",
+    "superagent": "~0.21.0"
   },
   "engines": {
     "node": "0.8.14",

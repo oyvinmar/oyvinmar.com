@@ -5,7 +5,7 @@ var AppDispatcher = require('./AppDispatcher');
 var _ = require('underscore');
 var LifestreamConstants = require('./LifestreamConstants');
 
-var _entries = [];
+var _events = [];
 
 function createEvent(id, content, url, service_name, service_url, timestamp) {
   return {
@@ -21,14 +21,14 @@ function createEvent(id, content, url, service_name, service_url, timestamp) {
 
 var CHANGE_EVENT = 'change';
 
-var EntryStore = assign({}, EventEmitter.prototype, {
+var LifestreamStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
 
   getAll: function () {
-    return _entries;
+    return _events;
   },
   /**
    * @param {function} callback
@@ -50,7 +50,6 @@ AppDispatcher.register(function (payload) {
 
   switch (action.actionType) {
     case LifestreamConstants.LIFESTREAM_LOAD:
-      console.log(action);
       _.each(action.data, function (item) {
         var date = new Date(item.created_at);
         var text = item.text;
@@ -58,10 +57,7 @@ AppDispatcher.register(function (payload) {
           text = text.replace(url.url, '<a href="' + url.url + '">' + url.url + '</a>');
         });
         var event = createEvent(item.id, text, 'https://twitter.com/#!/oyvinmar/status/' + item.id, 'Twitter', 'http://twitter.com', date);
-        _entries.push(event);
-        //var events = this.state.events;
-        //var newEvents = events.concat([event]);
-        //this.setState({events: newEvents});
+        _events.push(event);
       });
       break;
 
@@ -69,13 +65,9 @@ AppDispatcher.register(function (payload) {
       return true;
   }
 
-  // This often goes in each case that should trigger a UI change. This store
-  // needs to trigger a UI change after every view action, so we can make the
-  // code less repetitive by putting it here.  We need the default case,
-  // however, to make sure this only gets called after one of the cases above.
-  EntryStore.emitChange();
+  LifestreamStore.emitChange();
 
-  return true; // No errors.  Needed by promise in Dispatcher.
+  return true;
 });
 
-module.exports = EntryStore;
+module.exports = LifestreamStore;

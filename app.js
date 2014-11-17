@@ -98,7 +98,7 @@ var oauth_proxy_responder = function (oauth, res, options) {
   }
 
   oauth.get(
-      options.host + options.path,
+    options.host + options.path,
     options.access_token,
     options.access_token_secret,
     function (e, data, response) {
@@ -107,6 +107,7 @@ var oauth_proxy_responder = function (oauth, res, options) {
       }
       cacheUpdate(options.host, Date.now(), data);
       res.set(response.headers);
+      res.set('Content-Type', 'application/json');
       res.send(response.statusCode, data);
     }
   );
@@ -160,6 +161,7 @@ var cacheLookup = function (key) {
 var handleCachedResponse = function (key, res) {
   var co = cacheLookup(key);
   if (co && (Date.now() - co.timestamp) < 1000 * 60 * 15) {
+    res.set('Content-Type', 'application/json');
     res.send(co.data);
     return true;
   }
