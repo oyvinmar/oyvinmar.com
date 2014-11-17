@@ -95,10 +95,10 @@ module.exports = Backbone.Router.extend({
   initialize: function () {
     this.model = new LifestreamModel();
     this.view = new LifestreamView({model: this.model});
-    RemoteCallApi.getInstance().fetch_twitter_timeline();
-    RemoteCallApi.getInstance().fetch_pinboard_feed();
-    RemoteCallApi.getInstance().fetch_foursquare_timeline();
-    RemoteCallApi.getInstance().fetch_github_events();
+    //RemoteCallApi.getInstance().fetch_twitter_timeline();
+    //RemoteCallApi.getInstance().fetch_pinboard_feed();
+    //RemoteCallApi.getInstance().fetch_foursquare_timeline();
+    //RemoteCallApi.getInstance().fetch_github_events();
   },
 
   add: function (content, url, service_name, service_url, timestamp) {

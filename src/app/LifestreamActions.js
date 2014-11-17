@@ -5,14 +5,39 @@ var LifestreamConstants = require('./LifestreamConstants');
 
 var LifestreamActions = {
 
-  load: function() {
+  load: function () {
     request
       .get('/twitter/feed/')
-      .set('Accept', 'application/json')
-      .end(function (res){
-        console.log(res);
+      .end(function (res) {
         AppDispatcher.handleViewAction({
-          actionType: LifestreamConstants.LIFESTREAM_LOAD,
+          actionType: LifestreamConstants.LOAD_TWEETS_SUCCESS,
+          data: res.body
+        });
+      });
+
+    request
+      .get('/swarm/feed/')
+      .end(function (res) {
+        AppDispatcher.handleViewAction({
+          actionType: LifestreamConstants.LOAD_CHECKINS_SUCCESS,
+          data: res.body
+        });
+      });
+
+    request
+      .get('/pinboard/feed/')
+      .end(function (res) {
+        AppDispatcher.handleViewAction({
+          actionType: LifestreamConstants.LOAD_PINBOARD_SUCCESS,
+          data: res.body
+        });
+      });
+
+    request
+      .get('/github/feed/')
+      .end(function (res) {
+        AppDispatcher.handleViewAction({
+          actionType: LifestreamConstants.LOAD_GITHUB_SUCCESS,
           data: res.body
         });
       });

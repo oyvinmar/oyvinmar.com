@@ -13,6 +13,16 @@ var Event = React.createClass({
       <li>
       {this.props.children}
       </li>
+     // <div styleClass="col-xs-3 col-sm-1">
+     //   <img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/>
+     // </div>
+     // <div class="col-xs-9 col-sm-11">
+     // <header><a href="service_url">service_name</a></header>
+     // <p>content</p>
+     // <a href="url"><time title class="published">timestamp</time></a>
+     // </div>
+     // <footer></footer>
+     //<br/>
     )
   }
 });

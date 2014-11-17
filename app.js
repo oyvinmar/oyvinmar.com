@@ -72,7 +72,7 @@ app.get('/twitter/feed/', function (req, res) {
   oauth_proxy_responder(oauth, res, options);
 });
 
-app.get('/foursquare/feed/', function (req, res) {
+app.get('/swarm/feed/', function (req, res) {
   var options = {
     host: 'api.foursquare.com',
     port: 443,
