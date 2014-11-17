@@ -136,6 +136,7 @@ var handle_response = function (response, res, key) {
   response.on('end', function () {
     cacheUpdate(key, Date.now(), data);
     res.set(response.headers);
+    res.set('Content-Type', 'application/json');
     res.send(response.statusCode, data);
   });
 };

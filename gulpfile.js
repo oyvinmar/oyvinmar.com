@@ -57,7 +57,7 @@ var appStream = gulp.src(files.js.app)
   }))
   .pipe(rename('app.js'))
   .pipe(gulp.dest('dist/app/js'))
-  .pipe(uglify())
+  .pipe(uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
   .pipe(rev())
   .pipe(gulp.dest('dist/app/js'));
 

@@ -12,7 +12,9 @@
     "method-override": "~2.3.0",
     "body-parser": "~1.9.2",
     "react": "~0.12.0",
-    "reactify": "~0.15.2"
+    "reactify": "~0.15.2",
+    "flux": "~2.0.1",
+    "keymirror": "~0.1.0"
   },
   "engines": {
     "node": "0.8.14",
