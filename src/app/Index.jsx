@@ -8,21 +8,26 @@ var _ = require('underscore');
 
 
 var Event = React.createClass({
+
   render: function () {
+    var event = this.props.event;
     return (
-      <li>
-      {this.props.children}
-      </li>
-     // <div styleClass="col-xs-3 col-sm-1">
-     //   <img src="/img/{{ service_name }}64.png" alt="{{ service_name }} logo"/>
-     // </div>
-     // <div class="col-xs-9 col-sm-11">
-     // <header><a href="service_url">service_name</a></header>
-     // <p>content</p>
-     // <a href="url"><time title class="published">timestamp</time></a>
-     // </div>
-     // <footer></footer>
-     //<br/>
+      <article className="entry row">
+        <div className="col-xs-3 col-sm-1">
+          <img src={ '/img/' + event.service_name + '64.png'}
+            alt={ event.service_name + 'logo'} />
+        </div>
+        <div className="col-xs-9 col-sm-11">
+          <header>
+            <a href={event.service_url}>{event.service_name}</a>
+          </header>
+          <p dangerouslySetInnerHTML={{__html: event.content}}/>
+          <a href={event.url}>
+            <time title className="published">{ event.timestamp.toLocaleString() }</time>
+          </a>
+        </div>
+        <footer></footer>
+      </article>
     )
   }
 });
@@ -31,45 +36,41 @@ var EventList = React.createClass({
   render: function () {
     var events = this.props.events.map(function (event) {
       return (
-        <Event key={event.id}>
-          {event.content}
-        </Event>
+        <Event key={event.id} event={event}/>
       );
     });
     return (
-      <ul className="commentList">
-           {events}
-      </ul>
+      <div>
+        {events}
+      </div>
     );
   }
 });
 
-var HomePage = React.createClass({
+var Lifestream = React.createClass({
   getInitialState: function () {
-    return {msg: '', events: []};
+    return {events: []};
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     LifestreamStore.addChangeListener(this._onChange);
     LifestreamActions.load();
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount: function () {
     LifestreamStore.removeChangeListener(this._onChange);
   },
 
-  _onChange: function() {
+  _onChange: function () {
     this.setState({events: LifestreamStore.getAll()});
   },
 
   render: function () {
     return (
-      <p>
-        <EventList events={this.state.events} />
-      </p>
+      <EventList events={this.state.events} />
     );
   }
 });
 
-module.exports = HomePage;
+module.exports = Lifestream;
 

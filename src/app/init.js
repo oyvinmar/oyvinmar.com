@@ -115,11 +115,11 @@ window.app.fancyShmancy = new window.app.FancyShmancy();
 
 
 $(function () {
-  var Lifestream = require('./lifestream');
+  //var Lifestream = require('./lifestream');
   var page = require('./Index.jsx');
   var el = React.createElement(page, null, null);
-  React.render(el, document.getElementById('react')).setState({msg: 'Hello from react'});
-  window.app.lifestream = new Lifestream();
+  React.render(el, document.getElementById('stream'));
+  //window.app.lifestream = new Lifestream();
   window.app.fancyShmancy.onLoad();
 });
 

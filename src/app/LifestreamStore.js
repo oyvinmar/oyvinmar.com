@@ -83,7 +83,6 @@ var handleCheckins = function (checkins) {
       'http://foursquare.com', new Date(checkin.createdAt * 1000));
     _events.push(event);
   });
-  window.app.lifestream.view.render();
 };
 
 var CHANGE_EVENT = 'change';

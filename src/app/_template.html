@@ -72,9 +72,6 @@
         </section>
     </div>
     <div class="section" id="lifestream">
-        <div class="container" id="react">
-            <%= body %>
-        </div>
         <div class="container">
             <header class="row section-header">
                 <h2>Lifestream</h2>
@@ -87,8 +84,9 @@
                         If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...
                     </p>
 
+                    <!--<img id="loader" src="/img/loader.gif" alt="Loading"/>-->
                     <div id="stream">
-                        <img id="loader" src="/img/loader.gif" alt="Loading"/>
+                        <%= body %>
                     </div>
                 </div>
             </section>
