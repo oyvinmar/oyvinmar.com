@@ -115,11 +115,9 @@ window.app.fancyShmancy = new window.app.FancyShmancy();
 
 
 $(function () {
-  //var Lifestream = require('./lifestream');
-  var page = require('./Index.jsx');
-  var el = React.createElement(page, null, null);
+  var lifestream = require('./Lifestream.jsx');
+  var el = React.createElement(lifestream, null, null);
   React.render(el, document.getElementById('stream'));
-  //window.app.lifestream = new Lifestream();
   window.app.fancyShmancy.onLoad();
 });
 

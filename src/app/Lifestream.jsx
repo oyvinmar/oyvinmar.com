@@ -34,11 +34,16 @@ var Event = React.createClass({
 
 var EventList = React.createClass({
   render: function () {
-    var events = this.props.events.map(function (event) {
-      return (
-        <Event key={event.id} event={event}/>
-      );
-    });
+    var events = this.props.events
+      .sort(function (a, b) {
+        return b.timestamp.getTime() - a.timestamp.getTime();
+      })
+      .slice(0, this.props.numerToDisplay)
+      .map(function (event) {
+        return (
+          <Event key={event.id} event={event}/>
+        );
+      });
     return (
       <div>
         {events}
@@ -49,7 +54,7 @@ var EventList = React.createClass({
 
 var Lifestream = React.createClass({
   getInitialState: function () {
-    return {events: []};
+    return {events: [], numberToDisplay: 10};
   },
 
   componentDidMount: function () {
@@ -67,7 +72,7 @@ var Lifestream = React.createClass({
 
   render: function () {
     return (
-      <EventList events={this.state.events} />
+      <EventList events={this.state.events} numerToDisplay={this.state.numberToDisplay}/>
     );
   }
 });
