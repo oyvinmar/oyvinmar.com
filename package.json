@@ -29,7 +29,6 @@
   },
   "browser": {
     "jq": "./bower_components/jquery/dist/jquery.js",
-    "jquery-stellar": "./bower_components/jquery.stellar/jquery.stellar.js",
     "jquery-waypoints": "./bower_components/jquery-waypoints/waypoints.js",
     "jquery-waypoints-sticky": "./bower_components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js",
     "transition": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js",
@@ -38,11 +37,6 @@
   },
   "browserify-shim": {
     "jq": "$",
-    "jquery-steller": {
-      "depends": [
-        "jq"
-      ]
-    },
     "jquery-waypoints": {
       "depends": [
         "jq"
