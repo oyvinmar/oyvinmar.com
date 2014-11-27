@@ -129,4 +129,4 @@ gulp.task('watch', ['lint', 'vendor', 'styles', 'browserify', 'html'], function 
 });
 
 gulp.task('default', ['images', 'lint', 'vendor', 'styles', 'browserify', 'html', 'serve', 'watch']);
-gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html', 'pages', 'server:copy']);
+gulp.task('build', ['images', 'lint', 'vendor', 'styles', 'html', 'browserify', 'server:copy']);
