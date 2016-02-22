@@ -8,7 +8,7 @@
     Typekit.load();
   } catch (e) {
   }</script>
-  <link rel="stylesheet" type="text/css" href="/styles/cv.css">
+  <link type="text/css" rel="stylesheet" media="all" href="/<%= contextPath %>css/cv.<%= hash %>.css"/>
 </head>
 <body>
 <div class="container" id="cv">
@@ -19,7 +19,7 @@
   </header>
   <section class="row">
     <figure class="col-md-3">
-      <img id="headshot" src="/img/Oyvind-Marthinsen.jpg" alt="Øyvind Marthinsen"/>
+      <img id="headshot" src="/img/Oyvind-Marthinsen-<%= hash %>.jpg" alt="Øyvind Marthinsen"/>
     </figure>
     <article class="col-md-9">
       <header>
@@ -305,5 +305,6 @@
     </div>
   </section>
 </div>
+<script src="/<%= contextPath %>js/cv.<%= hash %>.js"></script>
 </body>
 </html>

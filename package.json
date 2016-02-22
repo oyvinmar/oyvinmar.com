@@ -1,96 +1,71 @@
 {
   "name": "oyvinmar.com",
   "version": "0.0.1",
+  "config": {
+    "buildDir": "./build",
+    "devPort": 3000,
+    "devHost": "localhost"
+  },
   "dependencies": {
-    "express": "3.x",
-    "hbs": "2.x",
+    "babel-core": "5.0.0",
+    "body-parser": "1.9.2",
+    "bootstrap-sass": "3.3.5",
+    "express": "4.13.3",
+    "flux": "2.0.1",
+    "font-awesome": "4.4.0",
+    "jquery": "2.1.4",
+    "keymirror": "0.1.0",
+    "method-override": "2.3.0",
     "oauth": "0.9.x",
-    "jquery": "~2.1.1",
-    "backbone": "~1.0.0",
-    "underscore": "~1.5.1",
-    "handlebars": "~2.0.0",
-    "method-override": "~2.3.0",
-    "body-parser": "~1.9.2",
-    "react": "~0.12.0",
-    "reactify": "~0.17.1",
-    "flux": "~2.0.1",
-    "keymirror": "~0.1.0",
-    "object-assign": "~1.0.0",
-    "superagent": "~0.21.0"
+    "object-assign": "1.0.0",
+    "react": "0.12.0",
+    "reactify": "0.17.1",
+    "superagent": "0.21.0",
+    "underscore": "1.5.1",
+    "waypoints": "4.0.0"
+  },
+  "scripts": {
+    "env": "env",
+    "prebuild": "npm install && npm run lint",
+    "prewebpack": "npm run clean",
+    "clean": "rimraf $npm_package_config_buildDir && mkdir $npm_package_config_buildDir",
+    "start": "NODE_ENV=development node dev-server",
+    "webpack": "webpack --production --colors --progress --config ./webpack.config.js --bail",
+    "start-dev-server": "webpack-dev-server --output-pathinfo --inline",
+    "build": "npm run webpack",
+    "lint": "eslint --ext .js --ext .jsx ./app && echo No linting errors."
   },
   "engines": {
-    "node": "0.8.14",
-    "npm": "1.1.65"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browser": {
-    "jq": "./bower_components/jquery/dist/jquery.js",
-    "jquery-waypoints": "./bower_components/jquery-waypoints/waypoints.js",
-    "jquery-waypoints-sticky": "./bower_components/jquery-waypoints/shortcuts/sticky-elements/waypoints-sticky.js",
-    "transition": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js",
-    "collapse": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js",
-    "scrollspy": "./bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"
-  },
-  "browserify-shim": {
-    "jq": "$",
-    "jquery-waypoints": {
-      "depends": [
-        "jq"
-      ]
-    },
-    "jquery-waypoints-sticky": {
-      "depends": [
-        "jq",
-        "jquery-waypoints"
-      ]
-    },
-    "transition": {
-      "depends": [
-        "jq"
-      ]
-    },
-    "collapse": {
-      "depends": [
-        "jq",
-        "transition"
-      ]
-    },
-    "scrollspy": {
-      "depends": [
-        "jq",
-        "transition"
-      ]
-    }
+    "node": "4.1.0",
+    "npm": "1.14.3"
   },
   "devDependencies": {
-    "gulp": "~3.6.2",
-    "gulp-sass": "~0.7.1",
-    "gulp-jshint": "~1.6.1",
-    "gulp-clean": "~0.2.4",
-    "gulp-embedlr": "~0.5.2",
-    "gulp-bower-src": "0.0.1",
-    "gulp-bower-files": "~0.2.1",
-    "gulp-debug": "~0.3.0",
-    "gulp-inject": "~0.4.1",
-    "gulp-uglify": "~0.3.0",
-    "gulp-concat": "~2.2.0",
-    "gulp-rev": "~0.4.1",
-    "gulp-changed": "~1.0.0",
-    "tiny-lr": "0.0.7",
-    "gulp-rename": "~1.2.0",
-    "rimraf": "~2.2.8",
-    "gulp-livereload": "~2.1.0",
-    "browserify": "~6.2.0",
-    "gulp-browserify": "~0.5.0",
-    "browserify-shim": "~3.8.0",
-    "watchify": "~2.1.0",
-    "gulp-if": "~1.2.5",
-    "minimist": "~1.1.0",
-    "gulp-render": "~0.1.1",
-    "vinyl-source-stream": "~1.0.0"
+    "autoprefixer": "6.0.3",
+    "babel-loader": "5.3.3",
+    "babel-plugin-react-transform": "1.1.1",
+    "babel-runtime": "6.0.12",
+    "compression": "1.6.1",
+    "core-js": "1.2.3",
+    "css-loader": "0.21.0",
+    "errorhandler": "1.4.3",
+    "eslint": "1.7.3",
+    "eslint-plugin-react": "3.6.3",
+    "extract-text-webpack-plugin": "0.8.2",
+    "file-loader": "0.8.4",
+    "html-loader": "0.3.0",
+    "json-loader": "0.5.3",
+    "lodash": "3.10.1",
+    "morgan": "1.7.0",
+    "postcss-loader": "0.8.1",
+    "react-transform-catch-errors": "1.0.2",
+    "react-transform-hmr": "1.0.2",
+    "rimraf": "2.2.8",
+    "sass-loader": "3.1.1",
+    "style-loader": "0.13.0",
+    "template-html-loader": "0.0.3",
+    "url-loader": "0.5.6",
+    "webpack": "1.12.2",
+    "webpack-dev-middleware": "1.2.0",
+    "webpack-hot-middleware": "2.4.1"
   }
 }

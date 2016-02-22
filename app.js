@@ -5,28 +5,25 @@ var https = require('https');
 var OAuth = require('oauth');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var compression = require('compression');
+var errorhandler = require('errorhandler');
 var root = __dirname + '/app';
-app.engine('html', require('hbs').__express);
-
 
 console.log('Configure default settings.');
 app.set('port', process.env.PORT || PORT);
-app.set('views', __dirname + '/app');
-app.set('view engine', 'hbs');
-app.use(express.compress());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(methodOverride());
-app.use(app.router);
 
 if (app.get('env') === 'development') {
   console.log('Configure settings for development.');
-
-  app.use(express.logger('dev'));
+  app.use(morgan('combined'));
   app.use(express.static(root));
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
+  app.use(errorhandler({ dumpExceptions: true, showStack: true}));
 }
 
 if (app.get('env') === 'production') {
@@ -35,13 +32,13 @@ if (app.get('env') === 'production') {
   app.use(express.errorHandler());
 }
 
-app.get('/', function (req, res) {
-  res.render('index.html');
-});
+// app.get('/', function (req, res) {
+//   res.render('index.html');
+// });
 
-app.get('/cv/?', function (req, res) {
-  res.render('cv.html');
-});
+// app.get('/cv/?', function (req, res) {
+//   res.render('cv.html');
+// });
 
 app.get('/pinboard/feed/', function (req, res) {
   var options = {
@@ -108,7 +105,7 @@ var oauth_proxy_responder = function (oauth, res, options) {
       cacheUpdate(options.host, Date.now(), data);
       res.set(response.headers);
       res.set('Content-Type', 'application/json');
-      res.send(response.statusCode, data);
+      res.status(response.statusCode).send(data);
     }
   );
 };
@@ -138,7 +135,7 @@ var handle_response = function (response, res, key) {
     cacheUpdate(key, Date.now(), data);
     res.set(response.headers);
     res.set('Content-Type', 'application/json');
-    res.send(response.statusCode, data);
+    res.status(response.statusCode).send(data);
   });
 };
 

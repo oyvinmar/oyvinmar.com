@@ -1,13 +1,24 @@
-'use strict';
+import 'babel-core/polyfill';
 
-var $ = require('jq');
+import './index.html';
+import '../styles/base.scss';
+import './img/index.js';
+
+var $ = require('jquery');
+window.jQuery = $;
+
+import 'bootstrap-sass/assets/javascripts/bootstrap/collapse';
+import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
+import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
+
+require('waypoints/lib/jquery.waypoints');
+require('waypoints/lib/shortcuts/sticky');
+
 var React = require('react');
-require('jquery-waypoints-sticky');
-require('collapse');
-require('scrollspy');
 
 
 (function () {
+  var sticky;
   var FancyShmancy = function FancyShmancy() {
     this.init();
   };
@@ -32,13 +43,14 @@ require('scrollspy');
 
   FancyShmancy.prototype.stickyNav = function () {
     var windowWidth = $(window).width();
-    var isSticky = $('.sticky-wrapper').length > 0;
 
     // Show Menu or Hide the Menu
-    if (windowWidth <= 768 && isSticky) {
-      $('.navbar').waypoint('unsticky');
-    } else if (windowWidth > 768 && !isSticky) {
-      $('.navbar').waypoint('sticky', {
+    if (windowWidth <= 768 && sticky) {
+      sticky.destroy();
+      sticky = undefined;
+    } else if (windowWidth > 768 && !sticky) {
+      sticky = new Waypoint.Sticky({
+        element: $('.navbar'),
         stuckClass: 'navbar-fixed-top',
         wrapper: '<div class="sticky-wrapper" />'
       });
@@ -99,4 +111,3 @@ $(function () {
   React.render(el, document.getElementById('stream'));
   window.app.fancyShmancy.onLoad();
 });
-

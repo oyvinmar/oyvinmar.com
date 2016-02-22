@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>oyvinmar.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="//use.typekit.net/kdv7jtg.js"></script>
+    <script type="text/javascript">try {
+        Typekit.load();
+    } catch (e) {
+    }</script>
+    <link type="text/css" rel="stylesheet" media="all" href="/<%= contextPath %>css/app.<%= hash %>.css"/>
+</head>
+<body>
+<div id="content">
+
+    <section id="home" class="welcome"
+             data-center="background-position: 50% 0px;"
+             data-top-bottom="background-position: 50% 500px;"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay">
+        </div>
+        <div class="container-fluid text-center">
+            <header>
+                <h1>Hello, I'm Øyvind</h1>
+
+                <h2>Welcome to my homepage.</h2>
+            </header>
+        </div>
+    </section>
+
+    <nav id="nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse"
+                        data-target=".omw-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a href="#" class="navbar-brand">oyvinmar.com</a>
+            </div>
+            <div class="collapse navbar-collapse omw-navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About me</a></li>
+                    <li><a href="#lifestream">Lifestream</a></li>
+                    <li><a href="#elsewhere">Elsewhere</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="section" id="about">
+        <section class="container">
+            <header class="row section-header">
+                <h2>About me</h2>
+                <hr/>
+            </header>
+            <section class="row">
+              <div class="col-md-12">
+                <img id="headshot" src="/img/Oyvind-Marthinsen-<%= hash %>.jpg" alt="Øyvind Marthinsen"/>
+              </div>
+            </section>
+            <section class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <p>I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a
+                        consultant at <a rel="external" href="http://knowit.no">Knowit</a>, where I'm able to work on
+                        cool things. In my spear time I enjoy watching football (the British kind), and love going
+                        skiing in the winter.
+                    </p>
+                </div>
+            </section>
+        </section>
+    </div>
+    <div class="section" id="lifestream">
+        <div class="container">
+            <header class="row section-header">
+                <h2>Lifestream</h2>
+                <hr/>
+            </header>
+            <section class="row">
+                <div class="col-md-12">
+
+                    <p class="pretext">
+                        If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...
+                    </p>
+
+                    <!--<img id="loader" src="/img/loader.gif" alt="Loading"/>-->
+                    <div id="stream">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section class="section" id="elsewhere">
+        <div class="container">
+            <header class="row section-header">
+                <h2>Elsewhere on the web</h2>
+                <hr/>
+            </header>
+            <div class="row">
+                <ul>
+                    <li><a href="http://facebook.com/oyvind.marthinsen"><i class="fa fa-facebook fa-fw"></i></a></li>
+                    <li><a href="http://twitter.com/oyvinmar"><i class="fa fa-twitter fa-fw"></i></a></li>
+                    <li><a href="https://plus.google.com/u/0/112314193090100501199/posts"><i
+                            class="fa fa-google-plus fa-fw"></i></a></li>
+                    <li><a href="http://linkedin.com/in/oyvinmar"><i class="fa fa-linkedin fa-fw"></i></a></li>
+                    <li><a href="http://github.com/oyvinmar"><i class="fa fa-github fa-fw"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="contact">
+        <div class="container">
+            <header class="row section-header">
+                <h2>Contact</h2>
+                <hr/>
+            </header>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>You can reach me on all the social networks listed above. Or if you prefer old school email:
+                        <span id="email"><i class="icon-envelope"></i></span>
+                    </p>
+                </div>
+            </div>
+            <footer class="row">
+                <p>&copy; 2014 Øyvind Marthinsen</p>
+            </footer>
+        </div>
+    </section>
+</div>
+<div class="splash">
+    <div class="loading-container">
+        <i class="fa fa-spinner fa-spin"></i>
+
+        <h1>
+            Loading...
+        </h1>
+    </div>
+</div>
+<script>
+    window.app = window.app || {};
+    window.hash = '<%= hash %>';
+</script>
+<script src="/<%= contextPath %>js/app.<%= hash %>.js"></script>
+<!-- inject:vendor:js -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>
