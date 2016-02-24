@@ -5,6 +5,7 @@ import '../styles/base.scss';
 import './img/index.js';
 
 import React from 'react';
+import ReactDom from 'react-dom';
 
 import $ from 'jquery';
 window.jQuery = $;
@@ -107,6 +108,6 @@ window.app.fancyShmancy = new window.app.FancyShmancy();
 
 
 $(function () {
-  React.render(<Lifestream/>, document.getElementById('stream'));
+  ReactDom.render(<Lifestream/>, document.getElementById('stream'));
   window.app.fancyShmancy.onLoad();
 });
