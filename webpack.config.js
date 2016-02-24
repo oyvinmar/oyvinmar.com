@@ -117,7 +117,7 @@ var loaders = [
 ];
 
 var entry = {
-  app: ['./init.js'],
+  app: ['./index.jsx'],
   cv: ['./cv.js']
 };
 

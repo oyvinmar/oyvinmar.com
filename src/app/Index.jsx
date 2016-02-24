@@ -1,88 +1,112 @@
-var React = require('react');
-var LifestreamStore = require('./LifestreamStore');
-var LifestreamActions = require('./LifestreamActions');
-var $ = require('jquery');
-var _ = require('underscore');
+import 'babel-core/polyfill';
 
+import './index.html';
+import '../styles/base.scss';
+import './img/index.js';
 
-var Event = React.createClass({
+import React from 'react';
 
-  render: function () {
-    var event = this.props.event;
-    return (
-      <article className="entry row">
-        <div className="col-xs-3 col-sm-1">
-          <img src={ '/img/' + event.service_name + `64-${window.hash}.png`}
-            alt={ event.service_name + 'logo'} />
-        </div>
-        <div className="col-xs-9 col-sm-11">
-          <header>
-            <a href={event.service_url}>{event.service_name}</a>
-          </header>
-          <p dangerouslySetInnerHTML={{__html: event.content}}/>
-          <a href={event.url}>
-            <time title className="published">{ event.timestamp.toLocaleString() }</time>
-          </a>
-        </div>
-        <footer></footer>
-      </article>
-    )
-  }
-});
+import $ from 'jquery';
+window.jQuery = $;
 
-var EventList = React.createClass({
-  render: function () {
-    var events = this.props.events
-      .sort(function (a, b) {
-        return b.timestamp.getTime() - a.timestamp.getTime();
-      })
-      .slice(0, this.props.numerToDisplay)
-      .map(function (event) {
-        return (
-          <Event key={event.id} event={event}/>
-        );
+import 'bootstrap-sass/assets/javascripts/bootstrap/collapse';
+import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
+import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
+
+require('waypoints/lib/jquery.waypoints');
+require('waypoints/lib/shortcuts/sticky');
+
+import Lifestream from './Lifestream';
+
+(function () {
+  var sticky;
+  var FancyShmancy = function FancyShmancy() {
+    this.init();
+  };
+
+  FancyShmancy.prototype.init = function () {
+    this.fullscreenImage();
+    this.initOnResize();
+  };
+
+  FancyShmancy.prototype.onLoad = function () {
+
+    $('.splash').fadeOut(300);
+    $('#content').fadeIn(1000);
+    FancyShmancy.mobileMenuClone = $('#nav').clone().attr('id', 'navigation-mobile');
+
+    this.fullscreenImage();
+    this.addClickListeners();
+    this.stickyNav();
+    this.initScrollSpy();
+    this.mail2('oyvinmar', 'gmail.com');
+  };
+
+  FancyShmancy.prototype.stickyNav = function () {
+    var windowWidth = $(window).width();
+
+    // Show Menu or Hide the Menu
+    if (windowWidth <= 768 && sticky) {
+      sticky.destroy();
+      sticky = undefined;
+    } else if (windowWidth > 768 && !sticky) {
+      sticky = new Waypoint.Sticky({
+        element: $('.navbar'),
+        stuckClass: 'navbar-fixed-top',
+        wrapper: '<div class="sticky-wrapper" />'
       });
-    return (
-      <div>
-        {events}
-      </div>
-    );
-  }
+    }
+  };
+
+  FancyShmancy.prototype.fullscreenImage = function () {
+    $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
+  };
+
+  FancyShmancy.prototype.initOnResize = function () {
+    var self = this;
+    $(window).on('resize', function () {
+      if ($('.welcome').length) {
+        self.fullscreenImage();
+      }
+      self.stickyNav();
+
+    });
+  };
+
+  FancyShmancy.prototype.addClickListeners = function () {
+    $('.nav a').click(function (event) {
+      event.preventDefault();
+      var idStr = $(this).attr('href');
+      $('html,body').animate({scrollTop: ($(idStr).offset().top - 30)}, 500);
+    });
+
+    $('.brand').click(function (event) {
+      event.preventDefault();
+      $('html,body').animate({scrollTop: 0}, 500);
+    });
+
+    $('#toggle-menu').click(function () {
+      $('#links').toggle();
+    });
+  };
+
+  FancyShmancy.prototype.initScrollSpy = function () {
+    var $spy = $('body');
+    $spy.scrollspy($spy.data());
+  };
+
+  FancyShmancy.prototype.mail2 = function (name, domain) {
+    var addr = name + '@' + domain;
+    $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
+  };
+
+  window.app.FancyShmancy = FancyShmancy;
+})();
+
+window.app.fancyShmancy = new window.app.FancyShmancy();
+
+
+$(function () {
+  React.render(<Lifestream/>, document.getElementById('stream'));
+  window.app.fancyShmancy.onLoad();
 });
-
-var Lifestream = React.createClass({
-  getInitialState: function () {
-    return {events: [], numberToDisplay: 5};
-  },
-
-  componentDidMount: function () {
-    LifestreamStore.addChangeListener(this._onChange);
-    LifestreamActions.load();
-  },
-
-  componentWillUnmount: function () {
-    LifestreamStore.removeChangeListener(this._onChange);
-  },
-
-  showMore: function (){
-    this.setState({numberToDisplay: this.state.numberToDisplay + 10});
-  },
-
-  _onChange: function () {
-    this.setState({events: LifestreamStore.getAll()});
-  },
-
-  render: function () {
-    return (
-      <div>
-        <EventList events={this.state.events} numerToDisplay={this.state.numberToDisplay}/>
-        <button className="btn btn-primary show-more" onClick={this.showMore}>
-          <i className="fa fa-plus"></i>
-          <span> Show More</span>
-        </button>
-      </div>
-    );
-  }
-});
-
-module.exports = Lifestream;
