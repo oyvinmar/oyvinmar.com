@@ -1,4 +1,5 @@
-import 'babel-core/polyfill';
+import 'babel-polyfill';
+
 
 import './index.html';
 import '../styles/base.scss';

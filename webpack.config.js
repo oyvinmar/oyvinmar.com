@@ -21,7 +21,6 @@ function md5(str) {
   return crypto.createHash('md5').update(str).digest('hex');
 }
 var hash = md5((new Date).getTime() + '');
-console.log(hash);
 var cssBundle = path.join('css', util.format('[name].%s.css', hash));
 var jsBundle = path.join('js', util.format('[name].%s.js', hash));
 
