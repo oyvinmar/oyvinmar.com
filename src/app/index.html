@@ -8,7 +8,7 @@
         Typekit.load();
     } catch (e) {
     }</script>
-    <link type="text/css" rel="stylesheet" media="all" href="/<%= contextPath %>css/app.<%= hash %>.css"/>
+    <link type="text/css" rel="stylesheet" media="all" href="/{{ contextPath }}css/app.{{ hash }}.css"/>
 </head>
 <body>
 <div id="content">
@@ -60,7 +60,7 @@
             </header>
             <section class="row">
               <div class="col-md-12">
-                <img id="headshot" src="/img/Oyvind-Marthinsen-<%= hash %>.jpg" alt="Øyvind Marthinsen"/>
+                <img id="headshot" src="/img/Oyvind-Marthinsen-{{ hash }}.jpg" alt="Øyvind Marthinsen"/>
               </div>
             </section>
             <section class="row">
@@ -142,9 +142,9 @@
 </div>
 <script>
     window.app = window.app || {};
-    window.hash = '<%= hash %>';
+    window.hash = '{{ hash }}';
 </script>
-<script src="/<%= contextPath %>js/app.<%= hash %>.js"></script>
+<script src="/{{ contextPath }}js/app.{{ hash }}.js"></script>
 <!-- inject:vendor:js -->
 <!-- endinject -->
 

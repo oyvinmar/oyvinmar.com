@@ -92,7 +92,7 @@ var loaders = [
       'file-loader?name=[path][name].[ext]',
       'template-html-loader?' + [
         'raw=true',
-        'engine=lodash',
+        'engine=handlebars',
         'hash=' + hash,
         'contextPath=' + contextPath,
         'title=' + pkg.name
