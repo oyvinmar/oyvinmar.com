@@ -1,7 +1,6 @@
-var request = require('superagent');
-
-var AppDispatcher = require('./AppDispatcher');
-var LifestreamConstants = require('./LifestreamConstants');
+import request from 'superagent';
+import AppDispatcher from './AppDispatcher';
+import LifestreamConstants from './LifestreamConstants';
 
 var LifestreamActions = {
 
@@ -44,4 +43,4 @@ var LifestreamActions = {
   }
 };
 
-module.exports = LifestreamActions;
+export default LifestreamActions;

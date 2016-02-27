@@ -1,8 +1,8 @@
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
+import { EventEmitter } from 'events';
+import assign from 'object-assign';
 
-var AppDispatcher = require('./AppDispatcher');
-var LifestreamConstants = require('./LifestreamConstants');
+import AppDispatcher from './AppDispatcher';
+import LifestreamConstants from './LifestreamConstants';
 
 var _events = [];
 
@@ -115,22 +115,21 @@ AppDispatcher.register(function (payload) {
   var action = payload.action;
 
   switch (action.actionType) {
-    case LifestreamConstants.LOAD_TWEETS_SUCCESS:
-      handleTweets(action.data);
-      break;
-    case LifestreamConstants.LOAD_GITHUB_SUCCESS:
-      handleGithubEvents(action.data);
-      break;
-    case LifestreamConstants.LOAD_CHECKINS_SUCCESS:
-      handleCheckins(action.data.response.checkins.items);
-      break;
-    case LifestreamConstants.LOAD_PINBOARD_SUCCESS:
-      handleBookmarks(action.data);
-      break;
+  case LifestreamConstants.LOAD_TWEETS_SUCCESS:
+    handleTweets(action.data);
+    break;
+  case LifestreamConstants.LOAD_GITHUB_SUCCESS:
+    handleGithubEvents(action.data);
+    break;
+  case LifestreamConstants.LOAD_CHECKINS_SUCCESS:
+    handleCheckins(action.data.response.checkins.items);
+    break;
+  case LifestreamConstants.LOAD_PINBOARD_SUCCESS:
+    handleBookmarks(action.data);
+    break;
 
-
-    default:
-      return true;
+  default:
+    return true;
   }
 
   LifestreamStore.emitChange();
@@ -138,4 +137,4 @@ AppDispatcher.register(function (payload) {
   return true;
 });
 
-module.exports = LifestreamStore;
+export default LifestreamStore;

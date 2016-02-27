@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventList from './EventList';
-var LifestreamStore = require('./LifestreamStore');
-var LifestreamActions = require('./LifestreamActions');
+import LifestreamStore from './LifestreamStore';
+import LifestreamActions from './LifestreamActions';
 
-const Lifestream = React.createClass({
-  getInitialState: function () {
-    return {events: [], numberToDisplay: 5};
-  },
+class Lifestream extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {events: [], numberToDisplay: 5};
+    this.onChange = this.onChange.bind(this);
+  }
 
-  componentDidMount: function () {
-    LifestreamStore.addChangeListener(this._onChange);
+  componentDidMount() {
+    LifestreamStore.addChangeListener(this.onChange);
     LifestreamActions.load();
-  },
+  }
 
-  componentWillUnmount: function () {
-    LifestreamStore.removeChangeListener(this._onChange);
-  },
+  componentWillUnmount() {
+    LifestreamStore.removeChangeListener(this.onChange);
+  }
 
-  showMore: function (){
+  showMore() {
     this.setState({numberToDisplay: this.state.numberToDisplay + 10});
-  },
+  }
 
-  _onChange: function () {
+  onChange() {
     this.setState({events: LifestreamStore.getAll()});
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div>
-        <EventList events={this.state.events} numerToDisplay={this.state.numberToDisplay}/>
+        <EventList events={this.state.events} numberToDisplay={this.state.numberToDisplay}/>
         <button className="btn btn-primary show-more" onClick={this.showMore}>
           <i className="fa fa-plus"></i>
           <span> Show More</span>
@@ -36,6 +38,6 @@ const Lifestream = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Lifestream;

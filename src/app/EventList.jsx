@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Event from './Event' ;
 
-var EventList = React.createClass({
-  render: function () {
-    var events = this.props.events
-      .sort(function (a, b) {
-        return b.timestamp.getTime() - a.timestamp.getTime();
-      })
-      .slice(0, this.props.numerToDisplay)
-      .map(function (event) {
-        return (
-          <Event key={event.id} event={event}/>
-        );
-      });
+const EventList = ({events, numberToDisplay}) => {
+  const renderEvents = events
+  .sort(function (a, b) {
+    return b.timestamp.getTime() - a.timestamp.getTime();
+  })
+  .slice(0, numberToDisplay)
+  .map(function (event) {
     return (
-      <div>
-        {events}
-      </div>
+      <Event event={event} key={event.id} />
     );
-  }
-});
+  });
+  return (
+    <div>
+      {renderEvents}
+    </div>
+  );
+};
+
+EventList.propTypes = {
+  events: PropTypes.array.isRequired,
+  numberToDisplay: PropTypes.number.isRequired
+};
 
 export default EventList;
