@@ -12,7 +12,9 @@ const receivePinboardStream = makeActionCreator(RECEIVE_PINBOARD_STREAM, 'data')
 const receiveGithubStream = makeActionCreator(RECEIVE_GITHUB_STREAM, 'data');
 
 function fetchStream(dispatch, URL, action) {
-  return fetch(URL).then(data => dispatch(action(data)));
+  return fetch(URL)
+  .then(response => response.json())
+  .then(json => dispatch(action(json)));
 }
 
 export function fetchAllStreams() {
