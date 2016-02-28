@@ -6,6 +6,8 @@ export const RECEIVE_SWARM_STREAM = 'RECEIVE_SWARM_STREAM';
 export const RECEIVE_PINBOARD_STREAM = 'RECEIVE_PINBOARD_STREAM';
 export const RECEIVE_GITHUB_STREAM = 'RECEIVE_GITHUB_STREAM';
 
+export const SHOW_MORE_EVENTS = 'SHOW_MORE_EVENTS';
+
 const receiveTwitterStream = makeActionCreator(RECEIVE_TWITTER_STREAM, 'data');
 const receiveSwarmStream = makeActionCreator(RECEIVE_SWARM_STREAM, 'data');
 const receivePinboardStream = makeActionCreator(RECEIVE_PINBOARD_STREAM, 'data');
@@ -16,6 +18,8 @@ function fetchStream(dispatch, URL, action) {
   .then(response => response.json())
   .then(json => dispatch(action(json)));
 }
+
+export const showMoreEvents = makeActionCreator(SHOW_MORE_EVENTS, 'additionalEventsToShow');
 
 export function fetchAllStreams() {
   return dispatch => {

@@ -2,7 +2,8 @@ import {
   RECEIVE_TWITTER_STREAM,
   RECEIVE_SWARM_STREAM,
   RECEIVE_PINBOARD_STREAM,
-  RECEIVE_GITHUB_STREAM
+  RECEIVE_GITHUB_STREAM,
+  SHOW_MORE_EVENTS
 } from '../actions/lifestreamActions';
 
 function createEvent(id, content, url, service_name, service_url, timestamp) {
@@ -77,16 +78,28 @@ function mapCheckins(checkins) {
   });
 };
 
-export default function lifestream(state = [], action) {
+export default function lifestream(state = {events: [], numberOfVisibleEvents: 5}, action) {
   switch (action.type) {
   case RECEIVE_TWITTER_STREAM:
-    return state.concat(mapTweets(action.data));
+    return Object.assign({}, state, {
+      events: state.events.concat(mapTweets(action.data))
+    });
   case RECEIVE_SWARM_STREAM:
-    return state.concat(mapCheckins(action.data.response.checkins.items));
+    return Object.assign({}, state, {
+      events: state.events.concat(mapCheckins(action.data.response.checkins.items))
+    });
   case RECEIVE_PINBOARD_STREAM:
-    return state.concat(mapBookmarks(action.data));
+    return Object.assign({}, state, {
+      events: state.events.concat(mapBookmarks(action.data))
+    });
   case RECEIVE_GITHUB_STREAM:
-    return state.concat(mapGithubEvents(action.data));
+    return Object.assign({}, state, {
+      events: state.events.concat(mapGithubEvents(action.data))
+    });
+  case SHOW_MORE_EVENTS:
+    return Object.assign({}, state, {
+      numberOfVisibleEvents: state.numberOfVisibleEvents + action.additionalEventsToShow
+    });
   default:
     return state;
   }
