@@ -22,6 +22,9 @@ require('waypoints/lib/jquery.waypoints');
 require('waypoints/lib/shortcuts/sticky');
 
 import Lifestream from './Lifestream';
+import About from './About';
+import Elsewhere from './Elsewhere';
+import Contact from './Contact';
 
 (function () {
   var sticky;
@@ -44,7 +47,6 @@ import Lifestream from './Lifestream';
     this.addClickListeners();
     this.stickyNav();
     this.initScrollSpy();
-    this.mail2('oyvinmar', 'gmail.com');
   };
 
   FancyShmancy.prototype.stickyNav = function () {
@@ -100,11 +102,6 @@ import Lifestream from './Lifestream';
     $spy.scrollspy($spy.data());
   };
 
-  FancyShmancy.prototype.mail2 = function (name, domain) {
-    var addr = name + '@' + domain;
-    $('#email').append(' <a href="mailto:' + addr + '">' + addr + '</a>');
-  };
-
   window.app.FancyShmancy = FancyShmancy;
 })();
 
@@ -115,9 +112,14 @@ $(function () {
   const store = configureStore();
   render(
     <Provider store={store}>
-      <Lifestream/>
+      <div>
+        <About hash={window.hash}/>
+        <Lifestream/>
+        <Elsewhere/>
+        <Contact/>
+      </div>
     </Provider>,
-    document.getElementById('stream')
+    document.getElementById('react')
   );
   window.app.fancyShmancy.onLoad();
 });
