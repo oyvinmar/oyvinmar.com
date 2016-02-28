@@ -6,7 +6,10 @@ import '../styles/base.scss';
 import './img/index.js';
 
 import React from 'react';
-import ReactDom from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+// import { ReduxRouter } from 'redux-router';
+import configureStore from './config/configureStore';
 
 import $ from 'jquery';
 window.jQuery = $;
@@ -109,6 +112,12 @@ window.app.fancyShmancy = new window.app.FancyShmancy();
 
 
 $(function () {
-  ReactDom.render(<Lifestream/>, document.getElementById('stream'));
+  const store = configureStore();
+  render(
+    <Provider store={store}>
+      <Lifestream/>
+    </Provider>,
+    document.getElementById('stream')
+  );
   window.app.fancyShmancy.onLoad();
 });

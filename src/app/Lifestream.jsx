@@ -1,18 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import EventList from './EventList';
 import LifestreamStore from './LifestreamStore';
+import { connect } from 'react-redux';
 import LifestreamActions from './LifestreamActions';
+import { fetchAllStreams } from './actions/lifestreamActions';
 
 class Lifestream extends Component {
   constructor(props) {
     super(props);
     this.state = {events: [], numberToDisplay: 5};
     this.onChange = this.onChange.bind(this);
+    this.showMore = this.showMore.bind(this);
   }
 
   componentDidMount() {
     LifestreamStore.addChangeListener(this.onChange);
     LifestreamActions.load();
+    const { dispatch } = this.props;
+    dispatch(fetchAllStreams());
   }
 
   componentWillUnmount() {
@@ -40,4 +45,13 @@ class Lifestream extends Component {
   }
 }
 
-export default Lifestream;
+Lifestream.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+export default connect(mapStateToProps)(Lifestream);
