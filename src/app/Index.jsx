@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 
-
 import './index.html';
 import '../styles/base.scss';
 import './img/index.js';
@@ -21,6 +20,8 @@ import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 require('waypoints/lib/jquery.waypoints');
 require('waypoints/lib/shortcuts/sticky');
 
+import WelcomeHeader from './WelcomeHeader';
+import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
 import About from './About';
 import Elsewhere from './Elsewhere';
@@ -113,6 +114,8 @@ $(function () {
   render(
     <Provider store={store}>
       <div>
+        <WelcomeHeader/>
+        <NavigationBar/>
         <About hash={window.hash}/>
         <Lifestream/>
         <Elsewhere/>
