@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import EventList from './EventList';
 import { connect } from 'react-redux';
-import { fetchAllStreams, showMoreEvents } from './actions/lifestreamActions';
+import { fetchAllStreams, showMoreEvents } from '../actions/lifestreamActions';
 
 class Lifestream extends Component {
   constructor(props) {
