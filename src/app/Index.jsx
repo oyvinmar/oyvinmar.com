@@ -40,8 +40,6 @@ import Contact from './Contact';
 
   FancyShmancy.prototype.onLoad = function () {
 
-    $('.splash').fadeOut(300);
-    $('#content').fadeIn(1000);
     FancyShmancy.mobileMenuClone = $('#nav').clone().attr('id', 'navigation-mobile');
 
     this.fullscreenImage();
@@ -113,7 +111,7 @@ $(function () {
   const store = configureStore();
   render(
     <Provider store={store}>
-      <div>
+      <div id="content">
         <WelcomeHeader/>
         <NavigationBar/>
         <About hash={window.hash}/>
@@ -124,5 +122,6 @@ $(function () {
     </Provider>,
     document.getElementById('react')
   );
+
   window.app.fancyShmancy.onLoad();
 });
