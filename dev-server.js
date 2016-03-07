@@ -22,10 +22,6 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, pkg.config.buildDir + '/index.html'));
 });
 
-app.get('/cv/?', function(req, res) {
-  res.sendFile(path.join(__dirname, pkg.config.buildDir + '/cv.html'));
-});
-
 app.listen(port, host, function(err) {
   if (err) {
     console.log(err);
