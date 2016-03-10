@@ -116,8 +116,8 @@ var loaders = [
 ];
 
 var entry = {
-  app: ['./index.jsx'],
-  cv: ['./cv.js']
+  app: ['./Index.jsx'],
+  cv: ['./CVIndex.jsx']
 };
 
 if (DEBUG) {

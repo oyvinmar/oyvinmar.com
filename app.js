@@ -8,11 +8,12 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var compression = require('compression');
 var errorhandler = require('errorhandler');
-var root = __dirname + '/app';
+var root = __dirname;
 
 console.log('Configure default settings.');
 app.set('port', process.env.PORT || PORT);
 app.use(compression());
+// app.engine('html', require('ejs').renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -22,23 +23,15 @@ app.use(methodOverride());
 if (app.get('env') === 'development') {
   console.log('Configure settings for development.');
   app.use(morgan('combined'));
-  app.use(express.static(root));
+  app.use(express.static(__dirname));
   app.use(errorhandler({ dumpExceptions: true, showStack: true}));
 }
 
 if (app.get('env') === 'production') {
   var oneYear = 31557600000;
-  app.use(express.static(root, {maxAge: oneYear}));
+  app.use(express.static(__dirname, {maxAge: oneYear}));
   app.use(express.errorHandler());
 }
-
-// app.get('/', function (req, res) {
-//   res.render('index.html');
-// });
-
-// app.get('/cv/?', function (req, res) {
-//   res.render('cv.html');
-// });
 
 app.get('/pinboard/feed/', function (req, res) {
   var options = {

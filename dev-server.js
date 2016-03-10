@@ -19,7 +19,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/', function(req, res) {
-  res.render(path.join(__dirname, pkg.config.buildDir + '/index.html'));
+  res.sendFile(path.join(__dirname, pkg.config.buildDir + '/index.html'));
 });
 
 app.listen(port, host, function(err) {

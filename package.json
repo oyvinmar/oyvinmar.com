@@ -35,6 +35,7 @@
     "webpack": "webpack --production --colors --progress --config ./webpack.config.js --bail",
     "start-dev-server": "webpack-dev-server --output-pathinfo --inline",
     "build": "npm run webpack",
+    "postbuild": "cpy app.js $npm_package_config_buildDir/ && cpy server.js $npm_package_config_buildDir/",
     "lint": "eslint --ext .js --ext .jsx ./app && echo No linting errors."
   },
   "engines": {
@@ -52,6 +53,8 @@
     "babel-runtime": "6.5.0",
     "compression": "1.6.1",
     "core-js": "2.1.1",
+    "cpy": "4.0.0",
+    "cpy-cli": "^1.0.0",
     "css-loader": "0.23.1",
     "errorhandler": "1.4.3",
     "eslint": "2.2.0",
