@@ -13,14 +13,14 @@ import configureStore from './config/configureStore';
 import HomePage from './home/HomePage';
 import CVPage from './cv/CVPage';
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(hashHistory, store);
 
 render(
   <Provider store={store}>
      <Router history={history}>
        <Route path="/">
         <IndexRoute component={HomePage}/>
-        <Route path="cv/" component={CVPage}/>
+        <Route component={CVPage} path="cv/"/>
       </Route>
     <HomePage/>
     </Router>

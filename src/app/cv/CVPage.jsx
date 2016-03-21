@@ -10,13 +10,13 @@ const CV = ({hash}) => {
       </header>
       <section className="row">
         <figure className="col-md-3">
-          <img id="headshot" src={`/img/Oyvind-Marthinsen-${hash}.jpg`} alt="Øyvind Marthinsen"/>
+          <img alt="Øyvind Marthinsen" id="headshot" src={`/img/Oyvind-Marthinsen-${hash}.jpg`}/>
         </figure>
         <article className="col-md-9">
           <header>
             <h2>Profil</h2>
           </header>
-          <dl className="dl-horizontal" style={{"margin": "20px 0 30px 0"}}>
+          <dl className="dl-horizontal" style={{'margin': '20px 0 30px 0'}}>
             <dt>Telefon:</dt>
             <dd>97061833</dd>
             <dt>Fødselsdato:</dt>

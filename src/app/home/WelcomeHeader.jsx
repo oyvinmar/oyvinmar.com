@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const WelcomeHeader = () => {
   return (
-    <section id="home" className="welcome">
+    <section className="welcome" id="home">
         <div className="overlay">
         </div>
         <div className="container-fluid text-center">
