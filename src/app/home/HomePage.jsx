@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import $ from 'jquery';
 window.jQuery = $;
-import 'bootstrap-sass/assets/javascripts/bootstrap/collapse';
 import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
