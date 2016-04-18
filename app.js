@@ -30,7 +30,7 @@ if (app.get('env') === 'development') {
 if (app.get('env') === 'production') {
   var oneYear = 31557600000;
   app.use(express.static(__dirname, {maxAge: oneYear}));
-  app.use(express.errorHandler());
+  app.use(errorhandler());
 }
 
 app.get('/pinboard/feed/', function (req, res) {
