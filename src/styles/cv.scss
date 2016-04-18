@@ -5,29 +5,28 @@ $line-height-base: 1.428571429;
 // 20/14
 $font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
-$fontAwesomePath: '/fonts/';
+$fa-font-path: "../../node_modules/font-awesome/fonts" !default;
 $component-offset-horizontal: 260px !default;
 //$grid-float-breakpoint: 1024px !default;
 
 // Core variables and mixins
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 $grid-float-breakpoint: $screen-md-min;
-
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/mixins";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
 // Reset
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/normalize";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/print";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print";
 
 // Core CSS
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/scaffolding";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/type";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/code";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/grid";
-@import "../../bower_components/fontawesome/scss/font-awesome";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/utilities";
-@import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/responsive-utilities";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../../node_modules/font-awesome/scss/font-awesome";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
 
 //@media (min-width: 1000px) {
   .dl-horizontal {
@@ -50,3 +49,9 @@ $grid-float-breakpoint: $screen-md-min;
 //    }
 //  }
 //}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
