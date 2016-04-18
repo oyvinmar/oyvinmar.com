@@ -9,10 +9,10 @@ Source code of my personal homepage
 4. `export TWITTER_CONSUMER_SECRET=XXX`
 5. `export TWITTER_ACCESS_TOKEN=XXX`
 6. `export TWITTER_ACCESS_TOKEN_SECTRET=XXX`
-7. `gulp`
+7. `npm start`
 
 #Deploy
 
-1. `gulp build --release`
+1. `npm run build`
 2. Commit changes
 3. git push heroku `git subtree split --prefix dist master`:master --force
