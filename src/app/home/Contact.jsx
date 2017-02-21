@@ -19,9 +19,8 @@ class Contact extends Component {
           </header>
           <div className="row">
             <div className="col-md-12">
-              <p>You can reach me on all the social networks listed above. Or if you prefer old school email:
-                <span> </span>
-                <span id="email"></span>
+              <p>You can reach me on all the social networks listed above. Or if you prefer old school email:&nbsp;
+                <span id="email" />
               </p>
             </div>
           </div>

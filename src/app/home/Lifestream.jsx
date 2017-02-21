@@ -36,7 +36,7 @@ class Lifestream extends Component {
               <div>
                 <EventList events={events} numberToDisplay={numberOfVisibleEvents}/>
                 <button className="btn btn-primary show-more" onClick={this.showMore}>
-                  <i className="fa fa-plus"></i>
+                  <i className="fa fa-plus" />
                   <span> Show More</span>
                 </button>
               </div>

@@ -15,7 +15,7 @@ const Event = ({event}) => {
           <time className="published" title>{ event.timestamp.toLocaleString() }</time>
         </a>
       </div>
-      <footer></footer>
+      <footer />
     </article>
   );
 };

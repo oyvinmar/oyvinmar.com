@@ -15,7 +15,7 @@ class NavigationBar extends Component {
               onClick={toogleNavBarLinks}
               type="button">
               <span className="sr-only">Toggle navigation</span>
-              <i className="fa fa-bars"></i>
+              <i className="fa fa-bars" />
             </button>
             <a className="navbar-brand" href="#">oyvinmar.com</a>
           </div>
