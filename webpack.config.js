@@ -2,7 +2,6 @@ var path = require('path');
 var util = require('util');
 var crypto = require('crypto');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var pkg = require('./package.json');
 
@@ -24,12 +23,9 @@ var hash = md5((new Date).getTime() + '');
 var cssBundle = path.join('css', util.format('[name].%s.css', hash));
 var jsBundle = path.join('js', util.format('[name].%s.js', hash));
 
-var cssExtractTextPlugin = new ExtractTextPlugin(cssBundle, {
-  allChunks: true
-});
+var cssExtractTextPlugin = new ExtractTextPlugin(cssBundle);
 
 var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery'
@@ -40,7 +36,7 @@ var plugins = [
 if (DEBUG) {
   plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   );
 } else {
   plugins.push(
@@ -54,20 +50,15 @@ if (DEBUG) {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
-    }),
-    new webpack.NoErrorsPlugin()
+    })
   );
 }
 
-var loaders = [
+var rules = [
   {
     test: /\.jsx?|\.js?$/,
     exclude: /node_modules/,
-    loaders: ['babel']
-  },
-  {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+    loaders: ['babel-loader']
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$|\.ico|\.svg$|\.woff$|\.ttf$/,
@@ -100,18 +91,20 @@ var loaders = [
     ].join('!')
   },
   {
+    test: /\.css$/,
+    loader: ExtractTextPlugin.extract(
+      {
+        fallback: 'style-loader',
+        use:'css-loader!postcss-loader'
+      })
+  },
+  {
     test: /\.scss$/,
-    loader: cssExtractTextPlugin.extract('style-loader', [
-      'css-loader?sourceMap',
-      'postcss-loader',
-      'sass-loader?' + [
-        'sourceMap',
-        'sourceMapContents=true',
-        'outputStyle=expanded',
-        'includePaths[]=' + path.resolve(__dirname, './app/scss'),
-        'includePaths[]=' + path.resolve(__dirname, './node_modules')
-      ].join('&')
-    ].join('!'))
+    loader: ExtractTextPlugin.extract(
+      {
+        fallback: 'style-loader',
+        use: ['css-loader', 'postcss-loader', 'sass-loader']
+      })
   }
 ];
 
@@ -126,8 +119,6 @@ if (DEBUG) {
 
 var config = {
   context: path.join(__dirname, 'src', 'app'),
-  cache: DEBUG,
-  debug: DEBUG,
   target: 'web',
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
   entry: entry,
@@ -138,15 +129,23 @@ var config = {
     pathinfo: false
   },
   module: {
-    loaders: loaders
+    rules
   },
-  postcss: [
-    autoprefixer
-  ],
   plugins: plugins,
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx']
-  }
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    extensions: [
+      '.js',
+      '.json',
+      '.jsx',
+      '.css',
+    ],
+    mainFields: [
+      'jsnext:main',
+      'browser',
+      'main',
+    ],
+  },
 };
 
 module.exports = config;
