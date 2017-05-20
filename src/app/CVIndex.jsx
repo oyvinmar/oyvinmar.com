@@ -1,6 +1,3 @@
-import 'babel-polyfill';
-
-import './cv.html';
 import '../styles/cv.scss';
 import './img/index.js';
 
@@ -10,6 +7,6 @@ import CVPage from './cv/CVPage';
 const hash = window.hash;
 
 render(
-  <CVPage hash={hash} />,
+  <CVPage />,
   document.getElementById('react')
 );

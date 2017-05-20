@@ -104,7 +104,7 @@ export default class HomePage extends Component {
       <div id="content">
         <WelcomeHeader/>
         <NavigationBar/>
-        <About hash={window.hash}/>
+        <About/>
         <Lifestream/>
         <Elsewhere/>
         <Contact/>

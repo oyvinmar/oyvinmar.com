@@ -6,3 +6,4 @@ app/less/base.css
 *.iml
 dist
 build
+.vscode

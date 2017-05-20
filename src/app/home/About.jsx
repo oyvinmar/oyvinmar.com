@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const About = ({hash}) => {
+const About = () => {
   return (
     <div className="section" id="about">
         <section className="container">
@@ -10,7 +10,7 @@ const About = ({hash}) => {
             </header>
             <section className="row">
               <div className="col-md-12">
-                <img alt="Øyvind Marthinsen" id="headshot" src={`/img/Oyvind-Marthinsen-${hash}.jpg`}/>
+                <img alt="Øyvind Marthinsen" id="headshot" src={'/assets/img/Oyvind-Marthinsen.jpg'}/>
               </div>
             </section>
             <section className="row">
@@ -28,7 +28,6 @@ const About = ({hash}) => {
 };
 
 About.propTypes = {
-  hash: PropTypes.string.isRequired
 };
 
 export default About;

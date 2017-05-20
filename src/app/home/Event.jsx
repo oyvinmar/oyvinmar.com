@@ -4,7 +4,7 @@ const Event = ({event}) => {
   return (
     <article className="entry row">
       <div className="col-xs-3 col-sm-1">
-        <img alt={ event.service_name + 'logo'} src={ '/img/' + event.service_name + `64-${window.hash}.png`}/>
+        <img alt={ event.service_name + 'logo'} src={ '/assets/img/' + event.service_name + '64.png'}/>
       </div>
       <div className="col-xs-9 col-sm-11">
         <header>
