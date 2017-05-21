@@ -41,13 +41,6 @@ module.exports = require('./webpack.config.base')({
         screw_ie8: true, // drop IE 6-8 specific optimizations
       },
     }),
-    // new BundleAnalyzerPlugin(
-    //   {
-    //     analyzerMode: 'static',
-    //     openAnalyzer: false,
-    //     reportFilename: 'bundle-analyzer-report.html',
-    //   }),
-    // new ManifestPlugin({ fileName: 'assets.json' }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html',
@@ -60,12 +53,12 @@ module.exports = require('./webpack.config.base')({
       excludeChunks: ['app'],
       inject: true,
     }),
-    new BundleAnalyzerPlugin(
-      {
-        analyzerMode: 'static',
-        openAnalyzer: false,
-        reportFilename: 'bundle-analyzer-report.html',
-      }),
+    // new BundleAnalyzerPlugin(
+    //   {
+    //     analyzerMode: 'static',
+    //     openAnalyzer: false,
+    //     reportFilename: 'bundle-analyzer-report.html',
+    //   }),
 
     // Extract the CSS into a separate file
     new ExtractTextPlugin('[name].[contenthash].css'),
