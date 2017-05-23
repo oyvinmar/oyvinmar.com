@@ -31,6 +31,7 @@
     "clean": "rimraf $npm_package_config_buildDir && mkdir $npm_package_config_buildDir",
     "start": "NODE_ENV=development node dev-server",
     "now-start": "NODE_ENV=production node build/server",
+    "now-build": "echo",
     "webpack": "NODE_ENV=production webpack --config webpack.config.prod.js -p --bail",
     "start-dev-server": "webpack-dev-server --output-pathinfo --inline",
     "build": "npm run webpack",
