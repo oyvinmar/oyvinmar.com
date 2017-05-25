@@ -8,7 +8,8 @@ $headingsFontFamily: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Gene
 $headingsFontFamily: $font-family-sans-serif;
 $subNavbarLinkColor: #CCCCCC;
 $subNavbarLinkColorHover: darken($subNavbarLinkColor, 15%);
-$fa-font-path: "../../node_modules/font-awesome/fonts" !default;
+// $fa-font-path: "../../node_modules/font-awesome/fonts" !default;
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default;
 $navbar-default-bg: #26292E;
 $navbar-default-link-color: #CCC;
 $navbar-default-link-hover-color: #ff7857;

@@ -5,7 +5,8 @@ $line-height-base: 1.428571429;
 // 20/14
 $font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
-$fa-font-path: "../../node_modules/font-awesome/fonts" !default;
+// $fa-font-path: "../../node_modules/font-awesome/fonts" !default;
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default;
 $component-offset-horizontal: 260px !default;
 //$grid-float-breakpoint: 1024px !default;
 

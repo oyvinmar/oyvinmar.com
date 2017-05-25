@@ -7,3 +7,4 @@ app/less/base.css
 dist
 build
 .vscode
+.DS_Store
