@@ -5,7 +5,6 @@ var https = require('https');
 var OAuth = require('oauth');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
-var morgan = require('morgan');
 var compression = require('compression');
 var errorhandler = require('errorhandler');
 var root = __dirname;
@@ -22,7 +21,6 @@ app.use(methodOverride());
 
 if (app.get('env') === 'development') {
   console.log('Configure settings for development.');
-  app.use(morgan('combined'));
   app.use(express.static(__dirname));
   app.use(errorhandler({ dumpExceptions: true, showStack: true}));
 }
