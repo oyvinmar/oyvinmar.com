@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-
 import $ from 'jquery';
-window.jQuery = $;
 import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
-
-require('waypoints/lib/jquery.waypoints');
-require('waypoints/lib/shortcuts/sticky');
 
 import WelcomeHeader from './WelcomeHeader';
 import NavigationBar from './NavigationBar';
@@ -15,18 +10,25 @@ import About from './About';
 import Elsewhere from './Elsewhere';
 import Contact from './Contact';
 
-(function () {
-  var sticky;
-  var FancyShmancy = function FancyShmancy() {
+window.jQuery = $;
+
+require('waypoints/lib/jquery.waypoints');
+require('waypoints/lib/shortcuts/sticky');
+
+
+(function load() {
+  let sticky;
+
+  const FancyShmancy = function FancyShmancy() {
     this.init();
   };
 
-  FancyShmancy.prototype.init = function () {
+  FancyShmancy.prototype.init = function init() {
     this.fullscreenImage();
     this.initOnResize();
   };
 
-  FancyShmancy.prototype.onLoad = function () {
+  FancyShmancy.prototype.onLoad = function onLoad() {
 
     FancyShmancy.mobileMenuClone = $('#nav').clone().attr('id', 'navigation-mobile');
 
@@ -36,8 +38,8 @@ import Contact from './Contact';
     this.initScrollSpy();
   };
 
-  FancyShmancy.prototype.stickyNav = function () {
-    var windowWidth = $(window).width();
+  FancyShmancy.prototype.stickyNav = () => {
+    const windowWidth = $(window).width();
 
     // Show Menu or Hide the Menu
     if (windowWidth <= 768 && sticky) {
@@ -52,13 +54,13 @@ import Contact from './Contact';
     }
   };
 
-  FancyShmancy.prototype.fullscreenImage = function () {
+  FancyShmancy.prototype.fullscreenImage = () => {
     $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
   };
 
-  FancyShmancy.prototype.initOnResize = function () {
-    var self = this;
-    $(window).on('resize', function () {
+  FancyShmancy.prototype.initOnResize = function initOnResize() {
+    const self = this;
+    $(window).on('resize', () => {
       if ($('.welcome').length) {
         self.fullscreenImage();
       }
@@ -67,25 +69,25 @@ import Contact from './Contact';
     });
   };
 
-  FancyShmancy.prototype.addClickListeners = function () {
-    $('.nav a').click(function (event) {
+  FancyShmancy.prototype.addClickListeners = function addClickListeners() {
+    $('.nav a').click(function click(event) {
       event.preventDefault();
-      var idStr = $(this).attr('href');
+      const idStr = $(this).attr('href');
       $('html,body').animate({scrollTop: ($(idStr).offset().top - 30)}, 500);
     });
 
-    $('.brand').click(function (event) {
+    $('.brand').click((event) => {
       event.preventDefault();
       $('html,body').animate({scrollTop: 0}, 500);
     });
 
-    $('#toggle-menu').click(function () {
+    $('#toggle-menu').click(() => {
       $('#links').toggle();
     });
   };
 
-  FancyShmancy.prototype.initScrollSpy = function () {
-    var $spy = $('body');
+  FancyShmancy.prototype.initScrollSpy = () => {
+    const $spy = $('body');
     $spy.scrollspy($spy.data());
   };
 
@@ -102,12 +104,12 @@ export default class HomePage extends Component {
   render() {
     return (
       <div id="content">
-        <WelcomeHeader/>
-        <NavigationBar/>
-        <About/>
-        <Lifestream/>
-        <Elsewhere/>
-        <Contact/>
+        <WelcomeHeader />
+        <NavigationBar />
+        <About />
+        <Lifestream />
+        <Elsewhere />
+        <Contact />
       </div>
     );
   }

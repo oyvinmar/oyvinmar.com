@@ -15,7 +15,7 @@ class Contact extends Component {
         <div className="container">
           <header className="row section-header">
             <h2>Contact</h2>
-            <hr/>
+            <hr />
           </header>
           <div className="row">
             <div className="col-md-12">

@@ -1,10 +1,10 @@
-import '../styles/cv.scss';
-import './img/index.js';
-
 import React from 'react';
 import { render } from 'react-dom';
+
+import '../styles/cv.scss';
+import './img/index';
+
 import CVPage from './cv/CVPage';
-const hash = window.hash;
 
 render(
   <CVPage />,

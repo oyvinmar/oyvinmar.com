@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import EventList from './EventList';
 import { connect } from 'react-redux';
+
+import { EventShape } from '../shapes';
+import EventList from './EventList';
 import { fetchAllStreams, showMoreEvents } from '../actions/lifestreamActions';
 
 class Lifestream extends Component {
@@ -9,7 +11,7 @@ class Lifestream extends Component {
     this.showMore = this.showMore.bind(this);
   }
 
-  componentDidMount() {
+componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchAllStreams());
   }
@@ -26,15 +28,15 @@ class Lifestream extends Component {
         <div className="container">
           <header className="row section-header">
             <h2>Lifestream</h2>
-            <hr/>
+            <hr />
           </header>
           <section className="row">
             <div className="col-md-12">
               <p className="pretext">
-                If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...
+                If this content is up-to-date, I‘m probably still alive. If not, lets hope it is a bug in my code...
               </p>
               <div>
-                <EventList events={events} numberToDisplay={numberOfVisibleEvents}/>
+                <EventList events={events} numberToDisplay={numberOfVisibleEvents} />
                 <button className="btn btn-primary show-more" onClick={this.showMore}>
                   <i className="fa fa-plus" />
                   <span> Show More</span>
@@ -50,7 +52,7 @@ class Lifestream extends Component {
 
 Lifestream.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  events: PropTypes.array.isRequired,
+  events: PropTypes.arrayOf(EventShape).isRequired,
   numberOfVisibleEvents: PropTypes.number.isRequired
 };
 

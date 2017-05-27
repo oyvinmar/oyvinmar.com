@@ -1,13 +1,13 @@
-var PORT = 3000;
-var express = require('express');
-var app = module.exports = express();
-var https = require('https');
-var OAuth = require('oauth');
-var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var errorhandler = require('errorhandler');
-var root = __dirname;
+const express = require('express');
+const app = module.exports = express();
+const https = require('https');
+const OAuth = require('oauth');
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const errorhandler = require('errorhandler');
+
+const PORT = 3000;
 
 console.log('Configure default settings.');
 app.set('port', process.env.PORT || PORT);
@@ -26,13 +26,13 @@ if (app.get('env') === 'development') {
 }
 
 if (app.get('env') === 'production') {
-  var oneYear = 31557600000;
+  const oneYear = 31557600000;
   app.use(express.static(__dirname, {maxAge: oneYear}));
   app.use(errorhandler());
 }
 
-app.get('/pinboard/feed/', function (req, res) {
-  var options = {
+app.get('/pinboard/feed/', (req, res) => {
+  const options = {
     host: 'feeds.pinboard.in',
     port: 443,
     path: '/json/v1/u:oyvinmar/'
@@ -40,47 +40,47 @@ app.get('/pinboard/feed/', function (req, res) {
   proxy_responder(res, options);
 });
 
-app.get('/twitter/feed/', function (req, res) {
-  var oauth = new OAuth.OAuth(
+app.get('/twitter/feed/', (req, res) => {
+  const oauth = new OAuth.OAuth(
     'https://api.twitter.com/oauth/request_token',
     'https://api.twitter.com/oauth/access_token',
-    process.env['TWITTER_CONSUMER_KEY'],
-    process.env['TWITTER_CONSUMER_SECRET'],
+    process.env.TWITTER_CONSUMER_KEY,
+    process.env.TWITTER_CONSUMER_SECRET,
     '1.0A',
     null,
     'HMAC-SHA1'
   );
 
-  var options = {
+  const options = {
     host: 'https://api.twitter.com',
     path: '/1.1/statuses/user_timeline.json',
-    access_token: process.env['TWITTER_ACCESS_TOKEN'],
-    access_token_secret: process.env['TWITTER_ACCESS_TOKEN_SECRET']
+    access_token: process.env.TWITTER_ACCESS_TOKEN,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   };
   oauth_proxy_responder(oauth, res, options);
 });
 
-app.get('/swarm/feed/', function (req, res) {
-  var options = {
+app.get('/swarm/feed/', (req, res) => {
+  const options = {
     host: 'api.foursquare.com',
     port: 443,
-    path: '/v2/users/self/checkins?oauth_token=' + process.env['FOURSQUARE_TOKEN'] + '&m=swarm&v=20141808'
+    path: `/v2/users/self/checkins?oauth_token=${  process.env.FOURSQUARE_TOKEN  }&m=swarm&v=20141808`
   };
   proxy_responder(res, options);
 });
 
-app.get('/github/feed/', function (req, res) {
-  var options = {
+app.get('/github/feed/', (req, res) => {
+  const options = {
     host: 'api.github.com',
     port: 443,
-    path: '/users/oyvinmar/events?access_token=' + process.env['GITHUB_TOKEN'],
+    path: `/users/oyvinmar/events?access_token=${  process.env.GITHUB_TOKEN}`,
     headers: {'User-Agent': 'oyvinmar'}
   };
   proxy_responder(res, options);
 });
 
 var oauth_proxy_responder = function (oauth, res, options) {
-  //Check cache
+  // Check cache
   if (handleCachedResponse(options.host, res)) {
     return;
   }
@@ -89,7 +89,7 @@ var oauth_proxy_responder = function (oauth, res, options) {
     options.host + options.path,
     options.access_token,
     options.access_token_secret,
-    function (e, data, response) {
+    (e, data, response) => {
       if (e) {
         console.error(e);
       }
@@ -102,27 +102,27 @@ var oauth_proxy_responder = function (oauth, res, options) {
 };
 
 var proxy_responder = function (res, options) {
-  //Check cache
+  // Check cache
   if (handleCachedResponse(options.host, res)) {
     return;
   }
-  https.get(options, function (response) {
-    //console.log("Got response: " + response.statusCode);
+  https.get(options, (response) => {
+    // console.log("Got response: " + response.statusCode);
     handle_response(response, res, options.host);
-  }).on('error', function (e) {
-    console.log('Got error: ' + e.message);
+  }).on('error', (e) => {
+    console.log(`Got error: ${  e.message}`);
   });
 };
 
 var handle_response = function (response, res, key) {
 
-  var data = '';
-  response.on('data', function (chunk) {
+  let data = '';
+  response.on('data', (chunk) => {
     data += chunk;
   });
 
   response.setEncoding('utf8');
-  response.on('end', function () {
+  response.on('end', () => {
     cacheUpdate(key, Date.now(), data);
     res.set(response.headers);
     res.set('Content-Type', 'application/json');
@@ -130,9 +130,9 @@ var handle_response = function (response, res, key) {
   });
 };
 
-var cache = {};
+const cache = {};
 
-var CacheObject = function (timestamp, data) {
+const CacheObject = function (timestamp, data) {
   this.timestamp = timestamp;
   this.data = data;
   return this;
@@ -142,12 +142,12 @@ var cacheUpdate = function (key, timestamp, data) {
   cache[key] = new CacheObject(timestamp, data);
 };
 
-var cacheLookup = function (key) {
+const cacheLookup = function (key) {
   return cache[key];
 };
 
 var handleCachedResponse = function (key, res) {
-  var co = cacheLookup(key);
+  const co = cacheLookup(key);
   if (co && (Date.now() - co.timestamp) < 1000 * 60 * 15) {
     res.set('Content-Type', 'application/json');
     res.send(co.data);

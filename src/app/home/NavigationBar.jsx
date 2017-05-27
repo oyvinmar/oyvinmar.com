@@ -1,23 +1,23 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toogleNavBarLinks } from '../actions/uiActions';
+import * as actions from '../actions/uiActions';
 
-class NavigationBar extends Component {
-  render (){
-    const { expanded, toogleNavBarLinks } = this.props;
+const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
     const navClassString = `collapse navbar-collapse${expanded ? ' in' : ''}`;
     return (
-      <nav className="navbar navbar-default" id="nav" role="navigation">
+      <nav className="navbar navbar-default" id="nav" >
         <div className="container-fluid">
           <div className="navbar-header">
-            <button className="navbar-toggle"
+            <button
+              className="navbar-toggle"
               onClick={toogleNavBarLinks}
-              type="button">
+              type="button"
+            >
               <span className="sr-only">Toggle navigation</span>
               <i className="fa fa-bars" />
             </button>
-            <a className="navbar-brand" href="#">oyvinmar.com</a>
+            <a className="navbar-brand" href="/">oyvinmar.com</a>
           </div>
           <div className={navClassString}>
             <ul className="nav navbar-nav">
@@ -31,24 +31,19 @@ class NavigationBar extends Component {
         </div>
       </nav>
     );
-  }
-}
+};
 
 NavigationBar.propTypes = {
   toogleNavBarLinks: PropTypes.func.isRequired,
   expanded: PropTypes.bool.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    toogleNavBarLinks,
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    toogleNavBarLinks: actions.toogleNavBarLinks,
   }, dispatch);
-};
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     expanded: state.ui.isNavBarExpanded
-  };
-};
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

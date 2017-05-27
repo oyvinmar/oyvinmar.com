@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
+import { EventShape } from '../shapes';
 import Event from './Event' ;
 
 const EventList = ({events, numberToDisplay}) => {
   const renderEvents = events
-  .sort(function (a, b) {
-    return b.timestamp.getTime() - a.timestamp.getTime();
-  })
+  .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
   .slice(0, numberToDisplay)
-  .map(function (event) {
-    return (
-      <Event event={event} key={event.id} />
-    );
-  });
+  .map((event) => (
+    <Event event={event} key={event.id} />
+    ));
   return (
     <div>
       {renderEvents}
@@ -20,7 +17,7 @@ const EventList = ({events, numberToDisplay}) => {
 };
 
 EventList.propTypes = {
-  events: PropTypes.array.isRequired,
+  events: PropTypes.arrayOf(EventShape).isRequired,
   numberToDisplay: PropTypes.number.isRequired
 };
 
