@@ -15,7 +15,6 @@ window.jQuery = $;
 require('waypoints/lib/jquery.waypoints');
 require('waypoints/lib/shortcuts/sticky');
 
-
 (function load() {
   let sticky;
 
@@ -29,8 +28,9 @@ require('waypoints/lib/shortcuts/sticky');
   };
 
   FancyShmancy.prototype.onLoad = function onLoad() {
-
-    FancyShmancy.mobileMenuClone = $('#nav').clone().attr('id', 'navigation-mobile');
+    FancyShmancy.mobileMenuClone = $('#nav')
+      .clone()
+      .attr('id', 'navigation-mobile');
 
     this.fullscreenImage();
     this.addClickListeners();
@@ -49,13 +49,13 @@ require('waypoints/lib/shortcuts/sticky');
       sticky = new Waypoint.Sticky({
         element: $('.navbar'),
         stuckClass: 'navbar-fixed-top',
-        wrapper: '<div class="sticky-wrapper" />'
+        wrapper: '<div class="sticky-wrapper" />',
       });
     }
   };
 
   FancyShmancy.prototype.fullscreenImage = () => {
-    $('.welcome').css({height: ($(window).height() - $('.navbar').height())});
+    $('.welcome').css({ height: $(window).height() - $('.navbar').height() });
   };
 
   FancyShmancy.prototype.initOnResize = function initOnResize() {
@@ -65,7 +65,6 @@ require('waypoints/lib/shortcuts/sticky');
         self.fullscreenImage();
       }
       self.stickyNav();
-
     });
   };
 
@@ -73,12 +72,12 @@ require('waypoints/lib/shortcuts/sticky');
     $('.nav a').click(function click(event) {
       event.preventDefault();
       const idStr = $(this).attr('href');
-      $('html,body').animate({scrollTop: ($(idStr).offset().top - 30)}, 500);
+      $('html,body').animate({ scrollTop: $(idStr).offset().top - 30 }, 500);
     });
 
-    $('.brand').click((event) => {
+    $('.brand').click(event => {
       event.preventDefault();
-      $('html,body').animate({scrollTop: 0}, 500);
+      $('html,body').animate({ scrollTop: 0 }, 500);
     });
 
     $('#toggle-menu').click(() => {

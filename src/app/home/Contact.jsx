@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 class Contact extends Component {
-
   componentDidMount() {
     const name = 'oyvinmar';
     const domain = 'gmail.com';
     const addr = `${name}@${domain}`;
-    $('#email').append(`<i class="fa fa-envelope"></i> <a href="mailto:${addr}">${addr}</a>`);
+    $('#email').append(
+      `<i class="fa fa-envelope"></i> <a href="mailto:${addr}">${addr}</a>`,
+    );
   }
 
   render() {
@@ -19,21 +20,21 @@ class Contact extends Component {
           </header>
           <div className="row">
             <div className="col-md-12">
-              <p>You can reach me on all the social networks listed above. Or if you prefer old school email:&nbsp;
+              <p>
+                You can reach me on all the social networks listed above. Or if you prefer old school email:&nbsp;
                 <span id="email" />
               </p>
             </div>
           </div>
           <footer className="row">
-            <p>&copy; 2014 Øyvind Marthinsen</p>
+            <p>© 2014 Øyvind Marthinsen</p>
           </footer>
         </div>
       </section>
     );
   }
-};
+}
 
-Contact.propTypes = {
-};
+Contact.propTypes = {};
 
 export default Contact;

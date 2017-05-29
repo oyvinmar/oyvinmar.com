@@ -6,7 +6,4 @@ import './img/index';
 
 import CVPage from './cv/CVPage';
 
-render(
-  <CVPage />,
-  document.getElementById('react')
-);
+render(<CVPage />, document.getElementById('react'));

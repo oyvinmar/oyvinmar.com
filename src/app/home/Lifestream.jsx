@@ -11,7 +11,7 @@ class Lifestream extends Component {
     this.showMore = this.showMore.bind(this);
   }
 
-componentDidMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchAllStreams());
   }
@@ -36,8 +36,13 @@ componentDidMount() {
                 If this content is up-to-date, I‘m probably still alive. If not, lets hope it is a bug in my code...
               </p>
               <div>
-                <EventList events={events} numberToDisplay={numberOfVisibleEvents} />
-                <button className="btn btn-primary show-more" onClick={this.showMore}>
+                <EventList
+                  events={events}
+                  numberToDisplay={numberOfVisibleEvents}
+                />
+                <button
+                  className="btn btn-primary show-more"
+                  onClick={this.showMore}>
                   <i className="fa fa-plus" />
                   <span> Show More</span>
                 </button>
@@ -53,13 +58,13 @@ componentDidMount() {
 Lifestream.propTypes = {
   dispatch: PropTypes.func.isRequired,
   events: PropTypes.arrayOf(EventShape).isRequired,
-  numberOfVisibleEvents: PropTypes.number.isRequired
+  numberOfVisibleEvents: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     events: state.lifestream.events,
-    numberOfVisibleEvents: state.lifestream.numberOfVisibleEvents
+    numberOfVisibleEvents: state.lifestream.numberOfVisibleEvents,
   };
 }
 

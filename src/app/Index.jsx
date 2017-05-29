@@ -15,5 +15,5 @@ render(
   <Provider store={store}>
     <HomePage />
   </Provider>,
-  document.getElementById('react')
+  document.getElementById('react'),
 );

@@ -11,6 +11,6 @@ const WelcomeHeader = () => (
       </header>
     </div>
   </section>
-  );
+);
 
 export default WelcomeHeader;
