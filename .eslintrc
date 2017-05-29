@@ -6,7 +6,8 @@
   },
   "extends": [
     "airbnb",
-    "prettier"
+    "prettier",
+    "prettier/react"
   ],
   "globals": {
     "$": true,
@@ -14,6 +15,7 @@
     "jQuery": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": 0
   }
 }
