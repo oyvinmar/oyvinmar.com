@@ -1,4 +1,6 @@
 # oyvinmar.com
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/oyvinmar/oyvinmar.com.svg)](https://greenkeeper.io/)
 Source code of my personal homepage
 
 #Run local server
