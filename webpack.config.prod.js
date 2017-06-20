@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = require('./webpack.config.base')({
   // In production, we skip all hot-reloading stuff
@@ -35,7 +36,7 @@ module.exports = require('./webpack.config.base')({
 
   plugins: [
     // Minify and optimize the JavaScript
-    new webpack.optimize.UglifyJsPlugin({
+    new UglifyJSPlugin({
       compress: {
         warnings: false, // ...but do not show warnings in the console (there is a lot of them)
         screw_ie8: true, // drop IE 6-8 specific optimizations
