@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WelcomeHeader = () => (
+const WelcomeHeader = () =>
   <section className="welcome" id="home">
     <div className="overlay" />
     <div className="container-fluid text-center">
@@ -10,7 +10,6 @@ const WelcomeHeader = () => (
         <h2>Welcome to my homepage.</h2>
       </header>
     </div>
-  </section>
-);
+  </section>;
 
 export default WelcomeHeader;

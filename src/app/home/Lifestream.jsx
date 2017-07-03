@@ -33,7 +33,8 @@ class Lifestream extends Component {
           <section className="row">
             <div className="col-md-12">
               <p className="pretext">
-                If this content is up-to-date, I‘m probably still alive. If not, lets hope it is a bug in my code...
+                If this content is up-to-date, I‘m probably still alive. If not,
+                lets hope it is a bug in my code...
               </p>
               <div>
                 <EventList

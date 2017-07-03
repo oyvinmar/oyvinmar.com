@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About = () => (
+const About = () =>
   <div className="section" id="about">
     <section className="container">
       <header className="row section-header">
@@ -19,17 +19,19 @@ const About = () => (
       <section className="row">
         <div className="col-sm-offset-3 col-sm-6">
           <p>
-            I‘m a Norwegian developer and web enthusiast living in Oslo. Currently I‘m working as a consultant at
-            {' '}
-            <a href="http://knowit.no" rel="external">Knowit</a>
-            , where I‘m able to work on cool things. In my spear time I enjoy watching football (the British kind), and love going skiing in the winter.
-            {' '}
+            I‘m a Norwegian developer and web enthusiast living in Oslo.
+            Currently I‘m working as a consultant at{' '}
+            <a href="http://knowit.no" rel="external">
+              Knowit
+            </a>
+            , where I‘m able to work on cool things. In my spear time I enjoy
+            watching football (the British kind), and love going skiing in the
+            winter.{' '}
           </p>
         </div>
       </section>
     </section>
-  </div>
-);
+  </div>;
 
 About.propTypes = {};
 

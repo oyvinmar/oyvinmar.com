@@ -54,13 +54,18 @@ function mapGithubEvents(events) {
         description = `Starred ${createGithubLink(githubEvent.repo.name)}`;
       } else if (githubEvent.type === 'PushEvent') {
         const commitText = plural(' commit', githubEvent.payload.distinct_size);
-        description = `Pushed ${commitText} to ${createGithubLink(githubEvent.repo.name)}`;
+        description = `Pushed ${commitText} to ${createGithubLink(
+          githubEvent.repo.name,
+        )}`;
       } else if (
         githubEvent.type === 'PullRequestEvent' &&
         githubEvent.payload.action === 'closed'
       ) {
         const pullRequest = githubEvent.payload.pull_request;
-        description = `Closed pull request <a href="${pullRequest.html_url}">${githubEvent.repo.name}#${pullRequest.number}</a> from ${createGithubLink(pullRequest.user.login)}`;
+        description = `Closed pull request <a href="${pullRequest.html_url}">${githubEvent
+          .repo.name}#${pullRequest.number}</a> from ${createGithubLink(
+          pullRequest.user.login,
+        )}`;
       }
       // TODO: Handle create event
       return createEvent(
@@ -131,8 +136,8 @@ export default function lifestream(
       });
     case SHOW_MORE_EVENTS:
       return Object.assign({}, state, {
-        numberOfVisibleEvents: state.numberOfVisibleEvents +
-          action.additionalEventsToShow,
+        numberOfVisibleEvents:
+          state.numberOfVisibleEvents + action.additionalEventsToShow,
       });
     default:
       return state;

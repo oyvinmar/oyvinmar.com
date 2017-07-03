@@ -16,15 +16,27 @@ const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
             <span className="sr-only">Toggle navigation</span>
             <i className="fa fa-bars" />
           </button>
-          <a className="navbar-brand" href="/">oyvinmar.com</a>
+          <a className="navbar-brand" href="/">
+            oyvinmar.com
+          </a>
         </div>
         <div className={navClassString}>
           <ul className="nav navbar-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About me</a></li>
-            <li><a href="#lifestream">Lifestream</a></li>
-            <li><a href="#elsewhere">Elsewhere</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#about">About me</a>
+            </li>
+            <li>
+              <a href="#lifestream">Lifestream</a>
+            </li>
+            <li>
+              <a href="#elsewhere">Elsewhere</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
           </ul>
         </div>
       </div>
