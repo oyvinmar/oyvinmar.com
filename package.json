@@ -57,7 +57,7 @@
     "cpy": "^5.0.0",
     "cpy-cli": "^1.0.0",
     "css-loader": "^0.28.1",
-    "eslint": "^3.16.0",
+    "eslint": "^4.1.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-prettier": "^2.1.1",
     "eslint-plugin-import": "^2.3.0",
