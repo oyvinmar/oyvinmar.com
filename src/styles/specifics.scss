@@ -61,14 +61,19 @@ body {
   z-index: 0;
 }
 
-.welcome {
-  background: #2F3238 url('../app/img/hero-image_1920.jpg') no-repeat;
-  background-size: cover;
-  color: white;
-  position: relative;
-  overflow: hidden;
-  height: 100%;
+.hero__img {
+  position: absolute;
+  top: 0;
+  height: 0;
+
   width: 100%;
+  height: 100%;
+}
+
+.welcome {
+  color: white;
+  overflow: hidden;
+  position: relative;
 
   .container-fluid {
     height: 100%;
