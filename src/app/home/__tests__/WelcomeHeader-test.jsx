@@ -1,6 +1,6 @@
 import React from 'react';
-import WelcomeHeader from '../WelcomeHeader';
 import renderer from 'react-test-renderer';
+import WelcomeHeader from '../WelcomeHeader';
 
 test('Welcome header renders correctly', () => {
   const tree = renderer.create(<WelcomeHeader />).toJSON();
