@@ -38,12 +38,14 @@
     "start": "NODE_ENV=development node dev-server",
     "start-dev-server": "webpack-dev-server --output-pathinfo --inline",
     "test": "jest",
+    "tdd": "jest --watch",
+    "postbuild": "cpy app.js $npm_package_config_buildDir/ && cpy server.js $npm_package_config_buildDir/",
+    "pretest": "npm run lint",
     "prettier": "node prettier.js write",
-    "postbuild": "cpy app.js $npm_package_config_buildDir/ && cpy server.js $npm_package_config_buildDir/ && cpy Procfile $npm_package_config_buildDir/ && cpy package.json $npm_package_config_buildDir/",
     "webpack": "NODE_ENV=production webpack --config webpack.config.prod.js -p --bail"
   },
   "engines": {
-    "node": "^6.0.0"
+    "node": "^8.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
