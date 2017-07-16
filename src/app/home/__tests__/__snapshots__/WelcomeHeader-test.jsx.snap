@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome header renders correctly 1`] = `
+<section
+  className="welcome"
+  id="home"
+>
+  <img
+    alt="Beautiful sunset"
+    className="hero__img"
+    sizes="(min-width: 150px) 150px, 100vw"
+    src="/assets/img/hero-image_1920.jpg"
+    srcSet="/assets/img/hero-image_1920.jpg 1920w, /assets/img/hero-image_1740.jpg 1740w, /assets/img/hero-image_1440.jpg 1440w, /assets/img/hero-image_1120.jpg 1120w, /assets/img/hero-image_1000.jpg 1000w, /assets/img/hero-image_960.jpg 960w, /assets/img/hero-image_800.jpg 800w, /assets/img/hero-image_640.jpg 640w, /assets/img/hero-image_480.jpg 480w, /assets/img/hero-image_320.jpg 320w, /assets/img/hero-image_320.jpg 320w"
+  />
+  <div
+    className="overlay"
+  />
+  <div
+    className="container-fluid text-center"
+  >
+    <header>
+      <h1>
+        Hello, I‘m Øyvind
+      </h1>
+      <h2>
+        Welcome to my homepage.
+      </h2>
+    </header>
+  </div>
+</section>
+`;
