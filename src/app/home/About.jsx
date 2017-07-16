@@ -1,5 +1,11 @@
 import React from 'react';
 
+const getSrcSets = imagePath =>
+  [
+    `${imagePath}_300.jpg 300w`,
+    `${imagePath}_150.jpg 150w`,
+  ].join(', ');
+
 const About = () =>
   <div className="section" id="about">
     <section className="container">
@@ -12,7 +18,9 @@ const About = () =>
           <img
             alt="Øyvind Marthinsen"
             id="headshot"
-            src={'/assets/img/Oyvind-Marthinsen.jpg'}
+            src={'/assets/img/Oyvind-Marthinsen_300.jpg'}
+            srcSet={getSrcSets("/assets/img/Oyvind-Marthinsen")}
+            sizes="100vw"
           />
         </div>
       </section>
