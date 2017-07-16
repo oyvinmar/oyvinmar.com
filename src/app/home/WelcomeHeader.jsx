@@ -20,9 +20,10 @@ const WelcomeHeader = () =>
     <img
       className="hero__img"
       src="/assets/img/hero-image_1920.jpg"
-      srcSet={getSrcSets("/assets/img/hero-image")}
+      srcSet={getSrcSets('/assets/img/hero-image')}
       sizes="(min-width: 150px) 150px, 100vw"
-      alt="Beautiful sunset"/>
+      alt="Beautiful sunset"
+    />
     <div className="overlay" />
     <div className="container-fluid text-center">
       <header>
