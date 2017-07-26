@@ -2667,9 +2667,9 @@ html-entities@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
 
-html-loader@^0.4.4:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/html-loader/-/html-loader-0.4.5.tgz#5fbcd87cd63a5c49a7fce2fe56f425e05729c68c"
+html-loader@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/html-loader/-/html-loader-0.5.0.tgz#55653aea10937854de2610f43060d040505a0fd3"
   dependencies:
     es6-templates "^0.2.2"
     fastparse "^1.1.1"
