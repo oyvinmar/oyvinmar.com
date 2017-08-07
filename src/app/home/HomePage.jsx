@@ -3,7 +3,7 @@ import $ from 'jquery';
 import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
-import WelcomeHeader from './WelcomeHeader';
+import Hero from './Hero';
 import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
 import About from './About';
@@ -55,13 +55,13 @@ require('waypoints/lib/shortcuts/sticky');
   };
 
   FancyShmancy.prototype.fullscreenImage = () => {
-    $('.welcome').css({ height: $(window).height() - $('.navbar').height() });
+    $('.hero').css({ height: $(window).height() - $('.navbar').height() });
   };
 
   FancyShmancy.prototype.initOnResize = function initOnResize() {
     const self = this;
     $(window).on('resize', () => {
-      if ($('.welcome').length) {
+      if ($('.hero').length) {
         self.fullscreenImage();
       }
       self.stickyNav();
@@ -103,7 +103,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <div id="content">
-        <WelcomeHeader />
+        <Hero />
         <NavigationBar />
         <About />
         <Lifestream />

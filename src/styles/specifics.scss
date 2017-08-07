@@ -70,22 +70,20 @@ body {
   height: 100%;
 }
 
-.welcome {
+.hero {
   color: white;
   overflow: hidden;
   position: relative;
 
-  .container-fluid {
+  &__heading {
     height: 100%;
     width: 100%;
     position: absolute;
-    display: table;
-    header {
-      display: table-cell;
-      vertical-align: middle;
-      width: 100%;
-      margin: auto;
-    }
+    display: flex;
+  }
+
+  &__heading > * {
+    margin: auto;
   }
 
   h1 {
@@ -101,9 +99,6 @@ body {
     font-size: 30px;
     height: 40px;
   }
-}
-
-.image {
 }
 
 #headshot {

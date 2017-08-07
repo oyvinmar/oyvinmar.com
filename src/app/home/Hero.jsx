@@ -15,8 +15,8 @@ const getSrcSets = imagePath =>
     `${imagePath}_320.jpg 320w`,
   ].join(', ');
 
-const WelcomeHeader = () =>
-  <section className="welcome" id="home">
+const Hero = () =>
+  <section className="hero" id="home">
     <img
       className="hero__img"
       src="/assets/img/hero-image_1920.jpg"
@@ -25,7 +25,7 @@ const WelcomeHeader = () =>
       alt="Beautiful sunset"
     />
     <div className="overlay" />
-    <div className="container-fluid text-center">
+    <div className="hero__heading text-center">
       <header>
         <h1>Hello, I‘m Øyvind</h1>
 
@@ -34,4 +34,4 @@ const WelcomeHeader = () =>
     </div>
   </section>;
 
-export default WelcomeHeader;
+export default Hero;
