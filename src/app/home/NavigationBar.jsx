@@ -7,7 +7,7 @@ import * as actions from '../actions/uiActions';
 const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
   const navClassString = `collapse navbar-collapse${expanded ? ' in' : ''}`;
   return (
-    <nav className="navbar navbar-default" id="nav">
+    <nav className="nav" id="nav">
       <div className="container-fluid">
         <div className="navbar-header">
           <button

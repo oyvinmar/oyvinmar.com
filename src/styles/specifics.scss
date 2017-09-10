@@ -101,6 +101,21 @@ body {
   }
 }
 
+$navbar-default-bg: #26292E;
+$navbar-default-link-color: #CCC;
+$navbar-default-link-hover-color: #ff7857;
+$navbar-default-link-active-color: #ff7857;
+$navbar-default-link-active-bg: transparent;
+$navbar-default-color: #FFF;
+.nav {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 28px;
+  border: 1px solid transparent;
+  background-color: $navbar-default-bg;
+  border-color: #17191c;
+}
+
 #headshot {
   background-position: 50% 50%;
   background-repeat: no-repeat;
