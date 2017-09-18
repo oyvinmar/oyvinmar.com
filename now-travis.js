@@ -69,7 +69,7 @@ function safeError(...args) {
 }
 
 function updateStatus(sha, options) {
-  const { description, target_url: url } = options;
+  const { description, status, target_url: url } = options;
   console.log(`${description}: ${url}`);
   ghRepo.status(sha, status, logError('setting complete status'));
 }
@@ -179,19 +179,11 @@ const {
 
 switch (TRAVIS_EVENT_TYPE) {
   case 'pull_request': {
-    try {
-      deploy(TRAVIS_PULL_REQUEST_SHA);
-    } catch (e) {
-      safeError(e);
-    }
+    deploy(TRAVIS_PULL_REQUEST_SHA);
     break;
   }
   case 'push': {
-    try {
-      deploy(TRAVIS_COMMIT);
-    } catch (e) {
-      safeError(e);
-    }
+    deploy(TRAVIS_COMMIT);
     break;
   }
   default: {
