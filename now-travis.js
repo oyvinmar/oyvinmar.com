@@ -179,11 +179,19 @@ const {
 
 switch (TRAVIS_EVENT_TYPE) {
   case 'pull_request': {
-    deploy(TRAVIS_PULL_REQUEST_SHA);
+    try {
+      deploy(TRAVIS_PULL_REQUEST_SHA);
+    } catch (e) {
+      safeError(e);
+    }
     break;
   }
   case 'push': {
-    deploy(TRAVIS_COMMIT);
+    try {
+      deploy(TRAVIS_COMMIT);
+    } catch (e) {
+      safeError(e);
+    }
     break;
   }
   default: {
