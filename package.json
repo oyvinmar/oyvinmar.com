@@ -76,6 +76,7 @@
     "json-loader": "0.5.7",
     "node-sass": "^4.5.0",
     "normalize-url": "^1.9.1",
+    "now": "^8.3.4",
     "octonode": "^0.8.0",
     "postcss-loader": "^2.0.6",
     "prettier": "^1.5.2",
