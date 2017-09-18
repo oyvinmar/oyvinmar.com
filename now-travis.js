@@ -69,9 +69,9 @@ function safeError(...args) {
 }
 
 function updateStatus(sha, options) {
-  const { description, status, target_url: url } = options;
+  const { description, target_url: url } = options;
   console.log(`${description}: ${url}`);
-  ghRepo.status(sha, status, logError('setting complete status'));
+  ghRepo.status(sha, options, logError('setting complete status'));
 }
 
 function onError(sha, err) {
