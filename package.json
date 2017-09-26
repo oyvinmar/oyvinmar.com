@@ -21,7 +21,7 @@
     "morgan": "^1.8.2",
     "oauth": "0.9.x",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.2",
     "redux": "^3.7.1",
