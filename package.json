@@ -22,7 +22,7 @@
     "oauth": "0.9.x",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.2",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
