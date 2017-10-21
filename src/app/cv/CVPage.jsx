@@ -12,7 +12,7 @@ const CV = () => (
         <img
           alt="Øyvind Marthinsen"
           id="headshot"
-          src={'/assets/img/Oyvind-Marthinsen.jpg'}
+          src="/assets/img/Oyvind-Marthinsen.jpg"
         />
       </figure>
       <article className="col-lg-9 col-md-8">

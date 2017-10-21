@@ -15,7 +15,7 @@ const About = () => (
           <img
             alt="Øyvind Marthinsen"
             id="headshot"
-            src={'/assets/img/Oyvind-Marthinsen_300.jpg'}
+            src="/assets/img/Oyvind-Marthinsen_300.jpg"
             srcSet={getSrcSets('/assets/img/Oyvind-Marthinsen')}
             sizes="100vw"
           />

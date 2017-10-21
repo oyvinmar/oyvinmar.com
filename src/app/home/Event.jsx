@@ -15,9 +15,7 @@ const Event = ({ event }) => (
       </header>
       <p dangerouslySetInnerHTML={{ __html: event.content }} />
       <a href={event.url}>
-        <time className="published">
-          {event.timestamp.toLocaleString()}
-        </time>
+        <time className="published">{event.timestamp.toLocaleString()}</time>
       </a>
     </div>
     <footer />
