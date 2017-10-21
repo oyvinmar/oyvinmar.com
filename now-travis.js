@@ -139,7 +139,6 @@ async function deploy(sha) {
     '--token',
     nowToken,
     '--no-clipboard',
-    '--public',
   ]);
 
   targetUrl = getUrl(result);
