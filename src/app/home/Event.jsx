@@ -23,7 +23,7 @@ const Event = ({ event }) => (
 );
 
 Event.propTypes = {
-  event: EventShape.isRequired,
+  event: EventShape.isRequired, // eslint-disable-line react/no-typos
 };
 
 export default Event;
