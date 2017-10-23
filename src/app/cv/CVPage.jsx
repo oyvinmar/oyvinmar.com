@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CV = () =>
+const CV = () => (
   <div className="container" id="cv">
     <header className="row">
       <div className="col-md-12">
@@ -12,7 +12,7 @@ const CV = () =>
         <img
           alt="Øyvind Marthinsen"
           id="headshot"
-          src={'/assets/img/Oyvind-Marthinsen.jpg'}
+          src="/assets/img/Oyvind-Marthinsen.jpg"
         />
       </figure>
       <article className="col-lg-9 col-md-8">
@@ -410,7 +410,8 @@ const CV = () =>
         </div>
       </div>
     </section>
-  </div>;
+  </div>
+);
 
 CV.propTypes = {};
 

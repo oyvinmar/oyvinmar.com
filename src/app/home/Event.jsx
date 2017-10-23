@@ -1,7 +1,7 @@
 import React from 'react';
 import { EventShape } from '../shapes';
 
-const Event = ({ event }) =>
+const Event = ({ event }) => (
   <article className="entry row">
     <div className="col-xs-3 col-sm-1">
       <img
@@ -11,22 +11,19 @@ const Event = ({ event }) =>
     </div>
     <div className="col-xs-9 col-sm-11">
       <header>
-        <a href={event.serviceUrl}>
-          {event.serviceName}
-        </a>
+        <a href={event.serviceUrl}>{event.serviceName}</a>
       </header>
       <p dangerouslySetInnerHTML={{ __html: event.content }} />
       <a href={event.url}>
-        <time className="published" title>
-          {event.timestamp.toLocaleString()}
-        </time>
+        <time className="published">{event.timestamp.toLocaleString()}</time>
       </a>
     </div>
     <footer />
-  </article>;
+  </article>
+);
 
 Event.propTypes = {
-  event: EventShape.isRequired,
+  event: EventShape.isRequired, // eslint-disable-line react/no-typos
 };
 
 export default Event;

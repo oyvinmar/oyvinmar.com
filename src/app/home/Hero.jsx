@@ -15,7 +15,7 @@ const getSrcSets = imagePath =>
     `${imagePath}_320.jpg 320w`,
   ].join(', ');
 
-const Hero = () =>
+const Hero = () => (
   <section className="hero" id="home">
     <img
       className="hero__img"
@@ -32,6 +32,7 @@ const Hero = () =>
         <h2>Welcome to my homepage.</h2>
       </header>
     </div>
-  </section>;
+  </section>
+);
 
 export default Hero;

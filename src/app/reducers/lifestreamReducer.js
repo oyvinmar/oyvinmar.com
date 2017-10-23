@@ -21,7 +21,7 @@ function createEvent(id, content, url, serviceName, serviceUrl, timestamp) {
 function mapTweets(tweets) {
   return tweets.map(tweet => {
     const date = new Date(tweet.created_at);
-    let text = tweet.text;
+    let { text } = tweet;
     tweet.entities.urls.forEach(url => {
       text = text.replace(url.url, `<a href="${url.url}">${url.url}</a>`);
     });
