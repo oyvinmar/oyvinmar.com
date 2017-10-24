@@ -47,15 +47,15 @@ require('waypoints/lib/shortcuts/sticky');
       sticky = undefined;
     } else if (windowWidth > 768 && !sticky) {
       sticky = new Waypoint.Sticky({
-        element: $('.navbar'),
-        stuckClass: 'navbar-fixed-top',
+        element: $('.nav'),
+        stuckClass: 'nav--fixed-top',
         wrapper: '<div class="sticky-wrapper" />',
       });
     }
   };
 
   FancyShmancy.prototype.fullscreenImage = () => {
-    $('.hero').css({ height: $(window).height() - $('.navbar').height() });
+    $('.hero').css({ height: $(window).height() - $('.nav').height() });
   };
 
   FancyShmancy.prototype.initOnResize = function initOnResize() {

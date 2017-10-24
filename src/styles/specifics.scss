@@ -1,6 +1,5 @@
-
 body {
-  background-color: #2F3238;
+  background-color: #2f3238;
   color: $base-color;
 }
 
@@ -10,10 +9,7 @@ body {
   .section-header {
     text-align: center;
     h2 {
-
       font-family: $headingsFontFamily;
-//      font-family: "acta-display", Georgia, sans-serif;
-//      font-weight: 300;
       font-size: 50px;
       margin-bottom: 0;
     }
@@ -55,7 +51,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #26292E;
+  background: #26292e;
   opacity: 0.7;
   filter: alpha(opacity=70);
   z-index: 0;
@@ -101,12 +97,12 @@ body {
   }
 }
 
-$navbar-default-bg: #26292E;
-$navbar-default-link-color: #CCC;
+$navbar-default-bg: #26292e;
+$navbar-default-link-color: #ccc;
 $navbar-default-link-hover-color: #ff7857;
 $navbar-default-link-active-color: #ff7857;
 $navbar-default-link-active-bg: transparent;
-$navbar-default-color: #FFF;
+$navbar-default-color: #fff;
 .nav {
   position: relative;
   min-height: 50px;
@@ -114,6 +110,56 @@ $navbar-default-color: #FFF;
   border: 1px solid transparent;
   background-color: $navbar-default-bg;
   border-color: #17191c;
+}
+.nav--fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  border-width: 0 0 1px;
+  z-index: 1030;
+}
+.nav__title {
+  margin-left: -15px;
+  float: left;
+  font-size: 25px;
+  line-height: 28px;
+  padding: 11px 15px;
+
+  & > a:any-link {
+    text-decoration: none;
+    color: #ccc;
+    height: 50px;
+  }
+}
+.nav__links {
+  float: left;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  & > li {
+    float: left;
+    &.active {
+      & > a {
+        color: #ff7857;
+      }
+    }
+    & > a {
+      display: block;
+      text-decoration: none;
+      color: #ccc;
+      padding: 10px 15px;
+      &:hover {
+        color: #ff7857;
+      }
+    }
+  }
+}
+.collapse.collapse {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
 }
 
 #headshot {
@@ -124,7 +170,7 @@ $navbar-default-color: #FFF;
   height: 150px;
   display: block;
   margin: 0px auto 30px auto;
-//  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
+  //  @include box-shadow(0 4px 7px rgba(0, 0, 0, .35));
 }
 
 .entry {
@@ -143,10 +189,10 @@ $navbar-default-color: #FFF;
 
 #about {
   h2 {
-    color: darken(#FFFFFF, 0%);
+    color: darken(#ffffff, 0%);
   }
   hr {
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #ffffff;
   }
   p {
     font-style: italic;
@@ -162,10 +208,10 @@ $navbar-default-color: #FFF;
   padding: 150px 0;
 
   h2 {
-    color: darken(#FFFFFF, 0%);
+    color: darken(#ffffff, 0%);
   }
   hr {
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #ffffff;
   }
 
   ul {
@@ -206,26 +252,26 @@ $navbar-default-color: #FFF;
   }
 
   a[href*="google.com"] {
-    border: 3px solid #DD4B39;
+    border: 3px solid #dd4b39;
     @include border-radius(50%);
     &:hover {
-      background: #DD4B39;
+      background: #dd4b39;
     }
   }
 
   a[href*="linkedin.com"] {
-    border: 3px solid #0085B2;
+    border: 3px solid #0085b2;
     @include border-radius(50%);
     &:hover {
-      background: #0085B2;
+      background: #0085b2;
     }
   }
 
   a[href*="github.com"] {
-    border: 3px solid #FF4D92;
+    border: 3px solid #ff4d92;
     @include border-radius(50%);
     &:hover {
-      background: #FF4D92;
+      background: #ff4d92;
     }
   }
 }
@@ -282,7 +328,8 @@ $navbar-default-color: #FFF;
     }
   }
 
-  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  .navbar-default .navbar-toggle:hover,
+  .navbar-default .navbar-toggle:focus {
     background-color: transparent;
   }
 

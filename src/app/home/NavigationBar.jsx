@@ -9,20 +9,20 @@ const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
   return (
     <nav className="nav" id="nav">
       <div className="container-fluid">
-        <div className="navbar-header">
-          <button
+        <div className="nav__title">
+          {/* <button
             className="navbar-toggle"
             onClick={toogleNavBarLinks}
             type="button">
             <span className="sr-only">Toggle navigation</span>
             <i className="fa fa-bars" />
-          </button>
+          </button> */}
           <a className="navbar-brand" href="/">
             oyvinmar.com
           </a>
         </div>
         <div className={navClassString}>
-          <ul className="nav navbar-nav">
+          <ul className="nav__links">
             <li>
               <a href="#home">Home</a>
             </li>
