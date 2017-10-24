@@ -2,7 +2,6 @@
  * PRODUCTION WEBPACK CONFIGURATION
  */
 
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
@@ -49,12 +48,11 @@ module.exports = require('./webpack.config.base')({
       excludeChunks: ['app'],
       inject: true,
     }),
-    // new BundleAnalyzerPlugin(
-    //   {
-    //     analyzerMode: 'static',
-    //     openAnalyzer: false,
-    //     reportFilename: 'bundle-analyzer-report.html',
-    //   }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+      reportFilename: 'bundle-analyzer-report.html',
+    }),
 
     // Extract the CSS into a separate file
     new ExtractTextPlugin('[name].[contenthash].css'),
