@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/uiActions';
 
-const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
+// const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
+const NavigationBar = ({ expanded }) => {
   const navClassString = `collapse navbar-collapse${expanded ? ' in' : ''}`;
   return (
     <nav className="nav" id="nav">
