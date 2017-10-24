@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Elsewhere = () =>
+const Elsewhere = () => (
   <section className="section" id="elsewhere">
     <div className="container">
       <header className="row section-header">
@@ -37,6 +37,7 @@ const Elsewhere = () =>
         </ul>
       </div>
     </div>
-  </section>;
+  </section>
+);
 
 export default Elsewhere;

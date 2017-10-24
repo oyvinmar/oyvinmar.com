@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Welcome header renders correctly 1`] = `
+exports[`Hero renders correctly 1`] = `
 <section
-  className="welcome"
+  className="hero"
   id="home"
 >
   <img
@@ -16,7 +16,7 @@ exports[`Welcome header renders correctly 1`] = `
     className="overlay"
   />
   <div
-    className="container-fluid text-center"
+    className="hero__heading text-center"
   >
     <header>
       <h1>

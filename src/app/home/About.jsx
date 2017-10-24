@@ -3,7 +3,7 @@ import React from 'react';
 const getSrcSets = imagePath =>
   [`${imagePath}_300.jpg 300w`, `${imagePath}_150.jpg 150w`].join(', ');
 
-const About = () =>
+const About = () => (
   <div className="section" id="about">
     <section className="container">
       <header className="row section-header">
@@ -15,7 +15,7 @@ const About = () =>
           <img
             alt="Øyvind Marthinsen"
             id="headshot"
-            src={'/assets/img/Oyvind-Marthinsen_300.jpg'}
+            src="/assets/img/Oyvind-Marthinsen_300.jpg"
             srcSet={getSrcSets('/assets/img/Oyvind-Marthinsen')}
             sizes="100vw"
           />
@@ -36,7 +36,8 @@ const About = () =>
         </div>
       </section>
     </section>
-  </div>;
+  </div>
+);
 
 About.propTypes = {};
 

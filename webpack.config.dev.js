@@ -8,9 +8,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function templateContent(name) {
-  const html = fs.readFileSync(
-    path.resolve(process.cwd(), `src/app/${name}`)
-  ).toString();
+  const html = fs
+    .readFileSync(path.resolve(process.cwd(), `src/app/${name}`))
+    .toString();
   return html;
 }
 
@@ -34,8 +34,12 @@ const plugins = [
 module.exports = require('./webpack.config.base')({
   hash: '',
   entry: {
-    app: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true'],
-    cv: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true'],
+    app: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true',
+    ],
+    cv: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true',
+    ],
   },
 
   // Don't use hashes in dev mode for better performance
@@ -50,8 +54,8 @@ module.exports = require('./webpack.config.base')({
     },
     {
       test: /\.scss$/,
-      loader: ['style-loader', 'css-loader', 'postcss-loader','sass-loader'],
-    }
+      loader: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+    },
   ],
 
   // Add development plugins
@@ -63,5 +67,3 @@ module.exports = require('./webpack.config.base')({
   // Emit a source map for easier debugging
   devtool: 'cheap-module-eval-source-map',
 });
-
-
