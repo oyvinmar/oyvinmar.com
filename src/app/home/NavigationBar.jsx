@@ -4,21 +4,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/uiActions';
 
-// const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
-const NavigationBar = ({ expanded }) => {
+const NavigationBar = ({ expanded, toogleNavBarLinks }) => {
   const navClassString = `collapse navbar-collapse${expanded ? ' in' : ''}`;
   return (
     <nav className="nav" id="nav">
       <div className="container-fluid">
         <div className="nav__title">
-          {/* <button
-            className="navbar-toggle"
+          <button
+            className="nav__toggle"
             onClick={toogleNavBarLinks}
             type="button">
             <span className="sr-only">Toggle navigation</span>
             <i className="fa fa-bars" />
-          </button> */}
-          <a className="navbar-brand" href="/">
+          </button>
+          <a className="nav__brand" href="/">
             oyvinmar.com
           </a>
         </div>
