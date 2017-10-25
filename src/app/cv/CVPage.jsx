@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CV = () =>
+const CV = () => (
   <div className="container" id="cv">
     <header className="row">
       <div className="col-md-12">
@@ -410,7 +410,8 @@ const CV = () =>
         </div>
       </div>
     </section>
-  </div>;
+  </div>
+);
 
 CV.propTypes = {};
 

@@ -8,11 +8,7 @@ const EventList = ({ events, numberToDisplay }) => {
     .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
     .slice(0, numberToDisplay)
     .map(event => <Event event={event} key={event.id} />);
-  return (
-    <div>
-      {renderEvents}
-    </div>
-  );
+  return <div>{renderEvents}</div>;
 };
 
 EventList.propTypes = {
