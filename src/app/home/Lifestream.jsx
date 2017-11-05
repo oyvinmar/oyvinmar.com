@@ -1,19 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Machine } from 'xstate';
 
 import { EventShape } from '../shapes';
 import EventList from './EventList';
 import { fetchAllStreams, showMoreEvents } from '../actions/lifestreamActions';
 
+const twitterMachine = Machine({
+  key: 'tweets',
+  initial: 'idle',
+  states: {
+    idle: {
+      on: {
+        LOAD: 'loading',
+      },
+    },
+    loading: {
+      on: {
+        RESOLVE: 'tweets',
+        REJECT: 'error',
+      },
+    },
+    tweets: {},
+  },
+});
+
 class Lifestream extends Component {
   constructor(props) {
     super(props);
+
+    this.commands = {
+      loading: this.fetchTweets,
+    };
+
+    this.state = {
+      twitterState: twitterMachine.initial,
+      tweets: [],
+    };
+
     this.showMore = this.showMore.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
+    const { twitterState } = this.state;
+    const nextState = twitterMachine.transition(twitterState, 'LOAD').value;
+    const command = this.commands[nextState];
+    this.setState({ twitterState: nextState }, command);
     dispatch(fetchAllStreams());
   }
 
@@ -22,8 +56,22 @@ class Lifestream extends Component {
     dispatch(showMoreEvents(10));
   }
 
+  fetchTweets() {
+    fetch('/twitter/feed/')
+      .then(response => response.json())
+      .then(tweets => {
+        const { twitterState } = this.state;
+        const nextState = twitterMachine.transition(twitterState, 'RESOLVE')
+          .value;
+        this.setState({ tweets, twitterState: nextState });
+      });
+  }
+
   render() {
     const { events, numberOfVisibleEvents } = this.props;
+    if (this.state.twitterState === 'tweets') {
+      console.log(this.state.tweets);
+    }
     return (
       <div className="section" id="lifestream">
         <div className="container">
