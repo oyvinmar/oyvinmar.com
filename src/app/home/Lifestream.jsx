@@ -7,8 +7,8 @@ import fetchAllEvents from '../api/eventApi';
 import EventList from './EventList';
 import { showMoreEvents } from '../actions/lifestreamActions';
 
-const twitterMachine = Machine({
-  key: 'tweets',
+const eventsMachine = Machine({
+  key: 'events',
   initial: 'idle',
   states: {
     idle: {
@@ -18,11 +18,11 @@ const twitterMachine = Machine({
     },
     loading: {
       on: {
-        RESOLVE: 'tweets',
+        RESOLVE: 'events',
         REJECT: 'error',
       },
     },
-    tweets: {},
+    events: {},
   },
 });
 
@@ -30,27 +30,62 @@ class Lifestream extends Component {
   constructor(props) {
     super(props);
 
-    this.commands = {
-      loading: this.fetchTweets,
-    };
-
     this.state = {
-      twitterState: twitterMachine.initial,
-      tweets: [],
+      eventsState: eventsMachine.initial,
       events: [],
     };
 
     this.showMore = this.showMore.bind(this);
+    this.command = this.command.bind(this);
+    this.transition = this.transition.bind(this);
+    this.fetchEvents = this.fetchEvents.bind(this);
   }
 
-  async componentDidMount() {
-    // const { twitterState } = this.state;
-    // const nextState = twitterMachine.transition(twitterState, 'LOAD').value;
-    // const command = this.commands[nextState];
-    // this.setState({ twitterState: nextState }, command);
-    // dispatch(fetchAllStreams());
-    const events = await fetchAllEvents();
-    this.setState({ events }); // eslint-disable-line
+  componentDidMount() {
+    this.transition({ type: 'LOAD' });
+  }
+
+  async fetchEvents() {
+    try {
+      const events = await fetchAllEvents();
+      this.transition({ type: 'RESOLVE', events });
+    } catch (e) {
+      this.transition({ type: 'REJECT' });
+    }
+  }
+
+  command(nextState, action) {
+    switch (nextState) {
+      case 'loading':
+        this.fetchEvents();
+        return {};
+      case 'events':
+        if (action.events) {
+          return { events: action.events };
+        }
+        return {};
+      default:
+        return {};
+    }
+  }
+
+  transition(action) {
+    const { eventsState } = this.state;
+
+    const nextEventsState = eventsMachine.transition(eventsState, action.type)
+      .value;
+
+    if (nextEventsState) {
+      const nextState = this.command(nextEventsState, action);
+      this.setState(
+        Object.assign(
+          {
+            eventsState: nextEventsState,
+          },
+          nextState,
+        ),
+      );
+    }
   }
 
   showMore() {
@@ -58,23 +93,9 @@ class Lifestream extends Component {
     dispatch(showMoreEvents(10));
   }
 
-  fetchTweets() {
-    fetch('/twitter/feed/')
-      .then(response => response.json())
-      .then(tweets => {
-        const { twitterState } = this.state;
-        const nextState = twitterMachine.transition(twitterState, 'RESOLVE')
-          .value;
-        this.setState({ tweets, twitterState: nextState });
-      });
-  }
-
   render() {
     const { numberOfVisibleEvents } = this.props;
-    const { events } = this.state;
-    if (this.state.twitterState === 'tweets') {
-      console.log(this.state.tweets);
-    }
+    const { events, eventsState } = this.state;
     return (
       <div className="section" id="lifestream">
         <div className="container">
@@ -89,6 +110,7 @@ class Lifestream extends Component {
                 lets hope it is a bug in my code...
               </p>
               <div>
+                {eventsState === 'loading' && <p>Loading</p>}
                 <EventList
                   events={events}
                   numberToDisplay={numberOfVisibleEvents}
