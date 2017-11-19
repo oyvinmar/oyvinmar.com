@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Machine } from 'xstate';
 
-import { EventShape } from '../shapes';
+import fetchAllEvents from '../api/eventApi';
 import EventList from './EventList';
-import { fetchAllStreams, showMoreEvents } from '../actions/lifestreamActions';
+import { showMoreEvents } from '../actions/lifestreamActions';
 
 const twitterMachine = Machine({
   key: 'tweets',
@@ -37,18 +37,20 @@ class Lifestream extends Component {
     this.state = {
       twitterState: twitterMachine.initial,
       tweets: [],
+      events: [],
     };
 
     this.showMore = this.showMore.bind(this);
   }
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    const { twitterState } = this.state;
-    const nextState = twitterMachine.transition(twitterState, 'LOAD').value;
-    const command = this.commands[nextState];
-    this.setState({ twitterState: nextState }, command);
-    dispatch(fetchAllStreams());
+  async componentDidMount() {
+    // const { twitterState } = this.state;
+    // const nextState = twitterMachine.transition(twitterState, 'LOAD').value;
+    // const command = this.commands[nextState];
+    // this.setState({ twitterState: nextState }, command);
+    // dispatch(fetchAllStreams());
+    const events = await fetchAllEvents();
+    this.setState({ events }); // eslint-disable-line
   }
 
   showMore() {
@@ -68,7 +70,8 @@ class Lifestream extends Component {
   }
 
   render() {
-    const { events, numberOfVisibleEvents } = this.props;
+    const { numberOfVisibleEvents } = this.props;
+    const { events } = this.state;
     if (this.state.twitterState === 'tweets') {
       console.log(this.state.tweets);
     }
@@ -107,13 +110,11 @@ class Lifestream extends Component {
 
 Lifestream.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  events: PropTypes.arrayOf(EventShape).isRequired,
   numberOfVisibleEvents: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    events: state.lifestream.events,
     numberOfVisibleEvents: state.lifestream.numberOfVisibleEvents,
   };
 }
