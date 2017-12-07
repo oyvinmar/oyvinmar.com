@@ -8,6 +8,7 @@
     "devHost": "localhost"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap-sass": "^3.3.7",
@@ -23,9 +24,6 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
     "waypoints": "^4.0.1",
     "xstate": "^1.2.1"
   },

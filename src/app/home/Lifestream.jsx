@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Machine } from 'xstate';
-
 import fetchAllEvents from '../api/eventApi';
 import EventList from './EventList';
-import { showMoreEvents } from '../actions/lifestreamActions';
+
+const showMoreEventsMachine = {
+  initial: 'initial',
+  states: {
+    initial: {
+      on: {
+        SHOW_MORE: 'more',
+      },
+    },
+    more: {
+      on: {
+        SHOW_MORE: 'more',
+      },
+    },
+  },
+};
 
 const eventsMachine = Machine({
   key: 'events',
@@ -22,7 +34,9 @@ const eventsMachine = Machine({
         REJECT: 'error',
       },
     },
-    events: {},
+    events: {
+      ...showMoreEventsMachine,
+    },
   },
 });
 
@@ -33,6 +47,7 @@ class Lifestream extends Component {
     this.state = {
       eventsState: eventsMachine.initial,
       events: [],
+      numberOfVisibleEvents: 5,
     };
 
     this.showMore = this.showMore.bind(this);
@@ -54,47 +69,53 @@ class Lifestream extends Component {
     }
   }
 
-  command(nextState, action) {
-    switch (nextState) {
+  command(nextMachineState, action) {
+    switch (nextMachineState) {
       case 'loading':
         this.fetchEvents();
-        return {};
-      case 'events':
+        return {
+          eventsState: nextMachineState,
+        };
+      case 'events.initial':
         if (action.events) {
-          return { events: action.events };
+          return {
+            events: action.events,
+            eventsState: nextMachineState,
+          };
         }
         return {};
+      case 'events.more':
+        return previousState => ({
+          ...previousState,
+          numberOfVisibleEvents: previousState.numberOfVisibleEvents + 10,
+          eventsState: nextMachineState,
+        });
       default:
-        return {};
+        return {
+          eventsState: nextMachineState,
+        };
     }
   }
 
   transition(action) {
     const { eventsState } = this.state;
 
-    const nextEventsState = eventsMachine.transition(eventsState, action.type)
-      .value;
+    const nextEventsState = eventsMachine
+      .transition(eventsState, action.type)
+      .toString();
 
     if (nextEventsState) {
-      const nextState = this.command(nextEventsState, action);
-      this.setState(
-        Object.assign(
-          {
-            eventsState: nextEventsState,
-          },
-          nextState,
-        ),
-      );
+      const nextState = this.command(nextEventsState, action, this.state);
+      this.setState(nextState);
     }
   }
 
   showMore() {
-    const { dispatch } = this.props;
-    dispatch(showMoreEvents(10));
+    this.transition({ type: 'SHOW_MORE' });
   }
 
   render() {
-    const { numberOfVisibleEvents } = this.props;
+    const { numberOfVisibleEvents } = this.state;
     const { events, eventsState } = this.state;
     return (
       <div className="section" id="lifestream">
@@ -130,15 +151,6 @@ class Lifestream extends Component {
   }
 }
 
-Lifestream.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  numberOfVisibleEvents: PropTypes.number.isRequired,
-};
+Lifestream.propTypes = {};
 
-function mapStateToProps(state) {
-  return {
-    numberOfVisibleEvents: state.lifestream.numberOfVisibleEvents,
-  };
-}
-
-export default connect(mapStateToProps)(Lifestream);
+export default Lifestream;
