@@ -1,0 +1,42 @@
+@-webkit-keyframes pulse {
+  0% {
+    background-color: #f5f5f5;
+    opacity: 1;
+  }
+  50% {
+    opacity: #ccc;
+    opacity: 0.75;
+  }
+  100% {
+    opacity: #f5f5f5;
+    opacity: 1;
+  }
+}
+
+.c-placeholder__logo {
+  width: 64px;
+  height: 64px;
+}
+
+.c-placeholder__header {
+  width: 30%;
+  height: 24px;
+}
+.c-placeholder__content {
+  margin-top: 5px;
+  width: 70%;
+  height: 20px;
+}
+
+.c-placeholder__time {
+  margin-top: 15px;
+  width: 50%;
+  height: 25px;
+}
+
+.u-pulse {
+  animation: pulse 2s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: lighten($base-color, 30%);
+}

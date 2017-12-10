@@ -38,7 +38,7 @@
     "now-start": "NODE_ENV=production node build/server",
     "start": "NODE_ENV=development node dev-server",
     "start-dev-server": "webpack-dev-server --output-pathinfo --inline",
-    "test": "jest",
+    "test": "NODE_ENV=unittest jest",
     "tdd": "jest --watch",
     "postbuild":
       "cpy app.js $npm_package_config_buildDir/ && cpy server.js $npm_package_config_buildDir/",

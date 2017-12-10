@@ -9,7 +9,7 @@ const Event = ({ event }) => (
         src={`/assets/img/${event.serviceName}64.png`}
       />
     </div>
-    <div className="col-xs-9 col-sm-11">
+    <div className="col-xs-9 col-sm-offset-1 col-sm-10">
       <header>
         <a href={event.serviceUrl}>{event.serviceName}</a>
       </header>

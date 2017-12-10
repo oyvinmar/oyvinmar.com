@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Machine } from 'xstate';
 import fetchAllEvents from '../api/eventApi';
 import EventList from './EventList';
+import EventListPlaceholder from './EventListPlaceholder';
 
 const showMoreEventsMachine = {
   initial: 'initial',
@@ -131,7 +132,7 @@ class Lifestream extends Component {
                 lets hope it is a bug in my code...
               </p>
               <div>
-                {eventsState === 'loading' && <p>Loading</p>}
+                {eventsState === 'loading' && <EventListPlaceholder />}
                 <EventList
                   events={events}
                   numberToDisplay={numberOfVisibleEvents}
