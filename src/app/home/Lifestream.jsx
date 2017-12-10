@@ -1,29 +1,123 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { EventShape } from '../shapes';
+import { Machine } from 'xstate';
+import fetchAllEvents from '../api/eventApi';
 import EventList from './EventList';
-import { fetchAllStreams, showMoreEvents } from '../actions/lifestreamActions';
+import EventListPlaceholder from './EventListPlaceholder';
+
+const showMoreEventsMachine = {
+  initial: 'initial',
+  states: {
+    initial: {
+      on: {
+        SHOW_MORE: 'more',
+      },
+    },
+    more: {
+      on: {
+        SHOW_MORE: 'more',
+      },
+    },
+  },
+};
+
+const eventsMachine = Machine({
+  key: 'events',
+  initial: 'idle',
+  states: {
+    idle: {
+      on: {
+        LOAD: 'loading',
+      },
+    },
+    loading: {
+      on: {
+        RESOLVE: 'events',
+        REJECT: 'error',
+      },
+    },
+    events: {
+      ...showMoreEventsMachine,
+    },
+  },
+});
 
 class Lifestream extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      eventsState: eventsMachine.initial,
+      events: [],
+      numberOfVisibleEvents: 5,
+    };
+
     this.showMore = this.showMore.bind(this);
+    this.command = this.command.bind(this);
+    this.transition = this.transition.bind(this);
+    this.fetchEvents = this.fetchEvents.bind(this);
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchAllStreams());
+    this.transition({ type: 'LOAD' });
+  }
+
+  async fetchEvents() {
+    try {
+      const events = await fetchAllEvents();
+      this.transition({ type: 'RESOLVE', events });
+    } catch (e) {
+      this.transition({ type: 'REJECT' });
+    }
+  }
+
+  command(nextMachineState, action) {
+    switch (nextMachineState) {
+      case 'loading':
+        this.fetchEvents();
+        return {
+          eventsState: nextMachineState,
+        };
+      case 'events.initial':
+        if (action.events) {
+          return {
+            events: action.events,
+            eventsState: nextMachineState,
+          };
+        }
+        return {};
+      case 'events.more':
+        return previousState => ({
+          ...previousState,
+          numberOfVisibleEvents: previousState.numberOfVisibleEvents + 10,
+          eventsState: nextMachineState,
+        });
+      default:
+        return {
+          eventsState: nextMachineState,
+        };
+    }
+  }
+
+  transition(action) {
+    const { eventsState } = this.state;
+
+    const nextEventsState = eventsMachine
+      .transition(eventsState, action.type)
+      .toString();
+
+    if (nextEventsState) {
+      const nextState = this.command(nextEventsState, action, this.state);
+      this.setState(nextState);
+    }
   }
 
   showMore() {
-    const { dispatch } = this.props;
-    dispatch(showMoreEvents(10));
+    this.transition({ type: 'SHOW_MORE' });
   }
 
   render() {
-    const { events, numberOfVisibleEvents } = this.props;
+    const { numberOfVisibleEvents } = this.state;
+    const { events, eventsState } = this.state;
     return (
       <div className="section" id="lifestream">
         <div className="container">
@@ -38,6 +132,7 @@ class Lifestream extends Component {
                 lets hope it is a bug in my code...
               </p>
               <div>
+                {eventsState === 'loading' && <EventListPlaceholder />}
                 <EventList
                   events={events}
                   numberToDisplay={numberOfVisibleEvents}
@@ -57,17 +152,6 @@ class Lifestream extends Component {
   }
 }
 
-Lifestream.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  events: PropTypes.arrayOf(EventShape).isRequired,
-  numberOfVisibleEvents: PropTypes.number.isRequired,
-};
+Lifestream.propTypes = {};
 
-function mapStateToProps(state) {
-  return {
-    events: state.lifestream.events,
-    numberOfVisibleEvents: state.lifestream.numberOfVisibleEvents,
-  };
-}
-
-export default connect(mapStateToProps)(Lifestream);
+export default Lifestream;

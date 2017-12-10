@@ -1,10 +1,4 @@
-import {
-  RECEIVE_TWITTER_STREAM,
-  RECEIVE_SWARM_STREAM,
-  RECEIVE_PINBOARD_STREAM,
-  RECEIVE_GITHUB_STREAM,
-  SHOW_MORE_EVENTS,
-} from '../actions/lifestreamActions';
+import fetch from 'isomorphic-fetch';
 
 function createEvent(id, content, url, serviceName, serviceUrl, timestamp) {
   return {
@@ -111,35 +105,31 @@ function mapCheckins(checkins) {
   });
 }
 
-export default function lifestream(
-  state = { events: [], numberOfVisibleEvents: 5 },
-  action,
-) {
-  switch (action.type) {
-    case RECEIVE_TWITTER_STREAM:
-      return Object.assign({}, state, {
-        events: state.events.concat(mapTweets(action.data)),
-      });
-    case RECEIVE_SWARM_STREAM:
-      return Object.assign({}, state, {
-        events: state.events.concat(
-          mapCheckins(action.data.response.checkins.items),
-        ),
-      });
-    case RECEIVE_PINBOARD_STREAM:
-      return Object.assign({}, state, {
-        events: state.events.concat(mapBookmarks(action.data)),
-      });
-    case RECEIVE_GITHUB_STREAM:
-      return Object.assign({}, state, {
-        events: state.events.concat(mapGithubEvents(action.data)),
-      });
-    case SHOW_MORE_EVENTS:
-      return Object.assign({}, state, {
-        numberOfVisibleEvents:
-          state.numberOfVisibleEvents + action.additionalEventsToShow,
-      });
-    default:
-      return state;
+async function fetchStream(URL, processJson = json => json) {
+  try {
+    const response = await fetch(URL);
+    const json = await response.json();
+    return processJson(json);
+  } catch (e) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error(e);
+    }
+    return [];
   }
+}
+
+export default async function fetchAllEvents() {
+  const [tweets, checkins, bookmarks, ghEvents] = [
+    await fetchStream('/twitter/feed/'),
+    await fetchStream('/swarm/feed/', data => data.response.checkins.items),
+    await fetchStream('/pinboard/feed/'),
+    await fetchStream('/github/feed/'),
+  ];
+
+  return [
+    ...mapTweets(tweets),
+    ...mapCheckins(checkins),
+    ...mapGithubEvents(ghEvents),
+    ...mapBookmarks(bookmarks),
+  ];
 }
