@@ -6,4 +6,5 @@ app/less/base.css
 *.iml
 dist
 build
+lib
 .DS_Store
