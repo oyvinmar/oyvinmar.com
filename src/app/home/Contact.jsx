@@ -5,9 +5,11 @@ class Contact extends Component {
     const name = 'oyvinmar';
     const domain = 'gmail.com';
     const addr = `${name}@${domain}`;
-    $('#email').append(
-      `<i class="fa fa-envelope"></i> <a href="mailto:${addr}">${addr}</a>`,
-    );
+    window
+      .jQuery('#email')
+      .append(
+        `<i class="fa fa-envelope"></i> <a href="mailto:${addr}">${addr}</a>`,
+      );
   }
 
   render() {

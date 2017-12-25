@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
-import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
+// import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
+// import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
 import Hero from './Hero';
 import NavigationBar from './NavigationBar';
@@ -14,6 +14,8 @@ window.jQuery = $;
 
 require('waypoints/lib/jquery.waypoints');
 require('waypoints/lib/shortcuts/sticky');
+
+window.app = window.app || {};
 
 (function load() {
   let sticky;
@@ -35,7 +37,7 @@ require('waypoints/lib/shortcuts/sticky');
     this.fullscreenImage();
     this.addClickListeners();
     this.stickyNav();
-    this.initScrollSpy();
+    // this.initScrollSpy();
   };
 
   FancyShmancy.prototype.stickyNav = () => {
@@ -46,7 +48,7 @@ require('waypoints/lib/shortcuts/sticky');
       sticky.destroy();
       sticky = undefined;
     } else if (windowWidth > 768 && !sticky) {
-      sticky = new Waypoint.Sticky({
+      sticky = new window.Waypoint.Sticky({
         element: $('.navbar'),
         stuckClass: 'navbar-fixed-top',
         wrapper: '<div class="sticky-wrapper" />',
@@ -85,10 +87,10 @@ require('waypoints/lib/shortcuts/sticky');
     });
   };
 
-  FancyShmancy.prototype.initScrollSpy = () => {
-    const $spy = $('body');
-    $spy.scrollspy($spy.data());
-  };
+  // FancyShmancy.prototype.initScrollSpy = () => {
+  //   const $spy = $('body');
+  //   $spy.scrollspy($spy.data());
+  // };
 
   window.app.FancyShmancy = FancyShmancy;
 })();

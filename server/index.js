@@ -1,6 +1,5 @@
-var app = require('./server');
-var path = require('path');
+const app = require('./server');
 
-module.exports = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
+module.exports = app.listen(app.get('port'), () => {
+  console.log(`Express server listening on port ${app.get('port')}`);
 });
