@@ -4,4 +4,7 @@
 
 let component = ReasonReact.statelessComponent("App");
 
-let make = (_children) => {...component, render: (_self) => <HomePage message="test" />};
+let make = (_children) => {
+  ...component,
+  render: (_self) => <HomePage message="test"> <Elsewhere /> </HomePage>
+};

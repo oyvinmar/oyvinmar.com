@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import $ from 'jquery';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
@@ -7,7 +9,6 @@ import Hero from './Hero';
 import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
 import About from './About';
-import Elsewhere from './Elsewhere';
 import Contact from './Contact';
 
 window.jQuery = $;
@@ -109,9 +110,13 @@ export default class HomePage extends Component {
         <NavigationBar />
         <About />
         <Lifestream />
-        <Elsewhere />
+        {this.props.children}
         <Contact />
       </div>
     );
   }
 }
+
+HomePage.propTypes = {
+  children: PropTypes.node.isRequired,
+};
