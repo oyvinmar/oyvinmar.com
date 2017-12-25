@@ -1,7 +1,9 @@
 import React from 'react';
+import oyvindM150 from '../img/Oyvind-Marthinsen_150.jpg';
+import oyvindM300 from '../img/Oyvind-Marthinsen_300.jpg';
 
-const getSrcSets = imagePath =>
-  [`${imagePath}_300.jpg 300w`, `${imagePath}_150.jpg 150w`].join(', ');
+const getSrcSets = () =>
+  [`${oyvindM300} 300w`, `${oyvindM150} 150w`].join(', ');
 
 const About = () => (
   <div className="section" id="about">
@@ -16,7 +18,7 @@ const About = () => (
             alt="Øyvind Marthinsen"
             id="headshot"
             src="/assets/img/Oyvind-Marthinsen_300.jpg"
-            srcSet={getSrcSets('/assets/img/Oyvind-Marthinsen')}
+            srcSet={getSrcSets()}
             sizes="100vw"
           />
         </div>

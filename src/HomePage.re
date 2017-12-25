@@ -2,4 +2,4 @@
 
 let make = (~message, children) =>
   ReasonReact.wrapJsForReason(~reactClass=homePage, ~props={"message": message}, children);
-/* let make = () => ReasonReact.wrapJsForReason(~reactClass=homePage); */
+/* let make = () => ReasonReact.wrapJsForReason(~reactClass=homePage, ~props={}); */
