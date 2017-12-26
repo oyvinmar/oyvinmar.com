@@ -56,8 +56,9 @@ function mapGithubEvents(events) {
         githubEvent.payload.action === 'closed'
       ) {
         const pullRequest = githubEvent.payload.pull_request;
-        description = `Closed pull request <a href="${pullRequest.html_url}">${githubEvent
-          .repo.name}#${pullRequest.number}</a> from ${createGithubLink(
+        description = `Closed pull request <a href="${pullRequest.html_url}">${
+          githubEvent.repo.name
+        }#${pullRequest.number}</a> from ${createGithubLink(
           pullRequest.user.login,
         )}`;
       }

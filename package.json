@@ -6,6 +6,7 @@
   "dependencies": {
     "autoprefixer": "^7.2.3",
     "await-url": "^0.3.0",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap-sass": "^3.3.7",
     "bs-fetch": "^0.2.0",
@@ -24,6 +25,7 @@
     "eslint-plugin-react": "^7.5.1",
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "method-override": "^2.3.10",
     "node-sass": "^4.7.2",
@@ -32,9 +34,11 @@
     "octonode": "^0.9.1",
     "postcss-loader": "^2.0.9",
     "prettier": "^1.9.2",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-app-rewired": "^1.4.0",
     "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "reason-scripts": "0.8.0",
     "sass-loader": "^6.0.6",
     "url-regex": "^4.1.1",
@@ -42,13 +46,17 @@
     "xstate": "^2.1.0"
   },
   "scripts": {
+    "build": "react-app-rewired build --scripts-version reason-scripts",
+    "eject": "react-scripts eject",
+    "lint": "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
+    "lint-prettier": "node prettier.js lint",
+    "pretest": "npm run lint",
+    "prepare": "npm link bs-platform",
+    "prettier": "node prettier.js write",
     "start": "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"node server\"",
     "start-server": "node server",
     "start-client": "react-app-rewired start --scripts-version reason-scripts",
-    "build": "react-app-rewired build --scripts-version reason-scripts",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "prepare": "npm link bs-platform"
+    "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
     "bs-jest": "^0.2.0",

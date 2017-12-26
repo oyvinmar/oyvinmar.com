@@ -52,9 +52,7 @@ const CV = () => (
         <p>
           Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har
           erfaring med. Utover dette er jeg fortiden interessert i{' '}
-          <a href="https://facebook.github.io/react-native/">
-            React Native
-          </a>{' '}
+          <a href="https://facebook.github.io/react-native/">React Native</a>{' '}
           for utvikling av mobile mobil applikasjoner,{' '}
           <a href="http://graphql.org/">GraphQL</a> som et alternativ til REST
           og fordeler og ulemper med{' '}
