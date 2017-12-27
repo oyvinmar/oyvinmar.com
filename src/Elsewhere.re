@@ -1,6 +1,6 @@
-let component = ReasonReact.statelessComponent("Elsewhere");
+open Utils;
 
-let str = (str) => ReasonReact.stringToElement(str);
+let component = ReasonReact.statelessComponent("Elsewhere");
 
 let make = (_children) => {
   ...component,
