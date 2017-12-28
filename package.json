@@ -59,7 +59,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
-    "bs-jest": "^0.2.0",
+    "bs-jest": "^0.3.1",
     "concurrently": "^3.5.1",
     "reason-react": "^0.3.0"
   }
