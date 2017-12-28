@@ -15,4 +15,6 @@ S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocam
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocaml
 S src
 B lib/bs/src
+S src/lifestream
+B lib/bs/src/lifestream
 ####BSB GENERATED: NO EDIT}

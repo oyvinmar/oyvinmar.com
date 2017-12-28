@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg height="2048px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2048 2048" width="2048px" xml:space="preserve" 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+      <![CDATA[
+    .fil2 {fill:none}
+    .fil0 {fill:#007FCE}
+    .fil1 {fill:#FFFFFE}
+   ]]>
+    </style>
+  </defs>
+  <g id="Layer_x0020_1">
+    <polygon class="fil0" points="1776,1760 1776,288 1776,272 1760,272 287.999,272 271.999,272 271.999,288 271.999,1760 271.999,1776 287.999,1776 1760,1776 1776,1776 "/>
+    <polygon class="fil1" points="1162.72,891.269 827.812,582.838 827.812,447.998 800.373,436.874 436.563,809.065 448.813,836.128 605.24,827.683 890.05,1178.96 856.681,1366.82 883.869,1380.69 1089.69,1170.06 1589.44,1611.94 1611.94,1589.37 1171.29,1095.15 1386.31,866.617 1370.88,840.18 "/>
+  </g>
+  <rect class="fil2" height="2048" width="2048"/>
+</svg>

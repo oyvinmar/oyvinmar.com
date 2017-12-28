@@ -11,6 +11,7 @@ let make = (_children) => {
       <Hero />
       <NavigationBar />
       <About />
+      <Lifestream />
       <Elsewhere />
       <Contact />
     </HomePage>
