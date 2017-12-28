@@ -8,8 +8,6 @@ import $ from 'jquery';
 import Hero from './Hero';
 import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
-import About from './About';
-import Contact from './Contact';
 
 window.jQuery = $;
 
@@ -108,10 +106,8 @@ export default class HomePage extends Component {
       <div id="content">
         <Hero />
         <NavigationBar />
-        <About />
         <Lifestream />
         {this.props.children}
-        <Contact />
       </div>
     );
   }
