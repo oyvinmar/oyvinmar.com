@@ -5,7 +5,6 @@ import $ from 'jquery';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
-import Hero from './Hero';
 import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
 
@@ -104,7 +103,6 @@ export default class HomePage extends Component {
   render() {
     return (
       <div id="content">
-        <Hero />
         <NavigationBar />
         <Lifestream />
         {this.props.children}
