@@ -5,7 +5,6 @@ import $ from 'jquery';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
-import NavigationBar from './NavigationBar';
 import Lifestream from './Lifestream';
 
 window.jQuery = $;
@@ -103,9 +102,8 @@ export default class HomePage extends Component {
   render() {
     return (
       <div id="content">
-        <NavigationBar />
-        <Lifestream />
         {this.props.children}
+        <Lifestream />
       </div>
     );
   }

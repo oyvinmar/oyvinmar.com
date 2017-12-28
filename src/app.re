@@ -7,5 +7,11 @@ let component = ReasonReact.statelessComponent("App");
 let make = (_children) => {
   ...component,
   render: (_self) =>
-    <HomePage message="test"> <Hero /> <About /> <Elsewhere /> <Contact /> </HomePage>
+    <HomePage message="test">
+      <Hero />
+      <NavigationBar />
+      <About />
+      <Elsewhere />
+      <Contact />
+    </HomePage>
 };

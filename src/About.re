@@ -1,6 +1,6 @@
 open Utils;
 
-let component = ReasonReact.statelessComponent("Elsewhere");
+let component = ReasonReact.statelessComponent("About");
 
 [@bs.module] external oyvindM150 : string = "./app/img/Oyvind-Marthinsen_150.jpg";
 
