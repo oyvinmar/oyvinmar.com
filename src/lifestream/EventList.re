@@ -22,12 +22,12 @@ module Event = {
 
 let component = ReasonReact.statelessComponent("EventList");
 
-let make = (~events: FetchData.events, _children) => {
+let make = (~events: FetchData.events, ~numberOfVisibleEvents: int, _children) => {
   ...component,
   render: (_self) =>
     <div>
       (
-        events
+        Array.sub(events, 0, numberOfVisibleEvents)
         |> Array.map((event: FetchData.event) => <Event key=event.id event />)
         |> ReasonReact.arrayToElement
       )

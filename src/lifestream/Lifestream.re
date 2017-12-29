@@ -7,11 +7,13 @@ type fetch =
   | ERROR;
 
 type state = {
+  numberOfVisibleEvents: int,
   events: FetchData.events,
   fetch
 };
 
 type action =
+  | ShowMore
   | Loaded(FetchData.events)
   | Loading;
 
@@ -24,11 +26,13 @@ let make = (_children) => {
   };
   {
     ...component,
-    initialState: () => {events: [||], fetch: INITIAL},
+    initialState: () => {events: [||], fetch: INITIAL, numberOfVisibleEvents: 5},
     reducer: (action, state) =>
       switch action {
+      | ShowMore =>
+        ReasonReact.Update({...state, numberOfVisibleEvents: state.numberOfVisibleEvents + 10})
       | Loading => ReasonReact.Update({...state, fetch: PENDING})
-      | Loaded(data) => ReasonReact.Update({events: data, fetch: SUCCESS})
+      | Loaded(data) => ReasonReact.Update({...state, events: data, fetch: SUCCESS})
       },
     didMount: (self) => {
       fetchEvents(self);
@@ -52,7 +56,22 @@ let make = (_children) => {
                   switch self.state.fetch {
                   | INITIAL => ReasonReact.nullElement
                   | PENDING => <EventListPlaceholder />
-                  | SUCCESS => <EventList events=self.state.events />
+                  | SUCCESS =>
+                    [|
+                      <EventList
+                        key="eventList"
+                        numberOfVisibleEvents=self.state.numberOfVisibleEvents
+                        events=self.state.events
+                      />,
+                      <button
+                        key="button"
+                        className="btn btn-primary show-more"
+                        onClick=(self.reduce((_event) => ShowMore))>
+                        <i className="fa fa-plus" />
+                        <span> (str(" Show More")) </span>
+                      </button>
+                    |]
+                    |> ReasonReact.arrayToElement
                   | ERROR => ReasonReact.nullElement
                   }
                 )
