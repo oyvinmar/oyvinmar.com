@@ -1,8 +1,14 @@
 open Utils;
 
+type fetch =
+  | INITIAL
+  | PENDING
+  | SUCCESS
+  | ERROR;
+
 type state = {
   events: FetchData.events,
-  loading: bool
+  fetch
 };
 
 type action =
@@ -18,15 +24,14 @@ let make = (_children) => {
   };
   {
     ...component,
-    initialState: () => {events: [||], loading: false},
+    initialState: () => {events: [||], fetch: INITIAL},
     reducer: (action, state) =>
       switch action {
-      | Loading => ReasonReact.Update({...state, loading: true})
-      | Loaded(data) => ReasonReact.Update({events: data, loading: false})
+      | Loading => ReasonReact.Update({...state, fetch: PENDING})
+      | Loaded(data) => ReasonReact.Update({events: data, fetch: SUCCESS})
       },
     didMount: (self) => {
       fetchEvents(self);
-      /* FetchData.fetchEvent(); */
       ReasonReact.NoUpdate
     },
     render: (self) =>
@@ -44,8 +49,12 @@ let make = (_children) => {
               </p>
               <div>
                 (
-                  self.state.loading ?
-                    ReasonReact.stringToElement("loading") : <EventList events=self.state.events />
+                  switch self.state.fetch {
+                  | INITIAL => ReasonReact.nullElement
+                  | PENDING => <EventListPlaceholder />
+                  | SUCCESS => <EventList events=self.state.events />
+                  | ERROR => ReasonReact.nullElement
+                  }
                 )
               </div>
             </div>
