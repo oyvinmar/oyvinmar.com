@@ -38,7 +38,7 @@ let make = (_children) => {
               <p className="pretext">
                 (
                   str(
-                    "If this content is up-to-date, I�\128\152m probably still alive. If not, lets hope it is a bug in my code..."
+                    "If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code..."
                   )
                 )
               </p>

@@ -1,5 +1,7 @@
 [@bs.module] external pinboardLogo : string = "./pinboard.svg";
 
+[@bs.module] external twitterLogo : string = "./twitter.svg";
+
 type event = {
   id: string,
   content: string,
@@ -13,12 +15,16 @@ type event = {
 type events = array(event);
 
 module Decode = {
+  let toLocaleString = (dateString) : string => {
+    let date = Js.Date.fromString(dateString);
+    Js.Date.toLocaleString(date)
+  };
   let bookmark = (json) : event =>
     Json.Decode.{
       id: json |> field("dt", string),
       url: json |> field("u", string),
       content: json |> field("d", string),
-      time: json |> field("dt", string),
+      time: json |> field("dt", string) |> toLocaleString,
       serviceName: "Pinboard",
       logo: pinboardLogo,
       serviceUrl: "https://pinboard.in/"
@@ -29,9 +35,9 @@ module Decode = {
       id: json |> field("id_str", string),
       url: "https://twitter.com/#!/oyvinmar/status/",
       content: json |> field("text", string),
-      time: json |> field("created_at", string),
+      time: json |> field("created_at", string) |> toLocaleString,
       serviceName: "Twitter",
-      logo: pinboardLogo,
+      logo: twitterLogo,
       serviceUrl: "https://twitter.com/"
     };
   let tweets = (json) : array(event) => Json.Decode.(json |> array(tweet));
