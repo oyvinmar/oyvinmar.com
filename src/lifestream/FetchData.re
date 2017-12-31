@@ -2,6 +2,8 @@
 
 [@bs.module] external twitterLogo : string = "./twitter.svg";
 
+[@bs.module] external swarmLogo : string = "./swarm.svg";
+
 type event = {
   id: string,
   content: string,
@@ -15,9 +17,13 @@ type event = {
 type events = array(event);
 
 module Decode = {
-  let toLocaleString = (dateString) : string => {
+  let toLocaleString = (dateString) => {
     let date = Js.Date.fromString(dateString);
     Js.Date.toLocaleString(date)
+  };
+  let floatToLocaleString = (sinceEpoc) : string => {
+    let jsDate = Js.Date.fromFloat(sinceEpoc);
+    Js.Date.toLocaleString(jsDate)
   };
   let bookmark = (json) : event =>
     Json.Decode.{
@@ -29,6 +35,29 @@ module Decode = {
       logo: pinboardLogo,
       serviceUrl: "https://pinboard.in/"
     };
+  let checkin = (json) : event =>
+    Json.Decode.{
+      id: json |> field("id", string),
+      url:
+        json
+        |> at(["venue", "id"], string)
+        |> ((venueId) => "https://foursquare.com/v/" ++ venueId),
+      content:
+        json
+        |> at(["venue", "name"], string)
+        |> ((venueName) => "Checked in at " ++ venueName ++ "."),
+      time:
+        json
+        |> field("createdAt", int)
+        |> float_of_int
+        |> ((createdAt) => createdAt *. 1000.0)
+        |> floatToLocaleString,
+      serviceName: "Swarm",
+      logo: swarmLogo,
+      serviceUrl: "https://foursquare.com/"
+    };
+  let checkins = (json) : array(event) =>
+    Json.Decode.(json |> at(["response", "checkins", "items"], array(checkin)));
   let bookmarks = (json) : array(event) => Json.Decode.(json |> array(bookmark));
   let tweet = (json) : event =>
     Json.Decode.{
@@ -57,8 +86,15 @@ let fetchBookmarks = () =>
     |> then_((json) => json |> Decode.bookmarks |> ((events) => resolve(events)))
   );
 
+let fetchCheckins = () =>
+  Js.Promise.(
+    Fetch.fetch("/swarm/feed/")
+    |> then_(Fetch.Response.json)
+    |> then_((json) => json |> Decode.checkins |> ((events) => resolve(events)))
+  );
+
 let fetchEvents = (callback) => {
-  let promiseAll = Js.Promise.all([|fetchBookmarks(), fetchTweets()|]);
+  let promiseAll = Js.Promise.all([|fetchBookmarks(), fetchTweets(), fetchCheckins()|]);
   Js.Promise.(
     promiseAll
     |> then_(
