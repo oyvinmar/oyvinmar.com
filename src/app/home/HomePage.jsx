@@ -5,8 +5,6 @@ import $ from 'jquery';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
-import Lifestream from './Lifestream';
-
 window.jQuery = $;
 
 require('waypoints/lib/jquery.waypoints');
@@ -100,12 +98,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    return (
-      <div id="content">
-        {this.props.children}
-        <Lifestream />
-      </div>
-    );
+    return <div id="content">{this.props.children}</div>;
   }
 }
 
