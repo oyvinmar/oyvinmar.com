@@ -1,5 +1,7 @@
 open Utils;
 
+[%bs.raw {|require('./styles/cv.scss')|}];
+
 let component = ReasonReact.statelessComponent("CvPage");
 
 [@bs.module] external oyvindM150 : string = "./app/img/Oyvind-Marthinsen_150.jpg";
@@ -14,20 +16,18 @@ let getSrcSets = () => {
 let make = (_children) => {
   ...component,
   render: (_self) =>
-  <div className="container" id="cv">
+  <div id="cv">
+  <div className="container" >
     <header className="row">
       <div className="col-md-12">
-        <h1>(str("CV - Øyvind Marthinsen"))</h1>
+        <h1>(str({js|CV - Øyvind Marthinsen|js}))</h1>
       </div>
     </header>
     <section className="row">
       <figure className="col-lg-3 col-md-4">
         <img
         alt="Picture of Øyvind Marthinsen"
-        id="headshot"
-        src="/assets/img/Oyvind-Marthinsen_300.jpg"
-        srcSet=(getSrcSets())
-        sizes="100vw"
+        src=(oyvindM300)
       />
       </figure>
       <article className="col-lg-9 col-md-8">
@@ -37,13 +37,13 @@ let make = (_children) => {
         <dl className="dl-horizontal" style=(ReactDOMRe.Style.make(~margin="20px 0 30px 0", () ))>
           <dt>(str("Telefon:"))</dt>
           <dd>(str("970 61 833"))</dd>
-          <dt>(str("Fødselsdato:"))</dt>
+          <dt>(str({js|Fødselsdato:|js}))</dt>
           <dd>(str("06.10.1984"))</dd>
           <dt>(str("Bosted:"))</dt>
           <dd>(str("Oslo"))</dd>
         </dl>
         <p>
-          (str("Jeg er en engasjert utvikler som brenner for utvikling av moderne web
+          (str({js|Jeg er en engasjert utvikler som brenner for utvikling av moderne web
           applikasjoner. Jeg trives like godt på klientsiden som på serversiden,
           og har gjennom deltakelse i flere større og mindre prosjekter tilegnet
           meg mye kunnskap om smidige metoder og prosjektstyring. Selv om jeg er
@@ -55,7 +55,7 @@ let make = (_children) => {
           produksjonssetting. Jeg anser meg selv som flink til å se brukerens
           behov og setter alltid brukeren i fokus under utvikling av løsninger.
           Jeg er også en pragmatisk person som liker å utfordre meg selv på å
-          lage enkle løsninger for komplekse problemer."))
+          lage enkle løsninger for komplekse problemer.|js}))
         </p>
       </article>
     </section>
@@ -65,17 +65,16 @@ let make = (_children) => {
           <h2>(str("Teknologikart"))</h2>
         </header>
         <p>
-          (str("Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har
-          erfaring med. Utover dette er jeg fortiden interessert i"))
+          (str({js|Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har
+          erfaring med. Utover dette er jeg fortiden interessert i |js}))
           <a href="https://facebook.github.io/react-native/">(str("React Native"))</a>
-          (str("for utvikling av mobile mobil applikasjoner,"))
-          <a href="http://graphql.org/">(str("GraphQL"))</a>(str(" som et alternativ til REST
-          og fordeler og ulemper med"))
+          (str(" for utvikling av mobile mobil applikasjoner, "))
+          <a href="http://graphql.org/">(str("GraphQL"))</a>(str(" som et alternativ til REST og fordeler og ulemper med "))
           <a href="http://danluu.com/monorepo/">(str("monorepo"))</a>
           (str("."))
         </p>
-        <dl className="dl-horizontal">
-          <dt>(str("Programmeringsspråk"))</dt>
+        <dl className="dl-vertical">
+          <dt>(str({js|Programmeringsspråk|js}))</dt>
           <dd>
             (str("JavaScript (ECMAScript 2015), Scala, Java, C, Groovy, Python, Ruby"))
           </dd>
@@ -83,7 +82,7 @@ let make = (_children) => {
           <dd>
             (str("HTML5, CSS3, React, Redux, Immutable.js, SASS, LESS, SVG, Angular.js, Twitter Bootstrap, lodash, Express, Highcharts, jQuery"))
           </dd>
-          <dt>(str("Webverktøy"))</dt>
+          <dt>(str({js|Webverktøy|js}))</dt>
           <dd>
             (str("Webpack, ESLint, npm, Gulp.js, Livereload/BrowserSync, Karma, Jasmine, Mocha, Grunt, Browserify, RequireJS, Bower"))
           </dd>
@@ -93,7 +92,7 @@ let make = (_children) => {
           <dd>
             (str("Ehcache, Hibernate, JUnit, Java SE/EE/ME, Log4j, Logback, Spring"))
           </dd>
-          <dt>(str("Byggeverktøy/kontinuerlig integrasjon"))</dt>
+          <dt>(str({js|Byggeverktøy/kontinuerlig integrasjon|js}))</dt>
           <dd>(str("Artifactory, npm, Jenkins, Gradle, Maven, Nexus"))</dd>
           <dt>(str("Databaser"))</dt>
           <dd>(str("Microsoft SQL Server, MySQL, PostgreSQL"))</dd>
@@ -101,9 +100,9 @@ let make = (_children) => {
           <dd>(str("HTTP, REST, JSON, SOAP, XML"))</dd>
           <dt>(str("Metode"))</dt>
           <dd>(str("Parprogrammering, Scrum, Testdrevet utvikling (TDD), XP"))</dd>
-          <dt>(str("Utviklingsverktøy (IDE)"))</dt>
+          <dt>(str({js|Utviklingsverktøy (IDE)|js}))</dt>
           <dd>(str("IntelliJ IDEA, Atom, vim"))</dd>
-          <dt>(str("Versjonshåndtering"))</dt>
+          <dt>(str({js|Versjonshåndtering|js}))</dt>
           <dd>(str("Git, Subversion"))</dd>
         </dl>
       </section>
@@ -116,11 +115,11 @@ let make = (_children) => {
         <div className="project">
           <h4>
             <span className="pull-right">(str("2013 - dd"))</span>
-            (str("Kommuneforlaget (KF), Diverse prosjekter og oppgaver"))
+            (str("Kommuneforlaget (KF), Diverse prosjekter og oppgaver "))
           </h4>
 
           <p>
-            (str("Kommuneforlaget har en produktportefølje av IT-løsninger som blant
+            (str({js|Kommuneforlaget har en produktportefølje av IT-løsninger som blant
             annet omfatter systemer for styring, saksbehandling og
             kvalitetssikring. Knowit er en sentral leverandør av løsninger til
             denne porteføljen, og har blant annet levert løsning for
@@ -128,22 +127,22 @@ let make = (_children) => {
             avvik, portalløsning, styringssystem, tjenestekatalog samt
             presentasjonsløsning for årshjul. Knowit bistår også KF med
             rådgivning i forhold til forskjellige behov som f.eks.
-            single-sign-on, leverandørevaluering, mv."))
+            single-sign-on, leverandørevaluering, mv.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg startet som utvikler i prosjektet, og har siden siste halvdel
+              (str({js|Jeg startet som utvikler i prosjektet, og har siden siste halvdel
               av 2015 vært prosjektleder. I løpet av perioden i KF har jeg vært
               med på å utarbeide løsningsforslag, estimere, utvikle og levere
               flere nye webapplikasjoner. Jeg har også jobbet med forvaltning av
               eksisterende applikasjoner og vært sentral i innføring av en
-              moderne frontendstack."))
+              moderne frontendstack.|js}))
             </p>
 
             <p>
-              <b>(str("Teknologier:")) </b>
+              <b>(str("Teknologier: ")) </b>
               (str("Scala, ES2015, React, Redux, Immutable.js, Scalatra, Webpack, npm,
               SASS, Highcharts, ESLint, Karma, Jasmine/Mocha, Maven"))
             </p>
@@ -155,18 +154,18 @@ let make = (_children) => {
           </h4>
 
           <p>
-            (str("PhonectUC er en selvbetjent og skybasert kommunikasjonstjeneste
+            (str({js|PhonectUC er en selvbetjent og skybasert kommunikasjonstjeneste
             basert på Microsoft Lync 2013. Tjenesten gir deg telefoni og
             samhandlingstjenester med video- og talekonferanseløsninger til PC,
             nettbrett og mobil, hvor du enkelt kan kommunisere og samarbeide via
             direktemeldinger, video, lyd, deling av skjerm, programmer og
-            presentasjoner."))
+            presentasjoner.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg kom inn på et tidspunkt hvor produktet nettopp var blitt satt
+              (str({js|Jeg kom inn på et tidspunkt hvor produktet nettopp var blitt satt
               i produksjon. Produktet, med all kildekoden, var kjøpt fra et
               annet selskap. Min rolle var å få dette produktet opp i en stand
               hvor det kunne forvaltes på en bedre måte. Grep vi gjorde for å få
@@ -175,7 +174,7 @@ let make = (_children) => {
               Server plattform til Linux plattform. Gikk over fra Ant til Gradle
               som byggesystem, slettet overflødig og utdatert kode ved hjelp av
               TDD. I tillegg satt jeg opp et nytt produksjonssettingsløp
-              inspirert av continuous deployment prinsipper."))
+              inspirert av continuous deployment prinsipper.|js}))
             </p>
 
             <p>
@@ -189,7 +188,7 @@ let make = (_children) => {
             <span className="pull-right">(str("2013"))</span>(str("NAV, Modernisering"))
           </h4>
           <p>
-            (str("Moderniseringsprogrammet ble startet sommeren 2012 av NAV.
+            (str({js|Moderniseringsprogrammet ble startet sommeren 2012 av NAV.
             Programmet skulle gå over en periode på 6-7 år, med ca 17 scrum team
             (mellom 200-300 mennesker) involvert samtidig. Målet med programmet
             var å modernisere NAV sine it-systemer for å lage mer sammensatte
@@ -197,24 +196,23 @@ let make = (_children) => {
             koble sammen arbeids- og trygdetjenester for å få folk i arbeid,
             samle tråder fra forskjellige områder til en felles vedtaksprosess
             og forbedre dialogen mellom arbeidsgivere, arbeidstakere,
-            samarbeidspartnere og NAV."))
+            samarbeidspartnere og NAV.|js}))
           </p>
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg var del av et frontendteam som var nært knyttet til
+              (str({js|Jeg var del av et frontendteam som var nært knyttet til
               rammeverksteamet. Teamet var ansvarlig for å implementere felles
               wicket- og javascriptkomponenter som kan brukes på tvers av ulike
               løsninger. Andre oppgaver besto blant annet av å implementere et
               design for den interne arbeidsflaten MODIA, sikre at løsningene
               fulgte krav til Universal Utforming og etablere retningslinjer for
-              frontendutvikling."))
+              frontendutvikling.|js}))
             </p>
 
             <p>
-              <b>(str("Teknologier:")) </b>
-              (str("CSS, Jasmine, Java, JavaScript, Jetty, Less, Maven, Responsivt
-              design, Sonar, Twitter Bootstrap, Wicket, jQuery"))
+              <b>(str("Teknologier: ")) </b>
+              (str("CSS, Jasmine, Java, JavaScript, Jetty, Less, Maven, Responsivt design, Sonar, Twitter Bootstrap, Wicket, jQuery"))
             </p>
           </div>
         </div>
@@ -222,37 +220,34 @@ let make = (_children) => {
           <h4>
             <span className="pull-right">(str("2012"))</span>(str("CVReg"))
           </h4>
-
           <p>
-            (str("CVReg er en intern web-applikasjon for håndtering av CV’er. Systemet
+            (str({js|CVReg er en intern web-applikasjon for håndtering av CV’er. Systemet
             håndterer innlegging og eksportering av CV’er for alle ansatte, samt
             søk og versjonering. CVReg ble en stor suksess og er nå i ferd med å
-            bli tatt bruk av hele Knowit konsernet."))
+            bli tatt bruk av hele Knowit konsernet.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg var hovedansvarlig for utvikling, ferdigstilling og
-              produksjonssetting av første versjon av web-applikasjonen."))
+              (str({js|Jeg var hovedansvarlig for utvikling, ferdigstilling og produksjonssetting av første versjon av web-applikasjonen.|js}))
             </p>
 
             <p>
-              <b>(str("Teknologier:")) </b>
-              (str("Compass, Grails, Groovy, HTML5, Jasper Reports, JavaScript, LESS,
-              Lucene, Responsive Design, Twitter Bootstrap, jQuery"))
+              <b>(str("Teknologier: ")) </b>
+              (str("Compass, Grails, Groovy, HTML5, Jasper Reports, JavaScript, LESS, Lucene, Responsive Design, Twitter Bootstrap, jQuery"))
             </p>
           </div>
         </div>
 
         <div className="project">
           <h4>
-            <span className="pull-right"> (str("2011 – 2012")) </span> (str("NAV,
-            Fellessystemer{' '}"))
+            <span className="pull-right"> (str("2011 - 2012")) </span>
+            (str("NAV, Fellessystemer"))
           </h4>
 
           <p>
-            (str("NAV Fellessystemer er en systemportefølje inneholdende 5 sentrale
+            (str({js|NAV Fellessystemer er en systemportefølje inneholdende 5 sentrale
             støttesystemer for saksbehandlere i NAV. Blant annet inngår systemet
             GOSYS hvor alle brukerhenvendelser registreres og videre saksgang
             besluttes. GOSYS gir god støtte for arbeidsflyt og deling av
@@ -262,23 +257,23 @@ let make = (_children) => {
             av ca 15 millioner forsendelser årlig). Systemporteføljen benytter
             NAVs felles rammeverk for applikasjonsutvikling av web- og
             batch-løsninger, samt integrasjon med NAVs tjenesteorienterte
-            plattform."))
+            plattform.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg jobbet med videreutvikling og vedlikehold av alle systemene i
+              (str({js|Jeg jobbet med videreutvikling og vedlikehold av alle systemene i
               porteføljen og var Scrum Master for et team på fire utviklere.
               Noen eksempler på arbeidsoppgaver er implementering av nye
               tjenester på konsument- og produsentsiden av ESB’en, analyse av
               produksjonsfeil, oppbygning av nye skjermbilder, innfasing av nye
               prosjektmedlemmer og integrering mot et aksesspunkt for tjenester
-              fra EU."))
+              fra EU.|js}))
             </p>
 
             <p>
-              <b>(str("Teknologier:")) </b>
+              <b>(str("Teknologier: "))</b>
               (str("DB2 Teknologier, ESB, Greenhopper, Hibernate, IBM WebSphere, JSF
               (Java Server Faces), Java 6, JavaScript, Maven 2, RichFaces/A4j,
               SOAP, SoapUI, Spring, Spring WebFlow, Subversion, Twitter
@@ -288,30 +283,30 @@ let make = (_children) => {
         </div>
         <div className="project">
           <h4>
-            <span className="pull-right"> (str("2009 – 2011")) </span> (str("Statens Vegvesen,
-            System for kontroll av kjøretøy (VaDIS)"))
+            <span className="pull-right"> (str("2009 - 2011")) </span>
+            (str({js|Statens Vegvesen, System for kontroll av kjøretøy (VaDIS)|js}))
           </h4>
 
           <p>
-            (str("VaDIS er et IT-system som støtter gjennomføring av kontroller av
+            (str({js|VaDIS er et IT-system som støtter gjennomføring av kontroller av
             førere og kjøretøy på norske veier. Håndholdte terminaler (PDA’er)
             kommuniserer trådløst mot sentrale systemer. VaDIS støtter en rekke
             kontrolltyper, teknisk tilstand på kjøretøy og last, samt førerens
             adferd gjennom kjøre- og hviletidskontroller. Dette innebærer blant
             annet at digitale sjåførkort leses og valideres i løpet av selve
             kontrollen. VaDIS inneholder også en web-løsning med moduler for
-            kontrollvirksomheten, administrasjon, saksbehandling og statistikk."))
+            kontrollvirksomheten, administrasjon, saksbehandling og statistikk.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg jobbet med videreutvikling og testing av VaDIS systemet. Hadde
+              (str({js|Jeg jobbet med videreutvikling og testing av VaDIS systemet. Hadde
               hovedansvaret for implementeringen av en tidslinjekomponent i Flex
               og integreringen av denne komponenten med en Java EE arkitektur.
               Det siste året jobbet jeg med planlegging og implementering av et
               grensesnitt for utføring av kontroller på web der fokus var
-              gjenkjennelighet, rikt grensesnitt og stabilitet."))
+              gjenkjennelighet, rikt grensesnitt og stabilitet.|js}))
             </p>
 
             <p>
@@ -323,32 +318,33 @@ let make = (_children) => {
         </div>
         <div className="project">
           <h4>
-            <span className="pull-right"> (str("2007 – 2008 "))</span> (str("Mattilsynet, MATS{' '}"))
+            <span className="pull-right"> (str("2007 - 2008 "))</span>
+            (str("Mattilsynet, MATS"))
           </h4>
 
           <p>
-            (str("MATS – Mattilsynets tilsynssystem er et fagsystem som vil erstatte
+            (str({js|MATS – Mattilsynets tilsynssystem er et fagsystem som vil erstatte
             ca. 30 eksisterende systemer, samordne alle virksomheter som
             Mattilsynet fører tilsyn med og vil være springbrettet for en mer
             effektiv forvaltning av ca 1000 forskrifter innen mattrygghet og
             dyrevern. Fagsystemet bygger på Computas rammeverk for arbeidsflyt
             og prosesstøtte FrameSolutions, satt inn i en SOA arkitektur.
             Fagsystemet utvikles i Java og en rekke teknologier knyttet til Java
-            EE blir brukt. Prosjektet tok også i bruk smidige metoder."))
+            EE blir brukt. Prosjektet tok også i bruk smidige metoder.|js}))
           </p>
 
           <div className="role">
             <p>
               <b>(str("Rolle: "))</b>
-              (str("Jeg jobbet på prosjektet i et år både som sommerjobb og
+              (str({js|Jeg jobbet på prosjektet i et år både som sommerjobb og
               deltidsjobb ved siden av studiene. Arbeidsoppgavene besto blant
               annet av automatisk funksjonell webtesting, ytelsestesting,
               forbedring av webgrensesnitt, rapportgenerering, samt
-              implementering og forbedring av regelstyrte arbeidsprosesser."))
+              implementering og forbedring av regelstyrte arbeidsprosesser.|js}))
             </p>
 
             <p>
-              <b>(str("Teknologier:")) </b>
+              <b>(str("Teknologier: "))</b>
               (str("EJB3, FrameSolutions, JBoss, Java 6, Ruby, Watir"))
             </p>
           </div>
@@ -361,9 +357,9 @@ let make = (_children) => {
           <h2>(str("Karriereerfaring"))</h2>
         </header>
         <dl className="dl-horizontal">
-          <dt>(str("2009 – dd"))</dt>
+          <dt>(str("2009 - dd"))</dt>
           <dd>(str("Knowit, Konsulent"))</dd>
-          <dt>(str("2007 – 2008"))</dt>
+          <dt>(str("2007 - 2008"))</dt>
           <dd>(str("Computas AS, Deltidsjobb"))</dd>
         </dl>
       </div>
@@ -374,9 +370,9 @@ let make = (_children) => {
           <h2>(str("Utdannelse"))</h2>
         </header>
         <dl className="dl-horizontal">
-          <dt>(str("2004 – 2009"))</dt>
+          <dt>(str("2004 - 2009"))</dt>
           <dd>
-            (str("Universitet i Oslo, Master i informatikk{' '}"))
+            (str("Universitet i Oslo, Master i informatikk"))
             <p>
               (str("Masteroppgave: Brukerkontroll i kontekstsensitive mobile
               nettjenster"))
@@ -394,7 +390,7 @@ let make = (_children) => {
           <dl className="dl-horizontal">
             <dt>(str("2014"))</dt>
             <dd>
-              (str("Knowit Developer Summit -{' '}"))
+              (str("Knowit Developer Summit - "))
               <a href="http://oyvinmar.github.io/gulpjs-presentation/">
                 (str("Gulp.js"))
               </a>
@@ -406,18 +402,19 @@ let make = (_children) => {
     <section className="row">
       <div className="col-md-12">
         <header>
-          <h2>(str("Språkkunnskaper"))</h2>
+          <h2>(str({js|Språkkunnskaper|js}))</h2>
         </header>
 
         <div>
           <dl className="dl-horizontal">
             <dt>(str("Norsk"))</dt>
-            <dd>(str("Morsmål"))</dd>
+            <dd>(str({js|Morsmål|js}))</dd>
             <dt>(str("Engelsk"))</dt>
             <dd>(str("Flytende"))</dd>
           </dl>
         </div>
       </div>
     </section>
+    </div>
   </div>
 };

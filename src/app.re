@@ -7,7 +7,6 @@ let component = ReasonReact.statelessComponent("App");
 let make = (~route, _children) => {
   ...component,
   render: (_self) => {
-    Js.log(route);
     switch route {
     | Routing.Home =>
       <HomePage message="test">

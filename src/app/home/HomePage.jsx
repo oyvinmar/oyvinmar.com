@@ -15,9 +15,7 @@ window.app = window.app || {};
 (function load() {
   let sticky;
 
-  const FancyShmancy = function FancyShmancy() {
-    this.init();
-  };
+  const FancyShmancy = function FancyShmancy() {};
 
   FancyShmancy.prototype.init = function init() {
     this.fullscreenImage();
@@ -93,6 +91,9 @@ window.app = window.app || {};
 window.app.fancyShmancy = new window.app.FancyShmancy();
 
 export default class HomePage extends Component {
+  componentWillMount() {
+    window.app.fancyShmancy.init();
+  }
   componentDidMount() {
     window.app.fancyShmancy.onLoad();
   }

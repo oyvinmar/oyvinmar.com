@@ -1,58 +1,15 @@
-//Variables
-$font-size-base: 18px;
-$line-height-base: 1.428571429;
+#cv {
+  font-size: 0.8em;
+  color: #444444;
+  background: white;
 
-// 20/14
-$font-family-sans-serif: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-family-serif: "kepler-std", Georgia, "Times New Roman", Times, serif;
-// $fa-font-path: "../../node_modules/font-awesome/fonts" !default;
-$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default;
-$component-offset-horizontal: 260px !default;
-//$grid-float-breakpoint: 1024px !default;
-
-// Core variables and mixins
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-
-$grid-float-breakpoint: $screen-md-min;
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-
-// Reset
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print";
-
-// Core CSS
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/code";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
-@import "../../node_modules/font-awesome/scss/font-awesome";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
-
-//@media (min-width: 1000px) {
-  .dl-horizontal {
-    dt {
-      text-align: left;
-//      width: 260px;
-    }
-//    dd {
-//      margin-left: 330px;
-//    }
+  h4 {
+    font-size: 1.4em;
   }
-//}
-//
-//@media (min-width: 768px) {
-//  .dl-horizontal {
-//    dt {
-//      text-align: left;
-//    }
-//    dd {
-//    }
-//  }
-//}
+}
 
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+.dl-horizontal {
+  dt {
+    text-align: left !important;
   }
 }
