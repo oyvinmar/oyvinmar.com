@@ -1,5 +1,3 @@
-[%bs.raw {|require('./index.css')|}];
-
 [@bs.scope ("window", "location")] [@bs.val] external pathname : string = "pathname";
 
 /* [@bs.module "./registerServiceWorker"] external register_service_worker : unit => unit = "default";
