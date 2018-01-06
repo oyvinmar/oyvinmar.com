@@ -49,13 +49,16 @@
   "scripts": {
     "build": "react-app-rewired build --scripts-version reason-scripts",
     "eject": "react-scripts eject",
-    "lint": "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
+    "lint":
+      "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
     "pretest": "npm run lint",
     "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
-    "start": "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"node server\"",
-    "start-server": "node server",
+    "start":
+      "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"yarn start-server\"",
+    "start-server": "PORT=4000 node server",
+    "start-prod": "PORT=3000 NODE_ENV=production node server",
     "start-client": "react-app-rewired start --scripts-version reason-scripts",
     "test": "react-scripts test --env=jsdom"
   },
