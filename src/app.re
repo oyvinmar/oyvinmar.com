@@ -4,15 +4,21 @@
 
 let component = ReasonReact.statelessComponent("App");
 
-let make = (_children) => {
+let make = (~route, _children) => {
   ...component,
-  render: (_self) =>
-    <HomePage message="test">
-      <Hero />
-      <NavigationBar />
-      <About />
-      <Lifestream />
-      <Elsewhere />
-      <Contact />
-    </HomePage>
+  render: (_self) => {
+    Js.log(route);
+    switch route {
+    | Routing.Home =>
+      <HomePage message="test">
+        <Hero />
+        <NavigationBar />
+        <About />
+        <Lifestream />
+        <Elsewhere />
+        <Contact />
+      </HomePage>
+    | Routing.Cv => <CvPage />
+    }
+  }
 };

@@ -1,7 +1,17 @@
 [%bs.raw {|require('./index.css')|}];
 
-[@bs.module "./registerServiceWorker"] external register_service_worker : unit => unit = "default";
+[@bs.scope ("window", "location")] [@bs.val] external pathname : string = "pathname";
 
-ReactDOMRe.renderToElementWithId(<App />, "root");
+/* [@bs.module "./registerServiceWorker"] external register_service_worker : unit => unit = "default";
+   register_service_worker(); */
+let renderForRoute = (route) => ReactDOMRe.renderToElementWithId(<App route />, "root");
 
-register_service_worker();
+let router =
+  DirectorRe.makeRouter({
+    "/": () => renderForRoute(Routing.Home),
+    "/cv": () => renderForRoute(Routing.Cv)
+  });
+
+DirectorRe.configure(router, {"html5history": true});
+
+DirectorRe.init(router, pathname);
