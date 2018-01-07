@@ -1,6 +1,7 @@
 {
-  "name": "reason-app",
+  "name": "oyvinmar.com",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
@@ -52,14 +53,15 @@
     "lint":
       "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
+    "now-build": "echo Noop",
+    "now-start": "PORT=3000 NODE_ENV=production node server",
     "pretest": "npm run lint",
     "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
     "start":
       "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"yarn start-server\"",
-    "start-server": "PORT=4000 node server",
-    "now-start": "PORT=3000 NODE_ENV=production node server",
     "start-client": "react-app-rewired start --scripts-version reason-scripts",
+    "start-server": "PORT=4000 node server",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
