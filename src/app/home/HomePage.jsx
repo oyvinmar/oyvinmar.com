@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
-import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
+import PropTypes from 'prop-types';
 
-import Hero from './Hero';
-import NavigationBar from './NavigationBar';
-import Lifestream from './Lifestream';
-import About from './About';
-import Elsewhere from './Elsewhere';
-import Contact from './Contact';
+import $ from 'jquery';
+// import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
+// import 'bootstrap-sass/assets/javascripts/bootstrap/transition';
 
 window.jQuery = $;
 
 require('waypoints/lib/jquery.waypoints');
 require('waypoints/lib/shortcuts/sticky');
 
+window.app = window.app || {};
+
 (function load() {
   let sticky;
 
-  const FancyShmancy = function FancyShmancy() {
-    this.init();
-  };
+  const FancyShmancy = function FancyShmancy() {};
 
   FancyShmancy.prototype.init = function init() {
     this.fullscreenImage();
@@ -35,7 +30,7 @@ require('waypoints/lib/shortcuts/sticky');
     this.fullscreenImage();
     this.addClickListeners();
     this.stickyNav();
-    this.initScrollSpy();
+    // this.initScrollSpy();
   };
 
   FancyShmancy.prototype.stickyNav = () => {
@@ -46,7 +41,7 @@ require('waypoints/lib/shortcuts/sticky');
       sticky.destroy();
       sticky = undefined;
     } else if (windowWidth > 768 && !sticky) {
-      sticky = new Waypoint.Sticky({
+      sticky = new window.Waypoint.Sticky({
         element: $('.navbar'),
         stuckClass: 'navbar-fixed-top',
         wrapper: '<div class="sticky-wrapper" />',
@@ -85,10 +80,10 @@ require('waypoints/lib/shortcuts/sticky');
     });
   };
 
-  FancyShmancy.prototype.initScrollSpy = () => {
-    const $spy = $('body');
-    $spy.scrollspy($spy.data());
-  };
+  // FancyShmancy.prototype.initScrollSpy = () => {
+  //   const $spy = $('body');
+  //   $spy.scrollspy($spy.data());
+  // };
 
   window.app.FancyShmancy = FancyShmancy;
 })();
@@ -96,20 +91,18 @@ require('waypoints/lib/shortcuts/sticky');
 window.app.fancyShmancy = new window.app.FancyShmancy();
 
 export default class HomePage extends Component {
+  componentWillMount() {
+    window.app.fancyShmancy.init();
+  }
   componentDidMount() {
     window.app.fancyShmancy.onLoad();
   }
 
   render() {
-    return (
-      <div id="content">
-        <Hero />
-        <NavigationBar />
-        <About />
-        <Lifestream />
-        <Elsewhere />
-        <Contact />
-      </div>
-    );
+    return <div id="content">{this.props.children}</div>;
   }
 }
+
+HomePage.propTypes = {
+  children: PropTypes.node.isRequired,
+};
