@@ -6,7 +6,7 @@ let component = ReasonReact.statelessComponent("App");
 
 let make = (~route, _children) => {
   ...component,
-  render: (_self) => {
+  render: (_self) =>
     switch route {
     | Routing.Home =>
       <HomePage message="test">
@@ -19,5 +19,4 @@ let make = (~route, _children) => {
       </HomePage>
     | Routing.Cv => <CvPage />
     }
-  }
 };
