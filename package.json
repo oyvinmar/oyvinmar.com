@@ -8,7 +8,6 @@
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap-sass": "^3.3.7",
-    "bs-director": "^0.0.6",
     "bs-fetch": "^0.2.0",
     "bs-json": "^1.0.1",
     "compression": "^1.7.1",

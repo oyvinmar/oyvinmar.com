@@ -1,6 +1,6 @@
 ####{BSB GENERATED: NO EDIT
-FLG -ppx '/Users/oyvind/.nvm/versions/node/v8.9.3/lib/node_modules/bs-platform/lib/reactjs_jsx_ppx_2.exe'
-FLG -ppx /Users/oyvind/.nvm/versions/node/v8.9.3/lib/node_modules/bs-platform/lib/bsppx.exe
+FLG -ppx '/usr/local/lib/node_modules/bs-platform/lib/reactjs_jsx_ppx_2.exe'
+FLG -ppx /usr/local/lib/node_modules/bs-platform/lib/bsppx.exe
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-platform/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -no-alias-deps -color always
@@ -11,8 +11,6 @@ S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-jest/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-jest/lib/ocaml
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-json/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-json/lib/ocaml
-S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-director/lib/ocaml
-B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-director/lib/ocaml
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocaml
 S src
