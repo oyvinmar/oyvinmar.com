@@ -1,21 +1,20 @@
-[@bs.scope ("window", "location")] [@bs.val] external pathname : string = "pathname";
-
 [@bs.module "./registerServiceWorker"] external register_service_worker : unit => unit = "default";
-
-[@bs.val] external setTimeout : (unit => unit, int) => float = "setTimeout";
 
 register_service_worker();
 
 let renderForRoute = (route) => ReactDOMRe.renderToElementWithId(<App route />, "root");
 
-let router = DirectorRe.makeRouter({"/": "home", "/cv": "cv", "*": "notfound"});
+let handleRouteChange = (url: ReasonReact.Router.url) =>
+  switch url.path {
+  | ["cv"] => renderForRoute(Routing.Cv)
+  | [] => renderForRoute(Routing.Home)
+  | _ => ReasonReact.Router.push("/")
+  };
 
-let handlers = {
-  "home": () => renderForRoute(Routing.Home),
-  "cv": () => renderForRoute(Routing.Cv),
-  "notfound": () => setTimeout(() => DirectorRe.setRoute(router, "/"), 500)
-};
+handleRouteChange({
+  path: RouteHelper.path(),
+  hash: RouteHelper.hash(),
+  search: RouteHelper.search()
+});
 
-DirectorRe.configure(router, {"html5history": true, "resource": handlers});
-
-DirectorRe.init(router, pathname);
+let watcherID = ReasonReact.Router.watchUrl(handleRouteChange);

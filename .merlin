@@ -11,8 +11,6 @@ S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-jest/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-jest/lib/ocaml
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-json/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-json/lib/ocaml
-S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-director/lib/ocaml
-B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-director/lib/ocaml
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-fetch/lib/ocaml
 S src
