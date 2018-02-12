@@ -38,7 +38,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^8.0.0",
     "await-url": "^0.3.0",
     "bs-jest": "^0.3.1",
     "chalk": "^2.3.0",
