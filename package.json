@@ -44,7 +44,7 @@
     "chalk": "^2.3.0",
     "concurrently": "^3.5.1",
     "cross-spawn": "^5.1.0",
-    "eslint": "^4.13.1",
+    "eslint": "^5.0.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
