@@ -54,7 +54,7 @@
     "normalize-url": "^3.0.0",
     "now": "^10.0.0",
     "octonode": "^0.9.1",
-    "postcss-loader": "^2.0.9",
+    "postcss-loader": "^3.0.0",
     "prettier": "^1.10.2",
     "react-app-rewired": "^1.4.0",
     "react-test-renderer": "^16.2.0",
