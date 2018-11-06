@@ -5147,9 +5147,9 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
-normalize-url@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.0.0.tgz#ea05adebe8147b2bc49480a09a249d5f6f754ea7"
+normalize-url@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.0.0.tgz#6c2214dde2fc8ea88509ec79774ccbd1d426c1ea"
 
 now@^10.0.0:
   version "10.0.0"
