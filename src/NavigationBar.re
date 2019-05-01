@@ -29,7 +29,7 @@ let make = (_children) => {
       <div className="container-fluid">
         <div className="navbar-header">
           <button
-            className="navbar-toggle" onClick=(self.reduce((_event) => Toggle)) typeof="button">
+            className="navbar-toggle" onClick=(_event => self.send(Toggle)) typeof="button">
             <span className="sr-only"> (str("Toggle navigation")) </span>
             <i className="fa fa-bars" />
           </button>

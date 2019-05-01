@@ -23,7 +23,7 @@ let make = (_children) => {
       (
         [|1, 2, 3, 4, 5|]
         |> Array.map((num) => <EventPlaceholder key=(string_of_int(num)) />)
-        |> ReasonReact.arrayToElement
+        |> ReasonReact.array
       )
     </div>
 };

@@ -29,7 +29,7 @@ let make = (~events: FetchData.events, ~numberOfVisibleEvents: int, _children) =
       (
         Array.sub(events, 0, numberOfVisibleEvents)
         |> Array.map((event: FetchData.event) => <Event key=event.id event />)
-        |> ReasonReact.arrayToElement
+        |> ReasonReact.array
       )
     </div>
 };

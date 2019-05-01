@@ -14,7 +14,7 @@ let make = (_children) => {
     | Some(el) => setInnerHTML(el, mailto)
     | None => ()
     };
-    ReasonReact.NoUpdate
+    /* ReasonReact.NoUpdate */
   },
   render: (_self) =>
     <section className="section" id="contact">

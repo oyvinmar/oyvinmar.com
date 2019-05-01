@@ -20,9 +20,10 @@ type action =
 let component = ReasonReact.reducerComponent("Lifestream");
 
 let make = (_children) => {
-  let fetchEvents = ({ReasonReact.reduce}) => {
-    FetchData.fetchEvents(reduce((payload) => Loaded(payload))) |> ignore;
-    reduce(() => Loading, ())
+  let fetchEvents = ({ReasonReact.send}) => {
+    /* FetchData.fetchEvents(reduce((payload) => Loaded(payload))) |> ignore; */
+    FetchData.fetchEvents((payload) => send(Loaded(payload))) |> ignore;
+    send(Loading)
   };
   {
     ...component,
@@ -36,7 +37,6 @@ let make = (_children) => {
       },
     didMount: (self) => {
       fetchEvents(self);
-      ReasonReact.NoUpdate
     },
     render: (self) =>
       <div className="section" id="lifestream">
@@ -54,7 +54,7 @@ let make = (_children) => {
               <div>
                 (
                   switch self.state.fetch {
-                  | INITIAL => ReasonReact.nullElement
+                  | INITIAL => ReasonReact.null
                   | PENDING => <EventListPlaceholder />
                   | SUCCESS =>
                     [|
@@ -66,13 +66,13 @@ let make = (_children) => {
                       <button
                         key="button"
                         className="btn btn-primary show-more"
-                        onClick=(self.reduce((_event) => ShowMore))>
+                        onClick=(_event => self.send(ShowMore))>
                         <i className="fa fa-plus" />
                         <span> (str(" Show More")) </span>
                       </button>
                     |]
-                    |> ReasonReact.arrayToElement
-                  | ERROR => ReasonReact.nullElement
+                    |> ReasonReact.array
+                  | ERROR => ReasonReact.null
                   }
                 )
               </div>
