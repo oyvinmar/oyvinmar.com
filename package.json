@@ -24,19 +24,15 @@
   },
   "scripts": {
     "build": "bsb -make-world && parcel build index.html",
-    "dev": "parcel index.html",
     "clean": "bsb -clean-world",
     "lint":
       "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
     "now-build": "echo Noop",
     "now-start": "PORT=3000 NODE_ENV=production node server",
-    "pretest": "npm run lint",
-    "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
     "bsb-watch": "bsb -make-world -w",
-    "start": "concurrently -r --kill-others \"yarn dev\" \"yarn bsb-watch\"",
-    "start-server": "PORT=4000 node server",
+    "start": "concurrently -r --kill-others \"yarn bsb-watch\" \"node .\"",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {

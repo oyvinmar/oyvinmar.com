@@ -1,6 +1,5 @@
 const express = require('express');
 
-const path = require('path');
 const { proxyResponder, oauthProxyResponder } = require('./proxy');
 const OAuth = require('oauth');
 const methodOverride = require('method-override');
@@ -9,11 +8,6 @@ const compression = require('compression');
 const errorhandler = require('errorhandler');
 
 const app = express();
-const PORT = 4000;
-const buildFolder = path.join(__dirname, '..', 'build');
-
-console.log('Configure default settings.');
-app.set('port', process.env.PORT || PORT);
 
 app.use(compression());
 app.use(bodyParser.json());
@@ -26,13 +20,10 @@ app.use(methodOverride());
 
 if (app.get('env') === 'development') {
   console.log('Configure settings for development.');
-  // app.use(express.static(buildFolder));
   app.use(errorhandler({ dumpExceptions: true, showStack: true }));
 }
 
 if (app.get('env') === 'production') {
-  const oneYear = 31557600000;
-  app.use(express.static(buildFolder, { maxAge: oneYear }));
   app.use(errorhandler());
 }
 
@@ -84,10 +75,6 @@ app.get('/github/feed/', (req, res) => {
     headers: { 'User-Agent': 'oyvinmar' },
   };
   proxyResponder(res, options);
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 module.exports = app;
