@@ -23,7 +23,8 @@
     "waypoints": "^4.0.1"
   },
   "scripts": {
-    "build": "bsb -make-world",
+    "build": "bsb -make-world && parcel build index.html",
+    "dev": "parcel index.html",
     "clean": "bsb -clean-world",
     "lint":
       "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
@@ -34,9 +35,7 @@
     "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
     "bsb-watch": "bsb -make-world -w",
-    "start2":
-      "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"yarn start-server\"",
-    "start-client": "react-app-rewired start --scripts-version reason-scripts",
+    "start": "concurrently -r --kill-others \"yarn dev\" \"yarn bsb-watch\"",
     "start-server": "PORT=4000 node server",
     "test": "react-scripts test --env=jsdom"
   },
@@ -44,6 +43,7 @@
     "@glennsl/bs-jest": "^0.4.8",
     "autoprefixer": "^7.2.5",
     "await-url": "^0.3.0",
+    "bsb-js": "^1.1.7",
     "chalk": "^2.3.0",
     "concurrently": "^3.5.1",
     "cross-spawn": "^5.1.0",
@@ -57,6 +57,7 @@
     "normalize-url": "^3.0.0",
     "now": "^10.0.0",
     "octonode": "^0.9.1",
+    "parcel-bundler": "^1.12.3",
     "postcss-loader": "^2.0.9",
     "prettier": "^1.10.2",
     "react-test-renderer": "^16.2.0",

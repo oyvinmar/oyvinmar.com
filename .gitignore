@@ -5,6 +5,7 @@ app/less/base.css
 .idea/
 *.iml
 *.bs.js
+.cache
 dist
 build
 lib
