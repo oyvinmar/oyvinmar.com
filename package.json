@@ -23,16 +23,19 @@
     "waypoints": "^4.0.1"
   },
   "scripts": {
-    "build": "react-app-rewired build --scripts-version reason-scripts",
-    "eject": "react-scripts eject",
-    "lint": "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
+    "build": "bsb -make-world",
+    "clean": "bsb -clean-world",
+    "lint":
+      "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
     "now-build": "echo Noop",
     "now-start": "PORT=3000 NODE_ENV=production node server",
     "pretest": "npm run lint",
     "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
-    "start": "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"yarn start-server\"",
+    "bsb-watch": "bsb -make-world -w",
+    "start2":
+      "concurrently -r --kill-others \"react-app-rewired start --scripts-version reason-scripts\" \"yarn start-server\"",
     "start-client": "react-app-rewired start --scripts-version reason-scripts",
     "start-server": "PORT=4000 node server",
     "test": "react-scripts test --env=jsdom"
