@@ -4,6 +4,7 @@ app/less/bootstrap.css
 app/less/base.css
 .idea/
 *.iml
+*.bs.js
 dist
 build
 lib
