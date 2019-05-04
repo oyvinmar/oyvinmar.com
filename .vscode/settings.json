@@ -1,20 +1,17 @@
 {
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "prettier.semi": true,
-  "prettier.jsxBracketSameLine": true,
   "editor.formatOnSave": true,
   "files.exclude": {
     "**/.git": true,
-    "**/.DS_Store": true
+    "**/.DS_Store": true,
+     "**/.bs.js": true
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/node_modules/**": true,
-    "**/htdocs": true
+    "**/.bs.js": true
   },
   "search.exclude": {
     "**/node_modules": true,
-    "**/htdocs": true
+    "**/.bs.js": true
   }
 }
