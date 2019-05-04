@@ -6,7 +6,6 @@
   "proxy": "http://localhost:4000",
   "dependencies": {
     "@glennsl/bs-json": "^3.0.0",
-    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap-sass": "^3.3.7",
     "bs-fetch": "^0.3.1",
@@ -27,8 +26,7 @@
     "build:api": "ncc build server/index.js -o dist/api",
     "build": "bsb -make-world && yarn build:static && yarn build:api",
     "clean": "bsb -clean-world",
-    "lint":
-      "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
+    "lint": "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
     "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
@@ -39,9 +37,7 @@
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.8",
     "@zeit/ncc": "^0.18.2",
-    "autoprefixer": "^7.2.5",
     "await-url": "^0.3.0",
-    "bsb-js": "^1.1.7",
     "chalk": "^2.3.0",
     "concurrently": "^3.5.1",
     "cross-spawn": "^5.1.0",
@@ -56,11 +52,9 @@
     "now": "^15.0.11",
     "octonode": "^0.9.1",
     "parcel-bundler": "^1.12.3",
-    "postcss-loader": "^2.0.9",
     "prettier": "^1.10.2",
     "react-test-renderer": "^16.2.0",
     "reason-react": "^0.7.0",
-    "sass-loader": "^7.1.0",
     "url-regex": "^4.1.1"
   },
   "toolchain": {
