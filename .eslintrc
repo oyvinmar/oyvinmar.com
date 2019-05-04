@@ -1,22 +1,13 @@
 {
   "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "es6": true
+    "node": true
   },
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "globals": {
-    "$": true,
-    "Waypoint": true,
-    "jQuery": true
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
+  "extends": ["eslint:recommended", "prettier", "prettier/react"],
   "rules": {
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/prefer-default-export": 0
+    "no-console": "off"
   }
 }
