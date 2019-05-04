@@ -23,13 +23,14 @@
     "waypoints": "^4.0.1"
   },
   "scripts": {
-    "build": "bsb -make-world && parcel build index.html",
+    "build:static": "parcel build index.html -d dist/static",
+    "build:api": "ncc build server/index.js -o dist/api",
+    "build": "bsb -make-world && yarn build:static && yarn build:api",
     "clean": "bsb -clean-world",
     "lint":
       "yarn run lint-prettier --silent && eslint --ext .js --ext .jsx ./src",
     "lint-prettier": "node prettier.js lint",
-    "now-build": "echo Noop",
-    "now-start": "PORT=3000 NODE_ENV=production node server",
+    "prepare": "npm link bs-platform",
     "prettier": "node prettier.js write",
     "bsb-watch": "bsb -make-world -w",
     "start": "concurrently -r --kill-others \"yarn bsb-watch\" \"node .\"",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.8",
+    "@zeit/ncc": "^0.18.2",
     "autoprefixer": "^7.2.5",
     "await-url": "^0.3.0",
     "bsb-js": "^1.1.7",
@@ -51,7 +53,7 @@
     "eslint-plugin-react": "^7.5.1",
     "node-sass": "^4.12.0",
     "normalize-url": "^3.0.0",
-    "now": "^10.0.0",
+    "now": "^15.0.11",
     "octonode": "^0.9.1",
     "parcel-bundler": "^1.12.3",
     "postcss-loader": "^2.0.9",

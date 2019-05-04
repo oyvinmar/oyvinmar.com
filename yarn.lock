@@ -992,6 +992,11 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.12.tgz#45dd1d0638e8c8f153e87d296907659296873916"
   integrity sha512-SOhuU4wNBxhhTHxYaiG5NY4HBhDIDnJF60GU+2LqHAdKKer86//e4yg69aENCtQ04n0ovz+tq2YPME5t5yp4pw==
 
+"@zeit/ncc@^0.18.2":
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.18.2.tgz#b5f721ec1d23bfe531f3568633689ddab7c05638"
+  integrity sha512-liiuVTcxLaOIGQDftpZ2qhSS/vdEbuvmi2tkBWMfIwIyeKd/sh/jw+l8yONT3/unx/sSmfMTDnwfwUlY+saKiw==
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -5582,9 +5587,10 @@ normalize-url@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.0.0.tgz#ea05adebe8147b2bc49480a09a249d5f6f754ea7"
 
-now@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/now/-/now-10.0.0.tgz#87e9e89012b09828282666885ab948130ce52cf7"
+now@^15.0.11:
+  version "15.0.11"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.0.11.tgz#0c06227d0be16cdc5b388c6bacc6a5297e273956"
+  integrity sha512-ABNSy28mCgz6BQgNQy6ettSI1e0L647xN7fthsMlcA0mienDxPpUpxc8XfprjSdwCLD8kj7Zfp3z7WP33JHBVw==
 
 npm-bundled@^1.0.1:
   version "1.0.6"

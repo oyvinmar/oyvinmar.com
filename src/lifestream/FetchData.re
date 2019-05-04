@@ -129,28 +129,28 @@ module Decode = {
 
 let fetchTweets = () =>
   Js.Promise.(
-    Fetch.fetch("/twitter/feed/")
+    Fetch.fetch("/api/twitter/")
     |> then_(Fetch.Response.json)
     |> then_((json) => json |> Decode.tweets |> ((events) => resolve(events)))
   );
 
 let fetchBookmarks = () =>
   Js.Promise.(
-    Fetch.fetch("/pinboard/feed/")
+    Fetch.fetch("/api/pinboard/")
     |> then_(Fetch.Response.json)
     |> then_((json) => json |> Decode.bookmarks |> ((events) => resolve(events)))
   );
 
 let fetchCheckins = () =>
   Js.Promise.(
-    Fetch.fetch("/swarm/feed/")
+    Fetch.fetch("/api/swarm/")
     |> then_(Fetch.Response.json)
     |> then_((json) => json |> Decode.checkins |> ((events) => resolve(events)))
   );
 
 let fetchGithubEvents = () =>
   Js.Promise.(
-    Fetch.fetch("/github/feed/")
+    Fetch.fetch("/api/github/")
     |> then_(Fetch.Response.json)
     |> then_((json) => json |> Decode.githubEvents |> ((events) => resolve(events)))
   );

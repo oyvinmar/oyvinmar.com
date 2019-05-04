@@ -27,7 +27,7 @@ if (app.get('env') === 'production') {
   app.use(errorhandler());
 }
 
-app.get('/pinboard/feed/', (req, res) => {
+app.get('/api/pinboard/', (req, res) => {
   const options = {
     host: 'feeds.pinboard.in',
     port: 443,
@@ -36,7 +36,7 @@ app.get('/pinboard/feed/', (req, res) => {
   proxyResponder(res, options);
 });
 
-app.get('/twitter/feed/', (req, res) => {
+app.get('/api/twitter/', (req, res) => {
   const oauth = new OAuth.OAuth(
     'https://api.twitter.com/oauth/request_token',
     'https://api.twitter.com/oauth/access_token',
@@ -56,7 +56,7 @@ app.get('/twitter/feed/', (req, res) => {
   oauthProxyResponder(oauth, res, options);
 });
 
-app.get('/swarm/feed/', (req, res) => {
+app.get('/api/swarm/', (req, res) => {
   const options = {
     host: 'api.foursquare.com',
     port: 443,
@@ -67,7 +67,7 @@ app.get('/swarm/feed/', (req, res) => {
   proxyResponder(res, options);
 });
 
-app.get('/github/feed/', (req, res) => {
+app.get('/api/github/', (req, res) => {
   const options = {
     host: 'api.github.com',
     port: 443,
