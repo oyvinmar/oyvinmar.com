@@ -31,7 +31,6 @@
     "lint": "yarn format-check && yarn lint-es",
     "format": "prettier --write \"**/*.{js,jsx,scss,md}\"",
     "format-check": "prettier --list-different \"**/*.{js,jsx,scss,md}\"",
-    "prepare": "npm link bs-platform",
     "bsb-watch": "bsb -make-world -w",
     "start": "concurrently -r --kill-others \"yarn bsb-watch\" \"node .\"",
     "test": "yarn build:bsb && jest"
