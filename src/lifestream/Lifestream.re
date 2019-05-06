@@ -9,7 +9,7 @@ type fetch =
 type state = {
   numberOfVisibleEvents: int,
   events: FetchData.events,
-  fetch
+  fetch,
 };
 
 type action =
@@ -17,68 +17,73 @@ type action =
   | Loaded(FetchData.events)
   | Loading;
 
-let component = ReasonReact.reducerComponent("Lifestream");
-
-let make = (_children) => {
-  let fetchEvents = ({ReasonReact.send}) => {
-    /* FetchData.fetchEvents(reduce((payload) => Loaded(payload))) |> ignore; */
-    FetchData.fetchEvents((payload) => send(Loaded(payload))) |> ignore;
-    send(Loading)
+[@react.component]
+let make = () => {
+  let fetchEvents = dispatch => {
+    FetchData.fetchEvents(payload => dispatch(Loaded(payload))) |> ignore;
+    dispatch(Loading);
   };
-  {
-    ...component,
-    initialState: () => {events: [||], fetch: INITIAL, numberOfVisibleEvents: 5},
-    reducer: (action, state) =>
-      switch action {
-      | ShowMore =>
-        ReasonReact.Update({...state, numberOfVisibleEvents: state.numberOfVisibleEvents + 10})
-      | Loading => ReasonReact.Update({...state, fetch: PENDING})
-      | Loaded(data) => ReasonReact.Update({...state, events: data, fetch: SUCCESS})
-      },
-    didMount: (self) => {
-      fetchEvents(self);
+
+  let (state, dispatch) =
+    React.useReducer(
+      (state, action) =>
+        switch (action) {
+        | ShowMore => {
+            ...state,
+            numberOfVisibleEvents: state.numberOfVisibleEvents + 10,
+          }
+        | Loading => {...state, fetch: PENDING}
+        | Loaded(data) => {...state, events: data, fetch: SUCCESS}
+        },
+      {events: [||], fetch: INITIAL, numberOfVisibleEvents: 5},
+    );
+
+  React.useEffect1(
+    () => {
+      fetchEvents(dispatch);
+      Some(() => ());
     },
-    render: (self) =>
-      <div className="section" id="lifestream">
-        <div className="container">
-          <header className="row section-header"> <h2> (str("Lifestream")) </h2> <hr /> </header>
-          <section className="row">
-            <div className="col-md-12">
-              <p className="pretext">
-                (
-                  str(
-                    "If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code..."
-                  )
-                )
-              </p>
-              <div>
-                (
-                  switch self.state.fetch {
-                  | INITIAL => ReasonReact.null
-                  | PENDING => <EventListPlaceholder />
-                  | SUCCESS =>
-                    [|
-                      <EventList
-                        key="eventList"
-                        numberOfVisibleEvents=self.state.numberOfVisibleEvents
-                        events=self.state.events
-                      />,
-                      <button
-                        key="button"
-                        className="btn btn-primary show-more"
-                        onClick=(_event => self.send(ShowMore))>
-                        <i className="fa fa-plus" />
-                        <span> (str(" Show More")) </span>
-                      </button>
-                    |]
-                    |> ReasonReact.array
-                  | ERROR => ReasonReact.null
-                  }
-                )
-              </div>
-            </div>
-          </section>
+    [||],
+  );
+  <div className="section" id="lifestream">
+    <div className="container">
+      <header className="row section-header">
+        <h2> {str("Lifestream")} </h2>
+        <hr />
+      </header>
+      <section className="row">
+        <div className="col-md-12">
+          <p className="pretext">
+            {str(
+               "If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...",
+             )}
+          </p>
+          <div>
+            {switch (state.fetch) {
+             | INITIAL => ReasonReact.null
+             | PENDING => <EventListPlaceholder />
+             | SUCCESS =>
+               [|
+                 <EventList
+                   key="eventList"
+                   numberOfVisibleEvents={state.numberOfVisibleEvents}
+                   events={state.events}
+                 />,
+                 <button
+                   key="button"
+                   className="btn btn-primary show-more"
+                   onClick={_event => dispatch(ShowMore)}>
+                   <i className="fa fa-plus" />
+                   <span> {str(" Show More")} </span>
+                 </button>,
+               |]
+               |> ReasonReact.array
+             | ERROR => ReasonReact.null
+             }}
+          </div>
         </div>
-      </div>
-  }
+      </section>
+    </div>
+  </div>;
+  /* } */
 };

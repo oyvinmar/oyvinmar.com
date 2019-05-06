@@ -1555,6 +1555,16 @@ bs-fetch@^0.3.1:
   resolved "https://registry.yarnpkg.com/bs-fetch/-/bs-fetch-0.3.1.tgz#9c7d074b27e6bb2b9f2ec985964f32bcac49f79e"
   integrity sha512-MxwnuuXPldXnoCtlpeN5JNbbmb1tVgsqpLfVunvuMLAIQNyP0TqoImHiQRTz38PBSN8/iX+2yVlm+PFJfnHHiA==
 
+bs-platform@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-5.0.4.tgz#d406ef43c12d1b19d8546884d8b5b4e0fb709372"
+  integrity sha512-rXM+ztN8wYXQ4ojfFGylvPOf8GRLOvM94QJsMMV9VpsLChKCjesWMNybTZvpoyNsESu2nC5q+C9soG+BPhuUFQ==
+
+bsb-js@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/bsb-js/-/bsb-js-1.1.7.tgz#12cc91e974f5896b3a2aa8358419d24e56f552c3"
+  integrity sha512-FSR7d5Kb6KfVI5sLz9bEeD9pbA9F4Zbkk1xa6R9CJtyd+dJ7mIkxoXqv7cw7HWcuee+VpIhmjYzrplnFd/5Qgg==
+
 bser@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/bser/-/bser-2.0.0.tgz#9ac78d3ed5d915804fd87acb158bc797147a1719"
@@ -5234,10 +5244,10 @@ normalize-url@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.0.0.tgz#ea05adebe8147b2bc49480a09a249d5f6f754ea7"
 
-now@^15.0.11:
-  version "15.0.11"
-  resolved "https://registry.yarnpkg.com/now/-/now-15.0.11.tgz#0c06227d0be16cdc5b388c6bacc6a5297e273956"
-  integrity sha512-ABNSy28mCgz6BQgNQy6ettSI1e0L647xN7fthsMlcA0mienDxPpUpxc8XfprjSdwCLD8kj7Zfp3z7WP33JHBVw==
+now@^15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.1.0.tgz#c426ff154bab9541e0b1a002e0a2a1d37ede07fb"
+  integrity sha512-j43YCZvBR2upKjaC7l+po970BMxYK+PuxLlrb9kJ2/YkQ0OtkIgXrkpCmRBOj/h356X7Jfuw2DX45gHfc1rx2w==
 
 npm-bundled@^1.0.1:
   version "1.0.6"
@@ -6340,7 +6350,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@>=16.8.1:
+react-dom@>=16.8.1, react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
@@ -6349,15 +6359,6 @@ react-dom@>=16.8.1:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.6"
-
-react-dom@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
 
 react-is@^16.8.1, react-is@^16.8.4:
   version "16.8.6"
@@ -6372,7 +6373,7 @@ react-test-renderer@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react@>=16.8.1:
+react@>=16.8.1, react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
@@ -6381,15 +6382,6 @@ react@>=16.8.1:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.6"
-
-react@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

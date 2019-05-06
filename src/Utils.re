@@ -1,1 +1,1 @@
-let str = (str) => ReasonReact.string(str);
+let str = str => ReasonReact.string(str);

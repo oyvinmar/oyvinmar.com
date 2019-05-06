@@ -1,7 +1,7 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
 FLG -open Reason
-FLG -ppx '/Users/oyvind/.notion/tools/image/node/11.15.0/6.7.0/lib/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 2'
+FLG -ppx '/Users/oyvind/.notion/tools/image/node/11.15.0/6.7.0/lib/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
 S /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-platform/lib/ocaml
 B /Users/oyvind/Development/personal/oyvinmar.com/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib -color always
