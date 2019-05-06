@@ -1,6 +1,7 @@
 node_modules
 *.bs.js
 .cache
+.merlin
 dist
 build
 lib
