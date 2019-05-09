@@ -1,10 +1,9 @@
 node_modules
-app/less/bootstrap.css
-*.sublime*
-app/less/base.css
-.idea/
-*.iml
+*.bs.js
+.cache
+.merlin
 dist
 build
 lib
 .DS_Store
+.env

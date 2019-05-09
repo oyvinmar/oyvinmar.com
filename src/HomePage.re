@@ -1,5 +1,3 @@
-[@bs.module "./app/home/HomePage"] external homePage : ReasonReact.reactClass = "default";
-
-let make = (~message, children) =>
-  ReasonReact.wrapJsForReason(~reactClass=homePage, ~props={"message": message}, children);
-/* let make = () => ReasonReact.wrapJsForReason(~reactClass=homePage, ~props={}); */
+[@bs.module "./app/home/HomePage"] [@react.component]
+external make: (~message: string, ~children: React.element) => React.element =
+  "default";

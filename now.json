@@ -1,4 +1,27 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/api/index.js",
+      "use": "@now/node-server"
+    },
+    {
+      "src": "dist/static/**",
+      "use": "@now/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/.*",
+      "headers": { "cache-control": "s-maxage=300, max-age=0" },
+      "dest": "/dist/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "cache-control": "s-maxage=86400" },
+      "dest": "dist/static/$1"
+    }
+  ],
   "env": {
     "FOURSQUARE_TOKEN": "@foursquare_token",
     "GITHUB_TOKEN": "@github_token",
@@ -6,6 +29,5 @@
     "TWITTER_ACCESS_TOKEN_SECRET": "@twitter_access_token_secret",
     "TWITTER_CONSUMER_KEY": "@twitter_consumer_key",
     "TWITTER_CONSUMER_SECRET": "@twitter_consumer_secret"
-  },
-  "files": ["yarn.lock", "server", "build"]
+  }
 }
