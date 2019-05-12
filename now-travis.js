@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
 const github = require('octonode');
-const spawn = require('cross-spawn');
+const spawn = require('cross-spawn-promise');
 const normalizeUrl = require('normalize-url');
 const urlRegex = require('url-regex');
-const awaitUrl = require('await-url');
 
 if (!process.env.CI || !process.env.TRAVIS) {
   throw new Error('Could not detect Travis CI environment');
@@ -13,6 +12,7 @@ if (!process.env.CI || !process.env.TRAVIS) {
 const { NOW_TOKEN: nowToken, GH_TOKEN: githubToken } = process.env;
 const client = github.client(githubToken);
 const ghRepo = client.repo(process.env.TRAVIS_REPO_SLUG);
+const providedArgs = process.argv.slice(2);
 
 function isFork() {
   const { TRAVIS_PULL_REQUEST_SLUG, TRAVIS_REPO_SLUG } = process.env;
@@ -82,36 +82,19 @@ function onError(sha, err) {
   });
 }
 
-async function deploy(sha) {
-  function spawnPromise(...args) {
-    return new Promise((resolve, reject) => {
-      const child = spawn(...args);
-      let stdout = '';
-      let stderr = '';
-      child.stdout.on('data', data => {
-        stdout += data;
-        safeLog(String(data));
-      });
-      child.stderr.on('data', data => {
-        safeError(String(data));
-        stderr += String(safeify(data));
-      });
-
-      child.on('error', error => {
-        onError(sha, error);
-        reject(safeify(error));
-      });
-
-      child.on('close', () => {
-        if (stderr) {
-          reject(stderr);
-        } else {
-          resolve(stdout);
-        }
-      });
-    });
+async function spawnDeploy(sha) {
+  const cliArgs = ['--token', nowToken, '--no-clipboard', ...providedArgs];
+  safeLog('spawning shell with command:', `now ${cliArgs.join(' ')}`);
+  try {
+    const result = await spawn('now', cliArgs);
+    return result.toString();
+  } catch (error) {
+    onError(sha, error);
+    throw error;
   }
+}
 
+async function deploy(sha) {
   if (isFork()) {
     console.log(`▲ Now deployment is skipped for forks...`);
     return;
@@ -130,44 +113,23 @@ async function deploy(sha) {
   updateStatus(sha, {
     target_url: targetUrl,
     state: 'pending',
-    description: `▲ Now deployment pending`,
+    description: `▲ Now deployment starting`,
   });
 
-  const cliArgs = ['--token', nowToken, '--no-clipboard', '--public'];
-  safeLog('spawning shell with command:', `now ${cliArgs.join(' ')}`);
-  const result = await spawnPromise('now', [
-    '--token',
-    nowToken,
-    '--no-clipboard',
-  ]);
+  console.log(`🤠 Alrighty, deploy starting`);
 
+  const result = await spawnDeploy(sha);
   targetUrl = getUrl(result);
 
-  updateStatus(sha, {
-    target_url: targetUrl,
-    state: 'pending',
-    description: `▲ Now deployment build started...`,
-  });
+  console.log(`💪 Deploy finished!`);
 
-  console.log(
-    `🤠 Alrighty, deploy started. Now we're going to ping ${targetUrl} until it's ready!`,
-  );
-
-  // check on the site for ten minutes every 10 seconds
-  await awaitUrl(targetUrl, { interval: 10000, tries: 120 }).catch(err => {
-    console.error('Error waiting for the deployment to be ready.');
-    onError(sha, err);
-    throw err;
-  });
-
-  console.log(`💪 it's up and ready!`);
-
-  console.log('🏁 all done!');
   updateStatus(sha, {
     target_url: targetUrl,
     state: 'success',
     description: `▲ Now deployment complete`,
   });
+
+  console.log('🏁 all done!');
 }
 
 const {
@@ -175,6 +137,7 @@ const {
   TRAVIS_PULL_REQUEST_SHA,
   TRAVIS_PULL_REQUEST,
   TRAVIS_COMMIT,
+  TRAVIS_BRANCH,
 } = process.env;
 
 switch (TRAVIS_EVENT_TYPE) {
@@ -183,7 +146,7 @@ switch (TRAVIS_EVENT_TYPE) {
     break;
   }
   case 'push': {
-    if (TRAVIS_PULL_REQUEST !== 'false') {
+    if (TRAVIS_PULL_REQUEST !== 'false' || TRAVIS_BRANCH === 'master') {
       deploy(TRAVIS_COMMIT);
     } else {
       console.log(`Skip deploy of commits not updating a PR`);
