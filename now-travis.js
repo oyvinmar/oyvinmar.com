@@ -31,7 +31,7 @@ function getUrl(content) {
 }
 
 function logError(message) {
-  return function (error) {
+  return function(error) {
     if (error) {
       console.log(message, error);
     }
@@ -83,12 +83,7 @@ function onError(sha, err) {
 }
 
 async function spawnDeploy(sha) {
-  const cliArgs = [
-    '--token',
-    nowToken,
-    '--no-clipboard',
-    ...providedArgs,
-  ];
+  const cliArgs = ['--token', nowToken, '--no-clipboard', ...providedArgs];
   safeLog('spawning shell with command:', `now ${cliArgs.join(' ')}`);
   try {
     const result = await spawn('now', cliArgs);
@@ -100,7 +95,6 @@ async function spawnDeploy(sha) {
 }
 
 async function deploy(sha) {
-
   if (isFork()) {
     console.log(`▲ Now deployment is skipped for forks...`);
     return;
@@ -122,9 +116,7 @@ async function deploy(sha) {
     description: `▲ Now deployment starting`,
   });
 
-  console.log(
-    `🤠 Alrighty, deploy starting`,
-  );
+  console.log(`🤠 Alrighty, deploy starting`);
 
   const result = await spawnDeploy(sha);
   targetUrl = getUrl(result);
