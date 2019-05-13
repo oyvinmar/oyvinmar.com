@@ -1,5 +1,5 @@
 const Bundler = require('parcel-bundler');
-const app = require('./server/server');
+const app = require('./api/server');
 
 const file = 'index.html'; // Pass an absolute path to the entrypoint here
 const options = {}; // See options section of api docs, for the possibilities

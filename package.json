@@ -24,10 +24,10 @@
   "scripts": {
     "build:bsb": "bsb -make-world",
     "build:static": "parcel build index.html -d dist/static",
-    "build:api": "ncc build server/index.js -o dist/api",
+    "build:api": "ncc build api/index.js -o dist/api",
     "build": "yarn build:bsb && yarn build:static && yarn build:api",
     "clean": "bsb -clean-world",
-    "lint-es": "eslint --ignore-path .gitignore *.js server src",
+    "lint-es": "eslint --ignore-path .gitignore *.js api src",
     "lint": "yarn format-check && yarn lint-es",
     "format": "prettier --write \"**/*.{js,jsx,scss,md}\"",
     "format-check": "prettier --list-different \"**/*.{js,jsx,scss,md}\"",
