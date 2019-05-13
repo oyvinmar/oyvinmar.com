@@ -2,7 +2,6 @@ const express = require('express');
 
 const { proxyResponder, oauthProxyResponder } = require('./proxy');
 const OAuth = require('oauth');
-const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const errorhandler = require('errorhandler');
@@ -16,7 +15,6 @@ app.use(
     extended: true,
   }),
 );
-app.use(methodOverride());
 
 if (app.get('env') === 'development') {
   console.log('Configure settings for development.');
