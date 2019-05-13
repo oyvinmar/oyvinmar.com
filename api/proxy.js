@@ -35,7 +35,6 @@ function handleResponse(response, res, key) {
   response.setEncoding('utf8');
   response.on('end', () => {
     cacheUpdate(key, Date.now(), data);
-    res.set(response.headers);
     res.set('Content-Type', 'application/json');
     res.status(response.statusCode).send(data);
   });
@@ -56,7 +55,6 @@ function oauthProxyResponder(oauth, res, options) {
         console.error(e);
       }
       cacheUpdate(options.host, Date.now(), data);
-      res.set(response.headers);
       res.set('Content-Type', 'application/json');
       res.status(response.statusCode).send(data);
     },
