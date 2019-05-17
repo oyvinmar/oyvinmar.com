@@ -8,8 +8,9 @@ function handleResponse(response, res) {
 
   response.setEncoding('utf8');
   response.on('end', () => {
-    res.set('Content-Type', 'application/json');
-    res.status(response.statusCode).send(data);
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = response.statusCode;
+    res.end(data);
   });
 }
 
@@ -22,8 +23,10 @@ function oauthProxyResponder(oauth, res, options) {
       if (e) {
         console.error(e);
       }
-      res.set('Content-Type', 'application/json');
-      res.status(response.statusCode).send(data);
+      // res.set('Content-Type', 'application/json');
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = response.statusCode;
+      res.end(data);
     },
   );
 }
