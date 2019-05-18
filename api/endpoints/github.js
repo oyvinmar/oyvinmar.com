@@ -1,4 +1,4 @@
-const { proxyResponder } = require('./proxy');
+const { proxyResponder } = require('../proxy');
 
 module.exports = (req, res) => {
   const options = {

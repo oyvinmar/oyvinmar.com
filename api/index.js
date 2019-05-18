@@ -2,10 +2,10 @@ const micro = require('micro');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const twitter = require('./twitter');
-const swarm = require('./swarm');
-const pinboard = require('./pinboard');
-const github = require('./github');
+const twitter = require('./endpoints/twitter');
+const swarm = require('./endpoints/swarm');
+const pinboard = require('./endpoints/pinboard');
+const github = require('./endpoints/github');
 
 const apiEndpoints = {
   twitter,

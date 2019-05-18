@@ -19,7 +19,7 @@
   "scripts": {
     "build:bsb": "bsb -make-world",
     "build:static": "parcel build index.html -d dist/static",
-    "build:api": "ncc build api/server.js -o dist/api",
+    "build:api": "ncc build api/index.js -o dist/api",
     "build": "yarn build:static && yarn build:api",
     "clean": "bsb -clean-world && rm -rf dist",
     "lint-es": "eslint --ignore-path .gitignore *.js api src",
