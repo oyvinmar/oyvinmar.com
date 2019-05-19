@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/api/index.js",
-      "use": "@now/node-server"
-    },
-    {
       "src": "api/endpoints/*.js",
       "use": "@now/node"
     },
