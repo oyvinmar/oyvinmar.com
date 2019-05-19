@@ -2,8 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/api/index.js",
-      "use": "@now/node-server"
+      "src": "api/endpoints/*.js",
+      "use": "@now/node"
     },
     {
       "src": "dist/static/**",
@@ -12,9 +12,9 @@
   ],
   "routes": [
     {
-      "src": "/api/.*",
+      "src": "/api/(?<endpoint>[^/]+)/",
       "headers": { "cache-control": "s-maxage=300, max-age=0" },
-      "dest": "/dist/api/index.js"
+      "dest": "/api/endpoints/$endpoint.js"
     },
     {
       "src": "/(.*)",

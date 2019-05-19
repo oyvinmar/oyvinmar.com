@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "alias": ["www.oyvinmar.com"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": { "Location": "https://oyvinmar.com/$1" }
+    }
+  ]
+}

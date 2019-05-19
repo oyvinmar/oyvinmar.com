@@ -1,3 +1,6 @@
 # Only allow build folder
 /*
 !/dist
+!/api
+!/yarn.lock
+!/package.json
