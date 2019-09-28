@@ -51,8 +51,8 @@
     "reason-react": "^0.7.0",
     "url-regex": "^5.0.0"
   },
-  "toolchain": {
+  "volta": {
     "node": "11.15.0",
-    "yarn": "1.15.2"
+    "yarn": "1.17.3"
   }
 }
