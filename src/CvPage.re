@@ -10,29 +10,28 @@ external oyvindM150: string = "./app/img/Oyvind-Marthinsen_150.jpg";
 [@bs.module]
 external oyvindM300: string = "./app/img/Oyvind-Marthinsen_300.jpg";
 
+[@bs.module] external profileImage: string = "./app/img/profile.png";
+
 let getSrcSets = () => {
   let list = [oyvindM300 ++ " 300w", oyvindM150 ++ " 150w"];
   String.concat(",", list);
 };
 
+let css = ReactDOMRe.Style.make;
+
 [@react.component]
 let make = () => {
   <div id="cv">
     <div className="container">
-      <header className="row">
-        <div className="col-md-12">
-          <h1> {str({js|CV - Øyvind Marthinsen|js})} </h1>
-        </div>
-      </header>
-      <section className="row">
-        <figure className="col-lg-3 col-md-4">
-          <img alt="Picture of Øyvind Marthinsen" src=oyvindM300 />
+      <section className="flex">
+        <figure>
+          <img alt="Picture of Øyvind Marthinsen" src=profileImage />
         </figure>
-        <article className="col-lg-9 col-md-8">
-          <header> <h2> {str("Profil")} </h2> </header>
+        <article>
+          <h1> {str({js|Øyvind Marthinsen|js})} </h1>
           <dl
             className="dl-horizontal"
-            style={ReactDOMRe.Style.make(~margin="20px 0 30px 0", ())}>
+            style={css(~margin="20px 0 30px 0", ())}>
             <dt> {str("Telefon:")} </dt>
             <dd> {str("970 61 833")} </dd>
             <dt> {str({js|Fødselsdato:|js})} </dt>
@@ -42,19 +41,7 @@ let make = () => {
           </dl>
           <p>
             {str(
-               {js|Jeg er en engasjert utvikler som brenner for utvikling av moderne web
-          applikasjoner. Jeg trives like godt på klientsiden som på serversiden,
-          og har gjennom deltakelse i flere større og mindre prosjekter tilegnet
-          meg mye kunnskap om smidige metoder og prosjektstyring. Selv om jeg er
-          en fullstack utvikler så har jeg de siste årene jobbet mest med
-          frontendteknologier som JavaScript, HTML5 og CSS3. I tillegg har jeg
-          stor interesse for mobile plattformer og responsivt design. Gjennom
-          flere år som konsulent har jeg fått kunnskap om og erfaring med hele
-          systemutviklingsprosessen, fra planlegging og design til testing og
-          produksjonssetting. Jeg anser meg selv som flink til å se brukerens
-          behov og setter alltid brukeren i fokus under utvikling av løsninger.
-          Jeg er også en pragmatisk person som liker å utfordre meg selv på å
-          lage enkle løsninger for komplekse problemer.|js},
+               {js|Jeg er en engasjert utvikler som brenner for utvikling av moderne web applikasjoner. Jeg har hatt ulike roller i flere større og mindre prosjekter, men trives best som techlead for et frontend team. Gjennom flere år som konsulent har jeg fått kunnskap om og erfaring med hele systemutviklingsprosessen, fra planlegging og design til testing og produksjonssetting. Jeg er flink til å se kundens behov og setter alltid brukeren i fokus under utvikling av løsninger. Jeg er også en pragmatisk person som liker å utfordre seg selv på å lage enkle løsninger for komplekse problemer.|js},
              )}
           </p>
         </article>
@@ -64,59 +51,39 @@ let make = () => {
           <header> <h2> {str("Teknologikart")} </h2> </header>
           <p>
             {str(
-               {js|Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har
-          erfaring med. Utover dette er jeg fortiden interessert i |js},
+               {js|Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har erfaring med.|js},
              )}
-            <a href="https://facebook.github.io/react-native/">
-              {str("React Native")}
-            </a>
-            {str(" for utvikling av mobile mobil applikasjoner, ")}
-            <a href="http://graphql.org/"> {str("GraphQL")} </a>
-            {str(" som et alternativ til REST og fordeler og ulemper med ")}
-            <a href="http://danluu.com/monorepo/"> {str("monorepo")} </a>
-            {str(".")}
           </p>
           <dl className="dl-vertical">
             <dt> {str({js|Programmeringsspråk|js})} </dt>
             <dd>
               {str(
-                 "JavaScript (ECMAScript 2015), Scala, Java, C, Groovy, Python, Ruby",
+                 "JavaScript (ECMAScript 201X), TypeScript, Scala, Java, C, Groovy, Python, Ruby",
                )}
             </dd>
             <dt> {str("Webteknologi")} </dt>
             <dd>
               {str(
-                 "HTML5, CSS3, React, Redux, Immutable.js, SASS, LESS, SVG, Angular.js, Twitter Bootstrap, lodash, Express, Highcharts, jQuery",
+                 "HTML5, CSS3, Responsive design, React, Emotion, Redux, Immutable.js, SASS, SVG, Express, Apollo Client/Server ",
                )}
             </dd>
+            // <dd> {str("Angular.js, lodash, LESS, Highcharts")} </dd>
             <dt> {str({js|Webverktøy|js})} </dt>
             <dd>
               {str(
-                 "Webpack, ESLint, npm, Gulp.js, Livereload/BrowserSync, Karma, Jasmine, Mocha, Grunt, Browserify, RequireJS, Bower",
+                 "Babel, Webpack, ESLint, npm, Prettier, yarn, Lerna, Razzle, PostCSS, Parcel, Jest, now, NextJS, Travis, Gulp.js, Cypress",
                )}
-            </dd>
-            <dt> {str("Applikasjonsservere")} </dt>
-            <dd> {str("Apache, Jetty, Tomcat, Node.js")} </dd>
-            <dt> {str("Applikasjonsrammeverk")} </dt>
-            <dd>
-              {str(
-                 "Ehcache, Hibernate, JUnit, Java SE/EE/ME, Log4j, Logback, Spring",
-               )}
-            </dd>
-            <dt> {str({js|Byggeverktøy/kontinuerlig integrasjon|js})} </dt>
-            <dd>
-              {str("Artifactory, npm, Jenkins, Gradle, Maven, Nexus")}
             </dd>
             <dt> {str("Databaser")} </dt>
-            <dd> {str("Microsoft SQL Server, MySQL, PostgreSQL")} </dd>
+            <dd> {str("MySQL, PostgreSQL, Microsoft SQL Server")} </dd>
             <dt> {str("Integrasjon")} </dt>
-            <dd> {str("HTTP, REST, JSON, SOAP, XML")} </dd>
+            <dd> {str("GraphQL, REST, JSON, XML")} </dd>
             <dt> {str("Metode")} </dt>
             <dd>
               {str("Parprogrammering, Scrum, Testdrevet utvikling (TDD), XP")}
             </dd>
             <dt> {str({js|Utviklingsverktøy (IDE)|js})} </dt>
-            <dd> {str("IntelliJ IDEA, Atom, vim")} </dd>
+            <dd> {str("VS Code, vim")} </dd>
             <dt> {str({js|Versjonshåndtering|js})} </dt>
             <dd> {str("Git, Subversion")} </dd>
           </dl>
@@ -127,7 +94,32 @@ let make = () => {
           <header> <h2> {str("Prosjekterfaring")} </h2> </header>
           <div className="project">
             <h4>
-              <span className="pull-right"> {str("2013 - dd")} </span>
+              <span className="pull-right"> {str("2016-2019")} </span>
+              {str({js|Nasjonal Digital Læringsarena (NDLA)|js})}
+            </h4>
+            <p>
+              {str(
+                 {js|Nasjonal Digital Læringsarena (NDLA) er et interfylkeskommunalt samarbeid som tilbyr fritt tilgjengelige åpne digitale læringsressurser for videregående opplæring. Knowit har bidratt med evaluering av eksisterende teknologiplattform og løsninger, rådgivning rundt endringer av plattform og implementasjon av nye løsninger på en skybasert mikrotjenestearkitektur. Løsningene inkluderer tilgjengeliggjøring av innhold gjennom diverse åpne API'er, utvikling av administrasjons- og produksjonsverktøy for innhold i API’ene og utvikling av frontendapplikasjoner for visning av innholdet fra API’ene. Frontendapplikasjonene, produksjons- og administrasjonsverktøyene som Knowit utvikler, benytter moderne og velkjent JavaScript-teknologi. Knowit har forvaltnings- og applikasjonsdriftansvar på komponenter som utvikles. Drift og forvaltning av disse utføres ved bruk av moderne skybaserte verktøy. |js},
+               )}
+            </p>
+            <div className="role">
+              <p>
+                <b> {str("Rolle: ")} </b>
+                {str(
+                   {js|Min rolle var lead frontend utvikler for hele porsjektet. Jeg var delaktig i utvikling og lansering av ny plattform og frontend for ndla.no med et tilhørende designsystem, samt utvikling av POCer og annen rådgiving. Jeg var også vært med på tilpasse API'er for enkel uthentingen av bilde, video, tekst og interaktive ressurser i frontenden.|js},
+                 )}
+              </p>
+              <p>
+                <b> {str("Teknologier: ")} </b>
+                {str(
+                   "Git, Github, Express, Nginx, Travis CI, npm, React, Docker, Node.js, Redux, redux-forms, PostCSS cssnext, React, Router, Babel, React DND, webpack, Yarn, lerna, Jest, eslint, Emotion, GraphQL, Designsystem",
+                 )}
+              </p>
+            </div>
+          </div>
+          <div className="project">
+            <h4>
+              <span className="pull-right"> {str("2014 - 2016")} </span>
               {str("Kommuneforlaget (KF), Diverse prosjekter og oppgaver ")}
             </h4>
             <p>
@@ -147,19 +139,14 @@ let make = () => {
               <p>
                 <b> {str("Rolle: ")} </b>
                 {str(
-                   {js|Jeg startet som utvikler i prosjektet, og har siden siste halvdel
-              av 2015 vært prosjektleder. I løpet av perioden i KF har jeg vært
-              med på å utarbeide løsningsforslag, estimere, utvikle og levere
-              flere nye webapplikasjoner. Jeg har også jobbet med forvaltning av
-              eksisterende applikasjoner og vært sentral i innføring av en
-              moderne frontendstack.|js},
+                   {js|Jeg startet som utvikler i prosjektet, men gikk over til å være prosjektleder det siste året jeg jobbet på prosjektet.  I løpet av perioden i KF har jeg vært med på å utarbeide løsningsforslag, estimere, utvikle og levere flere nye webapplikasjoner. Jeg har også jobbet med forvaltning av eksisterende applikasjoner og vært sentral i innføring av en moderne frontendstack.|js},
                  )}
               </p>
               <p>
                 <b> {str("Teknologier: ")} </b>
                 {str(
                    "Scala, ES2015, React, Redux, Immutable.js, Scalatra, Webpack, npm,
-              SASS, Highcharts, ESLint, Karma, Jasmine/Mocha, Maven",
+              SASS, Highcharts, ESLint, Angular.js, Karma, Jasmine/Mocha, Maven",
                  )}
               </p>
             </div>

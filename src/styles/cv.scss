@@ -1,15 +1,40 @@
 #cv {
-  font-size: 0.8em;
   color: #444444;
   background: white;
 
   h4 {
     font-size: 1.4em;
   }
+
+  padding: 1em;
 }
 
 .dl-horizontal {
   dt {
     text-align: left !important;
+  }
+}
+
+.flex {
+  display: flex;
+  // align-items: center;
+  margin: -1em;
+  figure,
+  article {
+    margin: 1em;
+  }
+
+  img {
+    max-width: 250px;
+    border-radius: 9999px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flex {
+    display: block;
+    img {
+      max-width: 200px;
+    }
   }
 }
