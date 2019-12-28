@@ -1,6 +1,8 @@
-# Only allow build folder
 /*
-!/dist
+!/src
 !/api
+!/__tests__
 !/yarn.lock
+!/index.html
+!/bsconfig.json
 !/package.json
