@@ -1,25 +1,23 @@
 {
   "version": 2,
-  "builds": [
+  "headers": [
     {
-      "src": "api/endpoints/*.js",
-      "use": "@now/node"
+      "source": "/api/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=300, max-age=0"
+        }
+      ]
     },
     {
-      "src": "dist/static/**",
-      "use": "@now/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(?<endpoint>[^/]+)/",
-      "headers": { "cache-control": "s-maxage=300, max-age=0" },
-      "dest": "/api/endpoints/$endpoint.js"
-    },
-    {
-      "src": "/(.*)",
-      "headers": { "cache-control": "s-maxage=86400" },
-      "dest": "dist/static/$1"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=86400"
+        }
+      ]
     }
   ],
   "env": {

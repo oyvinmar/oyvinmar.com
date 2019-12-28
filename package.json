@@ -17,9 +17,7 @@
   },
   "scripts": {
     "build:bsb": "bsb -make-world",
-    "build:static": "parcel build index.html -d dist/static",
-    "build:api": "ncc build api/index.js -o dist/api",
-    "build": "yarn build:static && yarn build:api",
+    "build": "parcel build index.html -d public",
     "clean": "bsb -clean-world && rm -rf dist",
     "lint-es": "eslint --ignore-path .gitignore *.js api src",
     "lint": "yarn format-check && yarn lint-es",
@@ -31,7 +29,6 @@
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.9",
-    "@zeit/ncc": "^0.20.5",
     "await-url": "^0.3.0",
     "bs-platform": "^7.0.1",
     "bsb-js": "^1.1.7",
