@@ -17,7 +17,8 @@
   },
   "scripts": {
     "build:bsb": "bsb -make-world",
-    "build": "parcel build index.html -d public",
+    "build:static": "parcel build index.html -d public",
+    "build": "yarn build:bsb && yarn build:static",
     "clean": "bsb -clean-world && rm -rf dist",
     "lint-es": "eslint --ignore-path .gitignore *.js api src",
     "lint": "yarn format-check && yarn lint-es",
