@@ -1,5 +1,5 @@
 const OAuth = require('oauth');
-const { oauthProxyResponder } = require('../proxy');
+const { oauthProxyResponder } = require('./proxy');
 
 module.exports = (req, res) => {
   const oauth = new OAuth.OAuth(
