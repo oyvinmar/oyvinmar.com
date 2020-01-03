@@ -5,8 +5,6 @@ script:
   - yarn lint
   - yarn test
   - yarn build
-after_script:
-  - node now-travis.js
 
 env:
   global:

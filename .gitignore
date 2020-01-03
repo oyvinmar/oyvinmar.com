@@ -3,8 +3,7 @@ node_modules
 .bsb.lock
 .cache
 .merlin
-dist
-build
+public
 lib
 .DS_Store
 .env

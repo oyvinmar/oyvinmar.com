@@ -1,18 +1,23 @@
 open Utils;
 
-open Document;
+module Email = {
+  [@react.component]
+  let make = (~email: string) => {
+    <span>
+      <i className="fa fa-envelope" />
+      {str(" ")}
+      <a href={j|mailto:$email|j}> {str(email)} </a>
+    </span>;
+  };
+};
 
 [@react.component]
 let make = () => {
+  let (email, setEmail) = React.useState(() => "");
   React.useEffect1(
     () => {
-      let el = getElementById(document, "email");
-      let email = "oyvinmar@gmail.com";
-      let mailto = {j|<i class="fa fa-envelope"></i> <a href="mailto:$email">$email</a>|j};
-      switch (el) {
-      | Some(el) => Some(() => setInnerHTML(el, mailto))
-      | None => Some(() => ())
-      };
+      setEmail(_ => "oyvinmar@gmail.com");
+      Some(() => ());
     },
     [||],
   );
@@ -28,7 +33,10 @@ let make = () => {
             {str(
                "You can reach me on all the social networks listed above. Or if you prefer old school email: ",
              )}
-            <span id="email" />
+            {switch (email) {
+             | "" => ReasonReact.null
+             | _ => <Email email />
+             }}
           </p>
         </div>
       </div>
