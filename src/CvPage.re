@@ -51,7 +51,7 @@ let make = () => {
           <header> <h2> {str("Teknologikart")} </h2> </header>
           <p>
             {str(
-               {js|Nedenfor har jeg listet opp teknologier, verktøy og metoder jeg har erfaring med.|js},
+               {js|Nedenfor har jeg listet noen opp teknologier, verktøy og metoder jeg har erfaring med.|js},
              )}
           </p>
           <dl className="dl-vertical">
@@ -407,14 +407,71 @@ let make = () => {
       </section>
       <section className="row">
         <div className="col-md-12">
-          <header> <h2> {str("Foredrag")} </h2> </header>
+          <header> <h2> {str("Foredrag/Workshops")} </h2> </header>
           <div>
             <dl className="dl-horizontal">
+              <dt> {str("2013")} </dt>
+              <dd>
+                {str("NTNU Kurs - ")}
+                {str("Testdrevet utvikling med JavaScript")}
+              </dd>
               <dt> {str("2014")} </dt>
               <dd>
                 {str("Knowit Developer Summit - ")}
                 <a href="http://oyvinmar.github.io/gulpjs-presentation/">
                   {str("Gulp.js")}
+                </a>
+              </dd>
+              <dt> {str("2014")} </dt>
+              <dd>
+                {str("NTNU Kurs - ")}
+                <a href="https://github.com/knowit/programming-ladder">
+                  {str("Programming ladder")}
+                </a>
+              </dd>
+              <dt> {str("2016")} </dt>
+              <dd>
+                {str("Knowit Web Summit - ")}
+                <a
+                  href="https://oyvinmar.github.io/universal-javascript-presentation/">
+                  {str("Universal JavaScript")}
+                </a>
+              </dd>
+              <dt> {str("2016")} </dt>
+              <dd>
+                {str("UIO Kurs - ")}
+                <a href="https://github.com/knowit/programming-ladder">
+                  {str("Programming ladder")}
+                </a>
+              </dd>
+              <dt> {str("2017")} </dt>
+              <dd>
+                {str("Knowit Fagseminar Palma - ")}
+                <a
+                  href="https://oyvinmar.github.io/what-backend-can-learn-from-frontend-presentation/#">
+                  {str("What backend can learn from frontend")}
+                </a>
+              </dd>
+              <dt> {str("2018")} </dt>
+              <dd>
+                {str("Knowit Developer Summit - ")}
+                <a
+                  href="https://oyvinmar.github.io/error-reporting-in-js-presentation/">
+                  {str("Error reporting in JavaScript")}
+                </a>
+              </dd>
+              <dt> {str("2019")} </dt>
+              <dd>
+                {str("NTNU Kurs - ")}
+                <a href="https://github.com/knowit/react-workshop">
+                  {str("React workshop")}
+                </a>
+              </dd>
+              <dt> {str("2019")} </dt>
+              <dd>
+                {str("Knowit Fagseminar Praha - ")}
+                <a href="https://dev-env-in-the-cloud.now.sh">
+                  {str("Development Environment in the Cloud")}
                 </a>
               </dd>
             </dl>
