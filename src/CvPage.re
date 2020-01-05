@@ -51,7 +51,7 @@ let make = () => {
           <header> <h2> {str("Teknologikart")} </h2> </header>
           <p>
             {str(
-               {js|Nedenfor har jeg listet noen opp teknologier, verktøy og metoder jeg har erfaring med.|js},
+               {js|Nedenfor har jeg listet teknologier, verktøy og metoder jeg har erfaring med.|js},
              )}
           </p>
           <dl className="dl-vertical">
