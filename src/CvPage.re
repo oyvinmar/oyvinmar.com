@@ -22,33 +22,33 @@ let css = ReactDOMRe.Style.make;
 [@react.component]
 let make = () => {
   <div id="cv">
-    <div className="container">
-      <section className="flex">
+    <section className="flex">
+      <div className="gutter">
         <figure>
           <img alt="Picture of Øyvind Marthinsen" src=profileImage />
         </figure>
-        <article>
-          <h1> {str({js|Øyvind Marthinsen|js})} </h1>
-          <dl
-            className="dl-horizontal"
-            style={css(~margin="20px 0 30px 0", ())}>
-            <dt> {str("Telefon:")} </dt>
-            <dd> {str("970 61 833")} </dd>
-            <dt> {str({js|Fødselsdato:|js})} </dt>
-            <dd> {str("06.10.1984")} </dd>
-            <dt> {str("Bosted:")} </dt>
-            <dd> {str("Oslo")} </dd>
-          </dl>
+        <h1> {str({js|Øyvind Marthinsen|js})} </h1>
+        <dl
+          className="dl-horizontal" style={css(~margin="20px 0 30px 0", ())}>
+          <dt> {str("Telefon:")} </dt>
+          <dd> {str("970 61 833")} </dd>
+          <dt> {str({js|Fødselsdato:|js})} </dt>
+          <dd> {str("06.10.1984")} </dd>
+          <dt> {str("Bosted:")} </dt>
+          <dd> {str("Oslo")} </dd>
+        </dl>
+      </div>
+      <article>
+        <section>
+          <h1> {str({js|Profil|js})} </h1>
           <p>
             {str(
                {js|Jeg er en engasjert utvikler som brenner for utvikling av moderne web applikasjoner. Jeg har hatt ulike roller i flere større og mindre prosjekter, men trives best som techlead for et frontend team. Gjennom flere år som konsulent har jeg fått kunnskap om og erfaring med hele systemutviklingsprosessen, fra planlegging og design til testing og produksjonssetting. Jeg er flink til å se kundens behov og setter alltid brukeren i fokus under utvikling av løsninger. Jeg er også en pragmatisk person som liker å utfordre seg selv på å lage enkle løsninger for komplekse problemer.|js},
              )}
           </p>
-        </article>
-      </section>
-      <section className="row">
-        <section className="col-md-12">
-          <header> <h2> {str("Teknologikart")} </h2> </header>
+        </section>
+        <section>
+          <header> <h2> {str("// Teknologikart")} </h2> </header>
           <p>
             {str(
                {js|Nedenfor har jeg listet teknologier, verktøy og metoder jeg har erfaring med.|js},
@@ -88,9 +88,7 @@ let make = () => {
             <dd> {str("Git, Subversion")} </dd>
           </dl>
         </section>
-      </section>
-      <section className="row">
-        <div className="col-md-12">
+        <section>
           <header> <h2> {str("Prosjekterfaring")} </h2> </header>
           <div className="project">
             <h4>
@@ -375,10 +373,8 @@ let make = () => {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="row">
-        <div className="col-md-12">
+        </section>
+        <section>
           <header> <h2> {str("Karriereerfaring")} </h2> </header>
           <dl className="dl-horizontal">
             <dt> {str("2009 - dd")} </dt>
@@ -386,10 +382,8 @@ let make = () => {
             <dt> {str("2007 - 2008")} </dt>
             <dd> {str("Computas AS, Deltidsjobb")} </dd>
           </dl>
-        </div>
-      </section>
-      <section className="row">
-        <div className="col-md-12">
+        </section>
+        <section>
           <header> <h2> {str("Utdannelse")} </h2> </header>
           <dl className="dl-horizontal">
             <dt> {str("2004 - 2009")} </dt>
@@ -403,10 +397,8 @@ let make = () => {
               </p>
             </dd>
           </dl>
-        </div>
-      </section>
-      <section className="row">
-        <div className="col-md-12">
+        </section>
+        <section className="row">
           <header> <h2> {str("Foredrag/Workshops")} </h2> </header>
           <div>
             <dl className="dl-horizontal">
@@ -476,10 +468,8 @@ let make = () => {
               </dd>
             </dl>
           </div>
-        </div>
-      </section>
-      <section className="row">
-        <div className="col-md-12">
+        </section>
+        <section className="row">
           <header> <h2> {str({js|Språkkunnskaper|js})} </h2> </header>
           <div>
             <dl className="dl-horizontal">
@@ -489,8 +479,8 @@ let make = () => {
               <dd> {str("Flytende")} </dd>
             </dl>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </article>
+    </section>
   </div>;
 };
