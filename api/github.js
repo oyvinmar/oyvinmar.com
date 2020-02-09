@@ -4,8 +4,11 @@ module.exports = (req, res) => {
   const options = {
     host: 'api.github.com',
     port: 443,
-    path: `/users/oyvinmar/events?access_token=${process.env.GITHUB_TOKEN}`,
-    headers: { 'User-Agent': 'oyvinmar' },
+    path: `/users/oyvinmar/events`,
+    headers: {
+      'User-Agent': 'oyvinmar',
+      Authorization: process.env.GITHUB_TOKEN,
+    },
   };
   proxyResponder(res, options);
 };
