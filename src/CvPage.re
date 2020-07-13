@@ -1,6 +1,6 @@
 open Utils;
 
-[%bs.raw {|require('./styles/cv.scss')|}];
+[%bs.raw {|require('./styles/cv.css')|}];
 
 let component = ReasonReact.statelessComponent("CvPage");
 
@@ -21,15 +21,20 @@ let css = ReactDOMRe.Style.make;
 
 [@react.component]
 let make = () => {
-  <div id="cv">
-    <section className="flex">
-      <div className="gutter">
-        <figure>
-          <img alt="Picture of Øyvind Marthinsen" src=profileImage />
+  <div id="cv" className="bg-white text-gray-700 antialiased leading-tight">
+    <section className="sm:flex">
+      <div className="p-5 bg-sidebar">
+        <figure className="m-4">
+          <img
+            className="max-w-xs sm:mx-auto rounded-full border-solid border-4 border-white"
+            alt="Picture of Øyvind Marthinsen"
+            src=profileImage
+          />
         </figure>
-        <h1> {str({js|Øyvind Marthinsen|js})} </h1>
-        <dl
-          className="dl-horizontal" style={css(~margin="20px 0 30px 0", ())}>
+        <h1 className="sm:text-center">
+          {str({js|Øyvind Marthinsen|js})}
+        </h1>
+        <dl className="grid grid-cols-2 gap-2">
           <dt> {str("Telefon:")} </dt>
           <dd> {str("970 61 833")} </dd>
           <dt> {str({js|Fødselsdato:|js})} </dt>
@@ -38,7 +43,7 @@ let make = () => {
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
-      <article>
+      <article className="p-6">
         <section>
           <h1> {str({js|Profil|js})} </h1>
           <p>
@@ -398,7 +403,7 @@ let make = () => {
             </dd>
           </dl>
         </section>
-        <section className="row">
+        <section>
           <header> <h2> {str("Foredrag/Workshops")} </h2> </header>
           <div>
             <dl className="dl-horizontal">
@@ -469,7 +474,7 @@ let make = () => {
             </dl>
           </div>
         </section>
-        <section className="row">
+        <section>
           <header> <h2> {str({js|Språkkunnskaper|js})} </h2> </header>
           <div>
             <dl className="dl-horizontal">

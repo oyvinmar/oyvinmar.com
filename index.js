@@ -2,7 +2,7 @@ const Bundler = require('parcel-bundler');
 const createServer = require('./api/serve');
 
 const file = 'index.html'; // Pass an absolute path to the entrypoint here
-const options = {}; // See options section of api docs, for the possibilities
+const options = { cache: false }; // See options section of api docs, for the possibilities
 
 // Initialize a new bundler using a file and options
 const bundler = new Bundler(file, options);

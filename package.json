@@ -13,6 +13,7 @@
     "oauth": "^0.9.15",
     "prop-types": "^15.7.2",
     "reason-react": "^0.7.0",
+    "tailwindcss": "^1.4.6",
     "waypoints": "^4.0.1"
   },
   "scripts": {
