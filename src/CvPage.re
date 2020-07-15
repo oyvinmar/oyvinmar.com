@@ -19,11 +19,20 @@ let getSrcSets = () => {
 
 let css = ReactDOMRe.Style.make;
 
+module Heading = {
+  [@react.component]
+  let make = (~title: string) =>
+    <>
+      <h2 className="mb-0"> {str(title)} </h2>
+      <hr className="w-16 bg-pink-600 mt-1 mb-5 h-2" />
+    </>;
+};
+
 [@react.component]
 let make = () => {
   <div id="cv" className="bg-white text-gray-700 antialiased leading-tight">
     <section className="sm:flex">
-      <div className="p-5 bg-sidebar">
+      <div className="px-12 py-4 bg-sidebar">
         <figure className="m-4">
           <img
             className="max-w-xs sm:mx-auto rounded-full border-solid border-4 border-white"
@@ -34,7 +43,7 @@ let make = () => {
         <h1 className="sm:text-center">
           {str({js|Øyvind Marthinsen|js})}
         </h1>
-        <dl className="grid grid-cols-2 gap-2">
+        <dl className="grid sidebar-info row-gap-2 col-gap-6">
           <dt> {str("Telefon:")} </dt>
           <dd> {str("970 61 833")} </dd>
           <dt> {str({js|Fødselsdato:|js})} </dt>
@@ -43,9 +52,9 @@ let make = () => {
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
-      <article className="p-6">
+      <article className="px-12 py-2">
         <section>
-          <h2> {str({js|Profil|js})} </h2>
+          <Heading title={js|Profil|js} />
           <p>
             {str(
                {js|Jeg er en engasjert utvikler som brenner for utvikling av moderne web applikasjoner. Jeg har hatt ulike roller i flere større og mindre prosjekter, men trives best som techlead for et frontend team. Gjennom flere år som konsulent har jeg fått kunnskap om og erfaring med hele systemutviklingsprosessen, fra planlegging og design til testing og produksjonssetting. Jeg er flink til å se kundens behov og setter alltid brukeren i fokus under utvikling av løsninger. Jeg er også en pragmatisk person som liker å utfordre seg selv på å lage enkle løsninger for komplekse problemer.|js},
@@ -53,7 +62,7 @@ let make = () => {
           </p>
         </section>
         <section>
-          <header> <h2> {str("// Teknologikart")} </h2> </header>
+          <Heading title="Teknologikart" />
           <p>
             {str(
                {js|Nedenfor har jeg listet teknologier, verktøy og metoder jeg har erfaring med.|js},
@@ -94,7 +103,7 @@ let make = () => {
           </dl>
         </section>
         <section>
-          <header> <h2> {str("Prosjekterfaring")} </h2> </header>
+          <Heading title="Prosjekterfaring" />
           {ProjectData.projects
            |> Array.map((project: ProjectData.cvProject) =>
                 <Project
@@ -108,8 +117,8 @@ let make = () => {
            |> ReasonReact.array}
         </section>
         <section>
-          <header> <h2> {str("Karriereerfaring")} </h2> </header>
-          <dl className="dl-horizontal">
+          <Heading title="Karriereerfaring" />
+          <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
             <dt> {str("2009 - dd")} </dt>
             <dd> {str("Knowit, Konsulent")} </dd>
             <dt> {str("2007 - 2008")} </dt>
@@ -117,8 +126,8 @@ let make = () => {
           </dl>
         </section>
         <section>
-          <header> <h2> {str("Utdannelse")} </h2> </header>
-          <dl className="dl-horizontal">
+          <Heading title="Utdannelse" />
+          <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
             <dt> {str("2004 - 2009")} </dt>
             <dd>
               {str("Universitet i Oslo, Master i informatikk")}
@@ -132,9 +141,9 @@ let make = () => {
           </dl>
         </section>
         <section>
-          <header> <h2> {str("Foredrag/Workshops")} </h2> </header>
+          <Heading title="Foredrag/Workshops" />
           <div>
-            <dl className="dl-horizontal">
+            <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
               <dt> {str("2013")} </dt>
               <dd>
                 {str("NTNU Kurs - ")}
@@ -203,9 +212,9 @@ let make = () => {
           </div>
         </section>
         <section>
-          <header> <h2> {str({js|Språkkunnskaper|js})} </h2> </header>
+          <Heading title={js|Språkkunnskaper|js} />
           <div>
-            <dl className="dl-horizontal">
+            <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
               <dt> {str("Norsk")} </dt>
               <dd> {str({js|Morsmål|js})} </dd>
               <dt> {str("Engelsk")} </dt>

@@ -1,4 +1,3 @@
-
 type cvProject = {
   name: string,
   timeSpan: string,
@@ -35,7 +34,7 @@ let projects = [|
     timeSpan: "2013",
     name: {js|NAV, Modernisering|js},
     description: {js|Moderniseringsprogrammet ble startet sommeren 2012 av NAV. Programmet skulle gå over en periode på 6-7 år, med ca 17 scrum team (mellom 200-300 mennesker) involvert samtidig. Målet med programmet var å modernisere NAV sine it-systemer for å lage mer sammensatte systemer hvor brukeren er i fokus. Viktige elementer i dette var å koble sammen arbeids- og trygdetjenester for å få folk i arbeid, samle tråder fra forskjellige områder til en felles vedtaksprosess og forbedre dialogen mellom arbeidsgivere, arbeidstakere, samarbeidspartnere og NAV.|js},
-    role: {js||js},
+    role: {js|Jeg var del av et frontendteam som var nært knyttet til rammeverksteamet. Teamet var ansvarlig for å implementere felles wicket- og javascriptkomponenter som kan brukes på tvers av ulike løsninger. Andre oppgaver besto blant annet av å implementere et design for den interne arbeidsflaten MODIA, sikre at løsningene fulgte krav til Universal Utforming og etablere retningslinjer for frontendutvikling.|js},
     technologies: "CSS, Jasmine, Java, JavaScript, Jetty, Less, Maven, Responsivt design, Sonar, Twitter Bootstrap, Wicket, jQuery",
   },
   {
@@ -51,14 +50,14 @@ let projects = [|
     timeSpan: "2011 - 2012",
     name: {js|NAV, Fellessystemer|js},
     description: {js|NAV Fellessystemer er en systemportefølje inneholdende 5 sentrale støttesystemer for saksbehandlere i NAV. Blant annet inngår systemet GOSYS hvor alle brukerhenvendelser registreres og videre saksgang besluttes. GOSYS gir god støtte for arbeidsflyt og deling av informasjon for effektiv saksbehandling på tvers av enhetene i NAV. I porteføljen inngår også systemet RUTING som støtter opp under elektronisk dokumenthåndtering i etaten (skanning og journalføring av ca 15 millioner forsendelser årlig). Systemporteføljen benytter NAVs felles rammeverk for applikasjonsutvikling av web- og batch-løsninger, samt integrasjon med NAVs tjenesteorienterte plattform.|js},
-    role: {js|eg jobbet med videreutvikling og vedlikehold av alle systemene i porteføljen og var Scrum Master for et team på fire utviklere. Noen eksempler på arbeidsoppgaver er implementering av nye tjenester på konsument- og produsentsiden av ESB’en, analyse av produksjonsfeil, oppbygning av nye skjermbilder, innfasing av nye prosjektmedlemmer og integrering mot et aksesspunkt for tjenester fra EU.|js},
+    role: {js|Jeg jobbet med videreutvikling og vedlikehold av alle systemene i porteføljen og var Scrum Master for et team på fire utviklere. Noen eksempler på arbeidsoppgaver er implementering av nye tjenester på konsument- og produsentsiden av ESB’en, analyse av produksjonsfeil, oppbygning av nye skjermbilder, innfasing av nye prosjektmedlemmer og integrering mot et aksesspunkt for tjenester fra EU.|js},
     technologies: "DB2 Teknologier, ESB, Greenhopper, Hibernate, IBM WebSphere, JSF (Java Server Faces), Java 6, JavaScript, Maven 2, RichFaces/A4j, SOAP, SoapUI, Spring, Spring WebFlow, Subversion, Twitter bootstrap",
   },
   {
     timeSpan: "2009 - 2011",
     name: {js|Statens Vegvesen, System for kontroll av kjøretøy (VaDIS)|js},
     description: {js|VaDIS er et IT-system som støtter gjennomføring av kontroller av førere og kjøretøy på norske veier. Håndholdte terminaler (PDA’er) kommuniserer trådløst mot sentrale systemer. VaDIS støtter en rekke kontrolltyper, teknisk tilstand på kjøretøy og last, samt førerens adferd gjennom kjøre- og hviletidskontroller. Dette innebærer blant annet at digitale sjåførkort leses og valideres i løpet av selve kontrollen. VaDIS inneholder også en web-løsning med moduler for kontrollvirksomheten, administrasjon, saksbehandling og statistikk.|js},
-    role: {js|eg jobbet med videreutvikling og testing av VaDIS systemet. Hadde hovedansvaret for implementeringen av en tidslinjekomponent i Flex og integreringen av denne komponenten med en Java EE arkitektur. Det siste året jobbet jeg med planlegging og implementering av et grensesnitt for utføring av kontroller på web der fokus var gjenkjennelighet, rikt grensesnitt og stabilitet.|js},
+    role: {js|Jeg jobbet med videreutvikling og testing av VaDIS systemet. Hadde hovedansvaret for implementeringen av en tidslinjekomponent i Flex og integreringen av denne komponenten med en Java EE arkitektur. Det siste året jobbet jeg med planlegging og implementering av et grensesnitt for utføring av kontroller på web der fokus var gjenkjennelighet, rikt grensesnitt og stabilitet.|js},
     technologies: "BlazeDS, Confluence, DWR, Flex, Hibernate, JSP (Java Server Pages), Java 5, JavaScript, Maven2, Spring, Struts, jQuery UI",
   },
   {
