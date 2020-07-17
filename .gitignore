@@ -5,5 +5,7 @@ node_modules
 .merlin
 public
 lib
+dist
 .DS_Store
 .env
+.vercel
