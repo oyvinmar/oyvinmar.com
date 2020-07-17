@@ -8,6 +8,15 @@ type cvProject = {
 
 let projects = [|
   {
+    name: "Entur",
+    timeSpan: "2019 - dd",
+    role: {js|Det første jeg gjorde på Entur var å utvikle en applikasjon for visualisering av data i pris og produkt domenet. Applikasjonen ble raskt tatt i bruk internt i Entur, av både utviklere og andre som jobber med domenet. Jeg ble også raskt valgt til å ta over som tech lead i Entur Partner teamet. I den rollen har han uført oppgaver som: oppgradere kode vha codemods, innført TypeScript, holdt presentasjoner og demoer, hjulpet med å intervju nye teammedlemmer, forenklet prosjektoppsett, satt opp e2e på CI server, og diverse utviklingsoppgaver med høy prioritet. Jeg jobber nå med å designe og implementere en micro frontend arkitektur, slik at flere teams kan utvikle funksjonalitet inn i Entur Partner applikasjonen.|js},
+    description: {js|Entur ble etablert i 2016 som et ledd i den norske jernbanereformen. Entur tok over flere av systemene som er relatert til billettsalg fra NSB og drifter i dag billettsystem, tjenester for salg og service på kundesenter og stasjonene på vegne av togoperatører i Norge. Entur sitt mål er å levere tjenester som gjør det enkelt å planlegge, kjøpe og gjøre kollektivreiser i hele landet. For å møte utfordringene med mange operatører moderniseres salgssystemene i prosjektet Sprang. Leverandøren er en aktiv samarbeidspartner med Entur og er sentral i moderniseringsprosjektet.
+
+Entur Partner er en web-applikasjon for konfigurering av blant annet priser og produkter, organisasjoner og konduktører for de forskjellige operatørene som Vy, Go-Ahead og SJ.|js},
+    technologies: "React, TypeScript, Micro frontends, CircleCI, GCP, SCSS, Node.js, Express, REST, JsCodeShift, Jest, Cypress.js, eslint, Prettier, Create React App, Docker, Redux, Auth0, Git, Kubernetes",
+  },
+  {
     name: {js|Nasjonal Digital Læringsarena (NDLA)|js},
     timeSpan: "2016-2019",
     role: {js|Min rolle var lead frontend utvikler for hele porsjektet. Jeg var delaktig i utvikling og lansering av ny plattform og frontend for ndla.no med et tilhørende designsystem, samt utvikling av POCer og annen rådgiving. Jeg var også vært med på tilpasse API'er for enkel uthentingen av bilde, video, tekst og interaktive ressurser i frontenden. |js},

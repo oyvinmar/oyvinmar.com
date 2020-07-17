@@ -68,7 +68,7 @@ let make = () => {
                {js|Nedenfor har jeg listet teknologier, verktøy og metoder jeg har erfaring med.|js},
              )}
           </p>
-          <dl className="dl-vertical">
+          <dl>
             <dt> {str({js|Programmeringsspråk|js})} </dt>
             <dd>
               {str(
