@@ -41,7 +41,7 @@
     "micro": "^9.3.4",
     "node-sass": "^4.13.0",
     "normalize-url": "^4.5.0",
-    "now": "^16.7.0",
+    "now": "^19.1.2",
     "octonode": "^0.9.5",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
