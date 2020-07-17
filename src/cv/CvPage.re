@@ -1,16 +1,16 @@
 open Utils;
 
-[%bs.raw {|require('./styles/cv.css')|}];
+[%bs.raw {|require('../styles/cv.css')|}];
 
 let component = ReasonReact.statelessComponent("CvPage");
 
 [@bs.module]
-external oyvindM150: string = "./app/img/Oyvind-Marthinsen_150.jpg";
+external oyvindM150: string = "../app/img/Oyvind-Marthinsen_150.jpg";
 
 [@bs.module]
-external oyvindM300: string = "./app/img/Oyvind-Marthinsen_300.jpg";
+external oyvindM300: string = "../app/img/Oyvind-Marthinsen_300.jpg";
 
-[@bs.module] external profileImage: string = "./app/img/profile.png";
+[@bs.module] external profileImage: string = "../app/img/profile.png";
 
 let getSrcSets = () => {
   let list = [oyvindM300 ++ " 300w", oyvindM150 ++ " 150w"];
@@ -118,16 +118,16 @@ let make = () => {
         </section>
         <section>
           <Heading title="Karriereerfaring" />
-          <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
+          <DescriptiveList>
             <dt> {str("2009 - dd")} </dt>
             <dd> {str("Knowit, Konsulent")} </dd>
             <dt> {str("2007 - 2008")} </dt>
             <dd> {str("Computas AS, Deltidsjobb")} </dd>
-          </dl>
+          </DescriptiveList>
         </section>
         <section>
           <Heading title="Utdannelse" />
-          <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
+          <DescriptiveList>
             <dt> {str("2004 - 2009")} </dt>
             <dd>
               {str("Universitet i Oslo, Master i informatikk")}
@@ -138,89 +138,85 @@ let make = () => {
                  )}
               </p>
             </dd>
-          </dl>
+          </DescriptiveList>
         </section>
         <section>
           <Heading title="Foredrag/Workshops" />
-          <div>
-            <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
-              <dt> {str("2013")} </dt>
-              <dd>
-                {str("NTNU Kurs - ")}
-                {str("Testdrevet utvikling med JavaScript")}
-              </dd>
-              <dt> {str("2014")} </dt>
-              <dd>
-                {str("Knowit Developer Summit - ")}
-                <a href="http://oyvinmar.github.io/gulpjs-presentation/">
-                  {str("Gulp.js")}
-                </a>
-              </dd>
-              <dt> {str("2014")} </dt>
-              <dd>
-                {str("NTNU Kurs - ")}
-                <a href="https://github.com/knowit/programming-ladder">
-                  {str("Programming ladder")}
-                </a>
-              </dd>
-              <dt> {str("2016")} </dt>
-              <dd>
-                {str("Knowit Web Summit - ")}
-                <a
-                  href="https://oyvinmar.github.io/universal-javascript-presentation/">
-                  {str("Universal JavaScript")}
-                </a>
-              </dd>
-              <dt> {str("2016")} </dt>
-              <dd>
-                {str("UIO Kurs - ")}
-                <a href="https://github.com/knowit/programming-ladder">
-                  {str("Programming ladder")}
-                </a>
-              </dd>
-              <dt> {str("2017")} </dt>
-              <dd>
-                {str("Knowit Fagseminar Palma - ")}
-                <a
-                  href="https://oyvinmar.github.io/what-backend-can-learn-from-frontend-presentation/#">
-                  {str("What backend can learn from frontend")}
-                </a>
-              </dd>
-              <dt> {str("2018")} </dt>
-              <dd>
-                {str("Knowit Developer Summit - ")}
-                <a
-                  href="https://oyvinmar.github.io/error-reporting-in-js-presentation/">
-                  {str("Error reporting in JavaScript")}
-                </a>
-              </dd>
-              <dt> {str("2019")} </dt>
-              <dd>
-                {str("NTNU Kurs - ")}
-                <a href="https://github.com/knowit/react-workshop">
-                  {str("React workshop")}
-                </a>
-              </dd>
-              <dt> {str("2019")} </dt>
-              <dd>
-                {str("Knowit Fagseminar Praha - ")}
-                <a href="https://dev-env-in-the-cloud.now.sh">
-                  {str("Development Environment in the Cloud")}
-                </a>
-              </dd>
-            </dl>
-          </div>
+          <DescriptiveList>
+            <dt> {str("2013")} </dt>
+            <dd>
+              {str("NTNU Kurs - ")}
+              {str("Testdrevet utvikling med JavaScript")}
+            </dd>
+            <dt> {str("2014")} </dt>
+            <dd>
+              {str("Knowit Developer Summit - ")}
+              <a href="http://oyvinmar.github.io/gulpjs-presentation/">
+                {str("Gulp.js")}
+              </a>
+            </dd>
+            <dt> {str("2014")} </dt>
+            <dd>
+              {str("NTNU Kurs - ")}
+              <a href="https://github.com/knowit/programming-ladder">
+                {str("Programming ladder")}
+              </a>
+            </dd>
+            <dt> {str("2016")} </dt>
+            <dd>
+              {str("Knowit Web Summit - ")}
+              <a
+                href="https://oyvinmar.github.io/universal-javascript-presentation/">
+                {str("Universal JavaScript")}
+              </a>
+            </dd>
+            <dt> {str("2016")} </dt>
+            <dd>
+              {str("UIO Kurs - ")}
+              <a href="https://github.com/knowit/programming-ladder">
+                {str("Programming ladder")}
+              </a>
+            </dd>
+            <dt> {str("2017")} </dt>
+            <dd>
+              {str("Knowit Fagseminar Palma - ")}
+              <a
+                href="https://oyvinmar.github.io/what-backend-can-learn-from-frontend-presentation/#">
+                {str("What backend can learn from frontend")}
+              </a>
+            </dd>
+            <dt> {str("2018")} </dt>
+            <dd>
+              {str("Knowit Developer Summit - ")}
+              <a
+                href="https://oyvinmar.github.io/error-reporting-in-js-presentation/">
+                {str("Error reporting in JavaScript")}
+              </a>
+            </dd>
+            <dt> {str("2019")} </dt>
+            <dd>
+              {str("NTNU Kurs - ")}
+              <a href="https://github.com/knowit/react-workshop">
+                {str("React workshop")}
+              </a>
+            </dd>
+            <dt> {str("2019")} </dt>
+            <dd>
+              {str("Knowit Fagseminar Praha - ")}
+              <a href="https://dev-env-in-the-cloud.now.sh">
+                {str("Development Environment in the Cloud")}
+              </a>
+            </dd>
+          </DescriptiveList>
         </section>
         <section>
           <Heading title={js|Språkkunnskaper|js} />
-          <div>
-            <dl className="grid grid-cols-dl row-gap-2 col-gap-8">
-              <dt> {str("Norsk")} </dt>
-              <dd> {str({js|Morsmål|js})} </dd>
-              <dt> {str("Engelsk")} </dt>
-              <dd> {str("Flytende")} </dd>
-            </dl>
-          </div>
+          <DescriptiveList>
+            <dt> {str("Norsk")} </dt>
+            <dd> {str({js|Morsmål|js})} </dd>
+            <dt> {str("Engelsk")} </dt>
+            <dd> {str("Flytende")} </dd>
+          </DescriptiveList>
         </section>
       </article>
     </section>
