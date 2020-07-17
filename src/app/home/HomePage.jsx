@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; // eslint-disable-line
-import PropTypes from 'prop-types';
 
 import $ from 'jquery';
 // import 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy';
@@ -102,7 +101,3 @@ export default class HomePage extends Component {
     return <div id="content">{this.props.children}</div>;
   }
 }
-
-HomePage.propTypes = {
-  children: PropTypes.node.isRequired,
-};

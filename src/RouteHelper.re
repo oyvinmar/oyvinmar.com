@@ -1,8 +1,8 @@
 /* Copied from Route module in reason-react */
-[@bs.get] external location: Dom.window => Dom.location = "";
-[@bs.get] external pathname: Dom.location => string = "";
-[@bs.get] external hash: Dom.location => string = "";
-[@bs.get] external search: Dom.location => string = "";
+[@bs.get] external location: Dom.window => Dom.location;
+[@bs.get] external pathname: Dom.location => string;
+[@bs.get] external hash: Dom.location => string;
+[@bs.get] external search: Dom.location => string;
 /* if we ever roll our own parser in the future, make sure you test all url combinations
    e.g. foo.com/?#bar
    */
