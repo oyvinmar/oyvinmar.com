@@ -5,6 +5,7 @@ let document: document = [%bs.raw "document"];
 type element;
 
 [@bs.return null_to_opt] [@bs.send]
-external getElementById: (document, string) => option(element);
+external getElementById: (document, string) => option(element) =
+  "getElementById";
 
 [@bs.set] external setInnerHTML: (element, string) => unit = "innerHTML";
