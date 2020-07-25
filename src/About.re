@@ -18,7 +18,7 @@ let getSrcSets = () => {
 [@react.component]
 let make = () => {
   <div>
-    <div className="space-y-5 md:pl-16">
+    <div className="space-y-5">
       <h1> {str("Who am I?")} </h1>
       <p>
         {str(
