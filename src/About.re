@@ -8,6 +8,8 @@ external oyvindM150: string = "./app/img/Oyvind-Marthinsen_150.jpg";
 [@bs.module]
 external oyvindM300: string = "./app/img/Oyvind-Marthinsen_300.jpg";
 
+[@bs.module] external profileImage: string = "./app/img/profile.png";
+
 let getSrcSets = () => {
   let list = [oyvindM300 ++ " 300w", oyvindM150 ++ " 150w"];
   String.concat(",", list);
@@ -15,36 +17,49 @@ let getSrcSets = () => {
 
 [@react.component]
 let make = () => {
-  <div className="section" id="about">
-    <section className="container">
-      <header className="row section-header">
-        <h2> {str("About me")} </h2>
-        <hr />
-      </header>
-      <section className="row">
-        <div className="col-md-12">
-          <img
-            alt="Picture of �\152yvind Marthinsen"
-            id="headshot"
-            src="/assets/img/Oyvind-Marthinsen_300.jpg"
-            srcSet={getSrcSets()}
-            sizes="100vw"
-          />
-        </div>
-      </section>
-      <section className="row">
-        <div className="col-sm-offset-3 col-sm-6">
-          <p>
-            {str(
-               "I'm a Norwegian developer and web enthusiast living in Oslo. Currently I'm working as a consultant at ",
-             )}
-            <a href="http://knowit.no" rel="external"> {str("Knowit")} </a>
-            {str(
-               ", where I'm able to work on cool things. In my spear time I enjoy watching football (the British kind), and love going skiing in the winter.",
-             )}
-          </p>
-        </div>
-      </section>
-    </section>
+  <div>
+    <div className="space-y-5 md:pl-16">
+      <h1> {str("Who am I?")} </h1>
+      <p>
+        {str(
+           {js|I’m Øyvind Marthinsen, a (frontend) developer, nerd, and father living in |js},
+         )}
+        <a
+          className="text-link"
+          href="https://en.wikipedia.org/wiki/Oslo"
+          rel="external">
+          {str("Oslo, Norway")}
+        </a>
+        {str(".")}
+      </p>
+      <p>
+        {str("Currently, I'm working as a consultant at ")}
+        <a className="text-link" href="http://knowit.no" rel="external">
+          {str("Knowit")}
+        </a>
+        {str(", where I'm able to work on ")}
+        <a
+          className="text-link"
+          href="https://developer.entur.org"
+          rel="external">
+          {str("cool")}
+        </a>
+        {str(" ")}
+        <a className="text-link" href="https://ndla.no" rel="external">
+          {str("things")}
+        </a>
+        {str(".")}
+      </p>
+      <p>
+        {str(
+           "While I'm mainly being a consumer of open source. I have been lucky to work on some open source projects and contributing back when time and work allow me too.",
+         )}
+      </p>
+      <p>
+        {str(
+           "In my spear time I enjoy watching football (the British kind), and love cyckling in the summer and going skiing in the winter.",
+         )}
+      </p>
+    </div>
   </div>;
 };
