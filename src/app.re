@@ -15,6 +15,7 @@ let make = (~route) => {
   switch (route) {
   | Routing.About => <Wrapper> <About /> </Wrapper>
   | Routing.Elsewhere => <Wrapper> <Elsewhere /> </Wrapper>
+  | Routing.Contact => <Wrapper> <Contact /> </Wrapper>
   | Routing.Home =>
     <HomePage message="test">
       <Hero />
