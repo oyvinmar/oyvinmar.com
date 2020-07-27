@@ -68,10 +68,10 @@ let make = () => {
         "md:flex pl-8 md:pl-16 md:uppercase font-bold md:font-normal text-pink-600 space-y-4 md:space-y-0 md:space-x-6 tracking-tight",
         toggleClass,
       ])}>
-      <li> <a href="/about"> {str("About me")} </a> </li>
-      <li> <a href="#lifestream"> {str("Lifestream")} </a> </li>
-      <li> <a href="/elsewhere"> {str("Elsewhere")} </a> </li>
-      <li> <a href="#contact"> {str("Contact")} </a> </li>
+      <li> <Link href="/about"> {str("About me")} </Link> </li>
+      <li> <Link href="/lifestream"> {str("Lifestream")} </Link> </li>
+      <li> <Link href="/elsewhere"> {str("Elsewhere")} </Link> </li>
+      <li> <Link href="/contact"> {str("Contact")} </Link> </li>
     </ul>
   </nav>;
 };
