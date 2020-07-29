@@ -3,4 +3,5 @@ type route =
   | About
   | Elsewhere
   | Contact
+  | Lifestream
   | Cv;

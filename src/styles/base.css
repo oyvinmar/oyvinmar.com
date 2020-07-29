@@ -32,3 +32,33 @@ h4 {
   @apply font-bold underline;
   text-decoration-color: theme('colors.pink.600');
 }
+
+.btn {
+  @apply bg-pink-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn:hover {
+  @apply bg-pink-700;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: theme('colors.gray.100');
+    opacity: theme('colors.gray.300');
+    opacity: 1;
+  }
+  50% {
+    background-color: theme('colors.gray.300');
+  }
+  100% {
+    background-color: theme('colors.gray.100');
+    opacity: 1;
+  }
+}
+
+.u-pulse {
+  animation: pulse 2s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: theme('colors.gray.300');
+}

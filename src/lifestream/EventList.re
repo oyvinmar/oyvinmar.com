@@ -4,27 +4,28 @@ module Event = {
   let dangerousHtml: string => Js.t('a) = html => {"__html": html};
   [@react.component]
   let make = (~event: FetchData.event) =>
-    <article className="entry row">
-      <div className="col-xs-3 col-sm-1">
-        <img src={event.logo} className="c-events__logo" alt="logo" />
-      </div>
-      <div className="col-xs-9 col-sm-offset-1 col-sm-10">
-        <header>
-          <a href={event.serviceUrl}> {str(event.serviceName)} </a>
-        </header>
-        <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
-        <a href={event.url}>
-          <time className="published"> {str(event.time)} </time>
-        </a>
-      </div>
+    <article className="-ml-3">
+      <a
+        href={event.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
+        <div className="w-12">
+          <img src={event.logo} className="" alt="logo" />
+        </div>
+        <div className="">
+          <header className="font-bold"> {str(event.serviceName)} </header>
+          <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
+          <time className="text-gray-500"> {str(event.time)} </time>
+        </div>
+      </a>
       <footer />
     </article>;
 };
 
 [@react.component]
-let make = (~events: FetchData.events, ~numberOfVisibleEvents: int) =>
-  <div>
-    {Array.sub(events, 0, numberOfVisibleEvents)
-     |> Array.map((event: FetchData.event) => <Event key={event.id} event />)
-     |> ReasonReact.array}
-  </div>;
+let make = (~events: FetchData.events, ~numberOfVisibleEvents: int) => {
+  Array.sub(events, 0, numberOfVisibleEvents)
+  |> Array.map((event: FetchData.event) => <Event key={event.id} event />)
+  |> ReasonReact.array;
+};

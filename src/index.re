@@ -12,7 +12,8 @@ let handleRouteChange = (url: ReasonReact.Router.url) =>
   | ["about"] => renderForRoute(Routing.About)
   | ["elsewhere"] => renderForRoute(Routing.Elsewhere)
   | ["contact"] => renderForRoute(Routing.Contact)
-  | [] => renderForRoute(Routing.Home)
+  | ["lifestream"] => renderForRoute(Routing.Lifestream)
+  | [] => renderForRoute(Routing.About)
   | _ => ReasonReact.Router.push("/")
   };
 
