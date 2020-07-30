@@ -36,7 +36,8 @@ let make = () => {
     },
     [||],
   );
-  <div className="container">
+  <div className="space-y-5">
+    <h1> {str("Send me an email?")} </h1>
     <p>
       {str("You can reach me at: ")}
       {switch (email) {

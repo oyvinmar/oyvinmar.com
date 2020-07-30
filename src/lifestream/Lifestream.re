@@ -45,26 +45,29 @@ let make = () => {
     },
     [||],
   );
-  <div className="space-y-3">
-    {switch (state.fetch) {
-     | INITIAL => ReasonReact.null
-     | PENDING => <EventListPlaceholder />
-     | SUCCESS =>
-       [|
-         <EventList
-           key="eventList"
-           numberOfVisibleEvents={state.numberOfVisibleEvents}
-           events={state.events}
-         />,
-         <button
-           key="button"
-           className="btn"
-           onClick={_event => dispatch(ShowMore)}>
-           <span> {str("Show More")} </span>
-         </button>,
-       |]
-       |> ReasonReact.array
-     | ERROR => ReasonReact.null
-     }}
+  <div className="space-y-5">
+    <h1> {str("What's happening?")} </h1>
+    <div className="space-y-3">
+      {switch (state.fetch) {
+       | INITIAL => ReasonReact.null
+       | PENDING => <EventListPlaceholder />
+       | SUCCESS =>
+         [|
+           <EventList
+             key="eventList"
+             numberOfVisibleEvents={state.numberOfVisibleEvents}
+             events={state.events}
+           />,
+           <button
+             key="button"
+             className="btn"
+             onClick={_event => dispatch(ShowMore)}>
+             <span> {str("Show More")} </span>
+           </button>,
+         |]
+         |> ReasonReact.array
+       | ERROR => ReasonReact.null
+       }}
+    </div>
   </div>;
 };
