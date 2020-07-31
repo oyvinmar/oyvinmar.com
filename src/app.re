@@ -11,7 +11,20 @@ module Wrapper = {
 };
 
 [@react.component]
-let make = (~route) => {
+let make = () => {
+  let url = ReasonReactRouter.useUrl();
+
+  let route =
+    switch (url.path) {
+    | ["cv"] => Routing.Cv
+    | ["about"] => Routing.About
+    | ["elsewhere"] => Routing.Elsewhere
+    | ["contact"] => Routing.Contact
+    | ["lifestream"] => Routing.Lifestream
+    | [] => Routing.About
+    | _ => Routing.About
+    };
+
   switch (route) {
   | Routing.About => <Wrapper> <About /> </Wrapper>
   | Routing.Elsewhere => <Wrapper> <Elsewhere /> </Wrapper>
