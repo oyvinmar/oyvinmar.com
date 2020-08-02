@@ -68,7 +68,7 @@ let make = () => {
         "md:flex pl-8 md:pl-16 md:uppercase font-bold md:font-normal text-pink-600 space-y-4 md:space-y-0 md:space-x-6 tracking-tight",
         toggleClass,
       ])}>
-      <li> <NavLink href="/about"> {str("About me")} </NavLink> </li>
+      <li> <NavLink href="/"> {str("About me")} </NavLink> </li>
       <li> <NavLink href="/lifestream"> {str("Lifestream")} </NavLink> </li>
       <li> <NavLink href="/elsewhere"> {str("Elsewhere")} </NavLink> </li>
       <li> <NavLink href="/contact"> {str("Contact")} </NavLink> </li>
