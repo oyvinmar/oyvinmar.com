@@ -2,19 +2,6 @@ open Utils;
 
 let component = ReasonReact.statelessComponent("About");
 
-[@bs.module]
-external oyvindM150: string = "./app/img/Oyvind-Marthinsen_150.jpg";
-
-[@bs.module]
-external oyvindM300: string = "./app/img/Oyvind-Marthinsen_300.jpg";
-
-[@bs.module] external profileImage: string = "./app/img/profile.png";
-
-let getSrcSets = () => {
-  let list = [oyvindM300 ++ " 300w", oyvindM150 ++ " 150w"];
-  String.concat(",", list);
-};
-
 [@react.component]
 let make = () => {
   <div className="space-y-5">

@@ -1,6 +1,6 @@
 open Utils;
 
-[@bs.module] external profileImage: string = "./app/img/profile.png";
+[@bs.module] external profileImage: string = "./img/profile.png";
 
 type action =
   | Toggle;
