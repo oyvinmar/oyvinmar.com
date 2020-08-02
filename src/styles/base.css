@@ -9,23 +9,23 @@ h2,
 h3,
 h4,
 h5 {
-  @apply text-gray-900 font-semibold tracking-tight !important;
+  @apply text-gray-900 font-semibold tracking-tight;
 }
 
 h1 {
-  @apply text-4xl !important;
+  @apply text-4xl;
 }
 
 h2 {
-  @apply text-3xl !important;
+  @apply text-3xl;
 }
 
 h3 {
-  @apply text-3xl !important;
+  @apply text-3xl;
 }
 
 h4 {
-  @apply text-2xl !important;
+  @apply text-2xl;
 }
 
 .text-link {
