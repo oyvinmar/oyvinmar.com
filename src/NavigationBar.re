@@ -3,6 +3,7 @@ open Utils;
 [@bs.module] external profileImage: string = "./img/profile.png";
 
 type action =
+  | Hide
   | Toggle;
 
 type menu =
@@ -19,9 +20,18 @@ let make = () => {
         switch (action, state) {
         | (Toggle, Visible) => Hidden
         | (Toggle, Hidden) => Visible
+        | (Hide, _) => Hidden
         },
       Hidden,
     );
+
+  React.useEffect1(
+    () => {
+      let id = ReasonReactRouter.watchUrl(_url => dispatch(Toggle));
+      Some(() => ReasonReactRouter.unwatchUrl(id));
+    },
+    [||],
+  );
 
   let toggleClass =
     switch (state) {
