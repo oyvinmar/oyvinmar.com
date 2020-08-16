@@ -43,7 +43,7 @@ let make = () => {
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
-      <article className="px-6 lg:px-12 py-2 lg:max-w-2xl space-y-6">
+      <article className="px-6 lg:px-12 pt-4 py-8 lg:max-w-2xl space-y-6">
         <section>
           <Heading title={js|Profil|js} />
           <p>
@@ -96,9 +96,10 @@ let make = () => {
         </section>
         <section>
           <Heading title="Prosjekterfaring" />
-          {ProjectData.projects
-           |> Array.map((project: ProjectData.cvProject) =>
+          {CvData.projects
+           |> Array.mapi((i, project: CvData.cvProject) =>
                 <Project
+                  key={string_of_int(i)}
                   name={project.name}
                   timeSpan={project.timeSpan}
                   description={project.description}
@@ -135,70 +136,23 @@ let make = () => {
         <section>
           <Heading title="Foredrag/Workshops" />
           <DescriptiveList>
-            <dt> {str("2013")} </dt>
-            <dd>
-              {str("NTNU Kurs - ")}
-              {str("Testdrevet utvikling med JavaScript")}
-            </dd>
-            <dt> {str("2014")} </dt>
-            <dd>
-              {str("Knowit Developer Summit - ")}
-              <a href="http://oyvinmar.github.io/gulpjs-presentation/">
-                {str("Gulp.js")}
-              </a>
-            </dd>
-            <dt> {str("2014")} </dt>
-            <dd>
-              {str("NTNU Kurs - ")}
-              <a href="https://github.com/knowit/programming-ladder">
-                {str("Programming ladder")}
-              </a>
-            </dd>
-            <dt> {str("2016")} </dt>
-            <dd>
-              {str("Knowit Web Summit - ")}
-              <a
-                href="https://oyvinmar.github.io/universal-javascript-presentation/">
-                {str("Universal JavaScript")}
-              </a>
-            </dd>
-            <dt> {str("2016")} </dt>
-            <dd>
-              {str("UIO Kurs - ")}
-              <a href="https://github.com/knowit/programming-ladder">
-                {str("Programming ladder")}
-              </a>
-            </dd>
-            <dt> {str("2017")} </dt>
-            <dd>
-              {str("Knowit Fagseminar Palma - ")}
-              <a
-                href="https://oyvinmar.github.io/what-backend-can-learn-from-frontend-presentation/#">
-                {str("What backend can learn from frontend")}
-              </a>
-            </dd>
-            <dt> {str("2018")} </dt>
-            <dd>
-              {str("Knowit Developer Summit - ")}
-              <a
-                href="https://oyvinmar.github.io/error-reporting-in-js-presentation/">
-                {str("Error reporting in JavaScript")}
-              </a>
-            </dd>
-            <dt> {str("2019")} </dt>
-            <dd>
-              {str("NTNU Kurs - ")}
-              <a href="https://github.com/knowit/react-workshop">
-                {str("React workshop")}
-              </a>
-            </dd>
-            <dt> {str("2019")} </dt>
-            <dd>
-              {str("Knowit Fagseminar Praha - ")}
-              <a href="https://dev-env-in-the-cloud.now.sh">
-                {str("Development Environment in the Cloud")}
-              </a>
-            </dd>
+            {CvData.presentations
+             |> Array.mapi((i, presentation: CvData.cvPresentation) =>
+                  <React.Fragment key={string_of_int(i)}>
+                    <dt> {str(presentation.year)} </dt>
+                    <dl>
+                      {str(presentation.where ++ " - ")}
+                      {switch (presentation.link) {
+                       | Some(link) =>
+                         <a className="text-link" href=link>
+                           {str(presentation.title)}
+                         </a>
+                       | None => str(presentation.title)
+                       }}
+                    </dl>
+                  </React.Fragment>
+                )
+             |> ReasonReact.array}
           </DescriptiveList>
         </section>
         <section>

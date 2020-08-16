@@ -77,3 +77,78 @@ Entur Partner er en web-applikasjon for konfigurering av blant annet priser og p
     technologies: "EJB3, FrameSolutions, JBoss, Java 6, Ruby, Watir",
   },
 |];
+
+type cvPresentation = {
+  title: string,
+  year: string,
+  where: string,
+  link: option(string),
+};
+
+let presentations: array(cvPresentation) = [|
+  {
+    year: "2013",
+    where: "NTNU Kurs",
+    title: "Testdrevet utvikling med JavaScript",
+    link: None,
+  },
+  {
+    year: "2014",
+    where: "Knowit Developer Summit",
+    link: Some("http://oyvinmar.github.io/gulpjs-presentation/"),
+    title: "Gulp.js",
+  },
+  {
+    year: "2014",
+    where: "NTNU Kurs",
+    link: Some("https://github.com/knowit/programming-ladder"),
+    title: "Programming ladder",
+  },
+  {
+    year: "2016",
+    where: "Knowit Web Summit",
+    link:
+      Some("https://oyvinmar.github.io/universal-javascript-presentation/"),
+    title: "Universal JavaScript",
+  },
+  {
+    year: "2016",
+    where: "UIO Kurs",
+    link: Some("https://github.com/knowit/programming-ladder"),
+    title: "Programming ladder",
+  },
+  {
+    year: "2017",
+    where: "Knowit Fagseminar Palma",
+    link:
+      Some(
+        "https://oyvinmar.github.io/what-backend-can-learn-from-frontend-presentation/#",
+      ),
+    title: "What backend can learn from frontend",
+  },
+  {
+    year: "2018",
+    where: "Knowit Developer Summit",
+    link:
+      Some("https://oyvinmar.github.io/error-reporting-in-js-presentation/"),
+    title: "Error reporting in JavaScript",
+  },
+  {
+    year: "2019",
+    where: "NTNU Kurs",
+    link: Some("https://github.com/knowit/react-workshop"),
+    title: "React workshop",
+  },
+  {
+    year: "2019",
+    where: "Knowit Fagseminar Praha",
+    link: Some("https://dev-env-in-the-cloud.now.sh"),
+    title: "Development Environment in the Cloud",
+  },
+  {
+    year: "2020",
+    where: "Knowit Fagseminar Onlin",
+    link: Some("https://www.youtube.com/watch?v=TmDtIdntbN4"),
+    title: "Micro Frontends i Entur",
+  },
+|];
