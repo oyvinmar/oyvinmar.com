@@ -23,7 +23,7 @@ let make = () => {
       <a className="text-link" href="http://knowit.no" rel="external">
         {str("Knowit")}
       </a>
-      {str(", where I'm able to work on ")}
+      {str({js| 🏢, where I'm able to work on |js})}
       <a
         className="text-link"
         href="https://developer.entur.org"
@@ -34,17 +34,44 @@ let make = () => {
       <a className="text-link" href="https://ndla.no" rel="external">
         {str("things")}
       </a>
-      {str(".")}
+      {str({js| 😎.|js})}
     </p>
     <p>
       {str(
-         "While I'm mainly being a consumer of open source. I have been lucky to work on some open source projects and contributing back when time and work allow me too.",
+         "While I'm mainly being a consumer of open source. I have been lucky to work on some ",
        )}
+      <a
+        className="text-link"
+        href="https://github.com/oyvinmar"
+        rel="external">
+        {str("open source")}
+      </a>
+      {str(" ")}
+      <a
+        className="text-link" href="https://github.com/ndlano/" rel="external">
+        {str("projects")}
+      </a>
+      {str(" and contributing back when time and work allow me too.")}
     </p>
     <p>
       {str(
-         "In my spear time I enjoy watching football (the British kind), and love cyckling in the summer and going skiing in the winter.",
+         {js|
+         In my spear time I enjoy watching football (the British kind ⚽️), and love |js},
        )}
+      <a
+        className="text-link"
+        href="https://www.strava.com/athletes/5392532"
+        rel="external">
+        {str("cyckling")}
+      </a>
+      {str({js| 🚴🏼‍♂️ in the summer and going |js})}
+      <a
+        className="text-link"
+        href="https://www.strava.com/athletes/5392532"
+        rel="external">
+        {str("skiing")}
+      </a>
+      {str({js| ⛷ in the winter.|js})}
     </p>
   </div>;
 };
