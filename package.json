@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build:bsb": "bsb -make-world",
-    "build:static": "parcel build index.html -d public",
+    "build:static": "NODE_ENV=production parcel build index.html -d public",
     "build": "yarn build:bsb && yarn build:static",
     "clean": "bsb -clean-world && rm -rf dist",
     "lint-es": "eslint --ignore-path .gitignore *.js api src",

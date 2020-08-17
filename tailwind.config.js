@@ -10,4 +10,7 @@ module.exports = {
       sidebar: '#d3dee0',
     }),
   },
+  purge: {
+    content: ['./src/**/*.html', './src/**/*.re', './src/**/*.bs.js'],
+  },
 };
