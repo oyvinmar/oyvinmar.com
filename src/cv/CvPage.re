@@ -43,7 +43,7 @@ let make = () => {
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
-      <article className="px-6 lg:px-12 pt-4 py-8 lg:max-w-2xl space-y-6">
+      <article className="px-6 lg:px-12 py-8 lg:max-w-2xl space-y-6">
         <section>
           <Heading title={js|Profil|js} />
           <p>
