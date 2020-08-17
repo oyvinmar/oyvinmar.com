@@ -62,7 +62,7 @@ let make = () => {
         className="text-link"
         href="https://www.strava.com/athletes/5392532"
         rel="external">
-        {str("cyckling")}
+        {str("cycling")}
       </a>
       {str({js| 🚴🏼‍♂️ in the summer and going |js})}
       <a
