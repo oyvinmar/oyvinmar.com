@@ -1,3 +1,0 @@
-type route =
-  | Home
-  | Cv;

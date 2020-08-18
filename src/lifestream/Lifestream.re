@@ -45,45 +45,29 @@ let make = () => {
     },
     [||],
   );
-  <div className="section" id="lifestream">
-    <div className="container">
-      <header className="row section-header">
-        <h2> {str("Lifestream")} </h2>
-        <hr />
-      </header>
-      <section className="row">
-        <div className="col-md-12">
-          <p className="pretext">
-            {str(
-               "If this content is up-to-date, I'm probably still alive. If not, lets hope it is a bug in my code...",
-             )}
-          </p>
-          <div>
-            {switch (state.fetch) {
-             | INITIAL => ReasonReact.null
-             | PENDING => <EventListPlaceholder />
-             | SUCCESS =>
-               [|
-                 <EventList
-                   key="eventList"
-                   numberOfVisibleEvents={state.numberOfVisibleEvents}
-                   events={state.events}
-                 />,
-                 <button
-                   key="button"
-                   className="btn btn-primary show-more"
-                   onClick={_event => dispatch(ShowMore)}>
-                   <i className="fa fa-plus" />
-                   <span> {str(" Show More")} </span>
-                 </button>,
-               |]
-               |> ReasonReact.array
-             | ERROR => ReasonReact.null
-             }}
-          </div>
-        </div>
-      </section>
+  <div className="space-y-5">
+    <h1> {str("What's happening?")} </h1>
+    <div className="space-y-3">
+      {switch (state.fetch) {
+       | INITIAL => ReasonReact.null
+       | PENDING => <EventListPlaceholder />
+       | SUCCESS =>
+         [|
+           <EventList
+             key="eventList"
+             numberOfVisibleEvents={state.numberOfVisibleEvents}
+             events={state.events}
+           />,
+           <button
+             key="button"
+             className="btn"
+             onClick={_event => dispatch(ShowMore)}>
+             <span> {str("Show More")} </span>
+           </button>,
+         |]
+         |> ReasonReact.array
+       | ERROR => ReasonReact.null
+       }}
     </div>
   </div>;
-  /* } */
 };

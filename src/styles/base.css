@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply text-gray-900 font-semibold tracking-tight;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+h4 {
+  @apply text-2xl;
+}
+
+.text-link {
+  @apply font-bold underline;
+  text-decoration-color: theme('colors.pink.600');
+}
+
+.btn {
+  @apply bg-pink-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn:hover {
+  @apply bg-pink-700;
+}
+
+a.active {
+  @apply font-bold;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: theme('colors.gray.100');
+    opacity: theme('colors.gray.300');
+    opacity: 1;
+  }
+  50% {
+    background-color: theme('colors.gray.300');
+  }
+  100% {
+    background-color: theme('colors.gray.100');
+    opacity: 1;
+  }
+}
+
+.u-pulse {
+  animation: pulse 2s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: theme('colors.gray.300');
+}

@@ -6,3 +6,5 @@
 !/index.html
 !/bsconfig.json
 !/package.json
+!/tailwind.config.js
+!/postcss.config.js

@@ -1,21 +1,19 @@
 module EventPlaceholder = {
   [@react.component]
   let make = () =>
-    <article className="entry row">
-      <div className="col-xs-3 col-sm-1">
-        <div className="c-placeholder__logo u-pulse" />
-      </div>
-      <div className="col-xs-9 col-sm-offset-1 col-sm-10">
-        <div className="c-placeholder__header u-pulse" />
-        <div className="c-placeholder__content u-pulse" />
-        <div className="c-placeholder__time u-pulse" />
+    <article className="w-full flex items-center space-x-4 p-3">
+      <div className="h-12 w-12 rounded-lg u-pulse" />
+      <div className="w-full space-y-2">
+        <div className="h-4 w-1/3 rounded-sm u-pulse" />
+        <div className="h-4 w-2/3 rounded-sm u-pulse" />
+        <div className="h-4 w-1/3 rounded-sm u-pulse" />
       </div>
     </article>;
 };
 
 [@react.component]
 let make = () =>
-  <div>
+  <div className="space-y-3 -ml-3">
     {[|1, 2, 3, 4, 5|]
      |> Array.map(num => <EventPlaceholder key={string_of_int(num)} />)
      |> ReasonReact.array}

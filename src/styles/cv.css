@@ -1,35 +1,5 @@
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
-
-#cv h1,
-#cv h2,
-#cv h3,
-#cv h4,
-#cv h5 {
-  @apply text-gray-900 font-normal tracking-tight !important;
-}
-
-#cv h1 {
-  @apply text-5xl !important;
-}
-
-#cv h2 {
-  @apply text-5xl !important;
-}
-
-#cv h3 {
-  @apply text-4xl !important;
-}
-
-#cv h4 {
-  @apply text-3xl !important;
-}
-
-#cv dt,
-#cv b {
+dt,
+b {
   @apply text-gray-900 font-medium !important;
 }
 
