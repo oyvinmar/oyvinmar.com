@@ -35,7 +35,7 @@ let make = () => {
 
   let toggleClass =
     switch (state) {
-    | Visible => "fixed md:relative inset-0 md:inset-auto pt-24 md:pt-0 bg-white z-10"
+    | Visible => "fixed md:relative inset-0 md:inset-auto pt-24 md:pt-0 bg-white dark:bg-gray-900 z-10"
     | Hidden => "hidden"
     };
 
@@ -49,7 +49,7 @@ let make = () => {
         />
         <a
           href="/"
-          className="block text-black no-underline text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight">
+          className="block text-black no-underline text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight dark:text-gray-300">
           {str({j|Øyvind Marthinsen|j})}
         </a>
       </div>

@@ -4,7 +4,7 @@ module Wrapper = {
   [@react.component]
   let make = (~children) =>
     <div
-      className="text-gray-700 antialiased leading-tight py-8 lg:py-16 px-6 md:px-16 lg:px-24 max-w-2xl space-y-6">
+      className="antialiased leading-tight py-8 lg:py-16 px-6 md:px-16 lg:px-24 max-w-2xl space-y-6">
       <NavigationBar />
       <div className="md:pl-16"> children </div>
     </div>;

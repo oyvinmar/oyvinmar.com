@@ -10,6 +10,14 @@ h5 {
   @apply text-gray-900 font-semibold tracking-tight;
 }
 
+.mode-dark h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply text-gray-300;
+}
+
 h1 {
   @apply text-4xl;
 }
