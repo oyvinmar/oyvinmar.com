@@ -6,12 +6,14 @@ const twitter = require('../twitter');
 const swarm = require('../swarm');
 const pinboard = require('../pinboard');
 const github = require('../github');
+const untappd = require('../untappd');
 
 const apiEndpoints = {
   twitter,
   swarm,
   pinboard,
   github,
+  untappd,
 };
 
 const apiHandler = url => {

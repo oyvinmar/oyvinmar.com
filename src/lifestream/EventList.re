@@ -11,7 +11,7 @@ module Event = {
         rel="noopener noreferrer"
         className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
         <div className="w-12">
-          <img src={event.logo} className="" alt="logo" />
+          <img src={event.logo} className="m-auto" alt="logo" />
         </div>
         <div className="">
           <header className="font-bold"> {str(event.serviceName)} </header>
