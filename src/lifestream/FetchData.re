@@ -6,6 +6,8 @@
 
 [@bs.module] external githubLogo: string = "./github.svg";
 
+[@bs.module] external untappdLogo: string = "./untappd.svg";
+
 type event = {
   id: string,
   content: string,
@@ -144,6 +146,43 @@ module Decode = {
     |> Array.to_list
     |> List.filter(item => item.content != "")
     |> Array.of_list;
+
+  let untappdCheckin = (json): event =>
+    Json.Decode.{
+      id: json |> field("checkin_id", int) |> string_of_int,
+      url:
+        json
+        |> field("checkin_id", int)
+        |> (
+          id =>
+            "https://untappd.com/user/oyvinmar/checkin/" ++ string_of_int(id)
+        ),
+      content:
+        json
+        |> (
+          json => {
+            let score = field("rating_score", Json.Decode.float, json);
+            let beerName = at(["beer", "beer_name"], string, json);
+            let breweryName = at(["brewery", "brewery_name"], string, json);
+            "Gave "
+            ++ Js.Float.toString(score)
+            ++ " stars to "
+            ++ beerName
+            ++ " from "
+            ++ breweryName
+            ++ ".";
+          }
+        ),
+      timestamp: json |> field("created_at", string) |> getTime,
+      time: json |> field("created_at", string) |> toLocaleString,
+      serviceName: "Untappd",
+      logo: untappdLogo,
+      serviceUrl: "https://untappd.com/",
+    };
+  let untappdEvents = (json): array(event) =>
+    Json.Decode.(
+      json |> at(["response", "checkins", "items"], array(untappdCheckin))
+    );
 };
 
 let fetchTweets = () =>
@@ -176,6 +215,15 @@ let fetchGithubEvents = () =>
        )
   );
 
+let fetchUntappdEvents = () =>
+  Js.Promise.(
+    Fetch.fetch("/api/untappd/")
+    |> then_(Fetch.Response.json)
+    |> then_(json =>
+         json |> Decode.untappdEvents |> (events => resolve(events))
+       )
+  );
+
 let fetchEvents = callback => {
   let promiseAll =
     Js.Promise.all([|
@@ -183,6 +231,7 @@ let fetchEvents = callback => {
       fetchTweets(),
       fetchCheckins(),
       fetchGithubEvents(),
+      fetchUntappdEvents(),
     |]);
   Js.Promise.(
     promiseAll
