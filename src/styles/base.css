@@ -66,9 +66,29 @@ a.active {
   }
 }
 
+@keyframes dark-pulse {
+  0% {
+    background-color: theme('colors.gray.500');
+    opacity: theme('colors.gray.700');
+    opacity: 1;
+  }
+  50% {
+    background-color: theme('colors.gray.700');
+  }
+  100% {
+    background-color: theme('colors.gray.500');
+    opacity: 1;
+  }
+}
+
 .u-pulse {
   animation: pulse 2s ease-out;
   animation-iteration-count: infinite;
   opacity: 1;
   background: theme('colors.gray.300');
+}
+
+.mode-dark .u-pulse {
+  animation: dark-pulse 2s ease-out;
+  background: theme('colors.gray.500');
 }

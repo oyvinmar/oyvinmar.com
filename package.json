@@ -14,7 +14,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "reason-react": "^0.9.1",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^1.8.2",
     "tailwindcss-dark-mode": "^1.1.6",
     "waypoints": "^4.0.1"
   },
