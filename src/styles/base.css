@@ -7,10 +7,10 @@ h2,
 h3,
 h4,
 h5 {
-  @apply text-gray-900 font-semibold tracking-tight;
+  @apply text-gray-900 text-gray-300 font-semibold tracking-tight;
 }
 
-.mode-dark h1,
+.dark h1,
 h2,
 h3,
 h4,
@@ -88,7 +88,7 @@ a.active {
   background: theme('colors.gray.300');
 }
 
-.mode-dark .u-pulse {
+.dark .u-pulse {
   animation: dark-pulse 2s ease-out;
   background: theme('colors.gray.500');
 }
