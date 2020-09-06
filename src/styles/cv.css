@@ -4,8 +4,8 @@ b {
 }
 
 .dark dt,
-b {
-  @apply text-gray-400 text-gray-300;
+.dark b {
+  @apply text-gray-300;
 }
 
 .sidebar-info {

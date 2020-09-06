@@ -22,8 +22,7 @@ let make = () => {
   <div id="cv" className=" leading-tight">
     <ColorModeToggle />
     <section className="md:flex">
-      <div
-        className="px-6 lg:px-12 py-4 bg-sidebar dark:bg-teal-800 space-y-4 md:max-w-xs">
+      <div className="px-6 lg:px-12 py-4 bg-teal-800 space-y-4 md:max-w-xs">
         <div className="flex items-center md:block">
           <figure className="md:my-4">
             <img
@@ -32,16 +31,16 @@ let make = () => {
               src=profileImage
             />
           </figure>
-          <h1 className="md:text-center text-3xl">
+          <h1 className="md:text-center text-3xl text-gray-300">
             {str({js|Øyvind Marthinsen|js})}
           </h1>
         </div>
-        <dl className="grid sidebar-info row-gap-2 col-gap-6">
-          <dt> {str("Telefon:")} </dt>
+        <dl className="grid sidebar-info row-gap-2 col-gap-6 text-gray-300">
+          <dt className="text-gray-100"> {str("Telefon:")} </dt>
           <dd> {str("970 61 833")} </dd>
-          <dt> {str({js|Fødselsdato:|js})} </dt>
+          <dt className="text-gray-100"> {str({js|Fødselsdato:|js})} </dt>
           <dd> {str("06.10.1984")} </dd>
-          <dt> {str("Bosted:")} </dt>
+          <dt className="text-gray-100"> {str("Bosted:")} </dt>
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
