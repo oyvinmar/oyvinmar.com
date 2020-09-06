@@ -35,7 +35,7 @@ let make = () => {
 
   let toggleClass =
     switch (state) {
-    | Visible => "fixed md:relative inset-0 md:inset-auto pt-24 md:pt-0 bg-white dark:bg-gray-900 z-10"
+    | Visible => "fixed md:relative inset-0 md:inset-auto pt-32 md:pt-0 bg-white dark:bg-gray-900 z-10"
     | Hidden => "hidden"
     };
 

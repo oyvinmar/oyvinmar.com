@@ -20,6 +20,7 @@ module Heading = {
 [@react.component]
 let make = () => {
   <div id="cv" className=" leading-tight">
+    <ColorModeToggle />
     <section className="md:flex">
       <div
         className="px-6 lg:px-12 py-4 bg-sidebar dark:bg-teal-800 space-y-4 md:max-w-xs">
