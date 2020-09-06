@@ -60,7 +60,7 @@ let make = () => {
            />,
            <button
              key="button"
-             className="btn"
+             className="btn focus:outline-none"
              onClick={_event => dispatch(ShowMore)}>
              <span> {str("Show More")} </span>
            </button>,
