@@ -7,7 +7,7 @@ h2,
 h3,
 h4,
 h5 {
-  @apply text-gray-900 text-gray-300 font-semibold tracking-tight;
+  @apply text-gray-900 font-semibold tracking-tight;
 }
 
 .dark h1,

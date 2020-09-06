@@ -1,3 +1,3 @@
 [@react.component]
 let make = (~children) =>
-  <dl className="grid grid-cols-dl row-gap-2 col-gap-8"> children </dl>;
+  <dl className="grid grid-cols-dl gap-y-2 gap-x-8"> children </dl>;
