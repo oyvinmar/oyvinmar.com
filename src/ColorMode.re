@@ -6,11 +6,11 @@ type state = {colorMode};
 let reducer = (state, action) =>
   switch (state, action) {
   | (Light, Toogle) =>
-    toggleMode(window);
+    toggleColorMode(window);
     Dark;
 
   | (Dark, Toogle) =>
-    toggleMode(window);
+    toggleColorMode(window);
     Light;
   };
 

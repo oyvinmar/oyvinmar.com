@@ -6,7 +6,7 @@ let document: document = [%bs.raw "document"];
 
 let window: window = [%bs.raw "window"];
 
-[@bs.send] external toggleMode: window => unit = "toggleMode";
+[@bs.send] external toggleColorMode: window => unit = "toggleColorMode";
 
 type element;
 
