@@ -4,6 +4,9 @@ module.exports = {
       gridTemplateColumns: {
         dl: 'max-content minmax(0, 1fr)',
       },
+      screens: {
+        print: { raw: 'print' },
+      },
     },
     backgroundColor: theme => ({
       ...theme('colors'),

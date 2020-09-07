@@ -16,7 +16,6 @@ let reducer = (state, action) =>
 
 [@react.component]
 let make = (~children) => {
-  Js.log(getColorModePreference(window));
   let mode =
     switch (getColorModePreference(window)) {
     | "light" => Light
@@ -24,7 +23,6 @@ let make = (~children) => {
     | _ => Light
     };
   let (state, dispatch) = React.useReducer(reducer, mode);
-  // let context = React.useMemo2(() => (state, dispatch), (state, dispatch));
 
   <ColorModeProvider value=(state, dispatch)> children </ColorModeProvider>;
 };

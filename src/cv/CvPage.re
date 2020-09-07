@@ -21,7 +21,7 @@ module Heading = {
 let make = () => {
   <div id="cv" className=" leading-tight">
     <ColorModeToggle />
-    <section className="md:flex">
+    <section className="md:flex print:block">
       <div className="px-6 lg:px-12 py-4 bg-teal-800 space-y-4 md:max-w-xs">
         <div className="flex items-center md:block">
           <figure className="md:my-4">
