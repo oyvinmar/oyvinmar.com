@@ -1,6 +1,11 @@
 dt,
 b {
-  @apply text-gray-900 font-medium !important;
+  @apply text-gray-900 font-semibold;
+}
+
+.dark dt,
+.dark b {
+  @apply text-gray-300;
 }
 
 .sidebar-info {

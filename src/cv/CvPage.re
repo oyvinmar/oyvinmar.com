@@ -13,33 +13,34 @@ module Heading = {
   let make = (~title: string) =>
     <>
       <h2 className="mb-0"> {str(title)} </h2>
-      <hr className="w-16 bg-pink-600 mt-1 mb-4 h-2" />
+      <hr className="w-12 bg-pink-600 mt-1 mb-4 h-2 border-transparent" />
     </>;
 };
 
 [@react.component]
 let make = () => {
-  <div id="cv" className="bg-white text-gray-700 antialiased leading-tight">
+  <div id="cv" className=" leading-tight">
+    <ColorModeToggle />
     <section className="md:flex">
-      <div className="px-6 lg:px-12 py-4 bg-sidebar space-y-4 md:max-w-xs">
+      <div className="px-6 lg:px-12 py-4 bg-teal-800 space-y-4 md:max-w-xs">
         <div className="flex items-center md:block">
           <figure className="md:my-4">
             <img
-              className="w-16 mr-6 md:w-40 md:mx-auto rounded-full border-solid border-4 border-white"
+              className="w-16 mr-6 md:w-40 md:mx-auto rounded-full border-solid border-4 border-white dark:border-gray-900"
               alt="Picture of Øyvind Marthinsen"
               src=profileImage
             />
           </figure>
-          <h1 className="md:text-center text-3xl">
+          <h1 className="md:text-center text-3xl text-gray-300">
             {str({js|Øyvind Marthinsen|js})}
           </h1>
         </div>
-        <dl className="grid sidebar-info row-gap-2 col-gap-6">
-          <dt> {str("Telefon:")} </dt>
+        <dl className="grid sidebar-info row-gap-2 col-gap-6 text-gray-300">
+          <dt className="text-gray-100"> {str("Telefon:")} </dt>
           <dd> {str("970 61 833")} </dd>
-          <dt> {str({js|Fødselsdato:|js})} </dt>
+          <dt className="text-gray-100"> {str({js|Fødselsdato:|js})} </dt>
           <dd> {str("06.10.1984")} </dd>
-          <dt> {str("Bosted:")} </dt>
+          <dt className="text-gray-100"> {str("Bosted:")} </dt>
           <dd> {str("Oslo")} </dd>
         </dl>
       </div>
@@ -66,31 +67,31 @@ let make = () => {
                  "JavaScript (ECMAScript 201X), TypeScript, Scala, Java, C, Groovy, Python, Ruby",
                )}
             </dd>
-            <dt className="mt-1"> {str("Webteknologi")} </dt>
+            <dt className="mt-2"> {str("Webteknologi")} </dt>
             <dd>
               {str(
                  "HTML5, CSS3, Responsive design, React, Emotion, Redux, Immutable.js, SASS, SVG, Express, Apollo Client/Server, lodash, Less, Highcharts ",
                )}
             </dd>
-            <dt className="mt-1"> {str({js|Webverktøy|js})} </dt>
+            <dt className="mt-2"> {str({js|Webverktøy|js})} </dt>
             <dd>
               {str(
                  "Babel, Webpack, ESLint, npm, Prettier, yarn, Lerna, Razzle, PostCSS, Parcel, Jest, now, NextJS, Travis, Gulp.js, Cypress",
                )}
             </dd>
-            <dt className="mt-1"> {str("Databaser")} </dt>
+            <dt className="mt-2"> {str("Databaser")} </dt>
             <dd> {str("MySQL, PostgreSQL, Microsoft SQL Server")} </dd>
-            <dt className="mt-1"> {str("Integrasjon")} </dt>
+            <dt className="mt-2"> {str("Integrasjon")} </dt>
             <dd> {str("GraphQL, REST, JSON, XML")} </dd>
-            <dt className="mt-1"> {str("Metode")} </dt>
+            <dt className="mt-2"> {str("Metode")} </dt>
             <dd>
               {str("Parprogrammering, Scrum, Testdrevet utvikling (TDD), XP")}
             </dd>
-            <dt className="mt-1">
+            <dt className="mt-2">
               {str({js|Utviklingsverktøy (IDE)|js})}
             </dt>
             <dd> {str("VS Code, vim")} </dd>
-            <dt className="mt-1"> {str({js|Versjonshåndtering|js})} </dt>
+            <dt className="mt-2"> {str({js|Versjonshåndtering|js})} </dt>
             <dd> {str("Git, Subversion")} </dd>
           </dl>
         </section>

@@ -8,6 +8,13 @@
 
 [@bs.module] external untappdLogo: string = "./untappd.svg";
 
+type serviceName =
+  | Twitter
+  | Pinboard
+  | Swarm
+  | Github
+  | Untappd;
+
 type event = {
   id: string,
   content: string,
@@ -15,7 +22,7 @@ type event = {
   time: string,
   timestamp: float,
   logo: string,
-  serviceName: string,
+  serviceName,
   serviceUrl: string,
 };
 
@@ -42,7 +49,7 @@ module Decode = {
       url: json |> field("u", string),
       content: json |> field("d", string),
       time: json |> field("dt", string) |> toLocaleString,
-      serviceName: "Pinboard",
+      serviceName: Pinboard,
       logo: pinboardLogo,
       serviceUrl: "https://pinboard.in/",
     };
@@ -70,7 +77,7 @@ module Decode = {
         |> float_of_int
         |> (createdAt => createdAt *. 1000.0)
         |> floatToLocaleString,
-      serviceName: "Swarm",
+      serviceName: Swarm,
       logo: swarmLogo,
       serviceUrl: "https://foursquare.com/",
     };
@@ -85,7 +92,7 @@ module Decode = {
       content: json |> field("text", string),
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
-      serviceName: "Twitter",
+      serviceName: Twitter,
       logo: twitterLogo,
       serviceUrl: "https://twitter.com/",
     };
@@ -137,7 +144,7 @@ module Decode = {
         ),
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
-      serviceName: "Github",
+      serviceName: Github,
       logo: githubLogo,
       serviceUrl: "https://github.com/",
     };
@@ -175,7 +182,7 @@ module Decode = {
         ),
       timestamp: json |> field("created_at", string) |> getTime,
       time: json |> field("created_at", string) |> toLocaleString,
-      serviceName: "Untappd",
+      serviceName: Untappd,
       logo: untappdLogo,
       serviceUrl: "https://untappd.com/",
     };

@@ -5,8 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>oyvinmar.com</title>
+    <script>
+      (function() {
+        function checkDarkMode() {
+          return (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+          );
+        }
+
+        function getColorModePreference() {
+          const mode = localStorage.getItem('mode');
+          if (mode) {
+            return mode;
+          } else if (checkDarkMode()) {
+            return 'dark';
+          }
+          return 'light';
+        }
+
+        function toggleColorMode() {
+          if (!document.documentElement.classList.contains('dark')) {
+            localStorage.setItem('mode', 'dark');
+            document.documentElement.classList.add('dark');
+          } else {
+            localStorage.setItem('mode', 'light');
+            document.documentElement.classList.remove('dark');
+          }
+        }
+
+        if (getColorModePreference() === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+
+        window.toggleColorMode = toggleColorMode;
+        window.getColorModePreference = getColorModePreference;
+      })();
+    </script>
   </head>
-  <body>
+  <body class="text-gray-700 dark:text-gray-400 dark:bg-gray-900 antialiased">
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>

@@ -11,6 +11,19 @@ module.exports = {
     }),
   },
   purge: {
-    content: ['./src/**/*.html', './src/**/*.re', './src/**/*.bs.js'],
+    content: [
+      'index.html',
+      './src/**/*.html',
+      './src/**/*.re',
+      './src/**/*.bs.js',
+    ],
+  },
+  dark: 'class',
+  experimental: {
+    darkModeVariant: true,
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
 };
