@@ -1,13 +1,3 @@
-[@bs.module] external pinboardLogo: string = "./pinboard.svg";
-
-[@bs.module] external twitterLogo: string = "./twitter.svg";
-
-[@bs.module] external swarmLogo: string = "./swarm.svg";
-
-[@bs.module] external githubLogo: string = "./github.svg";
-
-[@bs.module] external untappdLogo: string = "./untappd.svg";
-
 type serviceName =
   | Twitter
   | Pinboard
@@ -22,7 +12,6 @@ type event = {
   url: string,
   time: string,
   timestamp: float,
-  logo: string,
   serviceName,
   serviceUrl: string,
 };
@@ -51,7 +40,6 @@ module Decode = {
       content: json |> field("d", string),
       time: json |> field("dt", string) |> toLocaleString,
       serviceName: Pinboard,
-      logo: pinboardLogo,
       serviceUrl: "https://pinboard.in/",
     };
   let bookmarks = (json): array(event) =>
@@ -79,7 +67,6 @@ module Decode = {
         |> (createdAt => createdAt *. 1000.0)
         |> floatToLocaleString,
       serviceName: Swarm,
-      logo: swarmLogo,
       serviceUrl: "https://foursquare.com/",
     };
   let checkins = (json): array(event) =>
@@ -94,7 +81,6 @@ module Decode = {
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
-      logo: twitterLogo,
       serviceUrl: "https://twitter.com/",
     };
   let tweets = (json): array(event) => Json.Decode.(json |> array(tweet));
@@ -146,7 +132,6 @@ module Decode = {
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
-      logo: githubLogo,
       serviceUrl: "https://github.com/",
     };
   let githubEvents = (json): array(event) =>
@@ -184,7 +169,6 @@ module Decode = {
       timestamp: json |> field("created_at", string) |> getTime,
       time: json |> field("created_at", string) |> toLocaleString,
       serviceName: Untappd,
-      logo: untappdLogo,
       serviceUrl: "https://untappd.com/",
     };
   let stravaEvent = (json): event =>
@@ -227,7 +211,6 @@ module Decode = {
       // time: "sdfjl",
       time: json |> field("start_date_local", string) |> toLocaleString,
       serviceName: Strava,
-      logo: untappdLogo,
       serviceUrl: "https://strava.com/",
     };
   let untappdEvents = (json): array(event) =>
