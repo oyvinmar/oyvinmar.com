@@ -11,6 +11,7 @@ async function fetchActivities(accessToken) {
   });
   const activities = await response.json();
   return activities.map(activity => ({
+    id: activity.id,
     type: activity.type,
     name: activity.name,
     distance: activity.distance,
@@ -43,7 +44,7 @@ module.exports = async (req, res) => {
     );
 
     let activities = [];
-    if (data.expires_at < Date.now() / 1000) {
+    if (data.expires_at > Date.now() / 1000 + 60) {
       activities = await fetchActivities(data.access_token);
     } else {
       const newToken = await refreshToken(data.refresh_token);

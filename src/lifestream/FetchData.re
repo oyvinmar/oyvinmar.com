@@ -13,6 +13,7 @@ type serviceName =
   | Pinboard
   | Swarm
   | Github
+  | Strava
   | Untappd;
 
 type event = {
@@ -186,10 +187,56 @@ module Decode = {
       logo: untappdLogo,
       serviceUrl: "https://untappd.com/",
     };
+  let stravaEvent = (json): event =>
+    Json.Decode.{
+      id: json |> field("id", int) |> string_of_int,
+      url:
+        json
+        |> field("id", int)
+        |> (id => "https://www.strava.com/activities/" ++ string_of_int(id)),
+      content:
+        json
+        |> (
+          json => {
+            let activityType = field("type", string, json);
+            let activity =
+              switch (activityType) {
+              | "Ride" => "Cycled"
+              | "Run" => "Ran"
+              | "Hike" => "Hiked"
+              | "NordicSki" => "Cross-country skied"
+              | _ => activityType
+              };
+            let distance = field("distance", Json.Decode.float, json);
+            let movingTime = field("moving_time", Json.Decode.int, json);
+            let movingHours = float_of_int(movingTime / 3600);
+            let movingMinutes = float_of_int(movingTime mod 3600 / 60);
+
+            String.capitalize_ascii(activity)
+            ++ " "
+            ++ Js.Float.toFixedWithPrecision(distance /. 1000.0, ~digits=1)
+            ++ " kilometers in "
+            ++ Js.Float.toFixed(movingHours)
+            ++ "h "
+            ++ Js.Float.toFixed(movingMinutes)
+            ++ "m"
+            ++ ".";
+          }
+        ),
+      timestamp: json |> field("start_date_local", string) |> getTime,
+      // time: "sdfjl",
+      time: json |> field("start_date_local", string) |> toLocaleString,
+      serviceName: Strava,
+      logo: untappdLogo,
+      serviceUrl: "https://strava.com/",
+    };
   let untappdEvents = (json): array(event) =>
     Json.Decode.(
       json |> at(["response", "checkins", "items"], array(untappdCheckin))
     );
+
+  let stravaEvents = (json): array(event) =>
+    Json.Decode.(json |> array(stravaEvent));
 };
 
 let fetchTweets = () =>
@@ -231,6 +278,15 @@ let fetchUntappdEvents = () =>
        )
   );
 
+let fetchStravaEvents = () =>
+  Js.Promise.(
+    Fetch.fetch("/api/strava/")
+    |> then_(Fetch.Response.json)
+    |> then_(json =>
+         json |> Decode.stravaEvents |> (events => resolve(events))
+       )
+  );
+
 let fetchEvents = callback => {
   let promiseAll =
     Js.Promise.all([|
@@ -239,6 +295,7 @@ let fetchEvents = callback => {
       fetchCheckins(),
       fetchGithubEvents(),
       fetchUntappdEvents(),
+      fetchStravaEvents(),
     |]);
   Js.Promise.(
     promiseAll
