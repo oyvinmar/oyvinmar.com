@@ -270,15 +270,31 @@ let fetchStravaEvents = () =>
        )
   );
 
+let race = (promise: Js.Promise.t(array(event))) => {
+  Js.Promise.race([|
+    promise,
+    Js.Promise.make((~resolve, ~reject) => {
+      Js.Global.setTimeout(
+        () => {
+          resolve(. [||]);
+          ();
+        },
+        3000,
+      )
+      |> ignore
+    }),
+  |]);
+};
+
 let fetchEvents = callback => {
   let promiseAll =
     Js.Promise.all([|
-      fetchBookmarks(),
-      fetchTweets(),
-      fetchCheckins(),
-      fetchGithubEvents(),
-      fetchUntappdEvents(),
-      fetchStravaEvents(),
+      race(fetchBookmarks()),
+      race(fetchTweets()),
+      race(fetchCheckins()),
+      race(fetchGithubEvents()),
+      race(fetchUntappdEvents()),
+      race(fetchStravaEvents()),
     |]);
   Js.Promise.(
     promiseAll
