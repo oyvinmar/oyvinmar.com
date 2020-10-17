@@ -227,6 +227,10 @@ let fetchTweets = () =>
     Fetch.fetch("/api/twitter/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.tweets |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchBookmarks = () =>
@@ -234,6 +238,10 @@ let fetchBookmarks = () =>
     Fetch.fetch("/api/pinboard/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.bookmarks |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchCheckins = () =>
@@ -241,6 +249,10 @@ let fetchCheckins = () =>
     Fetch.fetch("/api/swarm/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.checkins |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchGithubEvents = () =>
@@ -250,6 +262,10 @@ let fetchGithubEvents = () =>
     |> then_(json =>
          json |> Decode.githubEvents |> (events => resolve(events))
        )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchUntappdEvents = () =>
@@ -259,6 +275,10 @@ let fetchUntappdEvents = () =>
     |> then_(json =>
          json |> Decode.untappdEvents |> (events => resolve(events))
        )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchStravaEvents = () =>
@@ -268,6 +288,10 @@ let fetchStravaEvents = () =>
     |> then_(json =>
          json |> Decode.stravaEvents |> (events => resolve(events))
        )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let race = (promise: Js.Promise.t(array(event))) => {
