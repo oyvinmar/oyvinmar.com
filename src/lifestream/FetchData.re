@@ -1,18 +1,9 @@
-[@bs.module] external pinboardLogo: string = "./pinboard.svg";
-
-[@bs.module] external twitterLogo: string = "./twitter.svg";
-
-[@bs.module] external swarmLogo: string = "./swarm.svg";
-
-[@bs.module] external githubLogo: string = "./github.svg";
-
-[@bs.module] external untappdLogo: string = "./untappd.svg";
-
 type serviceName =
   | Twitter
   | Pinboard
   | Swarm
   | Github
+  | Strava
   | Untappd;
 
 type event = {
@@ -21,7 +12,6 @@ type event = {
   url: string,
   time: string,
   timestamp: float,
-  logo: string,
   serviceName,
   serviceUrl: string,
 };
@@ -50,7 +40,6 @@ module Decode = {
       content: json |> field("d", string),
       time: json |> field("dt", string) |> toLocaleString,
       serviceName: Pinboard,
-      logo: pinboardLogo,
       serviceUrl: "https://pinboard.in/",
     };
   let bookmarks = (json): array(event) =>
@@ -78,7 +67,6 @@ module Decode = {
         |> (createdAt => createdAt *. 1000.0)
         |> floatToLocaleString,
       serviceName: Swarm,
-      logo: swarmLogo,
       serviceUrl: "https://foursquare.com/",
     };
   let checkins = (json): array(event) =>
@@ -93,7 +81,6 @@ module Decode = {
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
-      logo: twitterLogo,
       serviceUrl: "https://twitter.com/",
     };
   let tweets = (json): array(event) => Json.Decode.(json |> array(tweet));
@@ -145,7 +132,6 @@ module Decode = {
       time: json |> field("created_at", string) |> toLocaleString,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
-      logo: githubLogo,
       serviceUrl: "https://github.com/",
     };
   let githubEvents = (json): array(event) =>
@@ -183,13 +169,57 @@ module Decode = {
       timestamp: json |> field("created_at", string) |> getTime,
       time: json |> field("created_at", string) |> toLocaleString,
       serviceName: Untappd,
-      logo: untappdLogo,
       serviceUrl: "https://untappd.com/",
+    };
+  let stravaEvent = (json): event =>
+    Json.Decode.{
+      id: json |> field("id", int) |> string_of_int,
+      url:
+        json
+        |> field("id", int)
+        |> (id => "https://www.strava.com/activities/" ++ string_of_int(id)),
+      content:
+        json
+        |> (
+          json => {
+            let activityType = field("type", string, json);
+            let activity =
+              switch (activityType) {
+              | "Ride" => "Cycled"
+              | "Run" => "Ran"
+              | "Hike" => "Hiked"
+              | "NordicSki" => "Cross-country skied"
+              | _ => activityType
+              };
+            let distance = field("distance", Json.Decode.float, json);
+            let movingTime = field("moving_time", Json.Decode.int, json);
+            let movingHours = float_of_int(movingTime / 3600);
+            let movingMinutes = float_of_int(movingTime mod 3600 / 60);
+
+            String.capitalize_ascii(activity)
+            ++ " "
+            ++ Js.Float.toFixedWithPrecision(distance /. 1000.0, ~digits=1)
+            ++ " kilometers in "
+            ++ Js.Float.toFixed(movingHours)
+            ++ "h "
+            ++ Js.Float.toFixed(movingMinutes)
+            ++ "m"
+            ++ ".";
+          }
+        ),
+      timestamp: json |> field("start_date_local", string) |> getTime,
+      // time: "sdfjl",
+      time: json |> field("start_date_local", string) |> toLocaleString,
+      serviceName: Strava,
+      serviceUrl: "https://strava.com/",
     };
   let untappdEvents = (json): array(event) =>
     Json.Decode.(
       json |> at(["response", "checkins", "items"], array(untappdCheckin))
     );
+
+  let stravaEvents = (json): array(event) =>
+    Json.Decode.(json |> array(stravaEvent));
 };
 
 let fetchTweets = () =>
@@ -197,6 +227,10 @@ let fetchTweets = () =>
     Fetch.fetch("/api/twitter/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.tweets |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchBookmarks = () =>
@@ -204,6 +238,10 @@ let fetchBookmarks = () =>
     Fetch.fetch("/api/pinboard/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.bookmarks |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchCheckins = () =>
@@ -211,6 +249,10 @@ let fetchCheckins = () =>
     Fetch.fetch("/api/swarm/")
     |> then_(Fetch.Response.json)
     |> then_(json => json |> Decode.checkins |> (events => resolve(events)))
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchGithubEvents = () =>
@@ -220,6 +262,10 @@ let fetchGithubEvents = () =>
     |> then_(json =>
          json |> Decode.githubEvents |> (events => resolve(events))
        )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
 
 let fetchUntappdEvents = () =>
@@ -229,16 +275,50 @@ let fetchUntappdEvents = () =>
     |> then_(json =>
          json |> Decode.untappdEvents |> (events => resolve(events))
        )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
   );
+
+let fetchStravaEvents = () =>
+  Js.Promise.(
+    Fetch.fetch("/api/strava/")
+    |> then_(Fetch.Response.json)
+    |> then_(json =>
+         json |> Decode.stravaEvents |> (events => resolve(events))
+       )
+    |> catch(err => {
+         Js.log(err);
+         Js.Promise.resolve([||]);
+       })
+  );
+
+let race = (promise: Js.Promise.t(array(event))) => {
+  Js.Promise.race([|
+    promise,
+    Js.Promise.make((~resolve, ~reject) => {
+      Js.Global.setTimeout(
+        () => {
+          resolve(. [||]);
+          ();
+        },
+        3000,
+      )
+      |> ignore
+    }),
+  |]);
+};
 
 let fetchEvents = callback => {
   let promiseAll =
     Js.Promise.all([|
-      fetchBookmarks(),
-      fetchTweets(),
-      fetchCheckins(),
-      fetchGithubEvents(),
-      fetchUntappdEvents(),
+      race(fetchBookmarks()),
+      race(fetchTweets()),
+      race(fetchCheckins()),
+      race(fetchGithubEvents()),
+      race(fetchUntappdEvents()),
+      race(fetchStravaEvents()),
     |]);
   Js.Promise.(
     promiseAll

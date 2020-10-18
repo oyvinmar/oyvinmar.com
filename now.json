@@ -29,6 +29,8 @@
     "TWITTER_CONSUMER_KEY": "@twitter_consumer_key",
     "TWITTER_CONSUMER_SECRET": "@twitter_consumer_secret",
     "UNTAPPD_CLIENT_ID": "@untappd_client_id",
-    "UNTAPPD_CLIENT_SECRET": "@untappd_client_secret"
+    "UNTAPPD_CLIENT_SECRET": "@untappd_client_secret",
+    "FAUNADB_SECRET": "@faunadb_secret",
+    "STRAVA_CLIENT_SECRET": "@strava_client_secret"
   }
 }

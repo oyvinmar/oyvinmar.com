@@ -7,6 +7,7 @@ module Event = {
     let name =
       switch (event.serviceName) {
       | Twitter => "Twitter"
+      | Strava => "Strava"
       | Swarm => "Swarm"
       | Pinboard => "Pinboard"
       | Github => "Github"
@@ -18,7 +19,7 @@ module Event = {
         target="_blank"
         rel="noopener noreferrer"
         className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
-        <div className="w-14">
+        <div>
           {switch (event.serviceName) {
            | Github =>
              <GithubLogo
@@ -28,9 +29,10 @@ module Event = {
            | Pinboard => <PinboardLogo className="w-12" />
            | Untappd => <UntappdLogo className="w-12" />
            | Twitter => <TwitterLogo className="w-12" />
+           | Strava => <StravaLogo className="w-12 h-12" />
            }}
         </div>
-        <div className="">
+        <div>
           <header className="font-bold"> {str(name)} </header>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
           <time className="text-gray-500"> {str(event.time)} </time>
