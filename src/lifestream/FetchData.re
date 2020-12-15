@@ -14,6 +14,7 @@ type event = {
   timestamp: float,
   serviceName,
   serviceUrl: string,
+  mutable group: array(event),
 };
 
 type events = array(event);
@@ -41,6 +42,7 @@ module Decode = {
       time: json |> field("dt", string) |> toLocaleString,
       serviceName: Pinboard,
       serviceUrl: "https://pinboard.in/",
+      group: [||],
     };
   let bookmarks = (json): array(event) =>
     Json.Decode.(json |> array(bookmark));
@@ -68,6 +70,7 @@ module Decode = {
         |> floatToLocaleString,
       serviceName: Swarm,
       serviceUrl: "https://foursquare.com/",
+      group: [||],
     };
   let checkins = (json): array(event) =>
     Json.Decode.(
@@ -82,6 +85,7 @@ module Decode = {
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
       serviceUrl: "https://twitter.com/",
+      group: [||],
     };
   let tweets = (json): array(event) => Json.Decode.(json |> array(tweet));
   let createGithubLink = path => {j|<a href="https://github.com/$path">$path</a>|j};
@@ -133,6 +137,7 @@ module Decode = {
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
       serviceUrl: "https://github.com/",
+      group: [||],
     };
   let githubEvents = (json): array(event) =>
     Json.Decode.(json |> array(githubEvent))
@@ -170,6 +175,7 @@ module Decode = {
       time: json |> field("created_at", string) |> toLocaleString,
       serviceName: Untappd,
       serviceUrl: "https://untappd.com/",
+      group: [||],
     };
   let stravaEvent = (json): event =>
     Json.Decode.{
@@ -212,6 +218,7 @@ module Decode = {
       time: json |> field("start_date_local", string) |> toLocaleString,
       serviceName: Strava,
       serviceUrl: "https://strava.com/",
+      group: [||],
     };
   let untappdEvents = (json): array(event) =>
     Json.Decode.(
@@ -325,8 +332,34 @@ let fetchEvents = callback => {
     |> then_(result => {
          let all =
            Array.fold_left((a, b) => Array.append(a, b), [||], result);
+
          Array.sort((a, b) => a.timestamp > b.timestamp ? (-1) : 1, all);
-         callback(all);
+
+         let groupes =
+           Array.fold_left(
+             (acc, activity) => {
+               let match =
+                 switch (acc) {
+                 | [||] => [|activity|]
+                 | _ =>
+                   let n = Array.length(acc);
+                   if (acc[n - 1].serviceName == activity.serviceName) {
+                     acc[n - 1].group =
+                       Array.append(acc[n - 1].group, [|activity|]);
+                     acc;
+                   } else {
+                     Array.append(acc, [|activity|]);
+                   };
+                 };
+               match;
+             },
+             [||],
+             all,
+           );
+         resolve(groupes);
+       })
+    |> then_(result => {
+         callback(result);
          resolve(result);
        })
   );

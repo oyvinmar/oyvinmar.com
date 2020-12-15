@@ -39,6 +39,18 @@ h4 {
   text-decoration-color: theme('colors.pink.600');
 }
 
+.small-btn {
+  @apply text-pink-500 font-semibold py-2 px-4 rounded;
+}
+
+.small-btn:hover {
+  @apply bg-pink-700;
+}
+
+.btn:hover {
+  @apply bg-pink-700;
+}
+
 .btn {
   @apply bg-pink-500 text-white font-bold py-2 px-4 rounded;
 }
