@@ -10,7 +10,7 @@ type event = {
   id: string,
   content: string,
   url: string,
-  time: string,
+  date: Js.Date.t,
   timestamp: float,
   serviceName,
   serviceUrl: string,
@@ -20,18 +20,19 @@ type event = {
 type events = array(event);
 
 module Decode = {
-  let toLocaleString = dateString => {
-    let date = Js.Date.fromString(dateString);
-    Js.Date.toLocaleString(date);
+  let stringToDate = dateString => {
+    Js.Date.fromString(dateString);
   };
-  let floatToLocaleString = (sinceEpoc): string => {
-    let jsDate = Js.Date.fromFloat(sinceEpoc);
-    Js.Date.toLocaleString(jsDate);
+
+  let floatToDate = sinceEpoc => {
+    Js.Date.fromFloat(sinceEpoc);
   };
+
   let getTime = dateString => {
     let date = Js.Date.fromString(dateString);
     Js.Date.getTime(date);
   };
+
   let join = (s1, s2): string => s1 ++ s2;
   let bookmark = (json): event =>
     Json.Decode.{
@@ -39,7 +40,7 @@ module Decode = {
       timestamp: json |> field("dt", string) |> getTime,
       url: json |> field("u", string),
       content: json |> field("d", string),
-      time: json |> field("dt", string) |> toLocaleString,
+      date: json |> field("dt", string) |> stringToDate,
       serviceName: Pinboard,
       serviceUrl: "https://pinboard.in/",
       group: [||],
@@ -62,12 +63,12 @@ module Decode = {
         |> field("createdAt", int)
         |> float_of_int
         |> (createdAt => createdAt *. 1000.0),
-      time:
+      date:
         json
         |> field("createdAt", int)
         |> float_of_int
         |> (createdAt => createdAt *. 1000.0)
-        |> floatToLocaleString,
+        |> floatToDate,
       serviceName: Swarm,
       serviceUrl: "https://foursquare.com/",
       group: [||],
@@ -81,7 +82,7 @@ module Decode = {
       id: json |> field("id_str", string),
       url: "https://twitter.com/#!/oyvinmar/status/",
       content: json |> field("text", string),
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
       serviceUrl: "https://twitter.com/",
@@ -133,7 +134,7 @@ module Decode = {
             };
           }
         ),
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
       serviceUrl: "https://github.com/",
@@ -172,7 +173,7 @@ module Decode = {
           }
         ),
       timestamp: json |> field("created_at", string) |> getTime,
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       serviceName: Untappd,
       serviceUrl: "https://untappd.com/",
       group: [||],
@@ -214,8 +215,7 @@ module Decode = {
           }
         ),
       timestamp: json |> field("start_date_local", string) |> getTime,
-      // time: "sdfjl",
-      time: json |> field("start_date_local", string) |> toLocaleString,
+      date: json |> field("start_date_local", string) |> stringToDate,
       serviceName: Strava,
       serviceUrl: "https://strava.com/",
       group: [||],

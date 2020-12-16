@@ -12,7 +12,10 @@ module SimpleEvent = {
         className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
         <div>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
-          <time className="text-gray-500"> {str(event.time)} </time>
+          <time className="text-gray-500">
+            {str(Utils.toHumanReadableString(event.date))}
+            {str(Js.Date.toDateString(event.date))}
+          </time>
         </div>
       </a>
     </article>;
@@ -57,7 +60,9 @@ module EventGroup = {
         <div>
           <header className="font-bold"> {str(name)} </header>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
-          <time className="text-gray-500"> {str(event.time)} </time>
+          <time className="text-gray-500">
+            {str(Utils.toHumanReadableString(event.date))}
+          </time>
         </div>
       </a>
       {displayAll
