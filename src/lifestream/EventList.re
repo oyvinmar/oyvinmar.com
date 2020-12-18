@@ -12,9 +12,8 @@ module SimpleEvent = {
         className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
         <div>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
-          <time className="text-gray-500">
+          <time className="text-gray-500 font-normal">
             {str(Utils.toHumanReadableString(event.date))}
-            {str(Js.Date.toDateString(event.date))}
           </time>
         </div>
       </a>
@@ -39,11 +38,7 @@ module EventGroup = {
       | Untappd => "Untappd"
       };
     <article className="-ml-3">
-      <a
-        href={event.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-5 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
+      <div className="mt-5 flex items-center space-x-4 p-3 relative">
         <div>
           {switch (event.serviceName) {
            | Github =>
@@ -58,13 +53,35 @@ module EventGroup = {
            }}
         </div>
         <div>
-          <header className="font-bold"> {str(name)} </header>
+          <header className="font-bold">
+            <a
+              href={event.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link">
+              {str(name)}
+            </a>
+          </header>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
           <time className="text-gray-500">
             {str(Utils.toHumanReadableString(event.date))}
           </time>
+          <div className="flex items-center">
+            {Array.length(event.group) > 0 && displayAll === false
+               ? <div className="inline-block ">
+                   <button
+                     className="link-btn"
+                     onClick={_ => setDisplayAll(_ => true)}>
+                     {str(
+                        string_of_int(Array.length(event.group))
+                        ++ " similiar items",
+                      )}
+                   </button>
+                 </div>
+               : React.null}
+          </div>
         </div>
-      </a>
+      </div>
       {displayAll
          ? Array.map(
              (event: FetchData.event) => <SimpleEvent key={event.id} event />,
@@ -72,18 +89,6 @@ module EventGroup = {
            )
            |> ReasonReact.array
          : React.null}
-      {Array.length(event.group) > 0 && displayAll === false
-         ? <button
-             className="small-btn float-right"
-             onClick={_ => setDisplayAll(_ => true)}>
-             {str(
-                "Display"
-                ++ string_of_int(Array.length(event.group))
-                ++ " similiar items",
-              )}
-           </button>
-         : React.null}
-      <footer />
     </article>;
   };
 };

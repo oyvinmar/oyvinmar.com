@@ -168,7 +168,7 @@ module Decode = {
             ++ " stars to "
             ++ beerName
             ++ " from "
-            ++ breweryName
+            ++ String.trim(breweryName)
             ++ ".";
           }
         ),

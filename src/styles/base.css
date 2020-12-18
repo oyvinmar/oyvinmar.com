@@ -39,12 +39,20 @@ h4 {
   text-decoration-color: theme('colors.pink.600');
 }
 
-.small-btn {
-  @apply text-pink-500 font-semibold py-2 px-4 rounded;
+.link {
+  @apply text-pink-500 font-semibold;
 }
 
-.small-btn:hover {
-  @apply bg-pink-700;
+.link:hover {
+  @apply underline;
+}
+
+.link-btn {
+  @apply text-pink-500 font-semibold;
+}
+
+.link-btn:hover {
+  @apply underline;
 }
 
 .btn:hover {
