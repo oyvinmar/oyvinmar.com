@@ -1,5 +1,12 @@
 open Utils;
 
+module Collapse = {
+  [@bs.module "react-collapse"] [@react.component]
+  external make:
+    (~isOpened: bool, ~children: ReasonReact.reactElement) => React.element =
+    "Collapse";
+};
+
 module SimpleEvent = {
   let dangerousHtml: string => Js.t('a) = html => {"__html": html};
   [@react.component]
@@ -82,13 +89,13 @@ module EventGroup = {
           </div>
         </div>
       </div>
-      {displayAll
-         ? Array.map(
-             (event: FetchData.event) => <SimpleEvent key={event.id} event />,
-             event.group,
-           )
-           |> ReasonReact.array
-         : React.null}
+      <Collapse isOpened=displayAll>
+        {Array.map(
+           (event: FetchData.event) => <SimpleEvent key={event.id} event />,
+           event.group,
+         )
+         |> ReasonReact.array}
+      </Collapse>
     </article>;
   };
 };

@@ -112,3 +112,7 @@ a.active {
   animation: dark-pulse 2s ease-out;
   background: theme('colors.gray.500');
 }
+
+.ReactCollapse--collapse {
+  transition: height 0.5s ease-out;
+}
