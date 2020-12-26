@@ -10,27 +10,29 @@ type event = {
   id: string,
   content: string,
   url: string,
-  time: string,
+  date: Js.Date.t,
   timestamp: float,
   serviceName,
   serviceUrl: string,
+  mutable group: array(event),
 };
 
 type events = array(event);
 
 module Decode = {
-  let toLocaleString = dateString => {
-    let date = Js.Date.fromString(dateString);
-    Js.Date.toLocaleString(date);
+  let stringToDate = dateString => {
+    Js.Date.fromString(dateString);
   };
-  let floatToLocaleString = (sinceEpoc): string => {
-    let jsDate = Js.Date.fromFloat(sinceEpoc);
-    Js.Date.toLocaleString(jsDate);
+
+  let floatToDate = sinceEpoc => {
+    Js.Date.fromFloat(sinceEpoc);
   };
+
   let getTime = dateString => {
     let date = Js.Date.fromString(dateString);
     Js.Date.getTime(date);
   };
+
   let join = (s1, s2): string => s1 ++ s2;
   let bookmark = (json): event =>
     Json.Decode.{
@@ -38,9 +40,10 @@ module Decode = {
       timestamp: json |> field("dt", string) |> getTime,
       url: json |> field("u", string),
       content: json |> field("d", string),
-      time: json |> field("dt", string) |> toLocaleString,
+      date: json |> field("dt", string) |> stringToDate,
       serviceName: Pinboard,
       serviceUrl: "https://pinboard.in/",
+      group: [||],
     };
   let bookmarks = (json): array(event) =>
     Json.Decode.(json |> array(bookmark));
@@ -60,14 +63,15 @@ module Decode = {
         |> field("createdAt", int)
         |> float_of_int
         |> (createdAt => createdAt *. 1000.0),
-      time:
+      date:
         json
         |> field("createdAt", int)
         |> float_of_int
         |> (createdAt => createdAt *. 1000.0)
-        |> floatToLocaleString,
+        |> floatToDate,
       serviceName: Swarm,
       serviceUrl: "https://foursquare.com/",
+      group: [||],
     };
   let checkins = (json): array(event) =>
     Json.Decode.(
@@ -78,10 +82,11 @@ module Decode = {
       id: json |> field("id_str", string),
       url: "https://twitter.com/#!/oyvinmar/status/",
       content: json |> field("text", string),
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
       serviceUrl: "https://twitter.com/",
+      group: [||],
     };
   let tweets = (json): array(event) => Json.Decode.(json |> array(tweet));
   let createGithubLink = path => {j|<a href="https://github.com/$path">$path</a>|j};
@@ -129,10 +134,11 @@ module Decode = {
             };
           }
         ),
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
       serviceUrl: "https://github.com/",
+      group: [||],
     };
   let githubEvents = (json): array(event) =>
     Json.Decode.(json |> array(githubEvent))
@@ -162,14 +168,15 @@ module Decode = {
             ++ " stars to "
             ++ beerName
             ++ " from "
-            ++ breweryName
+            ++ String.trim(breweryName)
             ++ ".";
           }
         ),
       timestamp: json |> field("created_at", string) |> getTime,
-      time: json |> field("created_at", string) |> toLocaleString,
+      date: json |> field("created_at", string) |> stringToDate,
       serviceName: Untappd,
       serviceUrl: "https://untappd.com/",
+      group: [||],
     };
   let stravaEvent = (json): event =>
     Json.Decode.{
@@ -208,10 +215,10 @@ module Decode = {
           }
         ),
       timestamp: json |> field("start_date_local", string) |> getTime,
-      // time: "sdfjl",
-      time: json |> field("start_date_local", string) |> toLocaleString,
+      date: json |> field("start_date_local", string) |> stringToDate,
       serviceName: Strava,
       serviceUrl: "https://strava.com/",
+      group: [||],
     };
   let untappdEvents = (json): array(event) =>
     Json.Decode.(
@@ -325,8 +332,34 @@ let fetchEvents = callback => {
     |> then_(result => {
          let all =
            Array.fold_left((a, b) => Array.append(a, b), [||], result);
+
          Array.sort((a, b) => a.timestamp > b.timestamp ? (-1) : 1, all);
-         callback(all);
+
+         let groupes =
+           Array.fold_left(
+             (acc, activity) => {
+               let match =
+                 switch (acc) {
+                 | [||] => [|activity|]
+                 | _ =>
+                   let n = Array.length(acc);
+                   if (acc[n - 1].serviceName == activity.serviceName) {
+                     acc[n - 1].group =
+                       Array.append(acc[n - 1].group, [|activity|]);
+                     acc;
+                   } else {
+                     Array.append(acc, [|activity|]);
+                   };
+                 };
+               match;
+             },
+             [||],
+             all,
+           );
+         resolve(groupes);
+       })
+    |> then_(result => {
+         callback(result);
          resolve(result);
        })
   );
