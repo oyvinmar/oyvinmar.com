@@ -59,6 +59,41 @@ h4 {
   @apply bg-pink-700;
 }
 
+.path {
+  @apply bg-pink-300;
+  position: absolute;
+  width: 0.125rem;
+  left: 2.25rem;
+  margin-left: -1px;
+  height: 100%;
+}
+.path-swarm {
+  background-color: #f8a131;
+}
+
+.path-strava {
+  background-color: #f50;
+}
+.path-pinboard {
+  background-color: #007fce;
+}
+
+.path-twitter {
+  background-color: #1da1f2;
+}
+
+.path-untappd {
+  background-color: #ffce0d;
+}
+
+.path-github {
+  @apply bg-black;
+}
+
+.dark .path-github {
+  @apply bg-white;
+}
+
 .btn {
   @apply bg-pink-500 text-white font-bold py-2 px-4 rounded;
 }

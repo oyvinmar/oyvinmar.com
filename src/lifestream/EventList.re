@@ -44,6 +44,9 @@ module EventGroup = {
       | Github => "Github"
       | Untappd => "Untappd"
       };
+
+    let pathClassNames =
+      Utils.fromList(["path", "path-" ++ String.lowercase_ascii(name)]);
     <article className="-ml-3">
       <div className="mt-5 flex items-center space-x-4 p-3 relative">
         <div>
@@ -73,28 +76,30 @@ module EventGroup = {
           <time className="text-gray-500">
             {str(Utils.toHumanReadableString(event.date))}
           </time>
-          <div className="flex items-center">
-            {Array.length(event.group) > 0 && displayAll === false
-               ? <div className="inline-block ">
-                   <button
-                     className="link-btn"
-                     onClick={_ => setDisplayAll(_ => true)}>
-                     {str(
-                        string_of_int(Array.length(event.group))
-                        ++ " similiar items",
-                      )}
-                   </button>
-                 </div>
-               : React.null}
-          </div>
         </div>
       </div>
+      <div className="ml-16 px-3 -mt-2">
+        {Array.length(event.group) > 0 && displayAll === false
+           ? <div className="inline-block ">
+               <button
+                 className="link-btn" onClick={_ => setDisplayAll(_ => true)}>
+                 {str(
+                    string_of_int(Array.length(event.group))
+                    ++ " similiar items",
+                  )}
+               </button>
+             </div>
+           : React.null}
+      </div>
       <Collapse isOpened=displayAll>
-        {Array.map(
-           (event: FetchData.event) => <SimpleEvent key={event.id} event />,
-           event.group,
-         )
-         |> ReasonReact.array}
+        <div className="relative">
+          <span className=pathClassNames ariaHidden=true />
+          {Array.map(
+             (event: FetchData.event) => <SimpleEvent key={event.id} event />,
+             event.group,
+           )
+           |> ReasonReact.array}
+        </div>
       </Collapse>
     </article>;
   };
