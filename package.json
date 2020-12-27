@@ -6,6 +6,7 @@
   "proxy": "http://localhost:4000",
   "dependencies": {
     "@glennsl/bs-json": "^5.0.2",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "bootstrap-sass": "^3.4.1",
     "bs-fetch": "^0.6.2",
     "faunadb": "^3.0.1",
@@ -17,7 +18,7 @@
     "react-collapse": "^5.1.0",
     "react-dom": "^16.13.1",
     "reason-react": "^0.9.1",
-    "tailwindcss": "^1.8.4",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "waypoints": "^4.0.1"
   },
   "scripts": {
