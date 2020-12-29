@@ -10,7 +10,7 @@ async function fetchActivities(accessToken) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   const activities = await response.json();
-  return activities.map(activity => ({
+  return activities.map((activity) => ({
     id: activity.id,
     type: activity.type,
     name: activity.name,

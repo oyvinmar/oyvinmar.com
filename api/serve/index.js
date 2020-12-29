@@ -18,7 +18,7 @@ const apiEndpoints = {
   strava,
 };
 
-const apiHandler = url => {
+const apiHandler = (url) => {
   const match = url.match(/\/api\/(.+)\//i);
 
   if (match) {
@@ -28,7 +28,7 @@ const apiHandler = url => {
   return undefined;
 };
 
-const createServer = middleware =>
+const createServer = (middleware) =>
   micro((req, res) => {
     const endpoint = apiHandler(req.url);
     if (endpoint) {
