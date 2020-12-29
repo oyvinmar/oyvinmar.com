@@ -2,7 +2,7 @@ const https = require('https');
 
 function handleResponse(response, res) {
   let data = '';
-  response.on('data', chunk => {
+  response.on('data', (chunk) => {
     data += chunk;
   });
 
@@ -33,11 +33,11 @@ function oauthProxyResponder(oauth, res, options) {
 
 function proxyResponder(res, options) {
   https
-    .get(options, response => {
+    .get(options, (response) => {
       // console.log("Got response: " + response.statusCode);
       handleResponse(response, res, options.host);
     })
-    .on('error', e => {
+    .on('error', (e) => {
       console.log(`Got error: ${e.message}`);
     });
 }

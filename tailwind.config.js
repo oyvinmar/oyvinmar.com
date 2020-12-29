@@ -127,7 +127,7 @@ module.exports = {
         print: { raw: 'print' },
       },
     },
-    backgroundColor: theme => ({
+    backgroundColor: (theme) => ({
       ...theme('colors'),
       sidebar: '#d3dee0',
     }),
