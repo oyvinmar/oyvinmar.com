@@ -19,22 +19,11 @@ let make = () => {
       {str(".")}
     </p>
     <p>
-      {str("Currently, I'm working as a consultant at ")}
-      <a className="text-link" href="http://knowit.no" rel="external">
-        {str("Knowit")}
+      {str("Currently, I'm working as a tech lead at ")}
+      <a className="text-link" href="http://ardoq.com" rel="external">
+        {str("Ardoq")}
       </a>
-      {str({js| 🏢, where I'm able to work on |js})}
-      <a
-        className="text-link"
-        href="https://developer.entur.org"
-        rel="external">
-        {str("cool")}
-      </a>
-      {str(" ")}
-      <a className="text-link" href="https://ndla.no" rel="external">
-        {str("things")}
-      </a>
-      {str({js| 😎.|js})}
+      {str({js| 🏢, where I'm able to work on cool things  😎.|js})}
     </p>
     <p>
       {str(
