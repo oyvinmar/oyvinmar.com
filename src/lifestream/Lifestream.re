@@ -7,13 +7,11 @@ type fetch =
   | ERROR;
 
 type state = {
-  numberOfVisibleEvents: int,
   events: FetchData.events,
   fetch,
 };
 
 type action =
-  | ShowMore
   | Loaded(FetchData.events)
   | Loading;
 
@@ -28,14 +26,10 @@ let make = () => {
     React.useReducer(
       (state, action) =>
         switch (action) {
-        | ShowMore => {
-            ...state,
-            numberOfVisibleEvents: state.numberOfVisibleEvents + 10,
-          }
         | Loading => {...state, fetch: PENDING}
-        | Loaded(data) => {...state, events: data, fetch: SUCCESS}
+        | Loaded(data) => {events: data, fetch: SUCCESS}
         },
-      {events: [||], fetch: INITIAL, numberOfVisibleEvents: 5},
+      {events: [||], fetch: INITIAL},
     );
 
   React.useEffect1(
@@ -51,21 +45,7 @@ let make = () => {
       {switch (state.fetch) {
        | INITIAL => ReasonReact.null
        | PENDING => <EventListPlaceholder />
-       | SUCCESS =>
-         [|
-           <EventList
-             key="eventList"
-             numberOfVisibleEvents={state.numberOfVisibleEvents}
-             events={state.events}
-           />,
-           <button
-             key="button"
-             className="btn focus:outline-none"
-             onClick={_event => dispatch(ShowMore)}>
-             <span> {str("Show More")} </span>
-           </button>,
-         |]
-         |> ReasonReact.array
+       | SUCCESS => <EventList key="eventList" events={state.events} />
        | ERROR => ReasonReact.null
        }}
     </div>

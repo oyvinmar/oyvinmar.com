@@ -335,7 +335,23 @@ let fetchEvents = callback => {
 
          Array.sort((a, b) => a.timestamp > b.timestamp ? (-1) : 1, all);
 
-         let groupes =
+         let now = Js.Date.now();
+         let nowMinusAYear = now -. 1000.0 *. 60.0 *. 60.0 *. 24.0 *. 365.0;
+
+         let filtered =
+           Array.fold_left(
+             (a, b) =>
+               if (b.timestamp > nowMinusAYear) {
+                 Js.log(b.timestamp);
+                 Array.append(a, [|b|]);
+               } else {
+                 Array.append(a, [||]);
+               },
+             [||],
+             all,
+           );
+
+         let groups =
            Array.fold_left(
              (acc, activity) => {
                let match =
@@ -354,9 +370,9 @@ let fetchEvents = callback => {
                match;
              },
              [||],
-             all,
+             filtered,
            );
-         resolve(groupes);
+         resolve(groups);
        })
     |> then_(result => {
          callback(result);

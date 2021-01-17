@@ -106,8 +106,8 @@ module EventGroup = {
 };
 
 [@react.component]
-let make = (~events: FetchData.events, ~numberOfVisibleEvents: int) => {
-  Array.sub(events, 0, numberOfVisibleEvents)
+let make = (~events: FetchData.events) => {
+  events
   |> Array.map((event: FetchData.event) =>
        <EventGroup key={event.id} event />
      )
