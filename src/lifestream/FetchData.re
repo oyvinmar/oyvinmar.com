@@ -342,7 +342,6 @@ let fetchEvents = callback => {
            Array.fold_left(
              (a, b) =>
                if (b.timestamp > nowMinusAYear) {
-                 Js.log(b.timestamp);
                  Array.append(a, [|b|]);
                } else {
                  Array.append(a, [||]);
