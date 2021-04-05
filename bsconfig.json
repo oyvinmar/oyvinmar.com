@@ -15,13 +15,12 @@
   ],
   "package-specs": [
     {
-      "module": "commonjs",
+      "module": "es6",
       "in-source": true
     }
   ],
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": ["reason-react", "@glennsl/bs-json", "bs-fetch"],
-  "bs-dev-dependencies": ["@glennsl/bs-jest"],
-  "refmt": 3
+  "bs-dev-dependencies": ["@glennsl/bs-jest"]
 }

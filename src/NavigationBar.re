@@ -1,6 +1,8 @@
 open Utils;
 
-[@bs.module] external profileImage: string = "./img/profile.png";
+type imageModule = {default: string};
+
+[@bs.module] external profileImage: imageModule = "./img/profile.png";
 
 type action =
   | Hide
@@ -45,7 +47,7 @@ let make = () => {
         <img
           className="h-12 w-12 mr-4 md:h-14 md:w-14 lg:h-20 lg:w-20 rounded-full"
           alt="Picture of Øyvind Marthinsen"
-          src=profileImage
+          src={profileImage.default}
         />
         <a
           href="/"

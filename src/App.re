@@ -1,4 +1,5 @@
-[%bs.raw {|require('./styles/base.css')|}];
+%raw
+"import './styles/base.css'";
 
 module Wrapper = {
   [@react.component]

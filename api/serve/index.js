@@ -38,4 +38,4 @@ const createServer = (middleware) =>
     }
   });
 
-module.exports = createServer;
+module.exports = { createServer, apiHandler };

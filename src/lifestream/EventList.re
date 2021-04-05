@@ -1,7 +1,7 @@
 open Utils;
 
 module Collapse = {
-  [@bs.module "react-collapse"] [@react.component]
+  [@bs.module "@oyvinmar-forks/react-collapse"] [@react.component]
   external make:
     (~isOpened: bool, ~children: ReasonReact.reactElement) => React.element =
     "Collapse";

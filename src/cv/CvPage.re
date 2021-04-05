@@ -1,10 +1,13 @@
 open Utils;
 
-[%bs.raw {|require('../styles/cv.css')|}];
+%raw
+"import '../styles/cv.css'";
 
 let component = ReasonReact.statelessComponent("CvPage");
 
-[@bs.module] external profileImage: string = "../img/profile.png";
+type imageModule = {default: string};
+
+[@bs.module] external profileImage: imageModule = "../img/profile.png";
 
 let css = ReactDOMRe.Style.make;
 
@@ -28,14 +31,14 @@ let make = () => {
             <img
               className="w-16 mr-6 md:w-40 md:mx-auto rounded-full border-solid border-4 border-white dark:border-gray-900"
               alt="Picture of Øyvind Marthinsen"
-              src=profileImage
+              src={profileImage.default}
             />
           </figure>
           <h1 className="md:text-center text-3xl text-gray-300">
             {str({js|Øyvind Marthinsen|js})}
           </h1>
         </div>
-        <dl className="grid sidebar-info row-gap-2 col-gap-6 text-gray-300">
+        <dl className="grid sidebar-info gap-y-2 gap-x-6 text-gray-300">
           <dt className="text-gray-100"> {str("Telefon:")} </dt>
           <dd> {str("970 61 833")} </dd>
           <dt className="text-gray-100"> {str({js|Fødselsdato:|js})} </dt>

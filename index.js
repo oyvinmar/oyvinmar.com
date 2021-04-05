@@ -1,17 +1,24 @@
-const Bundler = require('parcel-bundler');
-const createServer = require('./api/serve');
+const { apiHandler } = require('./api/serve');
+const { createServer } = require('vite');
 
-const file = 'index.html'; // Pass an absolute path to the entrypoint here
-const options = {
-  hmrPort: 12345,
-}; // See options section of api docs, for the possibilities
+async function create() {
+  const vite = await createServer({
+    // server: { middlewareMode: true },
+  });
 
-// Initialize a new bundler using a file and options
-const bundler = new Bundler(file, options);
+  vite.middlewares.stack.splice(2, 0, {
+    route: '',
+    handle: async (req, res, next) => {
+      const endpoint = apiHandler(req.url);
+      if (endpoint) {
+        endpoint(req, res);
+      } else {
+        next();
+      }
+    },
+  });
 
-const middleware = bundler.middleware();
+  vite.listen(8080);
+}
 
-const server = createServer(middleware);
-
-// Listen on port 8080
-server.listen(8080);
+create();
