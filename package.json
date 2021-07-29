@@ -27,7 +27,7 @@
     "format": "prettier --write \"**/*.{js,jsx,scss,md}\"",
     "format-check": "prettier --list-different \"**/*.{js,jsx,scss,md}\"",
     "bsb-watch": "bsb -make-world -w",
-    "start": "node .",
+    "dev": "node .",
     "test": "yarn build:bsb && jest"
   },
   "devDependencies": {
