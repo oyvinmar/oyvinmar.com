@@ -124,7 +124,7 @@ module Decode = {
                   json,
                 );
               let link = createGithubLink(user);
-              {j|Closed pull request <a href="$htmlUrl">$repoName#$number</a> from $link|j};
+              {j|Closed pull request <a href="$htmlUrl">$repoName#$number</a> from $link.|j};
             | ("WatchEvent", Some("started")) =>
               "Starred " ++ createGithubLink(repoName) ++ "."
             | ("PushEvent", None) =>
