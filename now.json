@@ -29,6 +29,7 @@
       ]
     }
   ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "env": {
     "FOURSQUARE_TOKEN": "@foursquare_token",
     "GITHUB_TOKEN": "@github_token",
