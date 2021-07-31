@@ -2,20 +2,20 @@
   "version": 2,
   "headers": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=300, max-age=0"
-        }
-      ]
-    },
-    {
       "source": "/api/polyline",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "s-maxage=86400"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=300, max-age=0"
         }
       ]
     },
