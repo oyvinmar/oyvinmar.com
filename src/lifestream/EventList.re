@@ -89,10 +89,7 @@ module EventGroup = {
        | Some(s) =>
          <LazyImage props={"loading": "lazy"}>
            <img
-             src={
-               "/api/polyline/staticmap?size=644x280&maptype=roadmap&path=enc:"
-               ++ s
-             }
+             src={"/api/polyline/?size=644x280&maptype=roadmap&path=enc:" ++ s}
              alt="polyline"
            />
          </LazyImage>
