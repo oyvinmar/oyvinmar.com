@@ -2,6 +2,15 @@
   "version": 2,
   "headers": [
     {
+      "source": "/api/polyline",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=86400"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         {

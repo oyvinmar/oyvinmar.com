@@ -10,6 +10,7 @@ type event = {
   id: string,
   content: string,
   url: string,
+  image: option(string),
   date: Js.Date.t,
   timestamp: float,
   serviceName,
@@ -40,6 +41,7 @@ module Decode = {
       timestamp: json |> field("dt", string) |> getTime,
       url: json |> field("u", string),
       content: json |> field("d", string),
+      image: None,
       date: json |> field("dt", string) |> stringToDate,
       serviceName: Pinboard,
       serviceUrl: "https://pinboard.in/",
@@ -58,6 +60,7 @@ module Decode = {
         json
         |> at(["venue", "name"], string)
         |> (venueName => "Checked in at " ++ venueName ++ "."),
+      image: None,
       timestamp:
         json
         |> field("createdAt", int)
@@ -82,6 +85,7 @@ module Decode = {
       id: json |> field("id_str", string),
       url: "https://twitter.com/#!/oyvinmar/status/",
       content: json |> field("text", string),
+      image: None,
       date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Twitter,
@@ -120,7 +124,7 @@ module Decode = {
                   json,
                 );
               let link = createGithubLink(user);
-              {j|Closed pull request <a href="$htmlUrl">$repoName#$number</a> from $link|j};
+              {j|Closed pull request <a href="$htmlUrl">$repoName#$number</a> from $link.|j};
             | ("WatchEvent", Some("started")) =>
               "Starred " ++ createGithubLink(repoName) ++ "."
             | ("PushEvent", None) =>
@@ -134,6 +138,7 @@ module Decode = {
             };
           }
         ),
+      image: None,
       date: json |> field("created_at", string) |> stringToDate,
       timestamp: json |> field("created_at", string) |> getTime,
       serviceName: Github,
@@ -172,6 +177,7 @@ module Decode = {
             ++ ".";
           }
         ),
+      image: None,
       timestamp: json |> field("created_at", string) |> getTime,
       date: json |> field("created_at", string) |> stringToDate,
       serviceName: Untappd,
@@ -212,6 +218,14 @@ module Decode = {
             ++ Js.Float.toFixed(movingMinutes)
             ++ "m"
             ++ ".";
+          }
+        ),
+      image:
+        json
+        |> at(["map", "summary_polyline"], string)
+        |> (
+          plotline => {
+            Some(plotline);
           }
         ),
       timestamp: json |> field("start_date_local", string) |> getTime,
@@ -304,7 +318,7 @@ let fetchStravaEvents = () =>
 let race = (promise: Js.Promise.t(array(event))) => {
   Js.Promise.race([|
     promise,
-    Js.Promise.make((~resolve, ~reject) => {
+    Js.Promise.make((~resolve, ~reject as _) => {
       Js.Global.setTimeout(
         () => {
           resolve(. [||]);

@@ -11,7 +11,7 @@ module SimpleEvent = {
   let dangerousHtml: string => Js.t('a) = html => {"__html": html};
   [@react.component]
   let make = (~event: FetchData.event) => {
-    <article className="ml-16">
+    <article className="ml-12">
       <a
         href={event.url}
         target="_blank"
@@ -30,6 +30,11 @@ module SimpleEvent = {
 
 type state = {displayAll: bool};
 
+module LazyImage = {
+  [@react.component]
+  let make = (~props, ~children) => React.cloneElement(children, props);
+};
+
 module EventGroup = {
   let dangerousHtml: string => Js.t('a) = html => {"__html": html};
   [@react.component]
@@ -47,8 +52,11 @@ module EventGroup = {
 
     let pathClassNames =
       Utils.fromList(["path", "path-" ++ String.lowercase_ascii(name)]);
-    <article className="-ml-3">
-      <div className="mt-5 flex items-center space-x-4 p-3 relative">
+    <article
+      className="p-3 space-y-3 dark:bg-gray-800 bg-white rounded-md shadow-md
+      ring-1 ring-gray-100 dark:ring-0
+       ">
+      <div className="mt-2 flex items-center space-x-2 relative">
         <div>
           {switch (event.serviceName) {
            | Github =>
@@ -72,35 +80,44 @@ module EventGroup = {
               {str(name)}
             </a>
           </header>
-          <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
           <time className="text-gray-500">
             {str(Utils.toHumanReadableString(event.date))}
           </time>
         </div>
       </div>
-      <div className="ml-16 px-3 -mt-2">
+      {switch (event.image) {
+       | Some(s) =>
+         <LazyImage props={"loading": "lazy"}>
+           <img
+             src={"/api/polyline/?size=644x280&maptype=roadmap&path=enc:" ++ s}
+             alt="polyline"
+           />
+         </LazyImage>
+       | None => React.null
+       }}
+      <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
+      <div>
         {Array.length(event.group) > 0 && displayAll === false
-           ? <div className="inline-block ">
-               <button
-                 className="link-btn" onClick={_ => setDisplayAll(_ => true)}>
-                 {str(
-                    string_of_int(Array.length(event.group))
-                    ++ " similiar items",
-                  )}
-               </button>
-             </div>
-           : React.null}
+           ? <button
+               className="link-btn" onClick={_ => setDisplayAll(_ => true)}>
+               {str(
+                  string_of_int(Array.length(event.group))
+                  ++ " similiar items",
+                )}
+             </button>
+           : <div />}
+        <Collapse isOpened=displayAll>
+          <div className="relative -mt-4">
+            <span className=pathClassNames ariaHidden=true />
+            {Array.map(
+               (event: FetchData.event) =>
+                 <SimpleEvent key={event.id} event />,
+               event.group,
+             )
+             |> ReasonReact.array}
+          </div>
+        </Collapse>
       </div>
-      <Collapse isOpened=displayAll>
-        <div className="relative">
-          <span className=pathClassNames ariaHidden=true />
-          {Array.map(
-             (event: FetchData.event) => <SimpleEvent key={event.id} event />,
-             event.group,
-           )
-           |> ReasonReact.array}
-        </div>
-      </Collapse>
     </article>;
   };
 };

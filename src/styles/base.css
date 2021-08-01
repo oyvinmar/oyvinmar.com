@@ -63,7 +63,7 @@ h4 {
   @apply bg-pink-300;
   position: absolute;
   width: 0.125rem;
-  left: 2.25rem;
+  left: 1.55rem;
   margin-left: -1px;
   height: 100%;
 }
@@ -150,4 +150,5 @@ a.active {
 
 .ReactCollapse--collapse {
   transition: height 0.5s ease-out;
+  overflow: hidden !important;
 }

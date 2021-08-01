@@ -8,6 +8,7 @@ const pinboard = require('../pinboard');
 const github = require('../github');
 const untappd = require('../untappd');
 const strava = require('../strava');
+const polyline = require('../polyline');
 
 const apiEndpoints = {
   twitter,
@@ -16,6 +17,7 @@ const apiEndpoints = {
   github,
   untappd,
   strava,
+  polyline,
 };
 
 const apiHandler = (url) => {
@@ -39,3 +41,4 @@ const createServer = (middleware) =>
   });
 
 module.exports = { createServer, apiHandler };
+// module.exports  apiHandler;

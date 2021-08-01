@@ -41,7 +41,7 @@ let make = () => {
   );
   <div className="space-y-5">
     <h1> {str("What's happening?")} </h1>
-    <div className="space-y-3">
+    <div className="space-y-6">
       {switch (state.fetch) {
        | INITIAL => ReasonReact.null
        | PENDING => <EventListPlaceholder />
