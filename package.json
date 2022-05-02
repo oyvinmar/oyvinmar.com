@@ -39,7 +39,7 @@
     "eslint-config-prettier": "^7.1.0",
     "micro": "^9.3.4",
     "micro-dev": "^3.0.0",
-    "postcss": "^8.2.10",
+    "postcss": "^8.2.13",
     "prettier": "^2.2.1",
     "vercel": "^21.0.1",
     "vite": "^2.4.4"
