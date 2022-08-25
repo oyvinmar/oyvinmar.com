@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply text-gray-900 font-semibold tracking-tight;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5 {
+  @apply text-gray-300;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+h4 {
+  @apply text-2xl;
+}
+
+.text-link {
+  @apply font-bold underline;
+  text-decoration-color: theme('colors.pink.600');
+}
+
+.link {
+  @apply text-pink-500 font-semibold;
+}
+
+.link:hover {
+  @apply underline;
+}
+
+.link-btn {
+  @apply text-pink-500 font-semibold;
+}
+
+.link-btn:hover {
+  @apply underline;
+}
+
+.btn:hover {
+  @apply bg-pink-700;
+}
+
+.path {
+  @apply bg-pink-300;
+  position: absolute;
+  width: 0.125rem;
+  left: 1.55rem;
+  margin-left: -1px;
+  height: 100%;
+}
+.path-swarm {
+  background-color: #f8a131;
+}
+
+.path-strava {
+  background-color: #f50;
+}
+.path-pinboard {
+  background-color: #007fce;
+}
+
+.path-twitter {
+  background-color: #1da1f2;
+}
+
+.path-untappd {
+  background-color: #ffce0d;
+}
+
+.path-github {
+  @apply bg-black;
+}
+
+.dark .path-github {
+  @apply bg-white;
+}
+
+.btn {
+  @apply bg-pink-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn:hover {
+  @apply bg-pink-700;
+}
+
+a.active {
+  @apply font-bold;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: theme('colors.gray.100');
+    opacity: theme('colors.gray.300');
+    opacity: 1;
+  }
+  50% {
+    background-color: theme('colors.gray.300');
+  }
+  100% {
+    background-color: theme('colors.gray.100');
+    opacity: 1;
+  }
+}
+
+@keyframes dark-pulse {
+  0% {
+    background-color: theme('colors.gray.500');
+    opacity: theme('colors.gray.700');
+    opacity: 1;
+  }
+  50% {
+    background-color: theme('colors.gray.700');
+  }
+  100% {
+    background-color: theme('colors.gray.500');
+    opacity: 1;
+  }
+}
+
+.u-pulse {
+  animation: pulse 2s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: theme('colors.gray.300');
+}
+
+.dark .u-pulse {
+  animation: dark-pulse 2s ease-out;
+  background: theme('colors.gray.500');
+}
+
+.ReactCollapse--collapse {
+  transition: height 0.5s ease-out;
+  overflow: hidden !important;
+}
