@@ -1,20 +1,18 @@
-// export { make as App } from '../App.bs';
-
-import { WhoAmI } from 'app/components/WhoAmI';
-import { PropsWithChildren } from 'react';
+import { Outlet } from '@remix-run/react';
+import { ReactNode } from 'react';
 import { NavigationBar } from '../components/NavigationBar';
 
-const Wrapper = ({ children }: PropsWithChildren) => (
+const Wrapper = ({ children }: { children: ReactNode }) => (
   <div className="antialiased leading-tight py-8 lg:py-16 px-6 md:px-16 lg:px-24 max-w-2xl space-y-6">
     {/* <ColorModeToggle /> */}
     <NavigationBar />
     <div className="md:pl-16">{children}</div>
   </div>
 );
-const HelloRemix = () => (
+const Main = () => (
   <Wrapper>
-    <WhoAmI />
+    <Outlet />
   </Wrapper>
 );
 
-export default HelloRemix;
+export default Main;
