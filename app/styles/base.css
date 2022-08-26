@@ -152,3 +152,63 @@ a.active {
   transition: height 0.5s ease-out;
   overflow: hidden !important;
 }
+
+/* CV styles */
+dt,
+b {
+  @apply text-gray-900 font-semibold;
+}
+
+.dark dt,
+.dark b {
+  @apply text-gray-300;
+}
+
+.sidebar-info {
+  grid-template-columns: auto max-content;
+}
+
+@media print {
+  @page {
+    margin: 1cm;
+  }
+
+  body {
+    @apply text-gray-900 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    @apply text-gray-900 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply text-gray-900 !important;
+    page-break-after: avoid;
+  }
+
+  dt,
+  dl,
+  b {
+    @apply text-gray-900 !important;
+  }
+
+  dl {
+    page-break-inside: avoid;
+  }
+
+  img {
+    border: none !important;
+  }
+
+  .sidebar-info {
+    grid-template-columns: min-content auto;
+  }
+  .sidebar-info dd {
+    padding-left: 1rem;
+  }
+}
