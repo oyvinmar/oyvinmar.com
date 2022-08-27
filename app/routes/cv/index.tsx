@@ -1,5 +1,6 @@
 // "import '../styles/cv.css'";
 
+import { ColorModeToggle } from 'app/components/ThemeToggle';
 import { Fragment, ReactNode } from 'react';
 import { CvProject, presentations, projects } from '../../data/CvData';
 import profileImage from '../../img/profile.png';
@@ -40,7 +41,7 @@ let Project = ({
 
 const Cv = () => (
   <div id="cv" className=" leading-tight">
-    {/* <ColorModeToggle /> */}
+    <ColorModeToggle />
     <section className="md:flex print:block">
       <div className="px-6 lg:px-12 py-4 bg-teal-800 space-y-4 md:max-w-xs">
         <div className="flex items-center md:block">
