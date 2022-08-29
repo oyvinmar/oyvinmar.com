@@ -20,8 +20,8 @@ module SimpleEvent = {
         <div>
           <p dangerouslySetInnerHTML={dangerousHtml(event.content)} />
           <time className="text-gray-500 font-normal">
-            {str(Utils.toHumanReadableString(event.date))}
-          </time>
+            // {str(Utils.toHumanReadableString(event.date))}
+             {event.date} </time>
         </div>
       </a>
     </article>;
