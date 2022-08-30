@@ -2,6 +2,7 @@ import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { loader as pinboardLoader } from '../api/pinboard';
 import { loader as swarmLoader } from '../api/swarm';
+import { loader as stravaLoader } from '../api/strava';
 import { Event } from '../../types';
 import { EventList } from 'app/components/EventList';
 
@@ -11,7 +12,7 @@ function race<T>(promise: Promise<T[]>): Promise<T[]> {
 }
 
 export async function loader() {
-  let promises = [pinboardLoader, swarmLoader];
+  let promises = [pinboardLoader, swarmLoader, stravaLoader];
 
   let all: Array<Event[]> = await Promise.all(
     promises.map((promise) => race<Event>(promise())),

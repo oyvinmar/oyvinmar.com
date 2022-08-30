@@ -80,6 +80,7 @@ const EventGroup = ({ event }: EventGroupProps) => {
             '/api/polyline/?size=644x280&maptype=roadmap&path=enc:' +
             event.image
           }
+          loading="lazy"
           alt="polyline"
         />
       ) : null}
