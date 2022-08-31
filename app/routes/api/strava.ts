@@ -1,5 +1,5 @@
-import { client, q } from 'app/fauna.server';
-import { Event } from 'app/types';
+import { client, q } from '../../fauna.server';
+import { Event } from '../../types';
 
 interface Token {
   expires_at: number;

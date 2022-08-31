@@ -1,10 +1,10 @@
-import { json } from '@remix-run/node';
+import { HeadersFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { loader as pinboardLoader } from '../api/pinboard';
 import { loader as swarmLoader } from '../api/swarm';
 import { loader as stravaLoader } from '../api/strava';
 import { Event } from '../../types';
-import { EventList } from 'app/components/EventList';
+import { EventList } from '../../components/EventList';
 
 function race<T>(promise: Promise<T[]>): Promise<T[]> {
   let timeout = new Promise<T[]>((res) => setTimeout(() => res([]), 3000));
@@ -39,7 +39,9 @@ export async function loader() {
     return [...prev, current];
   }, []);
 
-  return json(grouped);
+  return json(grouped, {
+    headers: { 'Cache-Control': 's-maxage=300, max-age=0' },
+  });
 }
 export default () => {
   const data = useLoaderData<Event[]>();

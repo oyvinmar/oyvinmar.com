@@ -1,5 +1,5 @@
 import { Collapse } from '@oyvinmar-forks/react-collapse';
-import { toHumanReadableString } from 'app/helpers';
+import { toHumanReadableString } from '../helpers';
 import { useState } from 'react';
 import { Event } from '../types';
 import {

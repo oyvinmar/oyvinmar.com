@@ -1,10 +1,8 @@
 /*
-!/src
-!/api
-!/__tests__
+!/app
 !/yarn.lock
-!/index.html
-!/bsconfig.json
 !/package.json
 !/tailwind.config.js
+!/remix.config.js
+!/server.js
 !/postcss.config.js

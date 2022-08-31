@@ -85,17 +85,14 @@ export default function Root() {
 
 export function CatchBoundary() {
   const caught = useCatch();
-  const data = useLoaderData<LoaderData>();
   return (
-    <ThemeProvider specifiedTheme={data.theme}>
-      <App>
-        <div className="error-container">
-          <h1>
-            {caught.status} {caught.statusText}
-          </h1>
-        </div>
-      </App>
-    </ThemeProvider>
+    <Document ssrTheme="dark" theme="dark">
+      <div className="error-container">
+        <h1>
+          {caught.status} {caught.statusText}
+        </h1>
+      </div>
+    </Document>
   );
 }
 

@@ -1,6 +1,4 @@
-// "import '../styles/cv.css'";
-
-import { ColorModeToggle } from 'app/components/ThemeToggle';
+import { ColorModeToggle } from '../../components/ThemeToggle';
 import { Fragment, ReactNode } from 'react';
 import { CvProject, presentations, projects } from '../../data/CvData';
 import profileImage from '../../img/profile.png';

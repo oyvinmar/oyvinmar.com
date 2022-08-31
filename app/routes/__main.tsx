@@ -1,5 +1,5 @@
 import { Outlet } from '@remix-run/react';
-import { ColorModeToggle } from 'app/components/ThemeToggle';
+import { ColorModeToggle } from '../components/ThemeToggle';
 import { ReactNode } from 'react';
 import { NavigationBar } from '../components/NavigationBar';
 
