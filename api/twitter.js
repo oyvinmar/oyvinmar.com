@@ -10,6 +10,10 @@ module.exports = (req, res) => {
     '1.0A',
     null,
     'HMAC-SHA1',
+  ).get(
+    'https://api.twitter.com/1.1/statuses/user_timeline.json',
+    process.env.TWITTER_ACCESS_TOKEN,
+    process.env.TWITTER_ACCESS_TOKEN_SECRET,
   );
 
   const options = {
