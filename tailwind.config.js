@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  mode: 'jit',
   darkMode: 'class',
   theme: {
     colors: {
@@ -135,7 +134,5 @@ module.exports = {
       sidebar: '#d3dee0',
     }),
   },
-  purge: {
-    content: ['./app/**/*.tsx', './app/**/*.ts'],
-  },
+  content: ['./app/**/*.tsx', './app/**/*.ts'],
 };
