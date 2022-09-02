@@ -1,4 +1,4 @@
-import { Collapse } from '@oyvinmar-forks/react-collapse';
+import { UnmountClosed } from 'react-collapse';
 import { toHumanReadableString } from '../helpers';
 import { useState } from 'react';
 import { Event } from '../types';
@@ -93,7 +93,7 @@ const EventGroup = ({ event }: EventGroupProps) => {
         ) : (
           <div />
         )}
-        <Collapse isOpened={displayAll}>
+        <UnmountClosed isOpened={displayAll}>
           <div className="relative -mt-4">
             <span
               className={`path path-${event.serviceName.toLocaleLowerCase()}`}
@@ -102,7 +102,7 @@ const EventGroup = ({ event }: EventGroupProps) => {
               <SimpleEvent key={event.id} event={event} />
             ))}
           </div>
-        </Collapse>
+        </UnmountClosed>
       </div>
     </article>
   );
