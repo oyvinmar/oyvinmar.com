@@ -9,3 +9,6 @@ dist
 .DS_Store
 .env
 .vercel
+build
+public/build
+app/tailwind.css

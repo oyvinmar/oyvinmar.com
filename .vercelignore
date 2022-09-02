@@ -1,0 +1,10 @@
+/*
+!/app
+!/yarn.lock
+!/package.json
+!/tailwind.config.js
+!/remix.config.js
+!/server.js
+!/postcss.config.js
+!/tsconfig.json
+!/remix.env.d.ts

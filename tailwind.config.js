@@ -1,3 +1,5 @@
+/** @type {import('tailwindcss').Config} */
+
 module.exports = {
   mode: 'jit',
   darkMode: 'class',
@@ -134,11 +136,6 @@ module.exports = {
     }),
   },
   purge: {
-    content: [
-      'index.html',
-      './src/**/*.html',
-      './src/**/*.re',
-      './src/**/*.bs.js',
-    ],
+    content: ['./app/**/*.tsx', './app/**/*.ts'],
   },
 };
