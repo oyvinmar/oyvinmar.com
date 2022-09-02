@@ -14,7 +14,8 @@ let Moon = (props: { className?: string }) => (
     width="20"
     height="20"
     {...props}
-    viewBox="0 0 20 20">
+    viewBox="0 0 20 20"
+  >
     <title>Dark</title>
     <path d="M17.39 15.14A7.33 7.33 0 0 1 11.75 1.6c.23-.11.56-.23.79-.34a8.19 8.19 0 0 0-5.41.45 9 9 0 1 0 7 16.58 8.42 8.42 0 0 0 4.29-3.84 5.3 5.3 0 0 1-1.03.69z" />
   </svg>
@@ -30,7 +31,8 @@ export const ColorModeToggle = () => {
   return (
     <button
       className="focus:outline-none absolute right-0 top-0 mr-5 mt-6 print:hidden"
-      onClick={toggleTheme}>
+      onClick={toggleTheme}
+    >
       <Themed dark={<Sun className="fill-current" />} light={<Moon />} />
     </button>
   );

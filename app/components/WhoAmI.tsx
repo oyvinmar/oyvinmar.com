@@ -8,7 +8,8 @@ export const WhoAmI = () => {
         <a
           className="text-link"
           href="https://en.wikipedia.org/wiki/Oslo"
-          rel="external">
+          rel="external"
+        >
           Oslo, Norway
         </a>
         .
@@ -26,13 +27,15 @@ export const WhoAmI = () => {
         <a
           className="text-link"
           href="https://github.com/oyvinmar"
-          rel="external">
+          rel="external"
+        >
           open source
         </a>{' '}
         <a
           className="text-link"
           href="https://github.com/ndlano/"
-          rel="external">
+          rel="external"
+        >
           projects
         </a>{' '}
         and contributing back when time and work allow me too.
@@ -43,14 +46,16 @@ export const WhoAmI = () => {
         <a
           className="text-link"
           href="https://www.strava.com/athletes/5392532"
-          rel="external">
+          rel="external"
+        >
           cycling
         </a>{' '}
         🚴🏼‍♂️ in the summer and going{' '}
         <a
           className="text-link"
           href="https://www.strava.com/athletes/5392532"
-          rel="external">
+          rel="external"
+        >
           skiing
         </a>{' '}
         ⛷ in the winter.

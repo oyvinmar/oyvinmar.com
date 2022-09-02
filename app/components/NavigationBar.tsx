@@ -28,7 +28,8 @@ export const NavigationBar = () => {
           />
           <a
             href="/"
-            className="block text-black no-underline text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight dark:text-gray-300">
+            className="block text-black no-underline text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight dark:text-gray-300"
+          >
             Øyvind Marthinsen
           </a>
         </div>
@@ -38,14 +39,16 @@ export const NavigationBar = () => {
             <svg
               className="fill-current w-4 h-4"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20">
+              viewBox="0 0 20 20"
+            >
               <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
             </svg>
           ) : (
             <svg
               className="fill-current w-4 h-4"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20">
+              viewBox="0 0 20 20"
+            >
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           )}
@@ -55,7 +58,8 @@ export const NavigationBar = () => {
         className={
           'md:flex pl-8 md:pl-16 md:uppercase font-bold md:font-normal text-pink-600 space-y-4 md:space-y-0 md:space-x-6 tracking-tight ' +
           toggleClass
-        }>
+        }
+      >
         <li>
           <NavLink to="/" prefetch="intent">
             About me
