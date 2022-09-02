@@ -14,6 +14,16 @@ function race<T>(promise: Promise<T[]>): Promise<T[]> {
   return Promise.race([promise, timeout]);
 }
 
+async function executeLoaderSafely(promise: () => Promise<Event[]>) {
+  try {
+    let data = await promise();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
 export async function loader() {
   let promises = [
     pinboardLoader,
@@ -25,7 +35,7 @@ export async function loader() {
   ];
 
   let all: Array<Event[]> = await Promise.all(
-    promises.map((promise) => race<Event>(promise())),
+    promises.map((promise) => race<Event>(executeLoaderSafely(promise))),
   );
 
   let sorted = all

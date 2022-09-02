@@ -62,8 +62,6 @@ export async function loader(): Promise<Event[]> {
       let userLink = createGithubLink(pr.user.login);
       return `Closed pull request <a href="${pr.html_url}>${repoName}/${pr.number}</a> from ${userLink}`;
     } else if (type === 'PushEvent') {
-      console.log(githubEvent);
-
       let size = githubEvent.payload.distinct_size;
       return `Pushed ${size > 1 ? size : 'a'} ${plural(
         'commit',
