@@ -1,5 +1,5 @@
-import { useReducer, useState } from 'react';
-import { Link } from '@remix-run/react';
+import { useReducer } from 'react';
+import { NavLink } from '@remix-run/react';
 
 import profileImage from '../img/profile.png';
 
@@ -57,16 +57,24 @@ export const NavigationBar = () => {
           toggleClass
         }>
         <li>
-          <Link to="/">About me</Link>
+          <NavLink to="/" prefetch="intent">
+            About me
+          </NavLink>
         </li>
         <li>
-          <Link to="/lifestream"> Lifestream</Link>
+          <NavLink to="/lifestream" prefetch="intent">
+            Lifestream
+          </NavLink>
         </li>
         <li>
-          <Link to="/elsewhere"> Elsewhere</Link>
+          <NavLink to="/elsewhere" prefetch="intent">
+            Elsewhere
+          </NavLink>
         </li>
         <li>
-          <Link to="/contact"> Contact</Link>
+          <NavLink to="/contact" prefetch="intent">
+            Contact
+          </NavLink>
         </li>
       </ul>
     </nav>
