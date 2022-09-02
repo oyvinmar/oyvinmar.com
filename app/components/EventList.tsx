@@ -22,7 +22,8 @@ const SimpleEvent = ({ event }: SimpleEventProps) => {
         href={event.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3">
+        className="mt-3 hover:bg-pink-300 hover:bg-opacity-25 rounded-sm flex items-center space-x-4 p-3"
+      >
         <div>
           <p dangerouslySetInnerHTML={{ __html: event.content }} />
           <time className="text-gray-500 font-normal">
@@ -43,7 +44,8 @@ const EventGroup = ({ event }: EventGroupProps) => {
   return (
     <article
       className="p-3 space-y-3 dark:bg-gray-800 bg-white rounded-md shadow-md
-      ring-1 ring-gray-100 dark:ring-0">
+      ring-1 ring-gray-100 dark:ring-0"
+    >
       <div className="mt-2 flex items-center space-x-2 relative">
         <div>
           {
@@ -65,7 +67,8 @@ const EventGroup = ({ event }: EventGroupProps) => {
               href={event.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-link">
+              className="text-link"
+            >
               {event.serviceName}
             </a>
           </header>
