@@ -22,10 +22,11 @@
     "build": "run-s build:*",
     "build:css": "npm run generate:css -- --minify",
     "build:remix": "NODE_ENV=production remix build",
-    "lint-es": "eslint --ignore-path .gitignore",
-    "lint": "yarn format-check && yarn lint-es",
+    "lint:check": "eslint --ignore-path .gitignore",
+    "check-all": "run-s *:check",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,scss,md}\"",
-    "format-check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,scss,md}\"",
+    "format:check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,scss,md}\"",
+    "type:check": "yarn tsc",
     "generate:css": "tailwindcss -i ./app/styles/base.css -o ./app/tailwind.css",
     "dev": "run-p dev:*",
     "dev:css": "npm run generate:css -- --watch",
@@ -45,7 +46,7 @@
     "vercel": "^28.2.0"
   },
   "volta": {
-    "node": "14.15.3",
-    "yarn": "1.22.5"
+    "node": "16.17.0",
+    "pnpm": "7.5.0"
   }
 }
