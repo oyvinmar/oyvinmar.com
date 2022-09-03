@@ -2,7 +2,6 @@ import { useReducer } from 'react';
 import { NavLink } from '@remix-run/react';
 
 import profileImageFallback from '../img/profile.png';
-import profileImageFull from '../img/profile_full.webp';
 import profileImage128 from '../img/profile_128.webp';
 
 type State = 'Visible' | 'Hidden';
