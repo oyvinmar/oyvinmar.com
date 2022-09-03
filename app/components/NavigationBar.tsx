@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
 import { NavLink } from '@remix-run/react';
 
-import profileImage from '../img/profile.png';
+import profileImageFallback from '../img/profile.png';
+import profileImageFull from '../img/profile_full.webp';
+import profileImage128 from '../img/profile_128.webp';
 
 type State = 'Visible' | 'Hidden';
 
@@ -21,11 +23,14 @@ export const NavigationBar = () => {
     <nav>
       <div className="relative flex justify-between z-20">
         <div className="flex items-center">
-          <img
-            className="h-12 w-12 mr-4 md:h-14 md:w-14 lg:h-20 lg:w-20 rounded-full"
-            alt="Picture of Øyvind Marthinsen"
-            src={profileImage}
-          />
+          <picture>
+            <source srcSet={profileImage128} type="image/webp" />
+            <img
+              className="h-12 w-12 mr-4 md:h-14 md:w-14 lg:h-20 lg:w-20 rounded-full"
+              src={profileImageFallback}
+              alt="Picture of Øyvind Marthinsen"
+            />
+          </picture>
           <a
             href="/"
             className="block text-black no-underline text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight dark:text-gray-300"
