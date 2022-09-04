@@ -5,4 +5,4 @@ Source code of my personal homepage
 ## Requirements
 
 - Node.JS ~16
-- Pnpm ~6.13
+- Pnpm ~7.5
