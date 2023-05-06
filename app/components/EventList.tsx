@@ -106,8 +106,12 @@ const EventGroup = ({ event }: EventGroupProps) => {
             ))}
           </div>
         </UnmountClosed>
-        {event.serviceName === 'Strava' && <small>Powered by Strava</small>}
       </div>
+      {event.serviceName === 'Strava' && (
+        <div>
+          <small>Powered by Strava</small>
+        </div>
+      )}
     </article>
   );
 };
