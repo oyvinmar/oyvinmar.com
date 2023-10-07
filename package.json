@@ -12,7 +12,7 @@
     "autoprefixer": "^10.4.8",
     "faunadb": "^4.0.0",
     "oauth": "^0.9.15",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-collapse": "^5.1.1",
     "react-dom": "^18.2.0",
