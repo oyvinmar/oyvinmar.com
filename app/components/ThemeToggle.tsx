@@ -30,7 +30,7 @@ export const ColorModeToggle = () => {
 
   return (
     <button
-      className="focus:outline-none absolute right-0 top-0 mr-5 mt-6 print:hidden"
+      className="focus:outline-none absolute right-0 top-0 mr-5 mt-2 lg-mt-6 print:hidden p-4"
       onClick={toggleTheme}
     >
       <Themed dark={<Sun className="fill-current" />} light={<Moon />} />

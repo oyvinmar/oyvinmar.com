@@ -1,5 +1,5 @@
-import { useReducer } from 'react';
-import { NavLink } from '@remix-run/react';
+import { useEffect, useReducer, useState } from 'react';
+import { NavLink, useLocation } from '@remix-run/react';
 
 import profileImageFallback from '../img/profile.png';
 import profileImage128 from '../img/profile_128.webp';
@@ -13,6 +13,19 @@ function toggleReducer(state: State) {
 
 export const NavigationBar = () => {
   let [state, toggle] = useReducer(toggleReducer, 'Hidden');
+  let currentLocation = useLocation();
+  let [prevLocation, setPrevLocation] = useState(currentLocation);
+  useEffect(() => {
+    console.log('currentLocation', currentLocation);
+    console.log('prevLocation', prevLocation);
+
+    if (prevLocation.pathname !== currentLocation.pathname) {
+      if (state === 'Visible') {
+        toggle();
+      }
+      setPrevLocation(currentLocation);
+    }
+  }, [currentLocation, prevLocation]);
 
   let toggleClass =
     state === 'Visible'
@@ -37,7 +50,7 @@ export const NavigationBar = () => {
             Øyvind Marthinsen
           </a>
         </div>
-        <button className="block md:hidden" onClick={toggle}>
+        <button className="block md:hidden p-4" onClick={toggle}>
           <span className="sr-only"> Toggle navigation </span>
           {state === 'Visible' ? (
             <svg
