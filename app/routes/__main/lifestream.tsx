@@ -4,7 +4,6 @@ import { loader as pinboardLoader } from '../api/pinboard';
 import { loader as swarmLoader } from '../api/swarm';
 import { loader as stravaLoader } from '../api/strava';
 import { loader as githubLoader } from '../api/github';
-import { loader as twitterLoader } from '../api/twitter';
 import { loader as untappdLoader } from '../api/untappd';
 import { Event } from '../../types';
 import { EventList } from '../../components/EventList';
@@ -30,7 +29,6 @@ export async function loader() {
     swarmLoader,
     stravaLoader,
     githubLoader,
-    twitterLoader,
     untappdLoader,
   ];
 
