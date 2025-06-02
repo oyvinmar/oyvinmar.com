@@ -1,5 +1,5 @@
-import { client, q } from '../../fauna.server';
 import { Event } from '../../types';
+import { get } from '@vercel/edge-config';
 
 interface Token {
   expires_at: number;
@@ -67,32 +67,49 @@ async function refreshToken(refreshToken: string) {
   return response.json();
 }
 
+async function setToken(token: Token) {
+  const configId = process.env.EDGE_CONFIG?.replace(
+    'https://edge-config.vercel.com/',
+    '',
+  )?.split('?')[0];
+  await fetch(`https://api.vercel.com/v1/edge-config/${configId}/items`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${process.env.VERCEL_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      items: [
+        {
+          operation: 'update',
+          key: 'strava-token',
+          value: token,
+        },
+      ],
+    }),
+  });
+}
+
 export async function loader(): Promise<Event[]> {
   try {
-    if (!client) {
-      throw new Error('Missing secret to connect to FaunaDB');
-    }
+    const token = await get<Token>('strava-token');
 
-    const { data } = await client.query<{ data: Token }>(
-      q.Get(q.Ref(q.Collection('tokens'), '276457023357321733')),
-    );
+    if (!token) {
+      throw new Error('No tokens found in Edge Config');
+    }
 
     let activities = [];
-    if (data.expires_at > Date.now() / 1000 + 60) {
-      activities = await fetchActivities(data.access_token);
+    if (token.expires_at > Date.now() / 1000 + 60) {
+      activities = await fetchActivities(token.access_token);
     } else {
-      const newToken = await refreshToken(data.refresh_token);
-
-      await client.query(
-        q.Update(q.Ref(q.Collection('tokens'), '276457023357321733'), {
-          data: newToken,
-        }),
-      );
-
+      const newToken = await refreshToken(token.refresh_token);
+      await setToken(newToken);
       activities = await fetchActivities(newToken.access_token);
     }
+
     return activities.map(activityToEvent);
   } catch (error) {
-    throw new Error('Fetch error');
+    console.error(error);
+    return [];
   }
 }
