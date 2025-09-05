@@ -1,7 +1,6 @@
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { loader as pinboardLoader } from '../api/pinboard';
-import { loader as swarmLoader } from '../api/swarm';
 import { loader as stravaLoader } from '../api/strava';
 import { loader as githubLoader } from '../api/github';
 import { loader as untappdLoader } from '../api/untappd';
@@ -24,13 +23,7 @@ async function executeLoaderSafely(promise: () => Promise<Event[]>) {
 }
 
 export async function loader() {
-  let promises = [
-    pinboardLoader,
-    swarmLoader,
-    stravaLoader,
-    githubLoader,
-    untappdLoader,
-  ];
+  let promises = [pinboardLoader, stravaLoader, githubLoader, untappdLoader];
 
   let all: Array<Event[]> = await Promise.all(
     promises.map((promise) => race<Event>(executeLoaderSafely(promise))),
